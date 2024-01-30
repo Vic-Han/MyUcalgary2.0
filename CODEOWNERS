@@ -1,0 +1,9 @@
+# Allow for Mohammed and Victor to approve every pull request for now
+@Vic-Han
+@Mrmallam
+
+# As the front-end lead, Victor will approve all pull requests related to Vue files
+*.vue @Vic-Han
+
+# As the back-end lead, Mohammed will approve all pull requests related to Django files
+*.py @Mrmallam

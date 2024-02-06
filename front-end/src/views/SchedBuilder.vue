@@ -1,3 +1,4 @@
+<!-- This is the SchedBuilder component that toggles when the route is set to schedule -->
 <template>
     <div class = "component">
         This is the Sched Builder Component

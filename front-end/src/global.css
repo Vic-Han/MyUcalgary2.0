@@ -1,7 +1,7 @@
 /*
     Any universal styles that are used across the application should be placed here.
     Should be used as a last resort if Tailwind CSS does not provide the necessary styles.
-    Will remove the styles below once the High fidelity prototypes are ready.
+    Will remove the styles below(btn, component, sub-component) once the High fidelity prototypes are ready.
 */
 .btn{
     background-color: aqua;

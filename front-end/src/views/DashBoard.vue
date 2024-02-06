@@ -1,6 +1,6 @@
+<!-- This is the primary dashboard component that is active when the route is dashboard -->
 <template>
     <AppNavbar/>
-
     <div class = "component">
         This is the dashboard heehe
         <SchedPreview/>        

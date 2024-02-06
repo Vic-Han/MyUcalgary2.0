@@ -1,3 +1,4 @@
+<!-- This is the Profile Info component that toggles when the route is set to profile -->
 <template>
     <AppNavbar/>
     <div class = "component">

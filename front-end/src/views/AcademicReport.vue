@@ -1,3 +1,5 @@
+<!-- This is the  academics component that is active when the route is academics -->
+
 <template>
     <AppNavbar/>
 

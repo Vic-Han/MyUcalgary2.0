@@ -1,0 +1,30 @@
+/*
+    Any universal styles that are used across the application should be placed here.
+    Should be used as a last resort if Tailwind CSS does not provide the necessary styles.
+    Will remove the styles below once the High fidelity prototypes are ready.
+*/
+.btn{
+    background-color: aqua;
+    color: white;
+    padding: 20px;
+    margin: 30px;
+    font-size: 25px;
+    font-weight: 600;
+}
+.component{
+    background-color: pink;
+    color: black;
+    padding: 30px;
+    margin: 40px;
+    font-size: 40px;
+    font-weight: 900;
+}
+.sub-component{
+    background-color: green;
+    color: white;
+    padding: 10px;
+    margin: 15px;
+    font-size: 20px;
+    font-weight: 500;
+    width: fit-content;
+}

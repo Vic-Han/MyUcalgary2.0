@@ -16,9 +16,13 @@ export default {
   },
   methods: {
     loginCorrect() {
+      //this.$emit('show-navbar')
       this.$router.push('/dashboard')
     },
   },
+  created(){
+    this.$emit('hide-navbar')
+  }
 }
 </script>
         

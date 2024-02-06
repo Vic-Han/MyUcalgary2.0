@@ -1,6 +1,5 @@
 
 <template>
-    <AppNavbar/>
 
     <div class = "component">
         This is the FinanceBreakdown Component
@@ -11,11 +10,13 @@
 </template>
 
 <script>
-import AppNavbar from '../components/AppNavbar'
     export default{
         name : 'FinanceBreakdown',
         components:{
-            AppNavbar
+            
         },
+        created(){
+            this.$emit('show-navbar')
+        }
     }
 </script>

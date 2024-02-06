@@ -11,6 +11,9 @@
 
 <script>
     export default{
-        name : 'SchedBuilder'
+        name : 'SchedBuilder',
+        created(){
+            this.$emit('hide-navbar')
+        }
     }
 </script>

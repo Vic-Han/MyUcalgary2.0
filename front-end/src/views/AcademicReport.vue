@@ -1,7 +1,6 @@
 <!-- This is the  academics component that is active when the route is academics -->
 
 <template>
-    <AppNavbar/>
 
     <div class = "component">
         This is the AcademicReport Component
@@ -9,12 +8,14 @@
 </template>
 
 <script>
-import AppNavbar from '../components/AppNavbar'
 
     export default{
         name : 'AcademicReport',
         components:{
-            AppNavbar
+            
         },
+        created(){
+            this.$emit('show-navbar')
+        }
     }
 </script>

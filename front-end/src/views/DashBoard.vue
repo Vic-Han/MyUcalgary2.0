@@ -1,6 +1,5 @@
 <!-- This is the primary dashboard component that is active when the route is dashboard -->
 <template>
-    <AppNavbar/>
     <div class = "component">
         This is the dashboard heehe
         <SchedPreview/>        
@@ -16,7 +15,6 @@
 
 
 <script>
-import AppNavbar from '../components/AppNavbar'
 import CalendarPreview from '../components/CalendarPreview'
 import GradePreview from '../components/GradePreview'
 import FinancePieChart from '../components/FinancePieChart'
@@ -24,11 +22,18 @@ import SchedPreview from '../components/SchedPreview'
     export default{
         name: 'DashBoard',
         components: {
-            AppNavbar,
             CalendarPreview,
             GradePreview,
             FinancePieChart,
             SchedPreview
+        },
+        data: () =>{
+            return{
+
+            }
+        },
+        created(){
+            this.$emit('show-navbar')
         }
     }
 </script>

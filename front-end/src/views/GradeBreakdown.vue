@@ -1,5 +1,4 @@
 <template>
-    <AppNavbar/>
 
     <div class = "component">
         This is the GradeBreakdown Component
@@ -10,11 +9,16 @@
 </template>
 
 <script>
-import AppNavbar from '../components/AppNavbar'
     export default{
         name : 'GradeBreakdown',
         components:{
-            AppNavbar
+            
         },
+        data : () =>{
+
+        },
+        created() {
+            this.$emit('show-navbar')
+        }
     }
 </script>

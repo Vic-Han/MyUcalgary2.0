@@ -17,6 +17,8 @@
         },
         created(){
             this.$emit('show-navbar')
+            this.$emit('show-search')
+            this.$emit('show-profile')
         }
     }
 </script>

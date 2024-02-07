@@ -3,8 +3,11 @@
     Should be used as a last resort if Tailwind CSS does not provide the necessary styles.
     Will remove the styles below(btn, component, sub-component) once the High fidelity prototypes are ready.
 */
+*{
+    font-family: proxima-nova, sans-serif;
+}
 .btn{
-    background-color: aqua;
+    background-color: #ffcd00;
     color: white;
     padding: 20px;
     margin: 30px;
@@ -12,7 +15,7 @@
     font-weight: 600;
 }
 .component{
-    background-color: pink;
+    background-color: #ed0a72;
     color: black;
     padding: 30px;
     margin: 40px;
@@ -20,7 +23,7 @@
     font-weight: 900;
 }
 .sub-component{
-    background-color: green;
+    background-color: #47a67c;
     color: white;
     padding: 10px;
     margin: 15px;

@@ -10,6 +10,7 @@ import MiscLinks from '../views/MiscLinks.vue'
 import ProfileInfo from '../views/ProfileInfo.vue'
 import RegisterScreen from '../views/RegisterScreen.vue'
 import SchedBuilder from '../views/SchedBuilder.vue'
+import ApplicationHomepage from '../views/ApplicationHomepage.vue'
 
 // map routes to components imported above
 const routes =  [
@@ -22,6 +23,7 @@ const routes =  [
     { path: '/register', component: RegisterScreen },
     { path: '/schedule', component: SchedBuilder },
     { path: '/academics', component: AcademicReport},
+    { path: '/application', component: ApplicationHomepage}
 ]
 
 // create the router instance and export it

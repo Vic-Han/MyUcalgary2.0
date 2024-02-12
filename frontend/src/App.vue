@@ -1,18 +1,23 @@
 <template>
-  <h1> Guys I really think we should keep this color scheme </h1>
-  <h2> It looks really good and we will get 100% on the UX</h2>
-  <AppNavbar v-if="navbarVisible"/>
-  <ProfilePreview v-if="profileVisible"/>
-  <input type="text" v-if="searchVisible" 
-  placeholder="Search"
-  v-model="searchTerm"
-  >
-  <button v-if="searchVisible" @click="showSearchResults">Search</button>
-  <router-view  
-    @show-navbar="showNavbar" @hide-navbar = "hideNavbar"
-    @show-profile="showProfile" @hide-profile = "hideProfile"
-    @show-search="showSearch" @hide-search = "hideSearch"
-  />
+  <div class = "flex flex-row">
+    <AppNavbar v-if="navbarVisible"/>
+    <div>
+      <div class = "flex flex-row">
+        <input type="text" v-if="searchVisible" 
+        placeholder="Search"
+        v-model="searchTerm">
+        <button v-if="searchVisible" @click="showSearchResults">Search</button>
+        <ProfilePreview v-if="profileVisible"/>
+
+      </div>
+      
+      <router-view  
+        @show-navbar="showNavbar" @hide-navbar = "hideNavbar"
+        @show-profile="showProfile" @hide-profile = "hideProfile"
+        @show-search="showSearch" @hide-search = "hideSearch"
+      />
+    </div>
+  </div>
 </template>
 
 <script>

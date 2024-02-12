@@ -6,6 +6,11 @@
 *{
     font-family: proxima-nova, sans-serif;
 }
+html,body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .btn{
     background-color: #ffcd00;
     color: white;

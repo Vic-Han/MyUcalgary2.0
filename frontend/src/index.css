@@ -3,6 +3,9 @@
     Should be used as a last resort if Tailwind CSS does not provide the necessary styles.
     Will remove the styles below(btn, component, sub-component) once the High fidelity prototypes are ready.
 */
+:root{
+    --red-100: #D6001C
+}
 *{
     font-family: proxima-nova, sans-serif;
 }
@@ -10,6 +13,10 @@ html,body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+#app{
+    margin: 0;
+    padding: 0;
 }
 .btn{
     background-color: #ffcd00;
@@ -35,4 +42,10 @@ html,body{
     font-size: 20px;
     font-weight: 500;
     width: fit-content;
+}
+.outline-red:focus{
+    outline: 2px solid var(--red-100);
+}
+.drop-shadow-sm{
+    filter: drop-shadow(30px 10px 4px #4444dd);
 }

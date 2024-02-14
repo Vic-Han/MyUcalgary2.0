@@ -1,5 +1,4 @@
 from django.db import models
-from decimal import Decimal
 
 class Faculty(models.Model):
     faculty_id = models.IntegerField(unique=True, primary_key=True)

@@ -9,6 +9,7 @@
       relative left-full -translate-x-full transition hover:bg-red-100 hover hover:text-white-100 drop-shadow-sm" @click="loginCorrect()">
         Login
       </div>
+      <div v-if="error"> Incorrect username or password</div>
     </div>
     <div class = "flex flex-row mb-6 relative -translate-x-2/4 left-1/2 justify-center p-3">
       <a class = "text-sm" href ="https://acctman.ucalgary.ca/register" target ="eid"> Create an eID </a>
@@ -27,22 +28,37 @@ export default {
   name: 'LoginScreen',
   data: () => {
     return {
-      // Component data
+      username: "",
+      password: "",
+      error: false
     }
   },
   methods: {
     loginCorrect() {
-      //this.$emit('show-navbar')
       this.$router.push('/dashboard')
     },
     loginIncorrect() {
-      //this.$emit('show-navbar')
+      this.error = true
+      setTimeout(() => {
+        this.error = false
+      }, 3000)
     },
-    loginCheck() {
-      //this.$emit('show-navbar')
+    loginAttempt() {
+      const sojmething = 'truthy'
+      if(sojmething){
+        this.$cookies.set('auth-token', 'hashcode', '30m')
+        console.log(this.$cookies.get('auth-token'))
+        this.loginCorrect()
+      }
+      else{
+        this.loginIncorrect()
+      }
     }
   },
   created(){
+    if(this.$cookies.get('auth-token') != null){
+      this.loginCorrect()
+    }
     this.$emit('hide-navbar')
     this.$emit('hide-search')
     this.$emit('hide-profile')

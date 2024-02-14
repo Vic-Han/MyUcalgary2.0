@@ -59,8 +59,23 @@ export default {
       },
       showSearchResults(){
         console.log("Searching for " + this.searchTerm)
+      },
+      resetAuth(){
+        if(!this.$store.dispatch('refreshCookie', {name: 'auth-token', time: 30})){
+          this.$router.push('/login')
+        }
       }
+  },
+  created(){
+    
+  },
+  mounted(){
+    this.resetAuth()
+  },
+  beforeUnmount(){
+    this.$store.dispatch('clearCookie', {name: 'auth-token'})
   }
+  
 }
 </script>
 

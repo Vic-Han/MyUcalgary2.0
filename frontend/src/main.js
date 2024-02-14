@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import VueCookies from 'vue-cookies'
 import App from './App.vue'
 // import the router and store instances
 import router from './config/routes.js'
@@ -7,5 +8,8 @@ import store from './config/store.js'
 import './index.css'
 import './tailwind.css'
 
-// create the app instance using the router and store then mount it to the DOM
-createApp(App).use(router).use(store).mount('#app')
+const app = createApp(App)
+app.use(VueCookies)
+app.use(router)
+app.use(store)
+app.mount('#app')

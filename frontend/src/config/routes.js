@@ -1,5 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
-
+import VueCookies from 'vue-cookies'
 // import all components that will be used as routes
 import AcademicReport from '../views/AcademicReport.vue'
 import DashBoard from '../views/DashBoard.vue'
@@ -14,7 +14,7 @@ import ApplicationHomepage from '../views/ApplicationHomepage.vue'
 
 // map routes to components imported above
 const routes =  [
-    { path: '/', component: LoginScreen },
+    { path: '/login', component: LoginScreen },
     { path: '/dashboard', component: DashBoard },
     { path: '/finances', component: FinanceBreakdown },
     { path: '/grades', component: GradeBreakdown },
@@ -30,5 +30,19 @@ const routes =  [
 const router = createRouter({
     history: createWebHistory(),
     routes,
+})
+// check if the user is logged in before navigating to any route
+router.beforeEach((to, from, next) => {
+    if (to.path === '/')  {
+        if (VueCookies.get('auth-token')) {
+            next('/dashboard')
+        } else {
+            next('/login')
+        }
+        
+    } 
+    else {
+        next()
+    }
 })
 export default router

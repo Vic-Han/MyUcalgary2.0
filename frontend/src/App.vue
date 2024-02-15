@@ -15,7 +15,9 @@
         @show-navbar="showNavbar" @hide-navbar = "hideNavbar"
         @show-profile="showProfile" @hide-profile = "hideProfile"
         @show-search="showSearch" @hide-search = "hideSearch"
+        @logout-possible = "logoutPossible = true" @logout-not-possible = "logoutPossible = false"
       />
+      <LogoutOverlay v-if="logout"/>
     </div>
   </div>
 </template>
@@ -23,18 +25,27 @@
 <script>
 import AppNavbar from './components/AppNavbar'
 import ProfilePreview from './components/ProfilePreview.vue'
+import LogoutOverlay from './components/LogoutOverlay.vue'
 export default {
   name: 'App',
   components: {
     AppNavbar,
-    ProfilePreview
-  },
+    ProfilePreview,
+    LogoutOverlay
+},
   data: () => {
     return{
       navbarVisible : false,
       profileVisible : false,
       searchVisible : false,
+      logoutPossible: true,
+      noCookie : false,
       searchTerm: ""
+    }
+  },
+  computed: {
+    logout(){
+      return this.logoutPossible && this.noCookie
     }
   },
   methods: {
@@ -61,19 +72,34 @@ export default {
         console.log("Searching for " + this.searchTerm)
       },
       resetAuth(){
-        if(!this.$store.dispatch('refreshCookie', {name: 'auth-token', time: 30})){
-          this.$router.push('/login')
+        const token = this.$cookies.get('auth-token')
+        if(token){
+          this.$cookies.set('auth-token', token)
+          return true;
         }
+        else{
+          return false;
+        }
+      },
+      eventHandler(){
+        if(!this.resetAuth()){
+          this.noCookie = true
+        }
+        //console.log(this.noCookie && this.logoutPossible)
       }
   },
   created(){
     
   },
   mounted(){
-    this.resetAuth()
+    document.addEventListener('click', this.eventHandler)
+    document.addEventListener('keydown', this.eventHandler)
+    document.addEventListener('mousemove', this.eventHandler)
   },
   beforeUnmount(){
-    this.$store.dispatch('clearCookie', {name: 'auth-token'})
+    document.removeEventListener('click', this.eventHandler)
+    document.removeEventListener('keydown', this.eventHandler)
+    document.removeEventListener('mousemove', this.eventHandler)
   }
   
 }

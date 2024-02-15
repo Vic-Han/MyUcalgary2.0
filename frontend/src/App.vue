@@ -85,6 +85,9 @@ export default {
         if(!this.resetAuth()){
           this.noCookie = true
         }
+        else{
+          this.noCookie = false
+        }
         //console.log(this.noCookie && this.logoutPossible)
       }
   },

@@ -20,7 +20,7 @@
       </router-link>
       
       <router-link to="/aroundu" class="group flex items-center py-4 px-4 pl-14 nav-link border-2 border-gray-300 hover:border-transparent hover:bg-red-500 focus:bg-red-500 mb-2 rounded-lg">
-        <img src="@/assets/aroundU.png" alt="Around U" class="h-6 mr-2">
+        <img src="@/assets/aroundu.png" alt="Around U" class="h-6 mr-2">
         <span class="group-hover:text-white focus:text-white">Around U</span>
       </router-link>
     </div>

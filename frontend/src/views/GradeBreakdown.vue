@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-200 min-h-screen px-5 py-3">
+    <div class="bg-gray-200 min-h-screen px-4 py-3">
       <div class="container mx-auto">
         <div class="flex flex-wrap -mx-2">
           <div class="w-full lg:w-1/3 px-2 mb-4" style="height: 600px;">

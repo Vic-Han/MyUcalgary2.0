@@ -50,5 +50,10 @@ export default {
   margin-left: auto; /* Right align to center it */
   margin-right: auto; /* Left align to center it */
   border-radius: 20px; /* Made border more rounded */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 </style>

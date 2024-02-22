@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student
+from .models import Student, Faculty, Department, Program
 
 # Register your models here.
 
@@ -16,3 +16,7 @@ admin.site.register(Student)
 
 #     # this will add the description field to the admin page
 #     list_display = ('title', 'description')
+
+admin.site.register(Faculty)
+admin.site.register(Department)
+admin.site.register(Program)

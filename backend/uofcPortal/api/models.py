@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -43,9 +44,13 @@ class Student(models.Model):
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
     password = models.CharField(max_length=30)
-    program = models.CharField(max_length=30)
-    year = models.IntegerField()
+    year = models.DateField()
     gpa = models.FloatField()
+
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
+    program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     # To show Student's name in admin panel
     def __str__(self):

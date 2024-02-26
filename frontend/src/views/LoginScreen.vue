@@ -52,17 +52,20 @@ export default {
       const serverPath = this.$store.state.serverPath
       const apiPath = "/auth/"
 
-      const body = JSON.stringify({
-        username: this.username,
-        password: this.password
-      });
+      // const body = JSON.stringify({
+      //   username: this.username,
+      //   password: this.password
+      // });
+      const body = new FormData()
+      body.append('username', this.username)
+      body.append('password', this.password)
 
       console.log(`Request URL: ${serverPath}${apiPath}`, `Request Body:`, body); // Debugging - remove later
 
       const headers=  {
           'Content-Type': 'application/json',
       }
-      this.$http.post (`${serverPath}${apiPath}`, body, {headers}).then(response => {
+      this.$http.post(`${serverPath}${apiPath}`, body, {headers}).then(response => {
         this.$cookies.set('auth-token', response.data.token)
         this.loginCorrect()
       }).catch(error => {

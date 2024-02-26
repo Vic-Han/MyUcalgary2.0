@@ -6,18 +6,19 @@
     <input type = "password" placeholder = "Password" class = "w-8/12 h-7 p-2 mb-2 border border-grey-200 rounded-md relative -translate-x-2/4 left-1/2 outline-red drop-shadow-sm"/>
     <div class = "w-8/12 relative -translate-x-2/4 left-1/2 mb-6 mt-4">
       <div class="w-32 border-2 border-red-100 rounded-md text-red-100 
-      relative left-full -translate-x-full transition hover:bg-red-100 hover hover:text-white-100 drop-shadow-sm" @click="loginCorrect()">
+      relative left-full -translate-x-full transition hover:bg-red-100 hover hover:text-white-100 drop-shadow-sm" @click="loginAttempt()">
         Login
       </div>
+      <div v-if="error"> Incorrect username or password</div>
     </div>
     <div class = "flex flex-row mb-6 relative -translate-x-2/4 left-1/2 justify-center p-3">
-      <a class = "text-sm" href ="https://acctman.ucalgary.ca/register" target ="eid"> Create an eID </a>
+      <a class = "text-sm hover:underline" href ="https://acctman.ucalgary.ca/register" target ="eid"> Create an eID </a>
       <div class = "mx-3">  •  </div>
-      <a class = "text-sm " href = "https://password.ucalgary.ca/recover" target = "password-recover">Forgot Password </a>
+      <a class = "text-sm hover:underline" href = "https://password.ucalgary.ca/recover" target = "password-recover">Forgot Password </a>
       <div class = "mx-3">  •  </div>
-      <a class = "text-sm" href = "https://ucalgary.service-now.com/it?id=kb_article&sys_id=e86c4d3913b93ec06f3afbb2e144b03d" target = "faq"> Account FAQs </a> 
+      <a class = "text-sm hover:underline" href = "https://ucalgary.service-now.com/it?id=kb_article&sys_id=e86c4d3913b93ec06f3afbb2e144b03d" target = "faq"> Account FAQs </a> 
       <div class = "mx-3">  •  </div>
-      <a class = "text-sm" href = "https://ucalgary.service-now.com/it?id=contact_and_help" target = "IT">Contact IT Support </a>
+      <a class = "text-sm hover:underline" href = "https://ucalgary.service-now.com/it?id=contact_and_help" target = "IT">Contact IT Support </a>
     </div>
   </div>
 </template>
@@ -27,22 +28,38 @@ export default {
   name: 'LoginScreen',
   data: () => {
     return {
-      // Component data
+      username: "",
+      password: "",
+      error: false
     }
   },
   methods: {
     loginCorrect() {
-      //this.$emit('show-navbar')
+      this.$emit('logout-possible')
       this.$router.push('/dashboard')
     },
     loginIncorrect() {
-      //this.$emit('show-navbar')
+      this.error = true
+      setTimeout(() => {
+        this.error = false
+      }, 3000)
     },
-    loginCheck() {
-      //this.$emit('show-navbar')
+    loginAttempt() {
+      const sojmething = 'truthy'
+      if(sojmething){
+        this.$cookies.set('auth-token', 'hashcode')
+        this.loginCorrect()
+      }
+      else{
+        this.loginIncorrect()
+      }
     }
   },
   created(){
+    if(this.$cookies.get('auth-token') != null){
+      this.loginCorrect()
+    }
+    this.$emit('logout-not-possible')
     this.$emit('hide-navbar')
     this.$emit('hide-search')
     this.$emit('hide-profile')

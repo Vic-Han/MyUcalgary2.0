@@ -49,14 +49,23 @@ export default {
       }, 3000)
     },
     loginAttempt() {
-      const sojmething = 'truthy'
-      if(sojmething){
-        this.$cookies.set('auth-token', 'hashcode')
+      const serverPath = this.$store.state.serverPath
+      const apiPath = "/auth"
+
+      const body = new FormData()
+      body.append('username', this.username)
+      body.append('password', this.password)
+
+      const headers=  {
+          'Content-Type': 'application/json',
+      }
+      this.$http.post (`${serverPath}${apiPath}`, body, {headers}).then(response => {
+        this.$cookies.set('auth-token', response.data.token)
         this.loginCorrect()
-      }
-      else{
+      }).catch(error => {
         this.loginIncorrect()
-      }
+        console.log(error)
+      })
     }
   },
   created(){

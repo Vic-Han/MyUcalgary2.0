@@ -36,7 +36,11 @@ export default {
   methods: {
     loginCorrect() {
       this.$emit('logout-possible')
-      this.$router.push('/dashboard')
+      if(this.$cookies.get('lastPage')) {
+        this.$router.push(this.$cookies.get('lastPage'))
+      } else {
+        this.$router.push('/dashboard')
+      }
     },
     loginIncorrect() {
       this.error = true

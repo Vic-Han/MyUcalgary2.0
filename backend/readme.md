@@ -160,4 +160,18 @@ fetch('YOUR_ENDPOINT_URL', {
 
 this will return data related to the specific Token/User. (Not implemented for now)
 
+***
 
+### Fixtures & Dummy Data
+
+To flush database data:
+
+```BASH
+python3 manage.py flush
+```
+
+To upload the default dummy data:
+
+```BASH
+python3 manage.py loaddata dummy_data.json
+```

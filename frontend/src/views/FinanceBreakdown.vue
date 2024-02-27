@@ -17,8 +17,7 @@
         },
         created(){
             this.$emit('show-navbar')
-            this.$emit('show-search')
-            this.$emit('show-profile')
+            this.$emit('toggle-selected', 'finances')
         }
     }
 </script>

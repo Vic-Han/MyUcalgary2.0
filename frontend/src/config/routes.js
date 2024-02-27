@@ -8,7 +8,6 @@ import GradeBreakdown from '../views/GradeBreakdown.vue'
 import LoginScreen from '../views/LoginScreen.vue'
 import MiscLinks from '../views/MiscLinks.vue'
 import ProfileInfo from '../views/ProfileInfo.vue'
-import RegisterScreen from '../views/RegisterScreen.vue'
 import SchedBuilder from '../views/SchedBuilder.vue'
 import ApplicationHomepage from '../views/ApplicationHomepage.vue'
 
@@ -20,7 +19,6 @@ const routes =  [
     { path: '/grades', component: GradeBreakdown },
     { path: '/misc', component: MiscLinks },
     { path: '/profile', component: ProfileInfo },
-    { path: '/register', component: RegisterScreen },
     { path: '/schedule', component: SchedBuilder },
     { path: '/academics', component: AcademicReport},
     { path: '/application', component: ApplicationHomepage}

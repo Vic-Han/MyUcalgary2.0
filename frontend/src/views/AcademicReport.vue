@@ -21,12 +21,19 @@
                     <h3>{{ program.programName }}</h3>
                     <p>Units {{ program.unitsRequired }} required, {{ program.unitsTaken }} taken, {{ program.unitsNeeded }} needed</p>
                 </div>
-                <div v-for="category in report.courseCategory" :key="category.categoryName">
+                <div class="field-column w-1/2 px-2">
+                    <div v-for="category in report.courseCategory" :key="category.categoryName">
                     <p class="font-semibold">{{ category.categoryName }}</p>
-                    <div v-for="field in category.courseField" :key="field.fieldName" class="mb-4">
-                    <p class="font-semibold">{{ field.fieldName }}</p>
-                    <div class="flex flex-wrap gap-2">
-                        <div v-for="course in field.courses" :key="course.code" class="relative group">
+                    <div class="fields-courses-container flex -mx-2">
+                    <div class="field-column w-1/2 px-2">
+                        <div v-for="field in category.courseField" :key="field.fieldName" class="mb-4">
+                        <p class="font-semibold">{{ field.fieldName }}</p>
+                        </div>
+                    </div>
+                    <div class="courses-column w-1/2 px-2">
+                        <div v-for="field in category.courseField" :key="field.fieldName">
+                        <div class="flex flex-wrap gap-2">
+                            <div v-for="course in field.courses" :key="course.code" class="relative group">
                             <div :class="{
                                     'bg-[#A9DD91] shadow': course.status === 'complete',
                                     'bg-[#EBEB71] shadow': course.status === 'inProgress',
@@ -43,10 +50,14 @@
                                 <div><strong>Semester:</strong> {{ course.semester }}</div>
                                 <div><strong>Grade:</strong> {{ course.grade }}</div>
                             </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
                     </div>
                 </div>
+                </div>
+                
                 </div>
             </div>
             </div>
@@ -57,6 +68,7 @@
       </div>
   </template>
   
+  
 <script>
   export default {
     name: 'AcademicReport',
@@ -66,7 +78,10 @@
           degreeStream: "Bachelor of Science",
           major: "Computer Science",
           minor: "None",
+<<<<<<< Updated upstream
           concentration: "None",
+=======
+>>>>>>> Stashed changes
           yearOfProgram: 4,
           academicLoad: "Full-Time"
         },
@@ -75,8 +90,6 @@
             {
               programName: "BSC in Computer Science",
               unitsRequired: 120.00,
-              unitsTaken: 114.00,
-              unitsNeeded: 6.00,
               courseCategory: [
                 {
                     categoryName: 'Required Courses',
@@ -84,7 +97,7 @@
                     {
                         fieldName: 'Major Field',
                         courses: [
-                        { code: 'CPSC 231', status: 'complete', description: 'Introduction to Computer Science', units: 3, semester: 'Fall 2020', grade: 'A+', hovered: false },
+                        { code: 'CPSC 231', status: 'complete', description: 'Introduction to Computer Science', units: 3, semester: 'Fall 2020', grade: 'A+', hovered: false, type: 'majorReq' },
                         { code: 'CPSC 233', status: 'complete' },
                         { code: 'CPSC 251', status: 'complete' },
                         { code: 'CPSC 351', status: 'complete' },
@@ -103,7 +116,7 @@
                         { code: 'SENG 401', status: 'inProgress' },
                         { code: 'CPSC 329', status: 'complete' },
                         { code: 'CPSC 359', status: 'complete' },
-                        { code: 'SENG 550', status: 'complete' }
+                        { code: 'CPSC 321', status: 'incomplete', type: '300lvl' }
                         ]
                     },
                     {
@@ -179,6 +192,7 @@
             // Add more programs if needed
           ]
         },
+
         areAllReportsExpanded: false,
       }
     },

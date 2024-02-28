@@ -9,7 +9,7 @@ import './index.css'
 import './tailwind.css'
 
 const app = createApp(App)
-app.use(VueCookies, { expires: '20s'})
+app.use(VueCookies, { expires: '20m'})
 app.use(router)
 app.use(store)
 app.mount('#app')

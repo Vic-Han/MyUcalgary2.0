@@ -65,6 +65,8 @@
         programInfo: {
           degreeStream: "Bachelor of Science",
           major: "Computer Science",
+          minor: "None",
+          concentration: "None",
           yearOfProgram: 4,
           academicLoad: "Full-Time"
         },
@@ -282,12 +284,10 @@
         }
     },
     created() {
-      this.$emit('set-page-metadata', {
-        title: 'Academic Report',
-        navbarVisible: true,
-        searchVisible: true,
-        profileVisible: true
-      });
+      this.$emit('show-navbar')
+      this.$emit('show-search')
+      this.$emit('show-profile')
+      this.$emit('set-title','Academic Report')
       // Preset data should not be modified here, it should be set in data() or computed
     }
   }

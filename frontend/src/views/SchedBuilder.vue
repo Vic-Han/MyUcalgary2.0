@@ -14,8 +14,6 @@
         name : 'SchedBuilder',
         created(){
             this.$emit('hide-navbar')
-            this.$emit('hide-search')
-            this.$emit('hide-profile')
         }
     }
 </script>

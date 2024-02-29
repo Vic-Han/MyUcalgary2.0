@@ -68,8 +68,7 @@ import SchedPreview from '../components/SchedPreview'
         },
         created(){
             this.$emit('show-navbar')
-            this.$emit('show-search')
-            this.$emit('show-profile')
+            this.$emit('toggle-selected', 'dashboard')
         }
     }
 </script>

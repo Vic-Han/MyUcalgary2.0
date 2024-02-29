@@ -1,22 +1,19 @@
 <template>
-  <div class = "flex flex-row">
-    <AppNavbar v-if="navbarVisible"/>
-    <div>
-      <div class = "flex flex-row">
-        <input type="text" v-if="searchVisible" 
+  <div class="flex flex-row w-screen" v-bind:class="{'pl-96':navbarVisible}">
+    <AppNavbar v-if="navbarVisible" :selected="selected" />
+    <div class="w-full">
+      <div class="flex flex-row w-full">
+        <input type="text" v-if="navbarVisible" 
         placeholder="Search"
         v-model="searchTerm">
-        <button v-if="searchVisible" @click="showSearchResults">Search</button>
-        <ProfilePreview v-if="profileVisible"/>
-
+        <button v-if="navbarVisible" @click="showSearchResults">Search</button>
+        <ProfilePreview v-if="navbarVisible"/>
       </div>
       
-      <router-view  
+      <router-view class="w-full" 
         @show-navbar="showNavbar" @hide-navbar = "hideNavbar"
-        @show-profile="showProfile" @hide-profile = "hideProfile"
-        @show-search="showSearch" @hide-search = "hideSearch"
         @logout-possible = "logoutPossible = true" @logout-not-possible = "logoutPossible = false"
-      />
+        @toggle-selected = "toggleSelected"/>
       <LogoutOverlay v-if="logout"/>
     </div>
   </div>
@@ -36,11 +33,10 @@ export default {
   data: () => {
     return{
       navbarVisible : false,
-      profileVisible : false,
-      searchVisible : false,
+      selected: "",
       logoutPossible: true,
       noCookie : false,
-      searchTerm: ""
+      searchTerm: "",
     }
   },
   computed: {
@@ -54,22 +50,24 @@ export default {
       },
       hideNavbar(){
         this.navbarVisible = false
-      },
-      showProfile(){
-        this.profileVisible = true
-      },
-      hideProfile(){
-        this.profileVisible = false
-      },
-      showSearch(){
-        this.searchVisible = true
-      },
-      hideSearch(){
-        this.searchVisible = false
         this.searchTerm = ""
       },
       showSearchResults(){
         console.log("Searching for " + this.searchTerm)
+      },
+      toggleSelected(selected){
+        if(selected === "grades"){
+          this.selected = 'dashboard'
+        }
+        else if(selected === "finances"){
+          this.selected = 'dashboard'
+        }
+        else if(selected === "profile"){
+          this.selected = 'dashboard'
+        }
+        else{
+          this.selected = selected
+        }
       },
       resetAuth(){
         const token = this.$cookies.get('auth-token')

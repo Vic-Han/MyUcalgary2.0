@@ -80,8 +80,6 @@ export default {
     }
     this.$emit('logout-not-possible')
     this.$emit('hide-navbar')
-    this.$emit('hide-search')
-    this.$emit('hide-profile')
   }
 }
 </script>

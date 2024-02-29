@@ -154,6 +154,10 @@ import GradePreview from '@/components/GradePreview.vue';
             }
         };
     },
+    created() {
+      this.$emit('show-navbar');
+      this.$emit('toggle-selected', 'grades');
+    },
     computed: {
         selectedCourses() {
             return this.courses[this.selectedSemester] || [];

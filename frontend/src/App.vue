@@ -1,8 +1,8 @@
 <template>
-  <div class = "flex flex-row" v-bind:class="{'pl-96':navbarVisible}">
+  <div class="flex flex-row w-screen" v-bind:class="{'pl-96':navbarVisible}">
     <AppNavbar v-if="navbarVisible" :selected="selected" />
-    <div>
-      <div class = "flex flex-row">
+    <div class="w-full">
+      <div class="flex flex-row w-full">
         <input type="text" v-if="navbarVisible" 
         placeholder="Search"
         v-model="searchTerm">
@@ -10,7 +10,7 @@
         <ProfilePreview v-if="navbarVisible"/>
       </div>
       
-      <router-view  
+      <router-view class="w-full" 
         @show-navbar="showNavbar" @hide-navbar = "hideNavbar"
         @logout-possible = "logoutPossible = true" @logout-not-possible = "logoutPossible = false"
         @toggle-selected = "toggleSelected"/>

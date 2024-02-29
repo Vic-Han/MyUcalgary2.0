@@ -40,14 +40,29 @@ class Student(models.Model):
     student_id = models.CharField(max_length=10)
     student_first_name = models.CharField(max_length=30)
     student_last_name = models.CharField(max_length=30)
-    email = models.EmailField()
-    year = models.DateField()
+    date_of_birth = models.DateField()
+    country = models.CharField(max_length=30)
+    citizenship_status = models.CharField(max_length=30)
+    street_address = models.CharField(max_length=30)
+    postal_code = models.CharField(max_length=10)
+    city = models.CharField(max_length=30)
+    province = models.CharField(max_length=30)
+    primary_phone_number = models.CharField(max_length=15)
+    secondary_phone_number = models.CharField(max_length=15)
+    
+    personal_email = models.EmailField()
+    school_email = models.EmailField()
+
+    emergency_contact_name = models.CharField(max_length=30)
+    emergency_contact_phone = models.CharField(max_length=15)
+    emergency_contact_relationship = models.CharField(max_length=30)
+
     gpa = models.FloatField()
 
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     # To show Student's name in admin panel
     def __str__(self):

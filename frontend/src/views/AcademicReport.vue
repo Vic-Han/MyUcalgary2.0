@@ -4,7 +4,7 @@
         <h1 class="text-xl font-semibold mb-4">Program Information</h1>
         <p><strong>Degree Stream:</strong> {{ programInfo.degreeStream }}</p>
         <p><strong>Major:</strong> {{ programInfo.major }}</p>
-        <p><strong>Year of Program:</strong> {{ programInfo.yearOfProgram }}</p>
+        <p><strong>Year of Program:</strong> {{ programInfo.Year }}</p>
         <p><strong>Academic Load:</strong> {{ programInfo.academicLoad }}</p>
       </div>
   
@@ -12,9 +12,10 @@
         <h2 class="text-xl font-semibold mb-4">Academic Report</h2>
         <div v-for="(report, index) in academicReport.programs" :key="index">
         <div class="report-summary">
-            <h3 class="font-semibold cursor-pointer" @click="toggleReportDetails(index)">
+                <h3 class="font-semibold cursor-pointer" @click="toggleReportDetails(index)">
                 {{ report.programName }}
                 <span>{{ report.isExpanded ? '−' : '+' }}</span>
+                
                 </h3>
                 <div v-if="report.isExpanded">
                 <div v-for="(program, index) in programUnits" :key="index">
@@ -44,7 +45,7 @@
                                 class="rounded-md text-center px-6 py-1 text-sm border border-gray-500 font-medium hover:-translate-y-1 transition-transform duration-300 cursor-pointer">
                                 {{ course.code }}
                             </div>
-                            <div v-if="course.hovered" class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-white text-black p-2 border border-gray-500 rounded shadow-lg" style="background-color: white; opacity: 1; white-space: nowrap; max-width: 100vw; overflow-x: auto;">
+                            <div v-if="course.hovered" class="absolute bottom-full mb-2 -translate-x-1/2 left-1/2 text-black p-2 border border-gray-500 bg-white-100 bg-opacity-100 rounded shadow-lg whitespace-nowrap max-w-screen overflow-x-auto z-10">
                                 <div><strong>Description:</strong> {{ course.description }}</div>
                                 <div><strong>Units:</strong> {{ course.units }}</div>
                                 <div><strong>Semester:</strong> {{ course.semester }}</div>
@@ -78,13 +79,11 @@
           degreeStream: "Bachelor of Science",
           major: "Computer Science",
           minor: "None",
-<<<<<<< Updated upstream
-          concentration: "None",
-=======
->>>>>>> Stashed changes
-          yearOfProgram: 4,
+          concentrartion: 'None',
+          Year: 4,
           academicLoad: "Full-Time"
         },
+        
         academicReport: {
           programs: [
             {

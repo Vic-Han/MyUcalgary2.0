@@ -104,28 +104,28 @@
     </div> -->
   <div class = "flex flex-row w-full bg-grey-100">
     <div>
-      <div class="flex flex-col justify-center items-center rounded-lg shadow-xl py-16 px-8 text-center bg-white-100 m-5">
+      <div class="flex flex-col justify-center items-center rounded-lg shadow-xl py-12 px-8 text-center bg-white-100 m-5">
         <div class = "text-3xl font-bold mb-8">
           Cumulative GPA
         </div>
-        <div class="rounded-full bg-green-200 w-80 h-80 flex items-center justify-center my-6 mx-8 flex-col relative border-8 border-green-300">
+        <div class="rounded-full bg-green-200 w-80 h-80 flex items-center justify-center my-7 mx-8 flex-col relative border-8 border-green-300">
           <span class="text-white text-8xl font-bold my-4" style="color: #47A67C;">{{overallGPA}}</span>
           <span class="text-white text-5xl font-bold" style="color: #47A67C;">{{overallLetterGrade}}</span>
         </div>
        
       </div>
-      <div class = "flex flex-col rounded-lg shadow-xl py-10 px-8 text-center bg-white-100 m-5">
+      <div class = "flex flex-col rounded-xl shadow-xl py-12 px-8 text-center bg-white-100 m-5">
         <div class="font-bold my-4 text-base leading-relaxed">Expected Graduation Date: 2024</div>
         <div class="text-base leading-normal my-3 ">Confirmation of Enrollment</div>
         <div class = "text-grey-200 my-3"> Request Official Transcript </div>
         <div class = "text-grey-200 my-3"> View Unofficial Transcript </div>
       </div>
     </div>
-    <div class = " bg-white-100 rounded-xl shadow-2xl h-fit m-5 px-4">
-      <select v-model="selectedOption" class="rounded border-2 border-gray-500 focus:border-indigo-500 py-2 px-4 m-3">
+    <div class = " bg-white-100 rounded-xl shadow-2xl h-fit mx-1 my-5 px-4 py-1 flex flex-col">
+      <select v-model="selectedOption" class=" relative w-64 left-2/3 mr-40 rounded-lg border-2 border-gray-500 focus:border-indigo-500 py-2 px-4 m-3">
         <option v-for="(value, key) in termViews" :key="key">{{ key }}</option>
       </select>
-      <div v-for="(value, key) in termViews[selectedOption]" :key="key">
+      <div v-for="(value, key) in termViews[selectedOption]" :key="key" class = "my-3">
         <GradePreview :term="key" :average = "value.TermGPA" :letter = "value.TermLetterGrade"
           :courses = "value.courses" :year = "value.Level" :unitsEnrolled = "value.UnitsEnrolled"
           :plan = "value.Plan" :program ="value.Program"></GradePreview>
@@ -243,6 +243,14 @@ import GradePreview from '@/components/GradePreview.vue';
                       {
                           "name" : "SENG 513",
                           "letter" : "A"
+                      },
+                      {
+                          "name" : "ECON 341",
+                          "letter": "B+"
+                      },
+                      {
+                          "name" : "CPSC 411",
+                          "letter" : "B"
                       },
                       {
                           "name" : "ECON 341",

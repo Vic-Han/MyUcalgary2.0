@@ -1,14 +1,14 @@
 <template>
     <div class="flex flex-row justify-between">
         <div class="flex flex-col items-center mx-10">
-            <div class = "text-2xl font-bold mb-2">Semester GPA</div>
+            <div class = "text-2xl font-bold mb-4">Semester GPA</div>
             <div class="rounded-full w-52 h-52 flex items-center justify-center flex-col border-8" :class ="[circleBorder(letter),circleColor(letter)]" >
                 <span class="text-4xl font-bold" :class = "[letterColor(letter)]">{{ average }}</span>
                 <span class="text-4xl font-bold" :class = "[letterColor(letter)]">{{ letter  }}</span>
             </div>
         </div>
         <div class = "flex flex-col mx-2 justify-between">
-            <div v-for="course in courses" :key="course.name" class="flex flex-row py-2 justify-between">
+            <div v-for="course in courses" :key="course.name" class="flex flex-row py-1 justify-between">
                 <div class = "mx-3 text-lg w-28 text-left"> {{ course.name }}</div>
                 <div class = "w-96 mx-0">
                     <div class = "h-8 rounded-lg" :class = "[barColor(course.letter),barWidth(course.letter)]"></div>

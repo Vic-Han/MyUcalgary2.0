@@ -23,6 +23,62 @@ class StudentSerializer(serializers.ModelSerializer):
         model = Student
         fields = '__all__'
 
+
+
+class PersonalInfoSerializer(serializers.ModelSerializer):
+    personal_info = serializers.SerializerMethodField()
+    citizenship = serializers.SerializerMethodField()
+    address = serializers.SerializerMethodField()
+    phone_numbers = serializers.SerializerMethodField()
+    email = serializers.SerializerMethodField()
+    emergency_contact = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Student
+        fields = ('personal_info', 'citizenship', 'address', 'phone_numbers', 'email', 'emergency_contact')
+
+    def get_personal_info(self, obj):
+        return {
+            "firstname": obj.student_first_name,
+            "lastname": obj.student_last_name,
+            "UCID": obj.student_id,
+            "date of birth": obj.date_of_birth
+        }
+
+    def get_citizenship(self, obj):
+        return {
+            "country": obj.country,
+            "status": obj.citizenship_status
+        }
+
+    def get_address(self, obj):
+        return {
+            "street address": obj.street_address,
+            "postal code": obj.postal_code,
+            "city": obj.city,
+            "province/state": obj.province
+        }
+
+    def get_phone_numbers(self, obj):
+        return {
+            "home": obj.primary_phone_number,
+            "cell": obj.secondary_phone_number if obj.secondary_phone_number else None
+        }
+
+    def get_email(self, obj):
+        return {
+            "personal": obj.personal_email,
+            "school": obj.school_email
+        }
+
+    def get_emergency_contact(self, obj):
+        return {
+            "name": obj.emergency_contact_name,
+            "phone": obj.emergency_contact_phone,
+            "relation": obj.emergency_contact_relationship
+        }
+
+
 class FacultySerializer(serializers.ModelSerializer):
     class Meta:
         model = Faculty

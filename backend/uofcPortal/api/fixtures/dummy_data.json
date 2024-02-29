@@ -151,16 +151,84 @@
     }
   },
 
+
   {
     "model": "api.Student",
-    "pk": "001",
+    "pk": 1,
     "fields": {
-      "student_id": "S001",
-      "student_first_name": "John",
-      "student_last_name": "Doe",
-      "email": "johndoe@example.com",
-      "year": "2020-01-01",
-      "gpa": 3.5,
+      "student_id": "001",
+      "student_first_name": "FirstName1",
+      "student_last_name": "LastName1",
+      "date_of_birth": "1997-07-18",
+      "country": "Country1",
+      "citizenship_status": "CitizenshipStatus1",
+      "street_address": "123 Main St",
+      "postal_code": "704581",
+      "city": "City1",
+      "province": "Province1",
+      "primary_phone_number": "+10469256700",
+      "secondary_phone_number": "+17430957076",
+      "personal_email": "student1@personal.com",
+      "school_email": "student1@school.com",
+      "emergency_contact_name": "EmergencyContact1",
+      "emergency_contact_phone": "+11785436222",
+      "emergency_contact_relationship": "Parent",
+      "gpa": 3.48,
+      "faculty": "Arts",
+      "department": "Educational Psychology",
+      "program": "ProgD"
+    }
+  },
+
+  {
+    "model": "api.Student",
+    "pk": 2,
+    "fields": {
+      "student_id": "002",
+      "student_first_name": "FirstName2",
+      "student_last_name": "LastName2",
+      "date_of_birth": "1995-07-13",
+      "country": "Country2",
+      "citizenship_status": "CitizenshipStatus2",
+      "street_address": "123 Main St",
+      "postal_code": "513765",
+      "city": "City2",
+      "province": "Province2",
+      "primary_phone_number": "+19214062755",
+      "secondary_phone_number": "+12282429445",
+      "personal_email": "student2@personal.com",
+      "school_email": "student2@school.com",
+      "emergency_contact_name": "EmergencyContact2",
+      "emergency_contact_phone": "+14595657807",
+      "emergency_contact_relationship": "Parent",
+      "gpa": 2.61,
+      "faculty": "Science",
+      "department": "Marketing",
+      "program": "ProgC"
+    }
+  },
+  {
+    "model": "api.Student",
+    "pk": 3,
+    "fields": {
+      "student_id": "003",
+      "student_first_name": "FirstName3",
+      "student_last_name": "LastName3",
+      "date_of_birth": "1995-03-05",
+      "country": "Country3",
+      "citizenship_status": "CitizenshipStatus3",
+      "street_address": "123 Main St",
+      "postal_code": "796100",
+      "city": "City3",
+      "province": "Province3",
+      "primary_phone_number": "+10705486897",
+      "secondary_phone_number": "+10705486898",
+      "personal_email": "student3@personal.com",
+      "school_email": "student3@school.com",
+      "emergency_contact_name": "EmergencyContact3",
+      "emergency_contact_phone": "+10705486899",
+      "emergency_contact_relationship": "Parent",
+      "gpa": 3.25,
       "faculty": "Engineering",
       "department": "Computer Science",
       "program": "ProgA"
@@ -168,44 +236,26 @@
   },
   {
     "model": "api.Student",
-    "pk": "002",
+    "pk": 4,
     "fields": {
-      "student_id": "S002",
-      "student_first_name": "Jane",
-      "student_last_name": "Doe",
-      "email": "janedoe@example.com",
-      "year": "2021-01-01",
-      "gpa": 3.7,
-      "faculty": "Science",
-      "department": "Physics",
-      "program": "ProgB"
-    }
-  },
-  {
-    "model": "api.Student",
-    "pk": "003",
-    "fields": {
-      "student_id": "S003",
-      "student_first_name": "Alice",
-      "student_last_name": "Smith",
-      "email": "alicesmith@example.com",
-      "year": "2022-01-01",
-      "gpa": 3.9,
-      "faculty": "Arts",
-      "department": "English Literature",
-      "program": "ProgC"
-    }
-  },
-  {
-    "model": "api.Student",
-    "pk": "004",
-    "fields": {
-      "student_id": "S004",
-      "student_first_name": "Bob",
-      "student_last_name": "Brown",
-      "email": "bobbrown@example.com",
-      "year": "2019-01-01",
-      "gpa": 3.2,
+      "student_id": "004",
+      "student_first_name": "FirstName4",
+      "student_last_name": "LastName4",
+      "date_of_birth": "2001-11-29",
+      "country": "Country4",
+      "citizenship_status": "CitizenshipStatus4",
+      "street_address": "123 Main St",
+      "postal_code": "123456",
+      "city": "City4",
+      "province": "Province4",
+      "primary_phone_number": "+11234567890",
+      "secondary_phone_number": "+10987654321",
+      "personal_email": "student4@personal.com",
+      "school_email": "student4@school.com",
+      "emergency_contact_name": "EmergencyContact4",
+      "emergency_contact_phone": "+19876543210",
+      "emergency_contact_relationship": "Parent",
+      "gpa": 3.67,
       "faculty": "Business",
       "department": "Marketing",
       "program": "ProgD"
@@ -213,19 +263,36 @@
   },
   {
     "model": "api.Student",
-    "pk": "005",
+    "pk": 5,
     "fields": {
-      "student_id": "S005",
-      "student_first_name": "Charlie",
-      "student_last_name": "Green",
-      "email": "charliegreen@example.com",
-      "year": "2023-01-01",
-      "gpa": 4.0,
+      "student_id": "005",
+      "student_first_name": "FirstName5",
+      "student_last_name": "LastName5",
+      "date_of_birth": "1998-02-17",
+      "country": "Country5",
+      "citizenship_status": "CitizenshipStatus5",
+      "street_address": "123 Main St",
+      "postal_code": "987654",
+      "city": "City5",
+      "province": "Province5",
+      "primary_phone_number": "+12345678901",
+      "secondary_phone_number": "+19876543210",
+      "personal_email": "student5@personal.com",
+      "school_email": "student5@school.com",
+      "emergency_contact_name": "EmergencyContact5",
+      "emergency_contact_phone": "+10123456789",
+      "emergency_contact_relationship": "Parent",
+      "gpa": 3.89,
       "faculty": "Education",
       "department": "Educational Psychology",
       "program": "ProgE"
     }
   },
+  
+
+  
+
+  
 
 
   {

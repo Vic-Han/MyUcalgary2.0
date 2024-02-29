@@ -4,19 +4,35 @@
         <div class="grid grid-rows-10 grid-cols-12  w-full gap-2 pt-2 pb-2 px-2 shadow-inner">
             <div class="row-span-3 col-span-5 bg-white-100 w-full  h-full rounded-lg shadow-xl">
                 <h2 class="relative w-fit mx-4 pt-2 border-b-4 border-yellow-400 font-bold">Personal Info</h2>
-                <div class="flex flex-row flex-wrap  w-full">
-                    <p class="w-fit font-semibold">First:</p>
-                    <p class="w-2/3">John</p>
-                    <p class="w-fit font-semibold">Last:</p>
-                    <p class="w-2/3">Doe</p>
-                    <p class="w-fit font-semibold">UCID:</p>
-                    <p class="w-2/3">31234567</p>
-                    <p class="w-fit font-semibold">DOB:</p>
-                    <p class="w-2/3">2000-01-01</p>
+                <div class="grid grid-rows-4 grid-cols-4 gap-1 pt-2">
+                    <p class="font-semibold text-right">First:</p>
+                    <p class="col-span-3 text-left">John</p>
+                    <p class="font-semibold text-right">Last:</p>
+                    <p class="col-span-3 text-left">Doe</p>
+                    <p class="font-semibold text-right">UCID:</p>
+                    <p class="col-span-3 text-left">31234567</p>
+                    <p class="font-semibold text-right">DOB:</p>
+                    <p class="col-span-3 text-left">01-01-2000</p>
                 </div>
             </div>
             <div class="row-span-3 col-start-6 col-span-3 bg-white-100 w-full h-full rounded-lg shadow-xl">
                 <h2 class="relative w-fit mx-4 pt-2 border-b-4 border-yellow-400 font-bold">Citizenship</h2>
+                <div class="grid grid-cols-1 divide-y px-2 pt-2">
+                    <div class="pb-2">
+                        <div class="flex flex-row text-sm">
+                            <div class="w-fit font-semibold pr-1">Country:</div>
+                            <div class="">Canada</div>
+                        </div>
+                        <div class="flex flex-row text-sm">
+                            <div class="w-fit font-semibold pr-1">Status:</div>
+                            <div class="">Permanent Resident</div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row text-sm">
+                        <!-- <div class="w-fit">Hi</div>
+                        <div class="">There</div> -->
+                    </div>
+                </div>
             </div>
             <div class="row-span-7 col-start-9  col-span-4 bg-white-100 h-full w-full rounded-lg shadow-xl">
                 <h2 class="relative w-fit mx-4 pt-2 border-b-4 border-yellow-400 font-bold">Address</h2>

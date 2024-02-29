@@ -17,7 +17,7 @@
             </div>
             <div class="row-span-3 col-start-6 col-span-3 bg-white-100 w-full h-full rounded-lg shadow-xl">
                 <h2 class="relative w-fit mx-4 pt-2 border-b-4 border-yellow-400 font-bold">Citizenship</h2>
-                <div class="grid grid-cols-1 divide-y px-2 pt-2">
+                <div class="grid grid-cols-1 divide-y divide-black-100 px-2 pt-2">
                     <div class="pb-2">
                         <div class="flex flex-row text-sm">
                             <div class="w-fit font-semibold pr-1">Country:</div>
@@ -28,9 +28,15 @@
                             <div class="">Permanent Resident</div>
                         </div>
                     </div>
-                    <div class="flex flex-row text-sm">
-                        <!-- <div class="w-fit">Hi</div>
-                        <div class="">There</div> -->
+                    <div class="pt-2">
+                        <div class="flex flex-row text-sm">
+                            <div class="w-fit font-semibold pr-1">Residency:</div>
+                            <div class="">Student Visa</div>
+                        </div>
+                        <div class="flex flex-row text-sm">
+                            <div class="w-fit font-semibold pr-1">Expires:</div>
+                            <div class="">2024-06-01</div>
+                        </div>
                     </div>
                 </div>
             </div>

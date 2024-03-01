@@ -105,7 +105,7 @@
   <div class = "flex flex-row w-full bg-grey-100">
     <div>
       <div class="flex flex-col justify-center items-center rounded-lg shadow-xl py-12 px-8 text-center bg-white-100 m-5">
-        <div class = "text-3xl font-bold mb-8">
+        <div class = "text-3xl font-bold mb-9">
           Cumulative GPA
         </div>
         <div class="rounded-full bg-green-200 w-80 h-80 flex items-center justify-center my-7 mx-8 flex-col relative border-8 border-green-300">
@@ -154,10 +154,6 @@ import GradePreview from '@/components/GradePreview.vue';
             }
         };
     },
-    created() {
-      this.$emit('show-navbar');
-      this.$emit('toggle-selected', 'grades');
-    },
     computed: {
         selectedCourses() {
             return this.courses[this.selectedSemester] || [];
@@ -194,6 +190,7 @@ import GradePreview from '@/components/GradePreview.vue';
     },
     created(){
       this.$emit('show-navbar')
+      this.$emit('toggle-selected', 'grades');
         const backendPayload = {
           "overallGPA": 3.71,
           "letterGrade": "A-",

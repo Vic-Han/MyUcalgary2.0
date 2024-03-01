@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class = "flex flex-col mx-2 justify-between">
-            <div v-for="course in courses" :key="course.name" class="flex flex-row py-1 justify-between">
+            <div v-for="course in courses" :key="course.name"  class="flex flex-row py-1 justify-between">
                 <div class = "mx-3 text-lg w-28 text-left"> {{ course.name }}</div>
                 <div class = "w-96 mx-0">
                     <div class = "h-8 rounded-lg" :class = "[barColor(course.letter),barWidth(course.letter)]"></div>

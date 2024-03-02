@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-100 min-h-screen p-4 md:p-4">
+    <!-- <div class="bg-gray-100 min-h-screen p-4 md:p-4">
       <div class="w-full mx-auto mb-4 relative h-128 w-64">
         <div class="flex justify-between items-center mb-8">
           <span class="text-2xl font-bold text-gray-800 hover:text-blue-500 transition-colors duration-300">
@@ -15,7 +15,7 @@
               <div class="w-full mx-auto mb-4 relative mt-[-12rem] pt-28">
                 <div class="aspect-square rounded-full overflow-hidden pie-chart-scale" :style="pieChartStyle">
                 </div>
-              </div>
+            </div>
   
               <div class="flex justify-center items-center space-x-4 py-4 mt-[-6rem]">
                 <div class="flex items-center">
@@ -224,7 +224,103 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+    <div class = "bg-grey-100 flex flex-col px-5">
+        <div class = "text-lg"> Finances</div>
+        <div class = "class = flex flex-row">
+            <div class = "class = flex flex-col"> 
+                <div class = "bg-white-100 m-5 p-10"> 
+                   <div class = "text-lg mb-8"> {{ currentTerm }} </div>
+                   <div class = "rounded-full w-64 h-64 mx-8" :style="pieChartStyle"></div>
+                   <div class = "flex flex-row mt-8">
+                          <div class = "flex items-center mx-4">
+                            <span class="inline-block w-3 h-3 bg-red-500 mr-1"></span><span class="text-red-500">Due</span>
+                          </div>
+                          <div class = "flex items-center mx-2">
+                            <span class="inline-block w-3 h-3 bg-green-500 mr-1"></span><span class="text-green-500">Paid</span>
+                          </div>
+                          <div class = "flex items-center mx-4">
+                            <span class="inline-block w-3 h-3 bg-yellow-500 mr-1"></span><span class="text-yellow-500">Awards</span>
+                          </div>
+                   </div>
+                </div>
+                <div class = "bg-white-100 m-5 flex flex-col p-5"> 
+                    <div class = "flex flex-col flex-wrap h-64">
+                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                        UPass Opt-in 
+                    </a>
+                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                        Payment Plans
+                    </a>
+                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                        Student Donation Opt-out
+                    </a>
+                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                        Account Inquiry
+                    </a>
+                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                        Health & Dental Opt-out
+                    </a>
+                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                        Payments
+                    </a>
+                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                        Donation Receipt
+                    </a>
+                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                        Receipts
+                    </a>
+                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                        Refunds
+                    </a>
+                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                        Fees Calendar
+                    </a>
+                    </div>
+                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                        T2202
+                    </a>
+                </div>
+            </div>
+            <div class = "m-5 bg-white-100 p-5"> 
+                <select v-model="selectedTerm"
+                    class="rounded-lg border-4 border-red-300 shadow-lg hover:border-red-500 focus:outline-none 
+                    focus:ring-2 focus:ring-indigo-600 focus:border-red transition duration-200 ease-in-out appearance-none bg-white py-2 px-14 text-red-700">
+                    <option v-for="(value,key) in terms"  :value="key" :key="key">
+                            {{ key }}
+                    </option>
+                  </select>
+
+                  <div class = "flex flex-row">
+                    <div class = "rounded-t-2xl p-4 bg-green-100" @click = "activeTab = 'fee' "> Fees</div>
+                    <div class = "rounded-t-2xl p-4 bg-green-100" @click = " activeTab = 'scholarships'"> Scholarships </div>
+                    <div class = "rounded-t-2xl p-4 bg-green-100" @click = "activeTab = 'awards'"> Awards </div>
+                    <div class = "rounded-t-2xl p-4 bg-green-100 " @click = "activeTab = 'pay'"> My Pay </div>
+                  </div>
+                  <div class = "flex flex-col rounded-lg shadow-md">
+                    <div class = "flex flex-row">
+                        <div class = "p-4 text-left w-56"> Item </div>
+                        <div class = "p-4 text-left w-28"> Type </div>
+                        <div class = "p-4 text-left w-28"> Posted Date </div>
+                        <div class = "p-4 text-left w-28"> Charge </div>
+                        <div class = "p-4 text-left w-28"> Payment </div>
+                        <div class = "p-4 text-left w-28"> Refund </div>
+                    </div>
+                    <div v-for= '(item, index) in terms[selectedTerm]' :key="index">
+                        <div v-if="item.type == activeTab" class = "flex flex-row">
+                            <div class = "p-4"> {{ item.name }} </div>
+                            <div class = "p-4"> {{ item.type }} </div>
+                            <div class = "p-4"> {{ item.date }} </div>
+                            <div class = "p-4"> {{ item.amount }} </div>
+                            <div class = "p-4"> {{ item.amount }} </div>
+                            <div class = "p-4"> {{ item.amount }} </div>
+                        </div>
+                    </div>
+                  </div>
+
+            </div>
+        </div>
+    </div>"
   </template>
   
   <script>
@@ -232,41 +328,53 @@
     name: 'FinanceBreakdown',
     data() {
       return {
-  
+        currentTerm: 'Winter 2024',
+        selectedTerm: 'Winter 2024',
         activeTab: 'fees',
-        selectedYear: '2024', // Default to 2024
-        winterData2023: [
-          { item: 'Tuition Fees', type: 'Credit', postedDate: '2022-12-01', charge: '$3000', payment: '$1500', refund: '$0' },
-          { item: 'Library Fines', type: 'Debit', postedDate: '2022-12-15', charge: '$50', payment: '$50', refund: '$0' },
-        ],
-        winterData2024: [
-          { item: 'Tuition Fees', type: 'Credit', postedDate: '2023-12-01', charge: '$3200', payment: '$1600', refund: '$0' },
-          { item: 'Lab Fees', type: 'Debit', postedDate: '2023-12-10', charge: '$200', payment: '$200', refund: '$0' },
-        ],
-        studentAidData2023: [
-          { item: 'Federal Grant', type: 'Grant', postedDate: '2022-11-01', charge: '$0', payment: '$1000', refund: '$0' },
-          { item: 'State Scholarship', type: 'Scholarship', postedDate: '2022-11-15', charge: '$0', payment: '$500', refund: '$0' },
-        ],
-        studentAidData2024: [
-          { item: 'Federal Grant', type: 'Grant', postedDate: '2023-11-01', charge: '$0', payment: '$1200', refund: '$0' },
-          { item: 'State Scholarship', type: 'Scholarship', postedDate: '2023-11-15', charge: '$0', payment: '$600', refund: '$0' },
-        ],
-        awardsData2023: [
-          { item: 'Merit Scholarship', type: 'Scholarship', postedDate: '2022-10-01', charge: '$0', payment: '$1500', refund: '$0' },
-          { item: 'Athletic Award', type: 'Award', postedDate: '2022-10-15', charge: '$0', payment: '$700', refund: '$0' },
-        ],
-        awardsData2024: [
-          { item: 'Merit Scholarship', type: 'Scholarship', postedDate: '2023-10-01', charge: '$0', payment: '$1600', refund: '$0' },
-          { item: 'Athletic Award', type: 'Award', postedDate: '2023-10-15', charge: '$0', payment: '$800', refund: '$0' },
-        ],
-        myPayData2023: [
-          { item: 'Work Study', type: 'Job', postedDate: '2022-09-01', charge: '$0', payment: '$1200', refund: '$0' },
-          { item: 'Assistantship', type: 'Job', postedDate: '2022-09-15', charge: '$0', payment: '$1000', refund: '$0' },
-        ],
-        myPayData2024: [
-          { item: 'Work Study', type: 'Job', postedDate: '2023-09-01', charge: '$0', payment: '$1300', refund: '$0' },
-          { item: 'Assistantship', type: 'Job', postedDate: '2023-09-15', charge: '$0', payment: '$1100', refund: '$0' },
-        ],
+        terms:{
+            "Winter 2024": [
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                }
+            ],
+            "Winter 2023": [
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                }
+            ],
+            "Fall 2023": [
+                {
+                    "name" : "Brilliant student award",
+                    "date" : "2020-07-01",
+                    "amount" : 5000,
+                    "type": "award"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-08-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                }
+            ],
+        },
         pieChartColors: {
           due: 'red',
           paid: 'green',

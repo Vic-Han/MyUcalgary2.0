@@ -7,19 +7,19 @@
                 <div class="pt-4 pb-2 px-4 text-lg">
                     <div class="flex flex-row pb-3">
                         <div class="w-fit font-semibold pr-1">First:</div>
-                        <div class="text-lg">John</div>
+                        <div class="text-lg">{{ User.First }}</div>
                     </div>
                     <div class="flex flex-row pb-3">
                         <div class="w-fit font-semibold pr-1">Last:</div>
-                        <div class="text-lg">Doe</div>
+                        <div class="text-lg">{{ User.Last }}</div>
                     </div>
                     <div class="flex flex-row pb-3">
                         <div class="w-fit font-semibold pr-1">UCID:</div>
-                        <div class="text-lg">31234567</div>
+                        <div class="text-lg">{{ User.UCID }}</div>
                     </div>
                     <div class="flex flex-row pb-3">
                         <div class="w-fit font-semibold pr-1">DOB:</div>
-                        <div class="text-lg">01-01-2000</div>
+                        <div class="text-lg">{{ User.DOB }}</div>
                     </div>
                 </div>
             </div>
@@ -29,21 +29,21 @@
                     <div class="pb-4">
                         <div class="flex flex-row">
                             <div class="w-fit font-semibold pr-1">Country:</div>
-                            <div class="">Canada</div>
+                            <div class="">{{ User.Citizenship.Country }}</div>
                         </div>
                         <div class="flex flex-row">
                             <div class="w-fit font-semibold pr-1">Status:</div>
-                            <div class="">Permanent Resident</div>
+                            <div class="">{{ User.Citizenship.Status }}</div>
                         </div>
                     </div>
                     <div class="pt-4">
                         <div class="flex flex-row">
                             <div class="w-fit font-semibold pr-1">Residency:</div>
-                            <div class="">Student Visa</div>
+                            <div class="">{{ User.Citizenship.Residency }}</div>
                         </div>
                         <div class="flex flex-row">
                             <div class="w-fit font-semibold pr-1">Expires:</div>
-                            <div class="">2024-06-01</div>
+                            <div class="">{{ User.Citizenship.Expiry }}</div>
                         </div>
                     </div>
                 </div>
@@ -61,17 +61,17 @@
                 </div>
                 <div class="px-4 pt-4 text-left text-lg">
                     <div class="font-semibold pb-2">Street Address:</div>
-                    <div class="pb-4">2500 University Dr NW</div>
+                    <div class="pb-4">{{ Address.Street }}</div>
                     <div class="font-semibold pb-2">City:</div>
-                    <div class="pb-4">Calgary</div>
+                    <div class="pb-4">{{ Address.City }}</div>
                     <div class="font-semibold pb-2">Province:</div>
-                    <div class="pb-4">Alberta</div>
+                    <div class="pb-4">{{ Address.Province }}</div>
                     <div class="font-semibold pb-2">Country:</div>
-                    <div class="pb-4">Canada</div>
+                    <div class="pb-4">{{ Address.Country }}</div>
                     <div class="font-semibold pb-2">Postal Code:</div>
-                    <div class="pb-4">T2N 1N4</div>
+                    <div class="pb-4">{{ Address.Postal }}</div>
                     <div class="font-semibold pb-2">Apt/Suite:</div>
-                    <div class="pb-4">ENC 101</div>
+                    <div class="pb-4">{{ Address.Apt }}</div>
                 </div>
             </div>
             <div class="relative row-start-4 row-span-4 col-span-4 bg-white-100 w-full h-full rounded-lg shadow-xl">
@@ -88,17 +88,17 @@
                 <div class="px-4 pt-4 text-left text-lg">
                     <div class="font-semibold pb-2">Home:</div>
                     <div class="flex flex-row pb-4">
-                        <div class="pr-4">(403)-220-5110</div>
+                        <div class="pr-4">{{ Phone.Home.Number }}</div>
                         <span class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
                     <div class="font-semibold pb-2">Mobile:</div>
                     <div class="flex flex-row pb-4">
-                        <div class="pr-4">(403)-220-5738</div>
+                        <div class="pr-4">{{ Phone.Mobile.Number }}</div>
                         <span class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
                     <div class="font-semibold pb-2">Other:</div>
                     <div class="flex flex-row pb-4">
-                        <div class="pr-4">(403)-220-8600</div>
+                        <div class="pr-4">{{ Phone.Other.Number }}</div>
                         <span class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
                 </div>
@@ -117,12 +117,12 @@
                 <div class="px-4 pt-4 text-left text-lg">
                     <div class="font-semibold pb-2">School:</div>
                     <div class="flex flex-row pb-4">
-                        <div class="pr-4">no-reply@ucalgary.ca</div>
+                        <div class="pr-4">{{ Email.School.Value }}</div>
                         <span class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
                     <div class="font-semibold pb-2">Personal:</div>
                     <div class="flex flex-row pb-4">
-                        <div class="pr-4">no-reply@gmail.com</div>
+                        <div class="pr-4">{{ Email.Personal.Value }}</div>
                         <span class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
                 </div>
@@ -143,7 +143,7 @@
                         <div class="flex flex-row">
                             <div class="w-full">
                                 <div class="font-semibold text-left pt-4 pl-4">Name:</div>
-                                <div class="text-left pl-4">John Doe</div>
+                                <div class="text-left pl-4">{{ EmergencyContacts.Contact1.Name }}</div>
                             </div>
                             <div class="w-full">
                                 <div class="absolute right-0 flex flex-row pr-4">
@@ -164,11 +164,11 @@
                         <div class="flex flex-row pt-4">
                             <div class="w-full pl-4">
                                 <div class="text-left font-semibold">Relationship:</div>
-                                <div class="text-left">Father</div>
+                                <div class="text-left">{{ EmergencyContacts.Contact1.Relationship }}</div>
                             </div>
                             <div class="w-full pr-4">
                                 <div class="text-left font-semibold">Phone:</div>
-                                <div class="text-left">(403)-220-5110</div>
+                                <div class="text-left">{{ EmergencyContacts.Contact1.Phone }}</div>
                             </div>
                         </div>
                     </div>
@@ -176,7 +176,7 @@
                         <div class="flex flex-row">
                             <div class="w-full">
                                 <div class="font-semibold text-left pt-4 pl-4">Name:</div>
-                                <div class="text-left pl-4">John Doe</div>
+                                <div class="text-left pl-4">{{ EmergencyContacts.Contact2.Name }}</div>
                             </div>
                             <div class="w-full">
                                 <div class="absolute right-0 flex flex-row pr-4">
@@ -197,11 +197,11 @@
                         <div class="flex flex-row pt-4">
                             <div class="w-full pl-4">
                                 <div class="text-left font-semibold">Relationship:</div>
-                                <div class="text-left">Father</div>
+                                <div class="text-left">{{ EmergencyContacts.Contact2.Relationship }}</div>
                             </div>
                             <div class="w-full pr-4">
                                 <div class="text-left font-semibold">Phone:</div>
-                                <div class="text-left">(403)-220-5110</div>
+                                <div class="text-left">{{ EmergencyContacts.Contact2.Phone }}</div>
                             </div>
                         </div>
                     </div>
@@ -209,7 +209,7 @@
                         <div class="flex flex-row">
                             <div class="w-full">
                                 <div class="font-semibold text-left pt-4 pl-4">Name:</div>
-                                <div class="text-left pl-4">John Doe</div>
+                                <div class="text-left pl-4">{{ EmergencyContacts.Contact3.Name }}</div>
                             </div>
                             <div class="w-full">
                                 <div class="absolute right-0 flex flex-row pr-4">
@@ -230,11 +230,11 @@
                         <div class="flex flex-row pt-4">
                             <div class="w-full pl-4">
                                 <div class="text-left font-semibold">Relationship:</div>
-                                <div class="text-left">Father</div>
+                                <div class="text-left">{{ EmergencyContacts.Contact3.Relationship }}</div>
                             </div>
                             <div class="w-full pr-4">
                                 <div class="text-left font-semibold">Phone:</div>
-                                <div class="text-left">(403)-220-5110</div>
+                                <div class="text-left">{{ EmergencyContacts.Contact3.Phone }}</div>
                             </div>
                         </div>
                     </div>
@@ -249,6 +249,74 @@
         name : 'ProfileInfo',
         components:{
             
+        },
+        data: ()=> {
+            return {
+                User: {
+                    First: "John",
+                    Last: "Doe",
+                    UCID: 31234567,
+                    DOB: "2000-01-01",
+                    Citizenship: {
+                        Country: "Canada",
+                        Status: "Permanent Resident",
+                        Residency: null,
+                        Expiry: null
+                    }
+                },
+                Address: {
+                    Street: "2500 University Dr NW",
+                    City: "Calgary",
+                    Province: "Alberta",
+                    Country: "Canada",
+                    Postal: "T2N 1N4",
+                    Apt: null
+                },
+                Email: {
+                    School: {
+                        Value: "noreply@ucalgary.ca",
+                        Preferred: true
+                    },
+                    Personal: {
+                        Value: "noreply@gmail.com",
+                        Preferred: false
+                    }
+                },
+                Phone: {
+                    Home: {
+                        Number: "(403)-220-5110",
+                        Preferred: false
+                    },
+                    Mobile: {
+                        Number: "(403)-220-5738",
+                        Preferred: true
+                    },
+                    Other: {
+                        Number: null,
+                        Preferred: false
+                    }
+                },
+                EmergencyContacts: {
+                    Contact1: {
+                        Name: "Jane Doe",
+                        Relationship: "Mother",
+                        Phone: "(403)-220-8600",
+                        Primary: true
+                    },
+                    Contact2: {
+                        Name: "Josh Doe",
+                        Relationship: "Father",
+                        Phone: "(403)-220-8601",
+                        Primary: false
+                    },
+                    Contact3: {
+                        Name: null,
+                        Relationship: null,
+                        Phone: null,
+                        Primary: false
+                    }
+                }
+            }
         },
         created(){
             this.$emit('show-navbar')

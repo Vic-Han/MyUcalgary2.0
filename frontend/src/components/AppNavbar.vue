@@ -13,7 +13,7 @@
       </router-link>
       
       <router-link to="/academics" class="group flex flex-row items-center p-4 
-      border border-white-300 shadow-md mt-4 rounded-xl hover:bg-grey-100" v-bind:class="{'bg-red-100 text-white-100' : selected === 'academics'}">
+      border border-white-300 shadow-md mt-4 rounded-xl hover:bg-grey-100" v-bind:class="{'bg-red-100 text-white-100 hover:bg-red-100'  : selected === 'academics'}">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-8" v-bind:class="{'fill-white-100' : selected === 'academics'}" viewBox="0 -960 960 960">
           <path d="M840-280v-276L480-360 40-600l440-240 440 240v320h-80ZM480-120 200-272v-200l280 152 280-152v200L480-120Z"/>
         </svg>
@@ -21,7 +21,7 @@
       </router-link>
       
       <router-link to="/application" class="group flex flex-row items-center p-4 border border-white-300 shadow-md mt-4 rounded-xl hover:bg-grey-100"
-      v-bind:class="{'bg-red-100 text-white-100' : selected === 'application'}">
+      v-bind:class="{'bg-red-100 text-white-100 hover:bg-red-100' : selected === 'application'}">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-8" v-bind:class="{'fill-white-100' : selected === 'application'}" viewBox="0 -960 960 960">
           <path d="M400-400h160v-80H400v80Zm0-120h320v-80H400v80Zm0-120h320v-80H400v80Zm-80 400q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Z"/>
         </svg>
@@ -29,7 +29,7 @@
       </router-link>
       
       <router-link to="/misc" class="group flex flex-row items-center p-4 border border-white-300 shadow-md mt-4 rounded-xl hover:bg-grey-100"
-      v-bind:class="{'bg-red-100 text-white-100' : selected === 'misc'}">
+      v-bind:class="{'bg-red-100 text-white-100 hover:bg-red-100' : selected === 'misc'}">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-8" v-bind:class="{'fill-white-100' : selected === 'misc'}" viewBox="0 -960 960 960">
           <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Z"/>
         </svg>

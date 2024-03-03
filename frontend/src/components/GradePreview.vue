@@ -14,7 +14,7 @@
                     <div class = "h-8 rounded-lg" :class = "[barColor(course.letter),barWidth(course.letter)]"></div>
                 </div>
                 
-                <div class = " mx-6 pr-2 text-lg w-12 text-center">{{ course.letter }}</div>
+                <div class = " mx-6 pr-2 text-lg w-12 text-left">{{ course.letter }}</div>
             </div> 
         </div>
     </div>

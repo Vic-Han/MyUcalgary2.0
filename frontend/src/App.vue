@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row w-screen" v-bind:class="{'pl-96':navbarVisible}">
+  <div class="flex flex-row w-screen h-screen overflow-hidden" v-bind:class="{'pl-96':navbarVisible}">
     <AppNavbar v-if="navbarVisible" :selected="selected" />
     <div class="w-full">
       <div class="flex flex-row w-full">

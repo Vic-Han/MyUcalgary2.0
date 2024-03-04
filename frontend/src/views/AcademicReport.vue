@@ -2,71 +2,89 @@
     <div class="academic-report bg-gray-100 p-4">
       <div class="program-information bg-white shadow-md rounded-lg p-6 mb-6">
         <h1 class="text-xl font-semibold mb-4">Program Information</h1>
-        <p><strong>Degree Stream:</strong> {{ programInfo.degreeStream }}</p>
+        <p><strong>Degree Stream:</strong> {{ programInfo.degree }}</p>
         <p><strong>Major:</strong> {{ programInfo.major }}</p>
+        <p><strong>Minor:</strong> {{ programInfo.minor }}</p>
+        <p><strong>Concentration:</strong> {{ programInfo.concentrartion }}</p>
         <p><strong>Year of Program:</strong> {{ programInfo.Year }}</p>
         <p><strong>Academic Load:</strong> {{ programInfo.academicLoad }}</p>
       </div>
   
-      <div class="academic-report-details bg-white shadow-md rounded-lg p-6 mb-6">
-        <h2 class="text-xl font-semibold mb-4">Academic Report</h2>
-        <div v-for="(report, index) in academicReport.programs" :key="index">
-        <div class="report-summary">
-                <h3 class="font-semibold cursor-pointer" @click="toggleReportDetails(index)">
-                {{ report.programName }}
-                <span>{{ report.isExpanded ? '−' : '+' }}</span>
-                
-                </h3>
-                <div v-if="report.isExpanded">
-                <div v-for="(program, index) in programUnits" :key="index">
-                    <h3>{{ program.programName }}</h3>
-                    <p>Units {{ program.unitsRequired }} required, {{ program.unitsTaken }} taken, {{ program.unitsNeeded }} needed</p>
-                </div>
-                <div class="field-column w-1/2 px-2">
-                    <div v-for="category in report.courseCategory" :key="category.categoryName">
-                    <p class="font-semibold">{{ category.categoryName }}</p>
-                    <div class="fields-courses-container flex -mx-2">
-                    <div class="field-column w-1/2 px-2">
-                        <div v-for="field in category.courseField" :key="field.fieldName" class="mb-4">
-                        <p class="font-semibold">{{ field.fieldName }}</p>
-                        </div>
-                    </div>
-                    <div class="courses-column w-1/2 px-2">
-                        <div v-for="field in category.courseField" :key="field.fieldName">
-                        <div class="flex flex-wrap gap-2">
-                            <div v-for="course in field.courses" :key="course.code" class="relative group">
-                            <div :class="{
-                                    'bg-[#A9DD91] shadow': course.status === 'complete',
-                                    'bg-[#EBEB71] shadow': course.status === 'inProgress',
-                                    'bg-[#FFFFFF] shadow': course.status === 'incomplete',
-                                }"
-                                @mouseenter="course.hovered = true" 
-                                @mouseleave="course.hovered = false"
-                                class="rounded-md text-center px-6 py-1 text-sm border border-gray-500 font-medium hover:-translate-y-1 transition-transform duration-300 cursor-pointer">
-                                {{ course.code }}
-                            </div>
-                            <div v-if="course.hovered" class="absolute bottom-full mb-2 -translate-x-1/2 left-1/2 text-black p-2 border border-gray-500 bg-white-100 bg-opacity-100 rounded shadow-lg whitespace-nowrap max-w-screen overflow-x-auto z-10">
-                                <div><strong>Description:</strong> {{ course.description }}</div>
-                                <div><strong>Units:</strong> {{ course.units }}</div>
-                                <div><strong>Semester:</strong> {{ course.semester }}</div>
-                                <div><strong>Grade:</strong> {{ course.grade }}</div>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                
-                </div>
+      
+      <!-- Academic Report Details -->
+    <div class="academic-report-details bg-white shadow-md rounded-lg p-6 mb-6">
+      <h2 class="text-xl font-semibold mb-4">Academic Report</h2>
+      
+        <!-- Major Field -->
+        <div class="font-semibold col-span-full">Major Field</div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+          <template v-for="(course, index) in requiredCourses.courses" :key="`major-${index}`">
+            <div class="course-item relative group" 
+              @mouseenter="course.hovered = true" 
+              @mouseleave="course.hovered = false">
+              <!-- Course box -->
+              <div :class="{
+                'bg-green-200': course.status === 'completed',
+                'bg-yellow-200': course.status === 'in progress',
+                'bg-white-100': course.status === 'incomplete',
+                'p-2': true,
+                'rounded': true,
+                'shadow': true,
+                'text-center': true
+              }" class="hover:-translate-y-1 transition-transform duration-300">
+                {{ course.code }}
+              </div>
+              <!-- Tooltip -->
+              <div v-if="course.hovered" class="tooltip absolute bottom-full mb-2 -translate-x-1/2 left-1/2 text-black p-2 border border-gray-500 bg-white-100 rounded shadow-lg whitespace-nowrap max-w-screen overflow-x-auto z-10">
+                <div><strong>Description:</strong> {{ course.description }}</div>
+                <div><strong>Units:</strong> {{ course.units }}</div>
+                <div><strong>Semester:</strong> {{ course.semester }}</div>
+                <div><strong>Grade:</strong> {{ course.grade }}</div>
+              </div>
             </div>
-            </div>
+          </template>
         </div>
-        <button class="btn bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors" @click="toggleAllReports">
-          {{ areAllReportsExpanded ? 'Hide Full Reports' : 'Show Full Reports' }}
-        </button>
+
+        <!-- Required Options -->
+        <div v-for="(option, index) in requiredOptions" :key="index">
+          <h3 class="font-semibold mt-4">{{ option.name }}</h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <template v-for="(course, index) in option.courses" :key="`major-${index}`">
+              <div class="course-item relative group" 
+                @mouseenter="course.hovered = true" 
+                @mouseleave="course.hovered = false">
+                <!-- Course box -->
+                <div :class="{
+                  'bg-green-200': course.status === 'completed',
+                  'bg-yellow-200': course.status === 'in progress',
+                  'bg-white-100': course.status === 'incomplete',
+                  'p-2': true,
+                  'rounded': true,
+                  'shadow': true,
+                  'text-center': true
+                }" class="hover:-translate-y-1 transition-transform duration-300">
+                  {{ course.code }}
+                </div>
+                <!-- Tooltip -->
+                <div v-if="course.hovered" class="tooltip absolute bottom-full mb-2 -translate-x-1/2 left-1/2 text-black p-2 border border-gray-500 bg-white-100 rounded shadow-lg whitespace-nowrap max-w-screen overflow-x-auto z-10">
+                  <div><strong>Description:</strong> {{ course.description }}</div>
+                  <div><strong>Units:</strong> {{ course.units }}</div>
+                  <div><strong>Semester:</strong> {{ course.semester }}</div>
+                  <div><strong>Grade:</strong> {{ course.grade }}</div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <div class="flex justify-center mt-4">
+          <button class="btn bg-gray-100 py-2 px-4 rounded transition-colors flex items-center justify-center gap-2" @click="toggleAllReports">
+            <span v-if="areAllReportsExpanded" class="text-lg transform rotate-[90deg] text-black-100">&#8250;</span>
+            <span v-else class="text-lg transform rotate-[-90deg] text-black-100">&#8250;</span>
+          </button>
+        </div>
       </div>
+    </div>
   </template>
   
   
@@ -76,123 +94,57 @@
     data() {
       return {
         programInfo: {
-          degreeStream: "Bachelor of Science",
+          degree: "Bachelor of Science",
           major: "Computer Science",
           minor: "None",
           concentrartion: 'None',
           Year: 4,
           academicLoad: "Full-Time"
         },
-        
-        academicReport: {
-          programs: [
-            {
-              programName: "BSC in Computer Science",
-              unitsRequired: 120.00,
-              courseCategory: [
-                {
-                    categoryName: 'Required Courses',
-                    courseField: [
-                    {
-                        fieldName: 'Major Field',
-                        courses: [
-                        { code: 'CPSC 231', status: 'complete', description: 'Introduction to Computer Science', units: 3, semester: 'Fall 2020', grade: 'A+', hovered: false, type: 'majorReq' },
-                        { code: 'CPSC 233', status: 'complete' },
-                        { code: 'CPSC 251', status: 'complete' },
-                        { code: 'CPSC 351', status: 'complete' },
-                        { code: 'CPSC 355', status: 'complete' },
-                        { code: 'CPSC 413', status: 'complete' },
-                        { code: 'CPSC 449', status: 'complete' },
-                        { code: 'CPSC 457', status: 'complete' },
-                        { code: 'CPSC 331', status: 'incomplete' },
-                        { code: 'SENG 300', status: 'incomplete' },
-                        { code: 'CPSC 581', status: 'complete' },
-                        { code: 'SENG 511', status: 'complete' },
-                        { code: 'SENG 513', status: 'inProgress' },
-                        { code: 'CPSC 471', status: 'complete' },
-                        { code: 'CPSC 481', status: 'complete' },
-                        { code: 'CPSC 573', status: 'complete' },
-                        { code: 'SENG 401', status: 'inProgress' },
-                        { code: 'CPSC 329', status: 'complete' },
-                        { code: 'CPSC 359', status: 'complete' },
-                        { code: 'CPSC 321', status: 'incomplete', type: '300lvl' }
-                        ]
-                    },
-                    {
-                        fieldName: 'Math',
-                        courses: [
-                        { code: 'MATH 265', status: 'complete' },
-                        { code: 'MATH 211', status: 'complete' }
-                        ]
-                    },
-                    {
-                        fieldName: 'Logic',
-                        courses: [
-                        { code: 'PHIL 279', status: 'complete' }
-                        ]
-                    },
-                    {
-                        fieldName: 'Ethics',
-                        courses: [
-                        { code: 'PHIL 314', status: 'incomplete' }
-                        ]
-                    }
-                    ]
-                },
-                {
-                    categoryName: 'Breadth Requirements',
-                    courseField: [
-                    {
-                        courses: [
-                        { code: 'ECON 201', status: 'complete' },
-                        { code: 'GRST 211', status: 'complete' },
-                        { code: 'DRAM 205', status: 'complete' }
-                        ]
-                    }
-                    ]
-                },
-                {
-                    categoryName: 'Open Options',
-                    courseField: [
-                    {
-                        fieldName: 'Non-Major Field',
-                        courses: [
-                        { code: 'MATH 267', status: 'complete' },
-                        { code: 'STAT 321', status: 'complete' },
-                        { code: 'STAT 323', status: 'complete' },
-                        { code: 'DATA 201', status: 'complete' },
-                        { code: 'SOCI 201', status: 'complete' },
-                        { code: 'ANTH 201', status: 'complete' },
-                        { code: 'FILM 201', status: 'complete' },
-                        { code: 'GLGY 305', status: 'incomplete' },
-                        // '+ 6 Units' 
-                        ]
-                    },
-                    {
-                        fieldName: 'Open Options',
-                        courses: [
-                        { code: 'CPSC 441', status: 'complete' },
-                        { code: 'CPSC 491', status: 'complete' }
-                        ]
-                    }
-                    ]
-                }
-                ],
-              isExpanded: false,
-              fullCourseList: null,
-              // Add breadth requirements and open options similarly
-            },
-            {
-              programName: "Minor in Architecture",
-              // Other details for this program
-              isExpanded: false,
-              fullCourseList: null,
-            }
-            // Add more programs if needed
-          ]
+           
+        requiredCourses: {
+            status: 'incomplete',
+            courses: [
+              { code: 'CPSC 231', status: 'completed', description: 'Introduction to Computer Science', units: 3, semester: 'Fall 2020', grade: 'A+', hovered: false, type: 'majorReq' },
+              { code: 'CPSC 233', status: 'completed', description: 'Principles of Software Design', units: 3, semester: 'Winter 2021', grade: 'A', hovered: false, type: 'majorReq' },
+              { code: 'CPSC 331', status: 'completed', description: 'Data Structures, Algorithms, and Their Analysis', units: 3, semester: 'Spring 2021', grade: 'B+', hovered: false, type: 'majorReq' },
+              { code: 'CPSC 313', status: 'completed', description: 'Computer Hardware and Operating Systems', units: 3, semester: 'Fall 2021', grade: 'B', hovered: false, type: 'majorReq' },
+              { code: 'CPSC 449', status: 'in progress', description: 'Advanced Programming Techniques', units: 3, semester: 'Winter 2022', grade: 'In Progress', hovered: false, type: 'majorReq' },
+              { code: 'CPSC 457', status: 'in progress', description: 'Principles of Operating Systems', units: 3, semester: 'Winter 2022', grade: 'In Progress', hovered: false, type: 'majorReq' },
+              { code: 'CPSC 471', status: 'incomplete', description: 'Database Systems', units: 3, semester: 'To Be Taken', grade: 'N/A', hovered: false, type: 'majorReq' },
+              { code: 'CPSC 481', status: 'incomplete', description: 'Human-Computer Interaction I', units: 3, semester: 'To Be Taken', grade: 'N/A', hovered: false, type: 'majorReq' },
+            ]
         },
 
-        areAllReportsExpanded: false,
+        requiredOptions: [
+          {
+            name: '500+ level',
+            status: 'in progress',
+            courses: [
+            { code: 'CPSC 533', status: 'completed' },
+            { code: 'CPSC 535', status: 'completed' },
+            { code: 'CPSC 537', status: 'in progress' },
+            ]
+          },
+          {
+            name: '400+ level',
+            status: 'incomplete',
+            courses: [
+            { code: 'CPSC 541', status: 'in progress' },
+            { code: 'CPSC 453', status: 'completed' },
+            { code: 'CPSC 457', status: 'completed' },
+            { code: 'CPSC 471', status: 'in progress' },
+            ]
+          },
+          {
+            name: '300+ level',
+            status: 'completed',
+            courses: [
+            { code: 'CPSC 319', status: 'in progress' },
+            { code: 'CPSC 355', status: 'completed' },
+            ]
+          },
+        ],
       }
     },
     computed: {

@@ -36,8 +36,8 @@
                             <div class="">{{ User.Citizenship.Status }}</div>
                         </div>
                     </div>
-                    <div class="pt-4">
-                        <div class="flex flex-row">
+                    <div v-if="User.Citizenship.Residency" class="pt-4">
+                        <div  class="flex flex-row">
                             <div class="w-fit font-semibold pr-1">Residency:</div>
                             <div class="">{{ User.Citizenship.Residency }}</div>
                         </div>
@@ -46,6 +46,7 @@
                             <div class="">{{ User.Citizenship.Expiry }}</div>
                         </div>
                     </div>
+                    <div v-else class="pt-4"></div>
                 </div>
             </div>
             <div class="relative row-span-7 col-start-9  col-span-4 bg-white-100 h-full w-full rounded-lg shadow-xl">
@@ -70,7 +71,7 @@
                     <div class="pb-4">{{ Address.Country }}</div>
                     <div class="font-semibold pb-2">Postal Code:</div>
                     <div class="pb-4">{{ Address.Postal }}</div>
-                    <div class="font-semibold pb-2">Apt/Suite:</div>
+                    <div v-if="Address.Apt" class="font-semibold pb-2">Apt/Suite:</div>
                     <div class="pb-4">{{ Address.Apt }}</div>
                 </div>
             </div>
@@ -89,17 +90,19 @@
                     <div class="font-semibold pb-2">Home:</div>
                     <div class="flex flex-row pb-4">
                         <div class="pr-4">{{ Phone.Home.Number }}</div>
-                        <span class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        <span v-if="Phone.Home.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
                     <div class="font-semibold pb-2">Mobile:</div>
                     <div class="flex flex-row pb-4">
                         <div class="pr-4">{{ Phone.Mobile.Number }}</div>
-                        <span class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        <span v-if="Phone.Mobile.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
-                    <div class="font-semibold pb-2">Other:</div>
-                    <div class="flex flex-row pb-4">
-                        <div class="pr-4">{{ Phone.Other.Number }}</div>
-                        <span class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                    <div v-if="Phone.Other.Number">
+                        <div class="font-semibold pb-2">Other:</div>
+                        <div class="flex flex-row pb-4">
+                            <div class="pr-4">{{ Phone.Other.Number }}</div>
+                            <span v-if="Phone.Other.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -118,12 +121,12 @@
                     <div class="font-semibold pb-2">School:</div>
                     <div class="flex flex-row pb-4">
                         <div class="pr-4">{{ Email.School.Value }}</div>
-                        <span class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        <span v-if="Email.School.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
                     <div class="font-semibold pb-2">Personal:</div>
                     <div class="flex flex-row pb-4">
                         <div class="pr-4">{{ Email.Personal.Value }}</div>
-                        <span class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        <span v-if="Email.Personal.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
                 </div>
             </div>
@@ -139,7 +142,7 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-3 w-full h-full pt-4 px-4 gap-6">
-                    <div class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
+                    <div v-if="EmergencyContacts.Contact1.Name" class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
                         <div class="flex flex-row">
                             <div class="w-full">
                                 <div class="font-semibold text-left pt-4 pl-4">Name:</div>
@@ -147,8 +150,8 @@
                             </div>
                             <div class="w-full">
                                 <div class="absolute right-0 flex flex-row pr-4">
-                                    <div class="italic text-green-100 text-xs pt-5">Primary</div>
-                                    <div class="pl-2 pt-4">
+                                    <div v-if="EmergencyContacts.Contact1.Primary" class="italic text-green-100 text-xs pt-5">Primary</div>
+                                    <div v-if="EmergencyContacts.Contact1.Primary" class="pl-2 pt-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-green-100" viewBox="0 -960 960 960">
                                             <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
                                         </svg>
@@ -172,7 +175,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
+                    <div v-if="EmergencyContacts.Contact2.Name" class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
                         <div class="flex flex-row">
                             <div class="w-full">
                                 <div class="font-semibold text-left pt-4 pl-4">Name:</div>
@@ -180,8 +183,8 @@
                             </div>
                             <div class="w-full">
                                 <div class="absolute right-0 flex flex-row pr-4">
-                                    <div class="italic text-green-100 text-xs pt-5">Primary</div>
-                                    <div class="pl-2 pt-4">
+                                    <div v-if="EmergencyContacts.Contact2.Primary" class="italic text-green-100 text-xs pt-5">Primary</div>
+                                    <div v-if="EmergencyContacts.Contact2.Primary" class="pl-2 pt-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-green-100" viewBox="0 -960 960 960">
                                             <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
                                         </svg>
@@ -205,7 +208,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
+                    <div v-if="EmergencyContacts.Contact3.Name" class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
                         <div class="flex flex-row">
                             <div class="w-full">
                                 <div class="font-semibold text-left pt-4 pl-4">Name:</div>
@@ -213,8 +216,8 @@
                             </div>
                             <div class="w-full">
                                 <div class="absolute right-0 flex flex-row pr-4">
-                                    <div class="italic text-green-100 text-xs pt-5">Primary</div>
-                                    <div class="pl-2 pt-4">
+                                    <div v-if="EmergencyContacts.Contact3.Primary" class="italic text-green-100 text-xs pt-5">Primary</div>
+                                    <div v-if="EmergencyContacts.Contact3.Primary" class="pl-2 pt-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-green-100" viewBox="0 -960 960 960">
                                             <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
                                         </svg>
@@ -260,7 +263,7 @@
                     Citizenship: {
                         Country: "Canada",
                         Status: "Permanent Resident",
-                        Residency: null,
+                        Residency:  null,
                         Expiry: null
                     }
                 },

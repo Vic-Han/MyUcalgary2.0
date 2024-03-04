@@ -53,14 +53,45 @@
                 <div class="flex flex-row w-full">
                     <h2 class="w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Address</h2>
                     <div class="w-full">
-                        <div class="absolute pt-4 mx-4 w-fit right-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <div v-if="editingID == Address" class="absolute pt-4 mx-4 w-fit right-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" @click="setView()"  class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                                <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+                            </svg>
+                        </div>
+                        <div v-else class="absolute pt-4 mx-4 w-fit right-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" @click="setEditing(Address)" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                                 <path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/>
                             </svg>
                         </div>
                     </div>
                 </div>
-                <div class="px-4 pt-4 text-left text-lg">
+                <div v-if="this.editingID == Address" class="px-4 pt-4 text-left text-lg">
+                    <div class="font-semibold pb-2">Street Address: *</div>
+                    <div class="pb-2">
+                        <input type="text" placeholder="Required" v-model="Address.Street" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
+                    </div>
+                    <div class="font-semibold pb-2">City: *</div>
+                    <div class="pb-2">
+                        <input type="text" placeholder="Required" v-model="Address.City" class="w-10/12 border-2 text-md rounded-md border-grey-100 outline-red-100 pl-2">
+                    </div>
+                    <div class="font-semibold pb-2">Province: *</div>
+                    <div class="pb-2">
+                        <input type="text" placeholder="Required" v-model="Address.Province" class="w-10/12 border-2 text-md rounded-md border-grey-100 outline-red-100 pl-2">
+                    </div>
+                    <div class="font-semibold pb-2">Country: *</div>
+                    <div class="pb-2">
+                        <input type="text" placeholder="Required" v-model="Address.Country" class="w-10/12 border-2 text-md rounded-md border-grey-100 outline-red-100 pl-2">
+                    </div>
+                    <div class="font-semibold pb-2">Postal Code: *</div>
+                    <div class="pb-2">
+                        <input type="text" placeholder="Required" v-model="Address.Postal" class="w-10/12 border-2 text-md rounded-md border-grey-100 outline-red-100 pl-2">
+                    </div>
+                    <div class="font-semibold pb-2">Apt/Suite:</div>
+                    <div class="pb-2">
+                        <input type="text" placeholder="Optional" v-model="Address.Apt" class="w-10/12 border-2 text-md rounded-md border-grey-100 outline-red-100 pl-2">
+                    </div>
+                </div>
+                <div v-else class="px-4 pt-4 text-left text-lg">
                     <div class="font-semibold pb-2">Street Address:</div>
                     <div class="pb-4">{{ Address.Street }}</div>
                     <div class="font-semibold pb-2">City:</div>
@@ -255,15 +286,16 @@
         },
         data: ()=> {
             return {
+                editingID: null,
                 User: {
                     First: "John",
                     Last: "Doe",
-                    UCID: 31234567,
+                    UCID: "31234567",
                     DOB: "2000-01-01",
                     Citizenship: {
                         Country: "Canada",
                         Status: "Permanent Resident",
-                        Residency:  null,
+                        Residency: null,
                         Expiry: null
                     }
                 },
@@ -328,6 +360,12 @@
         methods:{
             back(){
                 this.$router.go(-1)
+            },
+            setEditing(element) {
+                this.editingID = element;
+            },
+            setView() {
+                this.editingID = null;
             }
         },
     }

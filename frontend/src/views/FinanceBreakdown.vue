@@ -229,7 +229,7 @@
         <div class = "text-lg"> Finances</div>
         <div class = "class = flex flex-row">
             <div class = "class = flex flex-col"> 
-                <div class = "bg-white-100 m-5 p-10"> 
+                <div class = "bg-white-100 m-5 p-10 rounded-xl shadow-lg"> 
                    <div class = "text-lg mb-8"> {{ currentTerm }} </div>
                    <div class = "rounded-full w-64 h-64 mx-8" :style="pieChartStyle"></div>
                    <div class = "flex flex-row mt-8">
@@ -244,7 +244,7 @@
                           </div>
                    </div>
                 </div>
-                <div class = "bg-white-100 m-5 flex flex-col p-5"> 
+                <div class = "bg-white-100 m-5 flex flex-col p-5 rounded-xl shadow-lg"> 
                     <div class = "flex flex-col flex-wrap h-64">
                     <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
                         UPass Opt-in 
@@ -282,7 +282,7 @@
                     </a>
                 </div>
             </div>
-            <div class = "m-5 bg-white-100 p-5"> 
+            <div class = "m-5 bg-white-100 p-5 rounded-xl shadow-lg"> 
                 <select v-model="selectedTerm"
                     class="rounded-lg border-4 border-red-300 shadow-lg hover:border-red-500 focus:outline-none 
                     focus:ring-2 focus:ring-indigo-600 focus:border-red transition duration-200 ease-in-out appearance-none bg-white py-2 px-14 text-red-700">
@@ -292,28 +292,29 @@
                   </select>
 
                   <div class = "flex flex-row">
-                    <div class = "rounded-t-2xl p-4 bg-green-100" @click = "activeTab = 'fee' "> Fees</div>
-                    <div class = "rounded-t-2xl p-4 bg-green-100" @click = " activeTab = 'scholarships'"> Scholarships </div>
-                    <div class = "rounded-t-2xl p-4 bg-green-100" @click = "activeTab = 'awards'"> Awards </div>
-                    <div class = "rounded-t-2xl p-4 bg-green-100 " @click = "activeTab = 'pay'"> My Pay </div>
+                    <div class = "w-48 text-center rounded-t-2xl p-4 bg-green-100" v-bind:class = "{'bg-red-200' : activeTab =='all'}" @click = "activeTab = 'all' "> All</div>
+                    <div class = "w-48 text-center rounded-t-2xl p-4 bg-green-100" v-bind:class = "{'bg-red-200' : activeTab =='fee'}" @click = "activeTab = 'fee' "> Fees</div>
+                    <div class = "w-48 text-center rounded-t-2xl p-4 bg-green-100" v-bind:class = "{'bg-red-200' : activeTab =='scholarship'}" @click = " activeTab = 'scholarship'"> Scholarships </div>
+                    <div class = "w-48 text-center rounded-t-2xl p-4 bg-green-100" v-bind:class = "{'bg-red-200' : activeTab =='award'}" @click = "activeTab = 'award'"> Awards </div>
+                    <div class = "w-48 text-center rounded-t-2xl p-4 bg-green-100" v-bind:class =  "{'bg-red-200' : activeTab =='payment'}" @click = "activeTab = 'payment'"> My Pay </div>
                   </div>
                   <div class = "flex flex-col rounded-lg shadow-md">
                     <div class = "flex flex-row">
-                        <div class = "p-4 text-left w-56"> Item </div>
-                        <div class = "p-4 text-left w-28"> Type </div>
-                        <div class = "p-4 text-left w-28"> Posted Date </div>
-                        <div class = "p-4 text-left w-28"> Charge </div>
-                        <div class = "p-4 text-left w-28"> Payment </div>
-                        <div class = "p-4 text-left w-28"> Refund </div>
+                        <div class = "p-4 text-left w-64"> Item </div>
+                        <div class = "p-4 text-left w-36"> Type </div>
+                        <div class = "p-4 text-left w-36"> Posted Date </div>
+                        <div class = "p-4 text-left w-36"> Charge </div>
+                        <div class = "p-4 text-left w-36"> Payment </div>
+                        <div class = "p-4 text-left w-36"> Refund </div>
                     </div>
                     <div v-for= '(item, index) in terms[selectedTerm]' :key="index">
-                        <div v-if="item.type == activeTab" class = "flex flex-row">
-                            <div class = "p-4"> {{ item.name }} </div>
-                            <div class = "p-4"> {{ item.type }} </div>
-                            <div class = "p-4"> {{ item.date }} </div>
-                            <div class = "p-4"> {{ item.amount }} </div>
-                            <div class = "p-4"> {{ item.amount }} </div>
-                            <div class = "p-4"> {{ item.amount }} </div>
+                        <div v-if="item.type == activeTab || activeTab == 'all'" class = "flex flex-row border-t-2 border-black-100">
+                            <div class = "p-4 text-left w-64"> {{ item.name }} </div>
+                            <div class = "p-4 text-left w-36"> {{ item.type }} </div>
+                            <div class = "p-4 text-left w-36"> {{ item.date }} </div>
+                            <div class = "p-4 text-left w-36"> {{ paymentType(item.type) == 'charge' ? item.amount : 0}} </div>
+                            <div class = "p-4 text-left w-36"> {{ paymentType(item.type) == 'payment' ? item.amount  : 0 }} </div>
+                            <div class = "p-4 text-left w-36"> {{ paymentType(item.type) == 'refund' ? item.amount  : 0 }} </div>
                         </div>
                     </div>
                   </div>
@@ -328,9 +329,12 @@
     name: 'FinanceBreakdown',
     data() {
       return {
+        payed: 5000,
+        due: 5000,
+        awards: 5000,
         currentTerm: 'Winter 2024',
         selectedTerm: 'Winter 2024',
-        activeTab: 'fees',
+        activeTab: 'all',
         terms:{
             "Winter 2024": [
                 {
@@ -387,22 +391,26 @@
         },
       };
     },
-  
+    methods: {
+      paymentType(type){
+            if(type === 'scholarship'){
+                return 'payment'
+            }
+            if(type === 'award'){
+                return 'payment'
+            }
+            if (type === 'payment'){
+                return 'payment'
+            }
+            if(type === 'fee'){
+                return 'charge'
+            }
+            else{
+                return 'refund'
+            }
+      }
+    },
     computed: {
-      activeTabData() {
-        switch (this.activeTab) {
-          case 'fees':
-            return this.selectedYear === '2023' ? this.winterData2023 : this.winterData2024;
-          case 'studentAid':
-            return this.selectedYear === '2023' ? this.studentAidData2023 : this.studentAidData2024;
-          case 'awards':
-            return this.selectedYear === '2023' ? this.awardsData2023 : this.awardsData2024;
-          case 'myPay':
-            return this.selectedYear === '2023' ? this.myPayData2023 : this.myPayData2024;
-          default:
-            return [];
-        }
-      },
       pieChartStyle() {
         let gradient = 'conic-gradient(';
         for (const [key, segment] of Object.entries(this.pieChartSegments)) {
@@ -412,6 +420,9 @@
         gradient = gradient.slice(0, -2) + ')';
         return { background: gradient };
       }
+    },
+    created(){
+        this.$emit('show-navbar')
     }
   };
   

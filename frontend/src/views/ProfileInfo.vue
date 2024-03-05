@@ -58,6 +58,11 @@
                                 <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
                             </svg>
                         </div>
+                        <div v-else-if="editingID != null" class="absolute pt-4 mx-4 w-fit right-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-grey-200" viewBox="0 -960 960 960">
+                                <path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/>
+                            </svg>
+                        </div>
                         <div v-else class="absolute pt-4 mx-4 w-fit right-0">
                             <svg xmlns="http://www.w3.org/2000/svg" @click="setEditing(Address)" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                                 <path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/>
@@ -110,14 +115,49 @@
                 <div class="flex flex-row w-full">
                     <h2 class="w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Phone</h2>
                     <div class="w-full">
-                        <div class="absolute pt-4 mx-4 w-fit right-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <div v-if="editingID == Phone" class="absolute pt-4 mx-4 w-fit right-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" @click="setView()"  class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                                <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+                            </svg>
+                        </div>
+                        <div v-else-if="editingID != null" class="absolute pt-4 mx-4 w-fit right-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-grey-200" viewBox="0 -960 960 960">
+                                <path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/>
+                            </svg>
+                        </div>
+                        <div v-else class="absolute pt-4 mx-4 w-fit right-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" @click="setEditing(Phone)" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                                 <path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/>
                             </svg>
                         </div>
                     </div>
                 </div>
-                <div class="px-4 pt-4 text-left text-lg">
+                <div v-if="this.editingID == Phone" class="px-4 pt-4 text-left text-lg">
+                    <div class="font-semibold pb-2">Home: *</div>
+                    <div class="flex flex-row pb-2">
+                        <div class="">
+                            <input type="text" placeholder="Required" v-model="Phone.Home.Number" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
+                        </div>
+                        <span v-if="Phone.Home.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                    </div>
+                    <div class="font-semibold pb-2">Mobile: *</div>
+                    <div class="flex flex-row pb-2">
+                        <div class="">
+                            <input type="text" placeholder="Required" v-model="Phone.Mobile.Number" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
+                        </div>
+                        <span v-if="Phone.Mobile.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                    </div>
+                    <div>
+                        <div class="font-semibold pb-2">Other:</div>
+                        <div class="flex flex-row pb-2">
+                            <div class="">
+                            <input type="text" placeholder="Optional" v-model="Phone.Other.Number" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
+                        </div>
+                            <span v-if="Phone.Other.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        </div>
+                    </div>
+                </div>
+                <div v-else class="px-4 pt-4 text-left text-lg">
                     <div class="font-semibold pb-2">Home:</div>
                     <div class="flex flex-row pb-4">
                         <div class="pr-4">{{ Phone.Home.Number }}</div>
@@ -141,14 +181,38 @@
                 <div class="flex flex-row w-full">
                     <h2 class="w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Email</h2>
                     <div class="w-full">
-                        <div class="absolute pt-4 mx-4 w-fit right-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <div v-if="editingID == Email" class="absolute pt-4 mx-4 w-fit right-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" @click="setView()"  class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                                <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+                            </svg>
+                        </div>
+                        <div v-else-if="editingID != null" class="absolute pt-4 mx-4 w-fit right-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-grey-200" viewBox="0 -960 960 960">
+                                <path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/>
+                            </svg>
+                        </div>
+                        <div v-else class="absolute pt-4 mx-4 w-fit right-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" @click="setEditing(Email)" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                                 <path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/>
                             </svg>
                         </div>
                     </div>
                 </div>
-                <div class="px-4 pt-4 text-left text-lg">
+                <div v-if="this.editingID == Email" class="px-4 pt-4 text-left text-lg">
+                    <div class="font-semibold pb-2">School:</div>
+                    <div class="flex flex-row pb-4">
+                        <div class="pr-4">{{ Email.School.Value }}</div>
+                        <span v-if="Email.School.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                    </div>
+                    <div class="font-semibold pb-2">Personal: *</div>
+                    <div class="flex flex-row pb-4">
+                        <div class="">
+                            <input type="text" placeholder="Required" v-model="Email.Personal.Value" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
+                        </div>
+                        <span v-if="Email.Personal.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                    </div>
+                </div>
+                <div v-else class="px-4 pt-4 text-left text-lg">
                     <div class="font-semibold pb-2">School:</div>
                     <div class="flex flex-row pb-4">
                         <div class="pr-4">{{ Email.School.Value }}</div>

@@ -133,46 +133,55 @@
                     </div>
                 </div>
                 <div v-if="this.editingID == Phone" class="px-4 pt-4 text-left text-lg">
-                    <div class="font-semibold pb-2">Home: *</div>
+                    <div class="flex flex-row">
+                        <div class="font-semibold pb-2 w-5/12 mr-6">Home: *</div>
+                        <span  class="flex items-center italic text-grey-200 text-xs">Preferred</span>
+                    </div>
                     <div class="flex flex-row pb-2">
                         <div class="">
-                            <input type="text" placeholder="Required" v-model="Phone.Home.Number" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
+                            <input type="text" placeholder="Required" v-model="Phone.Home" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
                         </div>
-                        <span v-if="Phone.Home.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        <div class="flex items-center">
+                            <input type="radio" name="Phone" value="Home" v-model="Phone.Preferred" class="w-4 h-4 accent-red-100">
+                        </div>
                     </div>
                     <div class="font-semibold pb-2">Mobile: *</div>
                     <div class="flex flex-row pb-2">
                         <div class="">
-                            <input type="text" placeholder="Required" v-model="Phone.Mobile.Number" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
+                            <input type="text" placeholder="Required" v-model="Phone.Mobile" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
                         </div>
-                        <span v-if="Phone.Mobile.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        <div class="flex items-center">
+                            <input type="radio" name="Phone" value="Mobile" v-model="Phone.Preferred" class="w-4 h-4 accent-red-100">
+                        </div>
                     </div>
                     <div>
                         <div class="font-semibold pb-2">Other:</div>
                         <div class="flex flex-row pb-2">
                             <div class="">
-                            <input type="text" placeholder="Optional" v-model="Phone.Other.Number" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
-                        </div>
-                            <span v-if="Phone.Other.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                                <input type="text" placeholder="Optional" v-model="Phone.Other" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
+                            </div>
+                            <div v-if="Phone.Other" class="flex items-center">
+                                <input type="radio" name="Phone" value="Other" v-model="Phone.Preferred" class="w-4 h-4 accent-red-100">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div v-else class="px-4 pt-4 text-left text-lg">
                     <div class="font-semibold pb-2">Home:</div>
                     <div class="flex flex-row pb-4">
-                        <div class="pr-4">{{ Phone.Home.Number }}</div>
-                        <span v-if="Phone.Home.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        <div class="pr-4">{{ Phone.Home }}</div>
+                        <span v-if="Phone.Preferred == 'Home'" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
                     <div class="font-semibold pb-2">Mobile:</div>
                     <div class="flex flex-row pb-4">
-                        <div class="pr-4">{{ Phone.Mobile.Number }}</div>
-                        <span v-if="Phone.Mobile.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        <div class="pr-4">{{ Phone.Mobile }}</div>
+                        <span v-if="Phone.Preferred == 'Mobile'" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
-                    <div v-if="Phone.Other.Number">
+                    <div v-if="Phone.Other">
                         <div class="font-semibold pb-2">Other:</div>
                         <div class="flex flex-row pb-4">
-                            <div class="pr-4">{{ Phone.Other.Number }}</div>
-                            <span v-if="Phone.Other.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                            <div class="pr-4">{{ Phone.Other }}</div>
+                            <span v-if="Phone.Preferred == 'Other'" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                         </div>
                     </div>
                 </div>
@@ -199,29 +208,36 @@
                     </div>
                 </div>
                 <div v-if="this.editingID == Email" class="px-4 pt-4 text-left text-lg">
-                    <div class="font-semibold pb-2">School:</div>
+                    <div class="flex flex-row">
+                        <div class="font-semibold pb-2 w-3/4 mr-5">School: *</div>
+                        <span  class="flex items-center italic text-grey-200 text-xs">Preferred</span>
+                    </div>
                     <div class="flex flex-row pb-4">
-                        <div class="pr-4">{{ Email.School.Value }}</div>
-                        <span v-if="Email.School.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        <div class="pr-4 w-10/12">{{ Email.School }}</div>
+                        <div class="flex items-center">
+                            <input type="radio" name="Email" value="School" v-model="Email.Preferred" class="w-4 h-4 accent-red-100">
+                        </div>
                     </div>
                     <div class="font-semibold pb-2">Personal: *</div>
                     <div class="flex flex-row pb-4">
-                        <div class="">
-                            <input type="text" placeholder="Required" v-model="Email.Personal.Value" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
+                        <div class="w-10/12">
+                            <input type="text" placeholder="Required" v-model="Email.Personal" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
                         </div>
-                        <span v-if="Email.Personal.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        <div class="flex items-center">
+                            <input type="radio" name="Email" value="Personal" v-model="Email.Preferred" class="w-4 h-4 accent-red-100">
+                        </div>
                     </div>
                 </div>
                 <div v-else class="px-4 pt-4 text-left text-lg">
                     <div class="font-semibold pb-2">School:</div>
                     <div class="flex flex-row pb-4">
-                        <div class="pr-4">{{ Email.School.Value }}</div>
-                        <span v-if="Email.School.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        <div class="pr-4">{{ Email.School }}</div>
+                        <span v-if="Email.Preferred == 'School'" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
                     <div class="font-semibold pb-2">Personal:</div>
                     <div class="flex flex-row pb-4">
-                        <div class="pr-4">{{ Email.Personal.Value }}</div>
-                        <span v-if="Email.Personal.Preferred" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
+                        <div class="pr-4">{{ Email.Personal }}</div>
+                        <span v-if="Email.Preferred == 'Personal'" class="flex items-center italic text-grey-200 text-xs">Preferred</span> 
                     </div>
                 </div>
             </div>
@@ -372,28 +388,15 @@
                     Apt: null
                 },
                 Email: {
-                    School: {
-                        Value: "noreply@ucalgary.ca",
-                        Preferred: true
-                    },
-                    Personal: {
-                        Value: "noreply@gmail.com",
-                        Preferred: false
-                    }
+                    School: "noreply@ucalgary.ca",
+                    Personal: "noreply@gmail.com",
+                    Preferred: "School"
                 },
                 Phone: {
-                    Home: {
-                        Number: "(403)-220-5110",
-                        Preferred: false
-                    },
-                    Mobile: {
-                        Number: "(403)-220-5738",
-                        Preferred: true
-                    },
-                    Other: {
-                        Number: null,
-                        Preferred: false
-                    }
+                    Home: "(403)-220-5110",
+                    Mobile: "(403)-220-5738",
+                    Number: null,
+                    Preferred: "Mobile"
                 },
                 EmergencyContacts: {
                     Contact1: {

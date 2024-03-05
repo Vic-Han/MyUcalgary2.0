@@ -253,7 +253,76 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-3 w-full h-full pt-4 px-4 gap-6">
-                    <div v-if="EmergencyContacts.Contact1.Name" class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
+                    <div v-for="(Contact,index) in EmergencyContacts" :key="index">
+                        <div v-if="this.editingID == index" class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
+                            <div class="flex flex-row">
+                                <div class="w-full">
+                                    <div class="font-semibold text-left pt-4 pl-4">Name:</div>
+                                    <div class="text-left pl-4">Editing</div>
+                                </div>
+                                <div class="w-full">
+                                    <div class="absolute right-0 flex flex-row pr-4">
+                                        <div v-if="Contact.Primary" class="italic text-green-100 text-xs pt-5">Primary</div>
+                                        <div v-if="Contact.Primary" class="pl-2 pt-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-green-100" viewBox="0 -960 960 960">
+                                                <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="pl-4 pt-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" @click="setView()" class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                                                <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-row pt-4">
+                                <div class="w-full pl-4">
+                                    <div class="text-left font-semibold">Relationship:</div>
+                                    <div class="text-left">Editing</div>
+                                </div>
+                                <div class="w-full pr-4">
+                                    <div class="text-left font-semibold">Phone:</div>
+                                    <div class="text-left">Editing</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
+                            <div class="flex flex-row">
+                                <div class="w-full">
+                                    <div class="font-semibold text-left pt-4 pl-4">Name:</div>
+                                    <div class="text-left pl-4">{{ Contact.Name }}</div>
+                                </div>
+                                <div class="w-full">
+                                    <div class="absolute right-0 flex flex-row pr-4">
+                                        <div v-if="Contact.Primary" class="italic text-green-100 text-xs pt-5">Primary</div>
+                                        <div v-if="Contact.Primary" class="pl-2 pt-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-green-100" viewBox="0 -960 960 960">
+                                                <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="pl-4 pt-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" @click="setEditing(index)" class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                                                <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-row pt-4">
+                                <div class="w-full pl-4">
+                                    <div class="text-left font-semibold">Relationship:</div>
+                                    <div class="text-left">{{ Contact.Relationship }}</div>
+                                </div>
+                                <div class="w-full pr-4">
+                                    <div class="text-left font-semibold">Phone:</div>
+                                    <div class="text-left">{{ Contact.Phone }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- <div v-if="EmergencyContacts.Contact1.Name" class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
                         <div class="flex flex-row">
                             <div class="w-full">
                                 <div class="font-semibold text-left pt-4 pl-4">Name:</div>
@@ -351,8 +420,8 @@
                                 <div class="text-left">{{ EmergencyContacts.Contact3.Phone }}</div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div> -->
+                </div> 
             </div>
         </div>
     </div>
@@ -398,26 +467,20 @@
                     Number: null,
                     Preferred: "Mobile"
                 },
-                EmergencyContacts: {
-                    Contact1: {
+                EmergencyContacts: [
+                    {
                         Name: "Jane Doe",
                         Relationship: "Mother",
                         Phone: "(403)-220-8600",
                         Primary: true
                     },
-                    Contact2: {
+                    {
                         Name: "Josh Doe",
                         Relationship: "Father",
                         Phone: "(403)-220-8601",
                         Primary: false
-                    },
-                    Contact3: {
-                        Name: null,
-                        Relationship: null,
-                        Phone: null,
-                        Primary: false
                     }
-                }
+                ]
             }
         },
         created(){
@@ -433,6 +496,9 @@
             },
             setView() {
                 this.editingID = null;
+            },
+            addContact() {
+
             }
         },
     }

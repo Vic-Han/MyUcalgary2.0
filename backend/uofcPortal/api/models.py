@@ -36,6 +36,14 @@ class Program(models.Model):
     def __str__(self):
         return self.program_name
 
+class Term(models.Model):
+    term_name = models.CharField(max_length=20, unique=True, primary_key=True)  # Example: Fall 2023
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    def __str__(self):
+        return self.term_name
+
 class Student(models.Model):
     student_id = models.CharField(max_length=10)
     student_first_name = models.CharField(max_length=30)
@@ -80,6 +88,7 @@ class Course(models.Model):
     course_notes = models.CharField(max_length=100)
     course_repeatability = models.BooleanField(default=False)
     course_type = models.CharField(max_length=20)
+    units = models.IntegerField()
 
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
@@ -101,7 +110,7 @@ class Instructor(models.Model):
 
 class Lecture(models.Model):
     lecture_id = models.CharField(max_length=10)
-    lecture_term = models.CharField(max_length=10)
+    lecture_term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
     lecture_starttime = models.CharField(max_length=4)
     lecture_endtime = models.CharField(max_length=4)
     lecture_roomnumber = models.CharField(max_length=10)
@@ -112,4 +121,17 @@ class Lecture(models.Model):
 class Grade(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True)
+    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
+
     grade = models.FloatField()
+    letter_grade = models.CharField(max_length=2)
+
+
+class Enrollment(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    term = models.ForeignKey(Term, on_delete=models.CASCADE)
+    year = models.IntegerField()  # Year of the student during this term
+    
+    class Meta:
+        unique_together = ('student', 'course', 'term')  # Avoid duplicate enrollments

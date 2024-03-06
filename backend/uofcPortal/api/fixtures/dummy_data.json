@@ -151,6 +151,43 @@
     }
   },
 
+  {
+    "model": "api.Term",
+    "pk": "Fall 2023",
+    "fields": {
+      "term_name": "Fall 2023",
+      "start_date": "2023-09-01",
+      "end_date": "2023-12-15"
+    }
+  },
+  {
+    "model": "api.Term",
+    "pk": "Winter 2024",
+    "fields": {
+      "term_name": "Winter 2024",
+      "start_date": "2024-01-05",
+      "end_date": "2024-04-20"
+    }
+  },
+  {
+    "model": "api.Term",
+    "pk": "Spring 2024",
+    "fields": {
+      "term_name": "Spring 2024",
+      "start_date": "2024-05-01",
+      "end_date": "2024-08-15"
+    }
+  },
+  {
+    "model": "api.Term",
+    "pk": "Summer 2024",
+    "fields": {
+      "term_name": "Summer 2024",
+      "start_date": "2024-07-01",
+      "end_date": "2024-08-31"
+    }
+  },
+
 
   {
     "model": "api.Student",
@@ -290,11 +327,6 @@
   },
   
 
-  
-
-  
-
-
   {
     "model": "api.Course",
     "pk": "MATH",
@@ -308,6 +340,7 @@
       "course_notes": "Required for Engineering students.",
       "course_repeatability": false,
       "course_type": "Core",
+      "units": 3,
       "faculty": "Mathematics and Statistics",
       "department": "MATH"
     }
@@ -325,6 +358,7 @@
       "course_notes": "Lab required.",
       "course_repeatability": false,
       "course_type": "Core",
+      "units": 3,
       "faculty": "Science",
       "department": "Physics"
     }
@@ -342,6 +376,7 @@
       "course_notes": "Lab required.",
       "course_repeatability": false,
       "course_type": "Core",
+      "units": 3,
       "faculty": "Science",
       "department": "Chemical and Petroleum Engineering"
     }
@@ -359,6 +394,7 @@
       "course_notes": "Elective for all departments.",
       "course_repeatability": false,
       "course_type": "Elective",
+      "units": 3,
       "faculty": "Arts",
       "department": "English Literature"
     }
@@ -376,11 +412,11 @@
       "course_notes": "Required for Computer Science students.",
       "course_repeatability": false,
       "course_type": "Core",
+      "units": 3,
       "faculty": "Science",
       "department": "Computer Science"
     }
   },
-
 
   {
     "model": "api.Instructor",
@@ -490,45 +526,211 @@
     }
   },
 
-  
   {
-    "model": "api.Grade",
+    "model": "api.Enrollment",
     "fields": {
       "student": "001",
-      "lecture": "001",
-      "grade": 4.0
+      "course": "MATH",
+      "term": "Fall 2023",
+      "year": 1
     }
   },
   {
-    "model": "api.Grade",
+    "model": "api.Enrollment",
     "fields": {
       "student": "002",
-      "lecture": "002",
-      "grade": 3.5
+      "course": "PHYS",
+      "term": "Fall 2023",
+      "year": 2
     }
   },
   {
-    "model": "api.Grade",
+    "model": "api.Enrollment",
     "fields": {
       "student": "003",
-      "lecture": "003",
-      "grade": 3.0
+      "course": "CHEM",
+      "term": "Spring 2024",
+      "year": 3
     }
   },
   {
-    "model": "api.Grade",
+    "model": "api.Enrollment",
     "fields": {
       "student": "004",
-      "lecture": "004",
-      "grade": 3.7
+      "course": "ENGL",
+      "term": "Spring 2024",
+      "year": 4
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "005",
+      "course": "COMP",
+      "term": "Fall 2023",
+      "year": 6
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "001",
+      "course": "PHYS",
+      "term": "Winter 2024",
+      "year": 2
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "002",
+      "course": "CHEM",
+      "term": "Winter 2024",
+      "year": 4
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "003",
+      "course": "ENGL",
+      "term": "Summer 2024",
+      "year": 2
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "004",
+      "course": "COMP",
+      "term": "Summer 2024",
+      "year": 1
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "005",
+      "course": "MATH",
+      "term": "Winter 2024",
+      "year": 4
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "001",
+        "course": "CHEM",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "002",
+        "course": "MATH",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "003",
+        "course": "COMP",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "004",
+        "course": "PHYS",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "005",
+        "course": "ENGL",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+
+
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "001",
+      "grade": 78
     }
   },
   {
     "model": "api.Grade",
     "fields": {
-      "student": "005",
-      "lecture": "005",
-      "grade": 3.9
+      "enrollment": "002",
+      "grade": 82
     }
-  }   
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "003",
+      "grade": 90
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "004",
+      "grade": 65
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "005",
+      "grade": 88
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "001",
+      "grade": 70
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "002",
+      "grade": 60
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "003",
+      "grade": 87
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "004",
+      "grade": 46
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "005",
+      "grade": 90
+    }
+  }
 ]

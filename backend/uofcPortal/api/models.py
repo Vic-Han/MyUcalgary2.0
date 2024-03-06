@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.core.validators import MaxValueValidator
 # Create your models here.
 
 class Faculty(models.Model):
@@ -35,6 +35,14 @@ class Program(models.Model):
     # To show Program's name in admin panel
     def __str__(self):
         return self.program_name
+
+class Term(models.Model):
+    term_name = models.CharField(max_length=20, unique=True, primary_key=True)  # Example: Fall 2023
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    def __str__(self):
+        return self.term_name
 
 class Student(models.Model):
     student_id = models.CharField(max_length=10)
@@ -80,6 +88,7 @@ class Course(models.Model):
     course_notes = models.CharField(max_length=100)
     course_repeatability = models.BooleanField(default=False)
     course_type = models.CharField(max_length=20)
+    units = models.IntegerField()
 
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
@@ -101,15 +110,30 @@ class Instructor(models.Model):
 
 class Lecture(models.Model):
     lecture_id = models.CharField(max_length=10)
-    lecture_term = models.CharField(max_length=10)
+    lecture_term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
     lecture_starttime = models.CharField(max_length=4)
     lecture_endtime = models.CharField(max_length=4)
     lecture_roomnumber = models.CharField(max_length=10)
-
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, null=True)
 
+    def __str__(self):
+        return f"{self.course} - {self.lecture_term}"
+class Enrollment(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    term = models.ForeignKey(Term, on_delete=models.CASCADE)
+    year = models.IntegerField()
+    
+    class Meta:
+        unique_together = ('student', 'course', 'term')  # Avoid duplicate enrollments
+
+    def __str__(self):
+        return f"{self.student} - {self.course} - {self.term}"
+
 class Grade(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
-    lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True)
-    grade = models.FloatField()
+    grade = models.FloatField(validators=[MaxValueValidator(100)])
+    enrollment = models.ForeignKey('Enrollment', on_delete=models.CASCADE, null=True)
+    def __str__(self):
+        return f"{self.enrollment.student} - {self.enrollment.course}: {self.grade}"
+

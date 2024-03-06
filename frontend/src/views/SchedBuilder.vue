@@ -1,21 +1,48 @@
 <!-- This is the SchedBuilder component that toggles when the route is set to schedule -->
 <template>
-    <div class = "flex flex-row">
-        <div>
+    <div class = "flex flex-row w-96">
+        <div class = "w-96 flex flex-col">
+            <img src = "@/assets/unilogo.png " class = "w-10/12">
+            <div class = "flex flex-row w-10/12 relative left-5">
+                <input type = "text" v-model="courseSearchTerm" class = "w-40 border border-black-100">
+                <div @click = "searchResults"> Search</div>
+            </div>
 
         </div>
         <div>
-
-        </div>
-        <div>
-
+            <div class = "flex flex-row">
+                <div> Back </div> 
+                <div>Fall 2024</div>
+                <div> Forward</div>
+                
+            </div>
+            <div class = "flex flex-row">
+                <div>  Back </div>
+                <div> {{selectedSched}} </div>
+                <div> Forward</div>
+            </div>
+        
+            <div class = "flex flex-row">
+                <div class = "flex flex-col w-60">
+                    <div v-for="(course,index) in selectedCourses" :key="index">
+                        {{course}}
+                    </div>
+                </div>
+                <div class = "flex flex-col">
+                    <SchedPreview :sched="schedules.length > 0 ? schedules[selectedSched] : null"> </SchedPreview>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import SchedPreview from '@/components/SchedPreview.vue';
     export default{
         name : 'SchedBuilder',
+        components: {
+            SchedPreview,
+        },
         data : () => {
             return {
                 allInfo: {
@@ -26,8 +53,8 @@
                 courseSearchResults: [],
                 courseSearchTerm: '',
                 selectedCourses: [],
-                selectedSched: [],
-                scheds: [],
+                selectedSched: 0,
+                schedules: [],
                 degreeRequirements: [],
 
                 schedsLoading: false,
@@ -40,7 +67,7 @@
         created(){
             this.$emit('hide-navbar')
             const backendPayload = {
-                "Fall2024":{
+                
                     "allCourses" : [
                         {
                             "name": "SENG 401",
@@ -236,12 +263,12 @@
                         "CSPC 413": "CPSC 413"
 
                     }
-                }
+                
 
             }
             this.allInfo = backendPayload
-            this.courses = this.allInfo[this.selectedTerm]['all courses that are offered']
-            this.degreeRequirements = this.allInfo[this.selectedTerm]['academic Requirements']
+            this.courses = this.allInfo['allCourses']
+            this.degreeRequirements = this.allInfo['academic Requirements']
 
             
         },
@@ -250,7 +277,7 @@
 
             },
             addCourseToOptions(course){
-
+                this.selectedCourses.push(course)
             }
         }
     }

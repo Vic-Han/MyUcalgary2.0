@@ -1,6 +1,6 @@
 <template>
     <div class="academic-report bg-gray-100 p-4 ">
-      <div class="program-information bg-white shadow-md rounded-lg p-6 mb-6 bg-white-100 w-1/2">
+      <div class="program-information bg-white shadow-md rounded-lg p-6 mb-6 bg-white-100 w-2/5 text-start">
         <h1 class="text-xl font-semibold mb-4">Program Information</h1>
         <p><strong>Degree Stream:</strong> {{ programInfo.degree }}</p>
         <p><strong>Major:</strong> {{ programInfo.major }}</p>
@@ -12,13 +12,13 @@
   
       
       <!-- Academic Report Details -->
-      <div class="academic-report-details bg-white shadow-md rounded-lg p-6 mb-6 bg-white-100 h-96 overflow-x-hidden" :class="{ 'overflow-hidden': !expandedReport, 'overflow-auto': expandedReport }">
+      <div class="academic-report-details bg-white shadow-md rounded-lg p-6 mb-6 bg-white-100 overflow-x-hidden" :class="{ 'overflow-hidden': !expandedReport, 'overflow-auto h-96': expandedReport }">
         <h2 class="text-xl font-semibold mb-4">Academic Report</h2>
       
         <!-- Major Field -->
         <div class="font-semibold col-span-full">Major Field</div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-          <template v-for="(course, index) in requiredCourses.courses" :key="`major-${index}`">
+          <template v-for="(course, index) in incompleteMajorField" :key="`major-${index}`">
             <div class="course-item relative group" 
               @mouseenter="course.hovered = true" 
               @mouseleave="course.hovered = false">
@@ -46,35 +46,37 @@
         </div>
 
         <!-- Required Options -->
-        <div v-for="(option, index) in requiredOptions" :key="index">
-          <h3 class="font-semibold mt-4">{{ option.name }}</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <template v-for="(course, index) in option.courses" :key="`major-${index}`">
-              <div class="course-item relative group" 
-                @mouseenter="course.hovered = true" 
-                @mouseleave="course.hovered = false">
-                <!-- Course box -->
-                <div :class="{
-                  'bg-green-200': course.status === 'completed',
-                  'bg-yellow-200': course.status === 'in progress',
-                  'bg-white-100': course.status === 'incomplete',
-                  'p-2': true,
-                  'rounded': true,
-                  'shadow': true,
-                  'text-center': true
-                }" class="hover:-translate-y-1 transition-transform duration-300">
-                  {{ course.code }}
-                </div>
-                <!-- Tooltip -->
-                <div v-if="course.hovered" class="tooltip absolute bottom-full mb-2 -translate-x-1/2 left-1/2 text-black p-2 border border-gray-500 bg-white-100 rounded shadow-lg whitespace-nowrap max-w-screen overflow-x-auto z-10">
-                  <div><strong>Description:</strong> {{ course.description }}</div>
-                  <div><strong>Units:</strong> {{ course.units }}</div>
-                  <div><strong>Semester:</strong> {{ course.semester }}</div>
-                  <div><strong>Grade:</strong> {{ course.grade }}</div>
-                </div>
+        <div class="flex flex-col my-4 gap-y-4">
+            <div v-for="(option, index) in requiredOptions" :key="index">
+              <h3 class="font-semibold">{{ option.name }}</h3>
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <template v-for="(course, index) in option.courses" :key="`major-${index}`">
+                  <div class="course-item relative group" 
+                    @mouseenter="course.hovered = true" 
+                    @mouseleave="course.hovered = false">
+                    <!-- Course box -->
+                    <div :class="{
+                      'bg-green-200': course.status === 'completed',
+                      'bg-yellow-200': course.status === 'in progress',
+                      'bg-white-100': course.status === 'incomplete',
+                      'p-2': true,
+                      'rounded': true,
+                      'shadow': true,
+                      'text-center': true
+                    }" class="hover:-translate-y-1 transition-transform duration-300">
+                      {{ course.code }}
+                    </div>
+                    <!-- Tooltip -->
+                    <div v-if="course.hovered" class="tooltip absolute bottom-full mb-2 -translate-x-1/2 left-1/2 text-black p-2 border border-gray-500 bg-white-100 rounded shadow-lg whitespace-nowrap max-w-screen overflow-x-auto z-10">
+                      <div><strong>Description:</strong> {{ course.description }}</div>
+                      <div><strong>Units:</strong> {{ course.units }}</div>
+                      <div><strong>Semester:</strong> {{ course.semester }}</div>
+                      <div><strong>Grade:</strong> {{ course.grade }}</div>
+                    </div>
+                  </div>
+                </template>
               </div>
-            </template>
-          </div>
+            </div>
         </div>
 
       </div>
@@ -152,6 +154,25 @@
       }
     },
     computed: {
+        incompleteMajorField() {
+            if (this.expandedReport) {
+                return this.requiredCourses.courses.filter(course => course.status === 'incomplete' || course.status === 'in progress' || course.status === 'completed');
+                
+            } else {
+                return this.requiredCourses.courses.filter(course => course.status === 'incomplete');
+            }
+        },
+
+        incompleteOptions() {
+            if (this.expandedReport) {
+                return this.requiredOptions.map(option => ({...option,
+                courses: option.courses.filter(course => course.status === 'incomplete' || course.status === 'in progress' || course.status === 'completed')}));
+            } else {
+                return this.requiredOptions.map(option => ({...option,
+                courses: option.courses.filter(course => course.status === 'incomplete')}));
+            }
+        },
+    
       canApplyForGraduation() {
         // Logic to determine if the student can apply for graduation
         return this.academicReport.programs.some(program => {

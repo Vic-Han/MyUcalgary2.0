@@ -13,7 +13,7 @@
       </div>
       <div class="flex flex-col rounded-xl shadow-xl py-12 px-8 text-center bg-white-100 m-5">
         <div class="font-bold my-4 text-base leading-relaxed">Expected Graduation Date: 2024</div>
-        <div class="text-base leading-normal my-3 ">Confirmation of Enrollment</div>
+        <div class="text-base text-grey-200 leading-normal my-3 ">Confirmation of Enrollment</div>
         <div class="text-grey-200 my-3"> Request Official Transcript </div>
         <div class="text-grey-200 my-3"> View Unofficial Transcript </div>
       </div>

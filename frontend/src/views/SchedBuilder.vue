@@ -7,7 +7,11 @@
                 <input type = "text" v-model="courseSearchTerm" class = "w-40 border border-black-100">
                 <div @click = "searchResults"> Search</div>
             </div>
-
+            <div>
+                <div v-for = "(course,index) in courseSearchResults" :key="index">
+                {{ course.name }}
+                </div>
+            </div>
         </div>
         <div>
             <div class = "flex flex-row">
@@ -274,7 +278,12 @@ import SchedPreview from '@/components/SchedPreview.vue';
         },
         methods:{
             searchResults(){
-
+                console.log(this.courseSearchTerm)
+                this.courses.forEach((item) => {
+                    if(item.name.substring(this.courseSearchTerm)){
+                        this.courseSearchResults.push(item)
+                    }
+                })
             },
             addCourseToOptions(course){
                 this.selectedCourses.push(course)

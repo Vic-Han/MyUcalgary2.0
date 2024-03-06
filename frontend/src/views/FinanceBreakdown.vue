@@ -232,7 +232,7 @@
                 <div class = "bg-white-100 m-5 p-10 rounded-xl shadow-lg"> 
                    <div class = "text-lg mb-8"> {{ currentTerm }} </div>
                    <div class = "rounded-full w-64 h-64 mx-8" :style="pieChartStyle"></div>
-                   <div class = "flex flex-row mt-8">
+                   <div class = "flex flex-row mt-8 justify-center">
                           <div class = "flex items-center mx-4">
                             <span class="inline-block w-3 h-3 bg-red-500 mr-1"></span><span class="text-red-500">Due</span>
                           </div>

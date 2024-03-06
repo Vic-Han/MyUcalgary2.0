@@ -526,45 +526,211 @@
     }
   },
 
-  
   {
-    "model": "api.Grade",
+    "model": "api.Enrollment",
     "fields": {
       "student": "001",
-      "lecture": "001",
-      "grade": 4.0
+      "course": "MATH",
+      "term": "Fall 2023",
+      "year": 1
     }
   },
   {
-    "model": "api.Grade",
+    "model": "api.Enrollment",
     "fields": {
       "student": "002",
-      "lecture": "002",
-      "grade": 3.5
+      "course": "PHYS",
+      "term": "Fall 2023",
+      "year": 2
     }
   },
   {
-    "model": "api.Grade",
+    "model": "api.Enrollment",
     "fields": {
       "student": "003",
-      "lecture": "003",
-      "grade": 3.0
+      "course": "CHEM",
+      "term": "Spring 2024",
+      "year": 3
     }
   },
   {
-    "model": "api.Grade",
+    "model": "api.Enrollment",
     "fields": {
       "student": "004",
-      "lecture": "004",
-      "grade": 3.7
+      "course": "ENGL",
+      "term": "Spring 2024",
+      "year": 4
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "005",
+      "course": "COMP",
+      "term": "Fall 2023",
+      "year": 6
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "001",
+      "course": "PHYS",
+      "term": "Winter 2024",
+      "year": 2
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "002",
+      "course": "CHEM",
+      "term": "Winter 2024",
+      "year": 4
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "003",
+      "course": "ENGL",
+      "term": "Summer 2024",
+      "year": 2
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "004",
+      "course": "COMP",
+      "term": "Summer 2024",
+      "year": 1
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "005",
+      "course": "MATH",
+      "term": "Winter 2024",
+      "year": 4
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "001",
+        "course": "CHEM",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "002",
+        "course": "MATH",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "003",
+        "course": "COMP",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "004",
+        "course": "PHYS",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "005",
+        "course": "ENGL",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+
+
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "001",
+      "grade": 78
     }
   },
   {
     "model": "api.Grade",
     "fields": {
-      "student": "005",
-      "lecture": "005",
-      "grade": 3.9
+      "enrollment": "002",
+      "grade": 82
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "003",
+      "grade": 90
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "004",
+      "grade": 65
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "005",
+      "grade": 88
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "001",
+      "grade": 70
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "002",
+      "grade": 60
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "003",
+      "grade": 87
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "004",
+      "grade": 46
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "005",
+      "grade": 90
     }
   }
 ]

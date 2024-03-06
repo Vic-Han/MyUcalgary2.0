@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.core.validators import MaxValueValidator
 # Create your models here.
 
 class Faculty(models.Model):
@@ -114,24 +114,26 @@ class Lecture(models.Model):
     lecture_starttime = models.CharField(max_length=4)
     lecture_endtime = models.CharField(max_length=4)
     lecture_roomnumber = models.CharField(max_length=10)
-
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, null=True)
 
-class Grade(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
-    lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True)
-    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
-
-    grade = models.FloatField()
-    letter_grade = models.CharField(max_length=2)
-
-
+    def __str__(self):
+        return f"{self.course} - {self.lecture_term}"
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     term = models.ForeignKey(Term, on_delete=models.CASCADE)
-    year = models.IntegerField()  # Year of the student during this term
+    year = models.IntegerField()
     
     class Meta:
         unique_together = ('student', 'course', 'term')  # Avoid duplicate enrollments
+
+    def __str__(self):
+        return f"{self.student} - {self.course} - {self.term}"
+
+class Grade(models.Model):
+    grade = models.FloatField(validators=[MaxValueValidator(100)])
+    enrollment = models.ForeignKey('Enrollment', on_delete=models.CASCADE, null=True)
+    def __str__(self):
+        return f"{self.enrollment.student} - {self.enrollment.course}: {self.grade}"
+

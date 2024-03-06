@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.authtoken.views import Token
-from .models import Student, Faculty, Department, Program, Course, Instructor, Lecture, Grade
+from .models import Student, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -113,4 +113,10 @@ class GradeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Grade
         fields = '__all__'
+
+class EnrollmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Enrollment
+        fields = '__all__'
+
 

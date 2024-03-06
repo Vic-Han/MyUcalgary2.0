@@ -4,8 +4,10 @@
         This is the dashboard heehe
         <SchedPreview/>        
         <CalendarPreview/>
-        <router-link to = "grades" class = "btn"> 
-            <GradePreview/>
+        <router-link to = "grades"> 
+            <GradePreview :term="GradePreview.term" :average = "GradePreview.TermGPA" :letter = "GradePreview.TermLetterGrade"
+          :courses = "GradePreview.courses" :year = "GradePreview.Level" :unitsEnrolled = "GradePreview.UnitsEnrolled"
+          :plan = "GradePreview.Plan" :program ="GradePreview.Program"></GradePreview>
         </router-link>
         <router-link to ="/finances">
             <FinancePieChart/>
@@ -29,13 +31,44 @@ import SchedPreview from '../components/SchedPreview'
         },
         data: () =>{
             return{
-
+                GradePreview : {
+                    term: "Fall 2023",
+                    
+                      UnitsEnrolled: 15,
+                      Program: "Schulich Sch of EN Bachelor",
+                      Level: 4,
+                      Plan: "Bachelor of Science, Internship Program, Software Engineering",
+                      TermGPA: 3.6,
+                      TermLetterGrade: "A-",
+                      courses : [
+                          {
+                              "name" : "SENG 550",
+                              "letter": "A"
+                          },
+                          {
+                              "name" : "SENG 513",
+                              "letter" : "A"
+                          },
+                          {
+                              "name" : "CPSC 481",
+                              "letter": "A-"
+                          },
+                          {
+                              "name" : "CPSC 411",
+                              "letter": "B"
+                          },
+                          {
+                              "name" : "ECON 341",
+                              "letter": "B+"
+                          }
+                      ]
+                  },
+                
             }
         },
         created(){
             this.$emit('show-navbar')
-            this.$emit('show-search')
-            this.$emit('show-profile')
+            this.$emit('toggle-selected', 'dashboard')
         }
     }
 </script>

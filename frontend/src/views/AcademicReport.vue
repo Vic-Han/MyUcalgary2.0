@@ -274,6 +274,7 @@
             // Toggle the expanded state for each program
             this.toggleReportDetails(index);
             });
+
         }
     },
     created() {

@@ -283,13 +283,15 @@
                 </div>
             </div>
             <div class = "m-5 bg-white-100 p-5 rounded-xl shadow-lg"> 
-                <select v-model="selectedTerm"
-                    class="rounded-lg border-4 border-red-300 shadow-lg hover:border-red-500 focus:outline-none 
-                    focus:ring-2 focus:ring-indigo-600 focus:border-red transition duration-200 ease-in-out appearance-none bg-white py-2 px-14 text-red-700">
-                    <option v-for="(value,key) in terms"  :value="key" :key="key">
-                            {{ key }}
-                    </option>
-                  </select>
+                  <div class="flex justify-end mr-4 mb-8 ">
+                      <select v-model="selectedTerm"
+                          class="rounded-lg border-2 focus:outline-none 
+                          focus:ring-2 focus:ring-gray-600 focus:border-red transition duration-200 ease-in-out appearance-none bg-white py-2 px-14">
+                          <option v-for="(value,key) in terms" :value="key" :key="key" class="mb-2">
+                              {{ key }}
+                          </option>
+                      </select>
+                  </div>
 
                   <div class = "flex flex-row">
                     <div class = "w-48 text-center rounded-t-2xl p-4 bg-green-100" v-bind:class = "{'bg-red-200' : activeTab =='all'}" @click = "activeTab = 'all' "> All</div>
@@ -429,11 +431,11 @@
   </script>
   
   
-  <style scoped>.pie-chart-scale {
+  <!-- <style scoped>.pie-chart-scale {
     @apply scale-50;
   }
   
   
   .transform-scale {
     @apply scale-50;
-  }</style>
+  }</style> -->

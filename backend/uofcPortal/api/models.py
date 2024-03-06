@@ -55,15 +55,26 @@ class Student(models.Model):
     postal_code = models.CharField(max_length=10)
     city = models.CharField(max_length=30)
     province = models.CharField(max_length=30)
-    primary_phone_number = models.CharField(max_length=15)
-    secondary_phone_number = models.CharField(max_length=15)
+
+    home_phone_number = models.CharField(blank=True, max_length=15)
+    mobile_phone_number = models.CharField(blank=True, max_length=15)
+    other_phone_number = models.CharField(blank=True, max_length=15)
+    preferred_phone = models.CharField(default="home", max_length=6)
     
     personal_email = models.EmailField()
     school_email = models.EmailField()
+    preferred_email = models.CharField(default="personal", max_length=8)
 
-    emergency_contact_name = models.CharField(max_length=30)
-    emergency_contact_phone = models.CharField(max_length=15)
-    emergency_contact_relationship = models.CharField(max_length=30)
+    emergency_contact1_name = models.CharField(max_length=30)
+    emergency_contact1_phone = models.CharField(max_length=15)
+    emergency_contact1_relationship = models.CharField(max_length=30)
+    emergency_contact2_name = models.CharField(blank=True, max_length=30)
+    emergency_contact2_phone = models.CharField(blank=True, max_length=15)
+    emergency_contact2_relationship = models.CharField(blank=True, max_length=30)
+    emergency_contact3_name = models.CharField(blank=True, max_length=30)
+    emergency_contact3_phone = models.CharField(blank=True, max_length=15)
+    emergency_contact3_relationship = models.CharField(blank=True, max_length=30)
+    preferred_emergency_contact = models.CharField(default="1", max_length=1)
 
     gpa = models.FloatField()
 

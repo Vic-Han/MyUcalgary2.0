@@ -15,9 +15,7 @@
         },
         created(){
             this.$emit('show-navbar')
-            this.$emit('show-search')
-            this.$emit('show-profile')
-            this.$emit('set-title','Academic Report')
+            this.$emit('toggle-selected', 'application')
         }
     }
 </script>

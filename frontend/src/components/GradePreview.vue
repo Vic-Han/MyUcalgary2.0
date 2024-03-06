@@ -89,7 +89,7 @@
                     return 'w-80'
                 }
                 if(grade[0] === 'C'){
-                    return 'w-68'
+                    return 'w-72'
                 }
                 if(grade[0] === 'D'){
                     return 'w-60'

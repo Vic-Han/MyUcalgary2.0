@@ -225,11 +225,14 @@
         </div>
       </div>
     </div> -->
-    <div class = "bg-grey-100 flex flex-col px-5">
-        <div class = "text-lg"> Finances</div>
-        <div class = "class = flex flex-row">
-            <div class = "class = flex flex-col"> 
-                <div class = "bg-white-100 m-5 p-10 rounded-xl shadow-lg"> 
+    <div class = "bg-grey-100 flex flex-col px-5 w-full">
+        <div class="flex items-center justify-start text-2xl my-4">
+          <span class="inline-block transform rotate-180 text-4xl">&#8250;</span>
+          <span class="ml-2">Finances</span>
+        </div>
+        <div class = "flex flex-row gap-x-4">
+            <div class = "flex flex-col gap-y-4"> 
+                <div class = "bg-white-100 p-10 rounded-xl shadow-lg"> 
                    <div class = "text-lg mb-8"> {{ currentTerm }} </div>
                    <div class = "rounded-full w-64 h-64 mx-8" :style="pieChartStyle"></div>
                    <div class = "flex flex-row mt-8 justify-center">
@@ -244,7 +247,7 @@
                           </div>
                    </div>
                 </div>
-                <div class = "bg-white-100 m-5 flex flex-col p-5 rounded-xl shadow-lg"> 
+                <div class = "bg-white-100  flex flex-col p-5 rounded-xl shadow-lg h-80"> 
                     <div class = "flex flex-col flex-wrap h-64">
                     <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
                         UPass Opt-in 
@@ -282,25 +285,27 @@
                     </a>
                 </div>
             </div>
-            <div class = "m-5 bg-white-100 p-5 rounded-xl shadow-lg"> 
-                  <div class="flex justify-end mr-4 mb-8 ">
-                      <select v-model="selectedTerm"
-                          class="rounded-lg border-2 focus:outline-none 
-                          focus:ring-2 focus:ring-gray-600 focus:border-red transition duration-200 ease-in-out appearance-none bg-white py-2 px-14">
-                          <option v-for="(value,key) in terms" :value="key" :key="key" class="mb-2">
-                              {{ key }}
-                          </option>
-                      </select>
-                  </div>
+            <div class = " bg-white-100 p-5 rounded-xl shadow-lg"> 
+              <div class="relative flex justify-end mr-4 mb-8">
+                  <select v-model="selectedTerm"
+                      class="rounded-lg border-2 focus:outline-none 
+                      focus:ring-2 focus:ring-gray-600 focus:border-red transition duration-200 ease-in-out appearance-none bg-white py-2 w-48 pr-10 pl-2 text-left">
+                      <option v-for="(value,key) in terms" :value="key" :key="key" class="mb-2">
+                          {{ key }}
+                      </option>
+                  </select>
+                  <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </div>
 
-                  <div class = "flex flex-row">
-                    <div class = "w-48 text-center rounded-t-2xl p-4 bg-green-100" v-bind:class = "{'bg-red-200' : activeTab =='all'}" @click = "activeTab = 'all' "> All</div>
-                    <div class = "w-48 text-center rounded-t-2xl p-4 bg-green-100" v-bind:class = "{'bg-red-200' : activeTab =='fee'}" @click = "activeTab = 'fee' "> Fees</div>
-                    <div class = "w-48 text-center rounded-t-2xl p-4 bg-green-100" v-bind:class = "{'bg-red-200' : activeTab =='scholarship'}" @click = " activeTab = 'scholarship'"> Scholarships </div>
-                    <div class = "w-48 text-center rounded-t-2xl p-4 bg-green-100" v-bind:class = "{'bg-red-200' : activeTab =='award'}" @click = "activeTab = 'award'"> Awards </div>
-                    <div class = "w-48 text-center rounded-t-2xl p-4 bg-green-100" v-bind:class =  "{'bg-red-200' : activeTab =='payment'}" @click = "activeTab = 'payment'"> My Pay </div>
+
+                  <div class = "grid grid-cols-5">
+                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='all'}" @click = "activeTab = 'all' "> All</div>
+                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='fee'}" @click = "activeTab = 'fee' "> Fees</div>
+                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='scholarship'}" @click = " activeTab = 'scholarship'"> Scholarships </div>
+                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='award'}" @click = "activeTab = 'award'"> Awards </div>
+                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class =  "{'bg-gray-300' : activeTab =='payment'}" @click = "activeTab = 'payment'"> My Pay </div>
                   </div>
-                  <div class = "flex flex-col rounded-lg shadow-md">
+                  <div class = "flex flex-col rounded-lg shadow-md border border-gray-300 rounded-tl-none">
                     <div class = "flex flex-row">
                         <div class = "p-4 text-left w-64"> Item </div>
                         <div class = "p-4 text-left w-36"> Type </div>
@@ -310,7 +315,7 @@
                         <div class = "p-4 text-left w-36"> Refund </div>
                     </div>
                     <div v-for= '(item, index) in terms[selectedTerm]' :key="index">
-                        <div v-if="item.type == activeTab || activeTab == 'all'" class = "flex flex-row border-t-2 border-black-100">
+                        <div v-if="item.type == activeTab || activeTab == 'all'" class = "flex flex-row border-t-2 border-gray-200">
                             <div class = "p-4 text-left w-64"> {{ item.name }} </div>
                             <div class = "p-4 text-left w-36"> {{ item.type }} </div>
                             <div class = "p-4 text-left w-36"> {{ item.date }} </div>
@@ -424,7 +429,9 @@
       }
     },
     created(){
-        this.$emit('show-navbar')
+      this.$emit('show-navbar')
+      this.$emit('show-search')
+      this.$emit('show-profile')
     }
   };
   

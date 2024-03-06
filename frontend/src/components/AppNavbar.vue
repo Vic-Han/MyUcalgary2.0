@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-96 bg-white rounded-lg shadow-md fixed inset-0 h-screen p-8"> <!-- Added shadow effect -->
+  <div class="flex flex-col w-96 bg-white-100 z-20 rounded-lg shadow-md fixed inset-0 h-screen p-8"> <!-- Added shadow effect -->
     <img src="@/assets/unilogo.png" alt="University Logo" class="h-24 my-4 self-center">
     
     <div class="flex flex-col mt-4 space-y-4"> <!-- Increased vertical spacing -->

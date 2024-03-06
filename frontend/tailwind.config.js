@@ -22,6 +22,9 @@ module.exports = {
         'yellow' :{
           100: '#FFCD00',
         },
+        'green' :{
+          100: '#47A67C',
+        },
         'rubine': {
           100: '#ED0A72',
         },

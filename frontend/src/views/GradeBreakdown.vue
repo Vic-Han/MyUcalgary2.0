@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="bg-white-100 rounded-xl shadow-2xl h-fit mx-1 my-5 px-4 py-1 flex flex-col">
-      <select v-model="selectedOption" class=" relative w-64 left-2/3 mr-40 rounded-lg border-2 accent-red-100 border-grey-200 focus:border-red-100 py-2 px-4 m-3">
+      <select v-model="selectedOption" class=" relative w-64 left-2/3 mr-40 rounded-lg border-2 border-grey-200 focus:border-blue-500 py-2 px-4 m-3">
         <option class="selected:bg-red-100" v-for="(value, key) in termViews" :key="key">{{ key }}</option>
       </select>
       <div v-for="(value, key) in termViews[selectedOption]" :key="key" class="my-3">

@@ -258,7 +258,7 @@
                             <div class="flex flex-row">
                                 <div class="w-full">
                                     <div class="font-semibold text-left pt-4 pl-4">Name:</div>
-                                    <div class="text-left pl-4">Editing</div>
+                                    <input type="text" placeholder="Required" v-model="Contact.Name" class="relative left-0 w-full border-2 rounded-md text-md mx-4 border-grey-100 outline-red-100 pl-2">
                                 </div>
                                 <div class="w-full">
                                     <div class="absolute right-0 flex flex-row pr-4">
@@ -270,24 +270,61 @@
                                         </div>
                                         <div class="pl-4 pt-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" @click="setView()" class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
-                                                <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
+                                                <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
                                             </svg>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex flex-row pt-4">
-                                <div class="w-full pl-4">
+                            <div class="flex flex-row pt-2">
+                                <div class="w-full mx-4">
                                     <div class="text-left font-semibold">Relationship:</div>
-                                    <div class="text-left">Editing</div>
+                                    <input type="text" placeholder="Required" v-model="Contact.Relationship" class="relative left-0 w-full mr-2 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
                                 </div>
-                                <div class="w-full pr-4">
+                                <div class="w-full mr-4">
                                     <div class="text-left font-semibold">Phone:</div>
-                                    <div class="text-left">Editing</div>
+                                    <input type="text" placeholder="Required" v-model="Contact.Phone" class="relative left-0 w-full border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
                                 </div>
                             </div>
                         </div>
                         <div v-else class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
+                            <div id="contact-dropdown" v-if="dropdownVisible == index" class="absolute py-1 right-4 top-8 z-20 bg-white-100 rounded-md border border-grey-100 drop-shadow-lg w-40 h-28 flex flex-col">
+                                <div @click="editContact(index)" class="flex flex-row items-center h-full pt-1 pb-1 fill-grey-200 text-grey-200 hover:bg-red-100 hover:fill-white-100 hover:text-white-100">
+                                    <div class="w-1/3 ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 -960 960 960">
+                                            <path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="w-full text-left">
+                                        Edit
+                                    </div>
+                                </div>
+                                <div @click="togglePrimary(index)" class="flex flex-row items-center h-full pt-1 pb-1 fill-grey-200 text-grey-200 hover:bg-red-100 hover:fill-white-100 hover:text-white-100">
+                                    <div v-if="Contact.Primary" class="w-1/3 ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 -960 960 960">
+                                            <path d="m305-704 112-145q12-16 28.5-23.5T480-880q18 0 34.5 7.5T543-849l112 145 170 57q26 8 41 29.5t15 47.5q0 12-3.5 24T866-523L756-367l4 164q1 35-23 59t-56 24q-2 0-22-3l-179-50-179 50q-5 2-11 2.5t-11 .5q-32 0-56-24t-23-59l4-165L95-523q-8-11-11.5-23T80-570q0-25 14.5-46.5T135-647l170-57Z"/>
+                                        </svg>
+                                    </div>
+                                    <div v-else class="w-1/3 ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6"  viewBox="0 -960 960 960">
+                                            <path d="m305-704 112-145q12-16 28.5-23.5T480-880q18 0 34.5 7.5T543-849l112 145 170 57q26 8 41 29.5t15 47.5q0 12-3.5 24T866-523L756-367l4 164q1 35-23 59t-56 24q-2 0-22-3l-179-50-179 50q-5 2-11 2.5t-11 .5q-32 0-56-24t-23-59l4-165L95-523q-8-11-11.5-23T80-570q0-25 14.5-46.5T135-647l170-57Zm49 69-194 64 124 179-4 191 200-55 200 56-4-192 124-177-194-66-126-165-126 165Zm126 135Z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="w-full text-left">
+                                        Primary
+                                    </div>
+                                </div>
+                                <div class="flex flex-row items-center h-full pt-1 pb-1 fill-grey-200 text-grey-200 hover:bg-red-100 hover:fill-white-100 hover:text-white-100">
+                                    <div class="w-1/3 ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 -960 960 960">
+                                            <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="w-full text-left">
+                                        Delete
+                                    </div>
+                                </div>
+                            </div>
                             <div class="flex flex-row">
                                 <div class="w-full">
                                     <div class="font-semibold text-left pt-4 pl-4">Name:</div>
@@ -301,8 +338,13 @@
                                                 <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
                                             </svg>
                                         </div>
-                                        <div class="pl-4 pt-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" @click="setEditing(index)" class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                                        <div v-if="this.editingID != null || this.dropdownVisible!=null" class="pl-4 pt-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 fill-grey-200" viewBox="0 -960 960 960">
+                                                <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
+                                            </svg>
+                                        </div>
+                                        <div v-else @click="openDropdown(index)" class="pl-4 pt-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                                                 <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
                                             </svg>
                                         </div>
@@ -321,106 +363,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- <div v-if="EmergencyContacts.Contact1.Name" class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
-                        <div class="flex flex-row">
-                            <div class="w-full">
-                                <div class="font-semibold text-left pt-4 pl-4">Name:</div>
-                                <div class="text-left pl-4">{{ EmergencyContacts.Contact1.Name }}</div>
-                            </div>
-                            <div class="w-full">
-                                <div class="absolute right-0 flex flex-row pr-4">
-                                    <div v-if="EmergencyContacts.Contact1.Primary" class="italic text-green-100 text-xs pt-5">Primary</div>
-                                    <div v-if="EmergencyContacts.Contact1.Primary" class="pl-2 pt-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-green-100" viewBox="0 -960 960 960">
-                                            <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="pl-4 pt-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
-                                            <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-row pt-4">
-                            <div class="w-full pl-4">
-                                <div class="text-left font-semibold">Relationship:</div>
-                                <div class="text-left">{{ EmergencyContacts.Contact1.Relationship }}</div>
-                            </div>
-                            <div class="w-full pr-4">
-                                <div class="text-left font-semibold">Phone:</div>
-                                <div class="text-left">{{ EmergencyContacts.Contact1.Phone }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-if="EmergencyContacts.Contact2.Name" class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
-                        <div class="flex flex-row">
-                            <div class="w-full">
-                                <div class="font-semibold text-left pt-4 pl-4">Name:</div>
-                                <div class="text-left pl-4">{{ EmergencyContacts.Contact2.Name }}</div>
-                            </div>
-                            <div class="w-full">
-                                <div class="absolute right-0 flex flex-row pr-4">
-                                    <div v-if="EmergencyContacts.Contact2.Primary" class="italic text-green-100 text-xs pt-5">Primary</div>
-                                    <div v-if="EmergencyContacts.Contact2.Primary" class="pl-2 pt-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-green-100" viewBox="0 -960 960 960">
-                                            <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="pl-4 pt-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
-                                            <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-row pt-4">
-                            <div class="w-full pl-4">
-                                <div class="text-left font-semibold">Relationship:</div>
-                                <div class="text-left">{{ EmergencyContacts.Contact2.Relationship }}</div>
-                            </div>
-                            <div class="w-full pr-4">
-                                <div class="text-left font-semibold">Phone:</div>
-                                <div class="text-left">{{ EmergencyContacts.Contact2.Phone }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-if="EmergencyContacts.Contact3.Name" class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
-                        <div class="flex flex-row">
-                            <div class="w-full">
-                                <div class="font-semibold text-left pt-4 pl-4">Name:</div>
-                                <div class="text-left pl-4">{{ EmergencyContacts.Contact3.Name }}</div>
-                            </div>
-                            <div class="w-full">
-                                <div class="absolute right-0 flex flex-row pr-4">
-                                    <div v-if="EmergencyContacts.Contact3.Primary" class="italic text-green-100 text-xs pt-5">Primary</div>
-                                    <div v-if="EmergencyContacts.Contact3.Primary" class="pl-2 pt-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-green-100" viewBox="0 -960 960 960">
-                                            <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="pl-4 pt-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
-                                            <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-row pt-4">
-                            <div class="w-full pl-4">
-                                <div class="text-left font-semibold">Relationship:</div>
-                                <div class="text-left">{{ EmergencyContacts.Contact3.Relationship }}</div>
-                            </div>
-                            <div class="w-full pr-4">
-                                <div class="text-left font-semibold">Phone:</div>
-                                <div class="text-left">{{ EmergencyContacts.Contact3.Phone }}</div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div> 
             </div>
         </div>
@@ -436,6 +378,7 @@
         data: ()=> {
             return {
                 editingID: null,
+                dropdownVisible: null,
                 User: {
                     First: "John",
                     Last: "Doe",
@@ -497,8 +440,39 @@
             setView() {
                 this.editingID = null;
             },
-            addContact() {
-
+            editContact(index) {
+                document.removeEventListener("click",this.eventLister)
+                this.closeDropdown()
+                this.setEditing(index)
+            },
+            eventLister(e) {
+                const dropdown = document.getElementById("contact-dropdown")
+                if(!dropdown.contains(e.target)) {
+                    this.closeDropdown()
+                    document.removeEventListener("click",this.eventLister)
+                }
+            },
+            closeDropdown () {
+                this.dropdownVisible = null
+            },
+            openDropdown(index) {
+                if(this.dropdownVisible == index){
+                    return
+                }
+                this.dropdownVisible = index
+                setTimeout(() => { 
+                    document.addEventListener("click",this.eventLister)
+                }, 20)
+            },
+            togglePrimary(index) {
+                document.removeEventListener("click",this.eventLister)
+                this.closeDropdown()
+                if(this.EmergencyContacts[index].Primary) {
+                    this.EmergencyContacts[index].Primary = false
+                } else {
+                    this.EmergencyContacts.forEach(contact => contact.Primary = false)
+                    this.EmergencyContacts[index].Primary = true
+                }
             }
         },
     }

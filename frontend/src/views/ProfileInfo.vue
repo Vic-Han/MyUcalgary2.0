@@ -245,7 +245,7 @@
                 <div class="flex flex-row w-full">
                     <h2 class="w-60 mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Emergency Contacts</h2>
                     <div class="w-full">
-                        <div class="absolute pt-4 mx-4 w-fit right-0">
+                        <div v-if="EmergencyContacts.length < 3" @click="addContact()" class="absolute pt-4 mx-4 w-fit right-0">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                                 <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
                             </svg>
@@ -257,7 +257,7 @@
                         <div v-if="this.editingID == index" class="relative bg-white-100 w-full h-2/3 border border-grey-100 drop-shadow-lg rounded-lg">
                             <div class="flex flex-row">
                                 <div class="w-full">
-                                    <div class="font-semibold text-left pt-4 pl-4">Name:</div>
+                                    <div class="font-semibold text-left pt-4 pl-4">Name: *</div>
                                     <input type="text" placeholder="Required" v-model="Contact.Name" class="relative left-0 w-full border-2 rounded-md text-md mx-4 border-grey-100 outline-red-100 pl-2">
                                 </div>
                                 <div class="w-full">
@@ -278,11 +278,11 @@
                             </div>
                             <div class="flex flex-row pt-2">
                                 <div class="w-full mx-4">
-                                    <div class="text-left font-semibold">Relationship:</div>
+                                    <div class="text-left font-semibold">Relationship: *</div>
                                     <input type="text" placeholder="Required" v-model="Contact.Relationship" class="relative left-0 w-full mr-2 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
                                 </div>
                                 <div class="w-full mr-4">
-                                    <div class="text-left font-semibold">Phone:</div>
+                                    <div class="text-left font-semibold">Phone: *</div>
                                     <input type="text" placeholder="Required" v-model="Contact.Phone" class="relative left-0 w-full border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
                                 </div>
                             </div>
@@ -314,7 +314,7 @@
                                         Primary
                                     </div>
                                 </div>
-                                <div class="flex flex-row items-center h-full pt-1 pb-1 fill-grey-200 text-grey-200 hover:bg-red-100 hover:fill-white-100 hover:text-white-100">
+                                <div @click="removeContact(index)" class="flex flex-row items-center h-full pt-1 pb-1 fill-grey-200 text-grey-200 hover:bg-red-100 hover:fill-white-100 hover:text-white-100">
                                     <div class="w-1/3 ml-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 -960 960 960">
                                             <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
@@ -473,7 +473,25 @@
                     this.EmergencyContacts.forEach(contact => contact.Primary = false)
                     this.EmergencyContacts[index].Primary = true
                 }
+            },
+            removeContact(i) {
+                document.removeEventListener("click",this.eventLister)
+                this.closeDropdown()
+                const temp = this.EmergencyContacts.filter((item,index) => i !== index)
+                this.EmergencyContacts = temp
+            },
+            addContact() {
+                this.EmergencyContacts.push({
+                    Name: null,
+                    Relationship: null,
+                    Phone: null,
+                    Primary: false
+                })
+                this.setEditing(this.EmergencyContacts.length - 1)
             }
         },
+        unmounted(){
+            document.removeEventListener("click",this.eventLister)
+        }
     }
 </script>

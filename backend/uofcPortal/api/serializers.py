@@ -80,11 +80,11 @@ class PersonalInfoSerializer(serializers.ModelSerializer):
             "phone1": obj.emergency_contact1_phone,
             "relation1": obj.emergency_contact1_relationship,
             "name2": obj.emergency_contact2_name if obj.emergency_contact2_name else None,
-            "phone2": obj.emergency_contact1_phone if obj.emergency_contact2_phone else None,
-            "relation2": obj.emergency_contact1_relationship if obj.emergency_contact2_relation else None,
-            "name3": obj.emergency_contact1_name if obj.emergency_contact3_name else None,
-            "phone3": obj.emergency_contact1_phone if obj.emergency_contact3_phone else None,
-            "relation3": obj.emergency_contact1_relationship if obj.emergency_contact3_relation else None,
+            "phone2": obj.emergency_contact2_phone if obj.emergency_contact2_phone else None,
+            "relation2": obj.emergency_contact2_relationship if obj.emergency_contact2_relationship else None,
+            "name3": obj.emergency_contact3_name if obj.emergency_contact3_name else None,
+            "phone3": obj.emergency_contact3_phone if obj.emergency_contact3_phone else None,
+            "relation3": obj.emergency_contact3_relationship if obj.emergency_contact3_relationship else None,
             "preferred": obj.preferred_emergency_contact
         }
 

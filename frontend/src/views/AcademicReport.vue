@@ -1,6 +1,6 @@
 <template>
-    <div class="academic-report bg-gray-100 p-4">
-      <div class="program-information bg-white shadow-md rounded-lg p-6 mb-6">
+    <div class="academic-report bg-gray-100 p-4 ">
+      <div class="program-information bg-white shadow-md rounded-lg p-6 mb-6 bg-white-100 w-1/2">
         <h1 class="text-xl font-semibold mb-4">Program Information</h1>
         <p><strong>Degree Stream:</strong> {{ programInfo.degree }}</p>
         <p><strong>Major:</strong> {{ programInfo.major }}</p>
@@ -12,8 +12,8 @@
   
       
       <!-- Academic Report Details -->
-    <div class="academic-report-details bg-white shadow-md rounded-lg p-6 mb-6">
-      <h2 class="text-xl font-semibold mb-4">Academic Report</h2>
+      <div class="academic-report-details bg-white shadow-md rounded-lg p-6 mb-6 bg-white-100 h-96 overflow-x-hidden" :class="{ 'overflow-hidden': !expandedReport, 'overflow-auto': expandedReport }">
+        <h2 class="text-xl font-semibold mb-4">Academic Report</h2>
       
         <!-- Major Field -->
         <div class="font-semibold col-span-full">Major Field</div>
@@ -77,13 +77,14 @@
           </div>
         </div>
 
-        <div class="flex justify-center mt-4">
-          <button class="btn bg-gray-100 py-2 px-4 rounded transition-colors flex items-center justify-center gap-2" @click="toggleAllReports">
-            <span v-if="areAllReportsExpanded" class="text-lg transform rotate-[90deg] text-black-100">&#8250;</span>
-            <span v-else class="text-lg transform rotate-[-90deg] text-black-100">&#8250;</span>
+      </div>
+
+      <div class="flex justify-center mt-4">
+          <button class="btn bg-gray-100 py-2 px-4 rounded transition-colors flex items-center justify-center gap-2" @click="toggleExpandedReport">
+            <span v-if="expandedReport" class="text-lg transform rotate-[-90deg] text-black-100">&#8250;</span>
+            <span v-else class="text-lg transform rotate-[90deg] text-black-100">&#8250;</span>
           </button>
         </div>
-      </div>
     </div>
   </template>
   
@@ -93,6 +94,9 @@
     name: 'AcademicReport',
     data() {
       return {
+
+        expandedReport: false,
+
         programInfo: {
           degree: "Bachelor of Science",
           major: "Computer Science",
@@ -208,6 +212,9 @@
     }
     },
     methods: {
+        toggleExpandedReport() {
+            this.expandedReport = !this.expandedReport;
+        },
         toggleReportDetails(index) {
             const program = this.academicReport.programs[index];
             // Ensure program exists and has courseCategory defined

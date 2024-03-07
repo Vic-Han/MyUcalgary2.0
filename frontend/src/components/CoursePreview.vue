@@ -1,18 +1,149 @@
 <template>
-    <div>
-        {{ course.name }}
+    <div class = "bg-white-100 w-80 rounded-xl mt-5 flex flex-row py-4" @click="toggleDropdown">
+        <div class = "flex flex-col w-20 h-16 px-3 py-2 text-base" v-bind:class="courseColor()"> {{ course.name }}</div>
+        <div class = "flex flex-col w-52 h-16 align-middle text-lg text-left px-2">
+            <div>{{ course.title }}</div>
+            <div> {{  }} </div> 
+            
+        </div>
+        <div class = "flex flex-col w-8">
+            <div @click="addCourseToCart"> + </div>
+        </div>
     </div>
+    <div class = "w-full bg-white-200" v-if="dropDownVisible" :class="animation()">
+        <div class="text-xs text-left" > Description: {{ course.desc }}</div>
+        <div class = "text-xs text-left" > Prerequisites: {{ course.prereq }}</div>
+        <div class = "text-xs text-left"> AntiRequisites: Hard Coded rn srry :)</div>
+        <div class = "text-sm text-left"> Course attributes: Hard Coded rn srry :)</div>
+    </div>
+
 </template>  
 
 <script>
+const animationTime = 300
     export default{
         name : 'CoursePreview',
         props: {
             course: {
                 type: Object,
                 requuired: true
+            },
+            number:{
+                type: Number,
+                required: true
             }
+        },
+        data:() =>{
+            return {
+                dropDownOpen: true,
+                dropDownVisible: false,
+                dropDownFadeDown: false,
+                dropDownFadeUp: false
+            }
+        },
+        methods: {
+            addCourseToCart(e){
+                this.$emit('addcourse', this.number)
+                e.stopPropagation()
+            },
+            toggleDropdown(){
+            
+                if(!this.dropDownOpen){
+                    return
+                }
+            
+                this.dropDownOpen = false
+                
+                if(this.dropDownVisible){
+                    this.dropDownFadeUp = true
+                    setTimeout(() => {
+                        this.dropDownVisible = false
+                        this.dropDownFadeUp = false
+                        this.dropDownOpen = true
+                    }, animationTime)
+                }
+                
+                else{
+                    this.dropDownVisible = true
+                    this.dropDownFadeDown = true
+                    setTimeout(() => {
+                        this.dropDownFadeDown = false
+                        this.dropDownOpen = true
+                    }, animationTime)
+                }
+            },
+            courseColor(){
+                if(this.number === 0){
+                    return 'bg-course-100'
+                }
+                else if(this.number == 1){
+                    return 'bg-course-200'
+                }
+                else if(this.number === 2){
+                    return 'bg-course-300'
+                }
+                else if(this.number == 3){
+                    return 'bg-course-400'
+                }
+                else if(this.number === 4){
+                    return 'bg-course-500'
+                }
+                else if(this.number == 5){
+                    return 'bg-course-600'
+                }
+                else if(this.number === 6){
+                    return 'bg-course-700'
+                }
+                else if(this.number == 7){
+                    return 'bg-course-800'
+                }
+                else{
+                    return 'bg-course-900'
+                }
+            },
+           
+            animation(){
+                if(this.dropDownFadeDown){
+                    return 'fade-down'
+                }
+                else if(this.dropDownFadeUp){
+                    return 'fade-up'
+                }
+                else{
+                    return ' '
+                }
+            }
+        },
+        computed: {
+            
         }
         
     }
 </script>
+
+<style>
+.fade-down{
+    overflow-y: hidden;
+    animation: fade-down 0.3s;
+}
+.fade-up{
+    overflow-y: hidden;
+    animation: fade-up 0.3s;
+}
+@keyframes fade-down{
+    0% {
+    height: 0;
+  }
+  100% {
+    height: 54px;
+  }
+}
+@keyframes fade-up{
+    0% {
+    height: 54px;
+  }
+  100% {
+    height: 0;
+  }
+}
+</style>

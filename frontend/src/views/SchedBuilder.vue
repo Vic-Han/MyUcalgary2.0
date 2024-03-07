@@ -1,7 +1,7 @@
 <!-- This is the SchedBuilder component that toggles when the route is set to schedule -->
 <template>
     <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false"></AdvancedSearch>
-    <div class = "flex flex-row w-96">
+    <div class = "flex flex-row">
         <div class = "w-96 flex flex-col">
             <img src = "@/assets/unilogo.png " class = "w-10/12">
             <div class = "flex flex-row w-10/12 relative left-5">
@@ -31,10 +31,10 @@
             </div>
         
             <div class = "flex flex-row">
-                <div class = "flex flex-col w-60">
+                <div class = "flex flex-col px-10 w-full">
                     <div v-for="(course,index) in selectedCourses" :key="index">
-                        <SelectedCourse></SelectedCourse>
-                        {{course}}
+                        <SelectedCourse :course="course" :number="index"></SelectedCourse>
+    
                     </div>
                 </div>
                 <div class = "flex flex-col">
@@ -76,6 +76,7 @@ import SampleSchedule from './SampleSched.json'
                 degreeRequirements: [],
                 advancedSearchOpen: false,
                 schedsLoading: false,
+                workers:[],
                 advancedFilters: {
 
                 },
@@ -88,7 +89,7 @@ import SampleSchedule from './SampleSched.json'
             this.allInfo = backendPayload
             this.courses = this.allInfo['allCourses']
             this.degreeRequirements = this.allInfo['academic Requirements']
-
+            this.workers.push(new Worker('ScheduleWorker.js'))
             
         },
         methods:{
@@ -108,9 +109,84 @@ import SampleSchedule from './SampleSched.json'
                     }
                 })
             },
-            addCourseToCart(course){
-                this.selectedCourses.push(course)
+            addCourseToCart(index){
+                this.selectedCourses.push(this.courseSearchResults[index])
+                const newArr = this.courseSearchResults.filter((item) => {
+                    return item != this.courseSearchResults[index]
+                })
+                this.courseSearchResults = newArr
+            },
+            computeSchedules(){
+                
             }
         }
     }
 </script>
+
+<!-- 
+    The backend should give us the courses in the following manner:
+
+    {
+        Course info: blah blah,
+        Availible sessions:
+        [
+            ["L1", "T1"],
+            ["L2", "T1"],
+            ["L1", "T2"],
+            ["L2", "T2"],
+        ],
+        "lectures": {
+                "L1":{
+                    "days": "TTH",
+                    "start": 14,
+                    "end": 15.25,
+                    "Prof": "Shah",
+                    "totalSeats": 100,
+                    "seatsFilled": 50,
+                    "totalWaitlist": 10,
+                    "waitlistFilled": 0,
+                    "roomno": "ST 132"
+                },
+                "L2":{ 
+                    "days": "MF",
+                    "start": 14,
+                    "end": 15.25,
+                    "Prof": "Krishnamurthy",
+                    "totalSeats": 100,
+                    "seatsFilled": 50,
+                    "totalWaitlist": 10,
+                    "waitlistFilled": 0,
+                    "roomno": "ST 132"
+                }
+            },
+            "tutorials": {
+                "T1":{
+                    "days": "W",
+                    "start": 14,
+                    "end": 16,
+                    "TA": "Lets not implement this :)",
+                    "totalSeats": 100,
+                    "seatsFilled": 50,
+                    "totalWaitlist": 10,
+                    "waitlistFilled": 0,
+                    "roomno": "ENG 201"
+                },
+                "T2":{
+                    "days": "M",
+                    "start": 16,
+                    "end": 18,
+                    "TA": "Lets not implement this :)",
+                    "totalSeats": 100,
+                    "seatsFilled": 50,
+                    "totalWaitlist": 10,
+                    "waitlistFilled": 0,
+                    "roomno": "KNB 132"
+                }
+            }
+    }
+
+
+
+
+
+-->

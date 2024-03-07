@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.authtoken.views import Token
-from .models import Student, Faculty, Department, Program, Course, Instructor, Lecture, Grade
+from .models import Student, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -61,23 +61,32 @@ class PersonalInfoSerializer(serializers.ModelSerializer):
 
     def get_phone_numbers(self, obj):
         return {
-            "home": obj.primary_phone_number,
-            "cell": obj.secondary_phone_number if obj.secondary_phone_number else None
+            "home": obj.home_phone_number if obj.home_phone_number else None,
+            "mobile": obj.mobile_phone_number if obj.mobile_phone_number else None,
+            "other": obj.other_phone_number if obj.other_phone_number else None,
+            "preferred": obj.preferred_phone
         }
 
     def get_email(self, obj):
         return {
             "personal": obj.personal_email,
-            "school": obj.school_email
+            "school": obj.school_email, 
+            "preferred": obj.preferred_email
         }
 
     def get_emergency_contact(self, obj):
         return {
-            "name": obj.emergency_contact_name,
-            "phone": obj.emergency_contact_phone,
-            "relation": obj.emergency_contact_relationship
+            "name1": obj.emergency_contact1_name,
+            "phone1": obj.emergency_contact1_phone,
+            "relation1": obj.emergency_contact1_relationship,
+            "name2": obj.emergency_contact2_name if obj.emergency_contact2_name else None,
+            "phone2": obj.emergency_contact2_phone if obj.emergency_contact2_phone else None,
+            "relation2": obj.emergency_contact2_relationship if obj.emergency_contact2_relationship else None,
+            "name3": obj.emergency_contact3_name if obj.emergency_contact3_name else None,
+            "phone3": obj.emergency_contact3_phone if obj.emergency_contact3_phone else None,
+            "relation3": obj.emergency_contact3_relationship if obj.emergency_contact3_relationship else None,
+            "preferred": obj.preferred_emergency_contact
         }
-
 
 class FacultySerializer(serializers.ModelSerializer):
     class Meta:
@@ -113,4 +122,10 @@ class GradeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Grade
         fields = '__all__'
+
+class EnrollmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Enrollment
+        fields = '__all__'
+
 

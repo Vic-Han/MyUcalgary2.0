@@ -151,6 +151,43 @@
     }
   },
 
+  {
+    "model": "api.Term",
+    "pk": "Fall 2023",
+    "fields": {
+      "term_name": "Fall 2023",
+      "start_date": "2023-09-01",
+      "end_date": "2023-12-15"
+    }
+  },
+  {
+    "model": "api.Term",
+    "pk": "Winter 2024",
+    "fields": {
+      "term_name": "Winter 2024",
+      "start_date": "2024-01-05",
+      "end_date": "2024-04-20"
+    }
+  },
+  {
+    "model": "api.Term",
+    "pk": "Spring 2024",
+    "fields": {
+      "term_name": "Spring 2024",
+      "start_date": "2024-05-01",
+      "end_date": "2024-08-15"
+    }
+  },
+  {
+    "model": "api.Term",
+    "pk": "Summer 2024",
+    "fields": {
+      "term_name": "Summer 2024",
+      "start_date": "2024-07-01",
+      "end_date": "2024-08-31"
+    }
+  },
+
 
   {
     "model": "api.Student",
@@ -166,13 +203,16 @@
       "postal_code": "704581",
       "city": "City1",
       "province": "Province1",
-      "primary_phone_number": "+10469256700",
-      "secondary_phone_number": "+17430957076",
+      "home_phone_number": "+10469256700",
+      "mobile_phone_number": "+17430957076",
+      "preferred_phone": "mobile",
       "personal_email": "student1@personal.com",
       "school_email": "student1@school.com",
-      "emergency_contact_name": "EmergencyContact1",
-      "emergency_contact_phone": "+11785436222",
-      "emergency_contact_relationship": "Parent",
+      "preferred_email": "school",
+      "emergency_contact1_name": "EmergencyContact1",
+      "emergency_contact1_phone": "+11785436222",
+      "emergency_contact1_relationship": "Parent",
+      "preferred_emergency_contact": "1",
       "gpa": 3.48,
       "faculty": "Arts",
       "department": "Educational Psychology",
@@ -194,13 +234,20 @@
       "postal_code": "513765",
       "city": "City2",
       "province": "Province2",
-      "primary_phone_number": "+19214062755",
-      "secondary_phone_number": "+12282429445",
+      "home_phone_number": "+19214062755",
+      "mobile_phone_number": "+12282429445",
+      "other_phone_number": "+11234567890",
+      "preferred_phone": "other",
       "personal_email": "student2@personal.com",
       "school_email": "student2@school.com",
-      "emergency_contact_name": "EmergencyContact2",
-      "emergency_contact_phone": "+14595657807",
-      "emergency_contact_relationship": "Parent",
+      "preferred_email": "personal",
+      "emergency_contact1_name": "EmergencyContact2a",
+      "emergency_contact1_phone": "+14595657807",
+      "emergency_contact1_relationship": "Parent",
+      "emergency_contact2_name": "EmergencyContact2b",
+      "emergency_contact2_phone": "+14595657999",
+      "emergency_contact2_relationship": "Sibling",
+      "preferred_emergency_contact": "2",
       "gpa": 2.61,
       "faculty": "Science",
       "department": "Marketing",
@@ -221,13 +268,21 @@
       "postal_code": "796100",
       "city": "City3",
       "province": "Province3",
-      "primary_phone_number": "+10705486897",
-      "secondary_phone_number": "+10705486898",
+      "mobile_phone_number": "+10705486898",
+      "preferred_phone": "mobile",
       "personal_email": "student3@personal.com",
       "school_email": "student3@school.com",
-      "emergency_contact_name": "EmergencyContact3",
-      "emergency_contact_phone": "+10705486899",
-      "emergency_contact_relationship": "Parent",
+      "preferred_email": "school",
+      "emergency_contact1_name": "EmergencyContact3a",
+      "emergency_contact1_phone": "+13333333333",
+      "emergency_contact1_relationship": "Parent",
+      "emergency_contact2_name": "EmergencyContact3b",
+      "emergency_contact2_phone": "+12222222222",
+      "emergency_contact2_relationship": "Sibling",
+      "emergency_contact3_name": "EmergencyContact3c",
+      "emergency_contact3_phone": "+11111111111",
+      "emergency_contact3_relationship": "Uncle",
+      "preferred_emergency_contact":"3",
       "gpa": 3.25,
       "faculty": "Engineering",
       "department": "Computer Science",
@@ -248,13 +303,16 @@
       "postal_code": "123456",
       "city": "City4",
       "province": "Province4",
-      "primary_phone_number": "+11234567890",
-      "secondary_phone_number": "+10987654321",
+      "home_phone_number": "+11234567890",
+      "mobile_phone_number": "+10987654321",
+      "preferred_phone": "mobile",
       "personal_email": "student4@personal.com",
       "school_email": "student4@school.com",
-      "emergency_contact_name": "EmergencyContact4",
-      "emergency_contact_phone": "+19876543210",
-      "emergency_contact_relationship": "Parent",
+      "preferred_email": "personal",
+      "emergency_contact1_name": "EmergencyContact4",
+      "emergency_contact1_phone": "+19876543210",
+      "emergency_contact1_relationship": "Parent",
+      "preferred_emergency_contact": "1",
       "gpa": 3.67,
       "faculty": "Business",
       "department": "Marketing",
@@ -275,13 +333,16 @@
       "postal_code": "987654",
       "city": "City5",
       "province": "Province5",
-      "primary_phone_number": "+12345678901",
-      "secondary_phone_number": "+19876543210",
+      "home_phone_number": "+12345678901",
+      "mobile_phone_number": "+19876543210",
+      "preferred_phone": "home",
       "personal_email": "student5@personal.com",
       "school_email": "student5@school.com",
-      "emergency_contact_name": "EmergencyContact5",
-      "emergency_contact_phone": "+10123456789",
-      "emergency_contact_relationship": "Parent",
+      "preferred_email": "school",
+      "emergency_contact1_name": "EmergencyContact5",
+      "emergency_contact1_phone": "+10123456789",
+      "emergency_contact1_relationship": "Parent",
+      "preferred_emergency_contact": "1",
       "gpa": 3.89,
       "faculty": "Education",
       "department": "Educational Psychology",
@@ -289,11 +350,6 @@
     }
   },
   
-
-  
-
-  
-
 
   {
     "model": "api.Course",
@@ -308,6 +364,7 @@
       "course_notes": "Required for Engineering students.",
       "course_repeatability": false,
       "course_type": "Core",
+      "units": 3,
       "faculty": "Mathematics and Statistics",
       "department": "MATH"
     }
@@ -325,6 +382,7 @@
       "course_notes": "Lab required.",
       "course_repeatability": false,
       "course_type": "Core",
+      "units": 3,
       "faculty": "Science",
       "department": "Physics"
     }
@@ -342,6 +400,7 @@
       "course_notes": "Lab required.",
       "course_repeatability": false,
       "course_type": "Core",
+      "units": 3,
       "faculty": "Science",
       "department": "Chemical and Petroleum Engineering"
     }
@@ -359,6 +418,7 @@
       "course_notes": "Elective for all departments.",
       "course_repeatability": false,
       "course_type": "Elective",
+      "units": 3,
       "faculty": "Arts",
       "department": "English Literature"
     }
@@ -376,11 +436,11 @@
       "course_notes": "Required for Computer Science students.",
       "course_repeatability": false,
       "course_type": "Core",
+      "units": 3,
       "faculty": "Science",
       "department": "Computer Science"
     }
   },
-
 
   {
     "model": "api.Instructor",
@@ -490,45 +550,211 @@
     }
   },
 
-  
   {
-    "model": "api.Grade",
+    "model": "api.Enrollment",
     "fields": {
       "student": "001",
-      "lecture": "001",
-      "grade": 4.0
+      "course": "MATH",
+      "term": "Fall 2023",
+      "year": 1
     }
   },
   {
-    "model": "api.Grade",
+    "model": "api.Enrollment",
     "fields": {
       "student": "002",
-      "lecture": "002",
-      "grade": 3.5
+      "course": "PHYS",
+      "term": "Fall 2023",
+      "year": 2
     }
   },
   {
-    "model": "api.Grade",
+    "model": "api.Enrollment",
     "fields": {
       "student": "003",
-      "lecture": "003",
-      "grade": 3.0
+      "course": "CHEM",
+      "term": "Spring 2024",
+      "year": 3
     }
   },
   {
-    "model": "api.Grade",
+    "model": "api.Enrollment",
     "fields": {
       "student": "004",
-      "lecture": "004",
-      "grade": 3.7
+      "course": "ENGL",
+      "term": "Spring 2024",
+      "year": 4
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "005",
+      "course": "COMP",
+      "term": "Fall 2023",
+      "year": 6
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "001",
+      "course": "PHYS",
+      "term": "Winter 2024",
+      "year": 2
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "002",
+      "course": "CHEM",
+      "term": "Winter 2024",
+      "year": 4
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "003",
+      "course": "ENGL",
+      "term": "Summer 2024",
+      "year": 2
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "004",
+      "course": "COMP",
+      "term": "Summer 2024",
+      "year": 1
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": "005",
+      "course": "MATH",
+      "term": "Winter 2024",
+      "year": 4
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "001",
+        "course": "CHEM",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "002",
+        "course": "MATH",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "003",
+        "course": "COMP",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "004",
+        "course": "PHYS",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+        "student": "005",
+        "course": "ENGL",
+        "term": "Summer 2024",
+        "year": 3
+    }
+  },
+
+
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "001",
+      "grade": 78
     }
   },
   {
     "model": "api.Grade",
     "fields": {
-      "student": "005",
-      "lecture": "005",
-      "grade": 3.9
+      "enrollment": "002",
+      "grade": 82
     }
-  }   
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "003",
+      "grade": 90
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "004",
+      "grade": 65
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "005",
+      "grade": 88
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "001",
+      "grade": 70
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "002",
+      "grade": 60
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "003",
+      "grade": 87
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "004",
+      "grade": 46
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "enrollment": "005",
+      "grade": 90
+    }
+  }
 ]

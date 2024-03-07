@@ -28,7 +28,7 @@ We follow the Git Flow development model for code collaboration. The model consi
 
 - Merge conflicts.
 - Errors
-- Requirnemtns not met.
+- Requirments not met.
 - Poor code quality
 
 

@@ -490,7 +490,7 @@
                 this.setEditing(this.EmergencyContacts.length - 1)
             }
         },
-        unmounted(){
+        beforeUnmount(){
             document.removeEventListener("click",this.eventLister)
         }
     }

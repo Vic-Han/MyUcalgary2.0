@@ -2,7 +2,7 @@
   <div class="flex flex-row w-screen h-screen overflow-hidden bg-grey-100" v-bind:class="{'pl-96':navbarVisible}">
     <AppNavbar v-if="navbarVisible" :selected="selected" />
     <div class="w-full">
-      <div class="flex items-center justify-start py-4 px-4 bg-gray-200">
+      <div v-if="navbarVisible" class="flex items-center justify-start py-4 px-4 bg-gray-200">
         <div class="flex items-center space-x-2 bg-white-100 rounded-lg shadow-md p-2 w-2/5 ml-5 h-11">
           <input type="text" v-if="navbarVisible" class="flex-grow outline-none rounded-l-full px-4 py-2" placeholder="Search" v-model="searchTerm" />
           <button v-if="navbarVisible" class="bg-transparent p-2 rounded-full text-gray-100 hover:text-gray-700 focus:outline-none" @click="showSearchResults">

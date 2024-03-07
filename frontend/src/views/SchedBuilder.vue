@@ -1,15 +1,19 @@
 <!-- This is the SchedBuilder component that toggles when the route is set to schedule -->
 <template>
+    <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false"></AdvancedSearch>
     <div class = "flex flex-row w-96">
         <div class = "w-96 flex flex-col">
             <img src = "@/assets/unilogo.png " class = "w-10/12">
             <div class = "flex flex-row w-10/12 relative left-5">
                 <input type = "text" v-model="courseSearchTerm" class = "w-40 border border-black-100">
-                <div @click = "searchResults"> Search</div>
+                <div class = "mx-3" @click = "searchResults"> Search</div>
+                <div @click = "advancedSearchOpen = true"> Advanced </div>
             </div>
             <div>
                 <div v-for = "(course,index) in courseSearchResults" :key="index">
-                <CoursePreview :course="course" :number="index"></CoursePreview>
+                <CoursePreview :course="course" :number="index" 
+                @addcourse="addCourseToCart"
+                ></CoursePreview>
                 </div>
             </div>
         </div>
@@ -34,7 +38,8 @@
                     </div>
                 </div>
                 <div class = "flex flex-col">
-                    <SchedPreview :sched="schedules.length > 0 ? schedules[selectedSched] : null"> </SchedPreview>
+                    <!-- <SchedPreview :sched="schedules.length > 0 ? schedules[selectedSched] : null"> </SchedPreview> -->
+                    <SchedPreview :schedule="currentSched"></SchedPreview>
                 </div>
             </div>
         </div>
@@ -43,15 +48,18 @@
 
 <script>
 import SchedPreview from '@/components/SchedPreview.vue'
-import CoursePreview from '@components/CoursePreview.vue'
-import SelectedCourse from '@components/SelectedCourse.vue'
+import CoursePreview from '@/components/CoursePreview.vue'
+import SelectedCourse from '@/components/SelectedCourse.vue'
+import AdvancedSearch from '@/components/AdvancedSearch.vue'
 import data from './SB.json'
+import SampleSchedule from './SampleSched.json'
     export default{
         name : 'SchedBuilder',
         components: {
             SchedPreview,
             CoursePreview,
-            SelectedCourse
+            SelectedCourse,
+            AdvancedSearch
         },
         data : () => {
             return {
@@ -63,9 +71,10 @@ import data from './SB.json'
                 courseSearchTerm: '',
                 selectedCourses: [],
                 selectedSched: 0,
+                currentSched: SampleSchedule,
                 schedules: [],
                 degreeRequirements: [],
-
+                advancedSearchOpen: false,
                 schedsLoading: false,
                 advancedFilters: {
 
@@ -84,7 +93,11 @@ import data from './SB.json'
         },
         methods:{
             searchResults(){
+                this.courseSearchResults = []
                 const term = this.courseSearchTerm.toLowerCase()
+                if(term == ""){
+                    return;
+                }
                 this.courses.forEach((item) => {
                     if(item.name.toLowerCase().includes(term)){
                         console.log(item.name)
@@ -95,7 +108,7 @@ import data from './SB.json'
                     }
                 })
             },
-            addCourseToOptions(course){
+            addCourseToCart(course){
                 this.selectedCourses.push(course)
             }
         }

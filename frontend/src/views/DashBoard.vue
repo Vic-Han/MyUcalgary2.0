@@ -2,7 +2,10 @@
 <template>
     <div class = "component">
         This is the dashboard heehe
-        <SchedPreview/>        
+        <router-link to = "/schedule" class = "btn">
+            Open the sched builder
+        <SchedPreview :schedule="Schedule"/>    
+        </router-link>    
         <CalendarPreview/>
         <router-link to = "grades"> 
             <GradePreview :term="GradePreview.term" :average = "GradePreview.TermGPA" :letter = "GradePreview.TermLetterGrade"
@@ -21,6 +24,7 @@ import CalendarPreview from '../components/CalendarPreview'
 import GradePreview from '../components/GradePreview'
 import FinancePieChart from '../components/FinancePieChart'
 import SchedPreview from '../components/SchedPreview'
+import Data from './SampleSched.json'
     export default{
         name: 'DashBoard',
         components: {
@@ -31,6 +35,7 @@ import SchedPreview from '../components/SchedPreview'
         },
         data: () =>{
             return{
+                Schedule: Data,
                 GradePreview : {
                     term: "Fall 2023",
                     

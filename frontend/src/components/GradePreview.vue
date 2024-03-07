@@ -173,7 +173,7 @@
             }
         },
         created(){
-            console.log(this.courses)
+            // console.log(this.courses)
         }
 
 }

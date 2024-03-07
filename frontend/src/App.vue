@@ -94,7 +94,6 @@ export default {
         else{
           this.noCookie = false
         }
-        //console.log(this.noCookie && this.logoutPossible)
       }
   },
   created(){

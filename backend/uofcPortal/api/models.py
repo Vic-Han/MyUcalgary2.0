@@ -39,7 +39,8 @@ class Program(models.Model):
         return self.program_name
 
 class Term(models.Model):
-    term_name = models.CharField(max_length=20, unique=True, primary_key=True)  # Example: Fall 2023
+    term_name = models.CharField(max_length=20, unique=True, primary_key=True)  # Example: Fall
+    term_year = models.IntegerField()
     start_date = models.DateField()
     end_date = models.DateField()
 
@@ -117,19 +118,19 @@ class Student(models.Model):
     
 
 class Course(models.Model):
-    course_name = models.CharField(max_length=4, unique=True, primary_key=True)
-    course_title = models.CharField(max_length=60)
-    course_number = models.IntegerField()
+    course_code = models.CharField(max_length=7, unique=True, primary_key=True) # e.g. SENG401
+    course_title = models.CharField(max_length=60) # e.g. Software Architecture
+    #course_number = models.IntegerField()
     course_description = models.CharField(max_length=300)
-    course_prerequisites = models.CharField(max_length=50)
-    course_antirequisites = models.CharField(max_length=50)
-    # course_units = models.IntegerField()
-    course_notes = models.CharField(max_length=100)
+    course_prerequisites = models.CharField(max_length=50, blank=True, null=True)
+    course_antirequisites = models.CharField(max_length=50, blank=True, null=True)
+    course_units = models.IntegerField()
+    course_notes = models.CharField(max_length=100, blank=True, null=True)
     course_repeatability = models.BooleanField(default=False)
-    course_type = models.CharField(max_length=20)
-    units = models.IntegerField()
+    #course_type = models.CharField(max_length=20)
+    #units = models.IntegerField()
 
-    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
+    #faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
 
     # To show Course's name in admin panel
@@ -148,8 +149,9 @@ class Instructor(models.Model):
         return self.instructor_id
 
 class Lecture(models.Model):
-    lecture_id = models.CharField(max_length=10)
-    lecture_term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
+    lecture_id = models.CharField(max_length=10) # e.g. L01
+    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
+    lecture_days = models.CharField(max_length=10)
     lecture_starttime = models.CharField(max_length=4)
     lecture_endtime = models.CharField(max_length=4)
     lecture_roomnumber = models.CharField(max_length=10)
@@ -158,17 +160,19 @@ class Lecture(models.Model):
 
     def __str__(self):
         return f"{self.course} - {self.lecture_term}"
+    
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    term = models.ForeignKey(Term, on_delete=models.CASCADE)
-    year = models.IntegerField()
+    lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)
+    # waitlisted = models.BooleanField(default=False)
+    # term = models.ForeignKey(Term, on_delete=models.CASCADE)
+    #year = models.IntegerField()
     
     class Meta:
-        unique_together = ('student', 'course', 'term')  # Avoid duplicate enrollments
+        unique_together = ('student', 'lecture')  # Avoid duplicate enrollments
 
     def __str__(self):
-        return f"{self.student} - {self.course} - {self.term}"
+        return f"{self.student} - {self.lecture}"
 
 class Grade(models.Model):
     grade = models.FloatField(validators=[MaxValueValidator(100)])

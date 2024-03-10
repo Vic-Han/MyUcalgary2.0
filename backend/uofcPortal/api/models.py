@@ -46,6 +46,14 @@ class Term(models.Model):
     def __str__(self):
         return self.term_name
 
+class EmergencyContact(models.Model):
+    emergency_contact_name = models.CharField(max_length=30)
+    emergency_contact_phone = models.CharField(max_length=15)
+    emergency_contact_relationship = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.emergency_contact_name
+
 class Student(models.Model):
     student_id = models.CharField(max_length=10, unique=True, primary_key=True)
     student_first_name = models.CharField(max_length=30)
@@ -67,15 +75,18 @@ class Student(models.Model):
     school_email = models.EmailField()
     preferred_email = models.CharField(default="personal", max_length=8)
 
-    emergency_contact1_name = models.CharField(max_length=30)
-    emergency_contact1_phone = models.CharField(max_length=15)
-    emergency_contact1_relationship = models.CharField(max_length=30)
-    emergency_contact2_name = models.CharField(blank=True, max_length=30)
-    emergency_contact2_phone = models.CharField(blank=True, max_length=15)
-    emergency_contact2_relationship = models.CharField(blank=True, max_length=30)
-    emergency_contact3_name = models.CharField(blank=True, max_length=30)
-    emergency_contact3_phone = models.CharField(blank=True, max_length=15)
-    emergency_contact3_relationship = models.CharField(blank=True, max_length=30)
+    # emergency_contact1_name = models.CharField(max_length=30)
+    # emergency_contact1_phone = models.CharField(max_length=15)
+    # emergency_contact1_relationship = models.CharField(max_length=30)
+    # emergency_contact2_name = models.CharField(blank=True, max_length=30)
+    # emergency_contact2_phone = models.CharField(blank=True, max_length=15)
+    # emergency_contact2_relationship = models.CharField(blank=True, max_length=30)
+    # emergency_contact3_name = models.CharField(blank=True, max_length=30)
+    # emergency_contact3_phone = models.CharField(blank=True, max_length=15)
+    # emergency_contact3_relationship = models.CharField(blank=True, max_length=30)
+    emergency_contact1 = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, null=True, related_name="contact1")
+    emergency_contact2 = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, null=True, related_name="contact2")
+    emergency_contact3 = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, null=True, related_name="contact3")
     preferred_emergency_contact = models.CharField(default="1", max_length=1)
 
     gpa = models.FloatField()

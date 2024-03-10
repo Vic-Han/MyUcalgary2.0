@@ -16,11 +16,11 @@
                 
 
 
-                <div class = " mx-6 pr-2 text-lg w-12 text-left">{{ course.letter }}</div>
+                <div class=" mx-6 pr-2 text-lg w-12 text-left">{{ course.letter }}</div>
             </div> 
         </div>
     </div>
-   <div class="p-2 text-left text-sm">
+   <div v-if="!dashboardView" class="p-2 text-left text-sm">
         <div>{{ term }}</div>
         <div> Level: {{ year }}</div>
         <div> Units Enrolled: {{ unitsEnrolled }}</div>
@@ -64,8 +64,11 @@
             program:{
                 type: String,
                 required: true
+            },
+            dashboardView: {
+                type: Boolean,
+                required: false
             }
-
         },
         methods:{
             barColor(grade){

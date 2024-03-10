@@ -1,6 +1,6 @@
 <!-- This is the primary dashboard component that is active when the route is dashboard -->
 <template>
-    <div class = "component">
+    <!-- <div class = "component">
         This is the dashboard heehe
         <router-link to = "/schedule" class = "btn">
             Open the sched builder
@@ -14,6 +14,17 @@
         </router-link>
         <router-link to ="/finances">
             <FinancePieChart/>
+        </router-link>
+    </div> -->
+    <div class="px-4 py-4 w-full h-fit gap-4 bg-grey-100 grid grid-cols-3 grid-rows-5 shadow-inner">
+        <router-link to="schedule" class="col-span-2 row-span-3 bg-white-100 rounded-xl shadow-lg"> <SchedPreview :schedule="Schedule"/> </router-link>
+        <div class="col-start-3 row-span-3 bg-white-100 rounded-xl shadow-lg"><CalendarPreview/></div>
+        <router-link to="finances" class="row-start-4 row-span-2 bg-white-100 rounded-xl shadow-lg"><FinancePieChart/></router-link>
+        <router-link to="grades" class="relative pt-8 row-start-4 col-start-2 col-span-2 row-span-2 h-80 bg-white-100 rounded-xl shadow-lg">
+            <GradePreview :term="GradePreview.term" :average="GradePreview.TermGPA" :letter="GradePreview.TermLetterGrade"
+                :courses="GradePreview.courses" :year="GradePreview.Level" :unitsEnrolled="GradePreview.UnitsEnrolled"
+                :plan="GradePreview.Plan" :program="GradePreview.Program" :dashboardView="true">
+            </GradePreview>
         </router-link>
     </div>
 </template>
@@ -65,7 +76,7 @@ import Data from './SampleSched.json'
                           {
                               "name" : "ECON 341",
                               "letter": "B+"
-                          }
+                          },
                       ]
                   },
                 

@@ -586,6 +586,7 @@
     "model": "api.Lecture",
     "pk": "01",
     "fields": {
+      "lecture_id": "L01",
       "term": "Fal2023",
       "lecture_days": "MonWed",
       "lecture_starttime": "0900",
@@ -599,6 +600,7 @@
     "model": "api.Lecture",
     "pk": "02",
     "fields": {
+      "lecture_id": "L01",
       "term": "Win2024",
       "lecture_days": "TueThu",
       "lecture_starttime": "1100",
@@ -612,6 +614,7 @@
     "model": "api.Lecture",
     "pk": "03",
     "fields": {
+      "lecture_id": "L01",
       "term": "Fal2023",
       "lecture_days": "Fri",
       "lecture_starttime": "1400",
@@ -625,6 +628,7 @@
     "model": "api.Lecture",
     "pk": "04",
     "fields": {
+      "lecture_id": "L01",
       "term": "Win2024",
       "lecture_days": "MonWedFri",
       "lecture_starttime": "0800",

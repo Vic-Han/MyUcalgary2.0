@@ -140,7 +140,7 @@ class Enrollment(models.Model):
         unique_together = ('student', 'lecture')  # Avoid duplicate enrollments
 
     def __str__(self):
-        return f"{self.student} - {self.lecture}"
+        return f"{self.student} | {self.lecture}"
 
 class Grade(models.Model):
     grade = models.FloatField(validators=[MaxValueValidator(100)])

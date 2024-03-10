@@ -68,8 +68,6 @@ class Student(models.Model):
     date_of_birth = models.DateField()
     citizenship_status = models.CharField(max_length=30)
 
-    address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
-
     home_phone_number = models.CharField(blank=True, max_length=15)
     mobile_phone_number = models.CharField(blank=True, max_length=15)
     other_phone_number = models.CharField(blank=True, max_length=15)
@@ -79,11 +77,12 @@ class Student(models.Model):
     school_email = models.EmailField()
     preferred_email = models.CharField(default="personal", max_length=8)
 
+    preferred_emergency_contact = models.CharField(default="1", max_length=1)
+
+    address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
     emergency_contact1 = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, null=True, related_name="contact1")
     emergency_contact2 = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, null=True, related_name="contact2")
     emergency_contact3 = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, null=True, related_name="contact3")
-    preferred_emergency_contact = models.CharField(default="1", max_length=1)
-
     program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
 
     # To show Student's name in admin panel
@@ -100,6 +99,7 @@ class Course(models.Model):
     course_units = models.IntegerField()
     course_notes = models.CharField(max_length=100, blank=True, null=True)
     course_repeatability = models.BooleanField(default=False)
+
     department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
 
     # To show Course's name in admin panel
@@ -119,11 +119,12 @@ class Instructor(models.Model):
 
 class Lecture(models.Model):
     lecture_id = models.CharField(max_length=10) # e.g. L01
-    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
     lecture_days = models.CharField(max_length=10)
     lecture_starttime = models.CharField(max_length=4)
     lecture_endtime = models.CharField(max_length=4)
     lecture_roomnumber = models.CharField(max_length=10)
+
+    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, null=True)
 
@@ -143,6 +144,7 @@ class Enrollment(models.Model):
 class Grade(models.Model):
     grade = models.FloatField(validators=[MaxValueValidator(100)])
     enrollment = models.ForeignKey('Enrollment', on_delete=models.CASCADE, null=True)
+
     def __str__(self):
         return f"{self.enrollment.student} - {self.enrollment.course}: {self.grade}"
 

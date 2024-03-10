@@ -38,7 +38,7 @@
                     </div>
                     <div v-for="(course,index) in selectedCourses" :key="index">
                         <div v-if="!courseInSched(course.name)">
-                            <SelectedCourse :course="course" :number="index"></SelectedCourse>
+                            <SelectedCourse :course="course" :number="index" :selected="0"></SelectedCourse>
 
                         </div>
     
@@ -120,30 +120,30 @@ import SampleSchedule from './SampleSched.json'
                 })
             },
             addCourseToCart(courseName){
-            //     const index = this.courseSearchResults.findIndex((item) => {
-            //         return item.name == courseName
-            //     })
-            //     console.log(this.courseSearchResults[index])
-            //     console.log("this.courseSearchResults[index].included")
-            //     this.courseSearchResults[index].included = true;
-            //     this.courseSearchResults[index].selected = 0;
-            //     this.selectedCourses.push(this.courseSearchResults[index])
-            // },
-            // removeCourseFromSelected(courseName){
-            //     this.selectedCourses = this.selectedCourses.filter((item) => {
-            //         return item.name != courseName
-            //     })
-            //     this.courseSearchResults.forEach((item) => {
-            //         if(item.name == courseName){
-            //             item.included = false;
-            //         }
-            //     })
-            //     for(let i = 0; i < this.currentSched.length; i++){
-            //         if(this.currentSched[i].name == courseName){
-            //             this.currentSched.splice(i, 1)
-            //             this.computeSchedules()
-            //         }
-            //     }
+                const index = this.courseSearchResults.findIndex((item) => {
+                    return item.name == courseName
+                })
+                console.log(this.courseSearchResults[index])
+                console.log("this.courseSearchResults[index].included")
+                this.courseSearchResults[index].included = true;
+                this.courseSearchResults[index].selected = 0;
+                this.selectedCourses.push(this.courseSearchResults[index])
+            },
+            removeCourseFromSelected(courseName){
+                this.selectedCourses = this.selectedCourses.filter((item) => {
+                    return item.name != courseName
+                })
+                this.courseSearchResults.forEach((item) => {
+                    if(item.name == courseName){
+                        item.included = false;
+                    }
+                })
+                for(let i = 0; i < this.currentSched.length; i++){
+                    if(this.currentSched[i].name == courseName){
+                        this.currentSched.splice(i, 1)
+                        this.computeSchedules()
+                    }
+                }
                 return courseName
             },
             computeSchedules(){
@@ -164,7 +164,15 @@ import SampleSchedule from './SampleSched.json'
                    }
                 }
                 return false;
-            }
+            },
+            addCourseToSched(courseName){
+                const index = this.selectedCourses.findIndex((item) => {
+                    return item.name == courseName
+                })
+                this.currentSched.push(this.selectedCourses[index])
+                this.selectedCourses.splice(index, 1)
+                this.computeSchedules()
+            },
         },
         computed:{
             
@@ -172,70 +180,3 @@ import SampleSchedule from './SampleSched.json'
     }
 </script>
 
-<!-- 
-    The backend should give us the courses in the following manner:
-
-    {
-        Course info: blah blah,
-        Availible sessions:
-        [
-            ["L1", "T1"],
-            ["L2", "T1"],
-            ["L1", "T2"],
-            ["L2", "T2"],
-        ],
-        "lectures": {
-                "L1":{
-                    "days": "TTH",
-                    "start": 14,
-                    "end": 15.25,
-                    "Prof": "Shah",
-                    "totalSeats": 100,
-                    "seatsFilled": 50,
-                    "totalWaitlist": 10,
-                    "waitlistFilled": 0,
-                    "roomno": "ST 132"
-                },
-                "L2":{ 
-                    "days": "MF",
-                    "start": 14,
-                    "end": 15.25,
-                    "Prof": "Krishnamurthy",
-                    "totalSeats": 100,
-                    "seatsFilled": 50,
-                    "totalWaitlist": 10,
-                    "waitlistFilled": 0,
-                    "roomno": "ST 132"
-                }
-            },
-            "tutorials": {
-                "T1":{
-                    "days": "W",
-                    "start": 14,
-                    "end": 16,
-                    "TA": "Lets not implement this :)",
-                    "totalSeats": 100,
-                    "seatsFilled": 50,
-                    "totalWaitlist": 10,
-                    "waitlistFilled": 0,
-                    "roomno": "ENG 201"
-                },
-                "T2":{
-                    "days": "M",
-                    "start": 16,
-                    "end": 18,
-                    "TA": "Lets not implement this :)",
-                    "totalSeats": 100,
-                    "seatsFilled": 50,
-                    "totalWaitlist": 10,
-                    "waitlistFilled": 0,
-                    "roomno": "KNB 132"
-                }
-            }
-    }
-
-
-
-
-
--->

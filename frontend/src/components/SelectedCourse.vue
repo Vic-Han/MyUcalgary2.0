@@ -12,18 +12,18 @@
         </div>
        <div class = "flex flex-row">
             <div class="mx-1"> {{ lecture.name }} </div>
-            <div class="mx-1"> Selected lecture time </div>
-            <div class="mx-1">SA 104</div>
+            <div class="mx-1"> {{ convertLectureTime()}} </div>
+            <div class="mx-1">{{lecture.roomno}}</div>
        </div>
         <div class = "flex flex-row">
-            <div class="mx-1">Lab number</div>
-            <div class="mx-1"> Selected lab time </div>
-            <div class="mx-1"> Room of tut/lab</div>
+            <div class="mx-1">{{tut.name}}</div>
+            <div class="mx-1"> {{convertTutorialTime()  }}</div>
+            <div class="mx-1"> {{ tut.roomno }}</div>
         </div>
         <div class = "flex flex-row">
             <div class="mx-1">Session</div>
             <div class="mx-1"> Regular Academic </div>
-            <div class="mx-1"> Instructor</div>
+            <div class="mx-1"> {{lecture.Prof}}</div>
         </div>
 
     </div>
@@ -112,6 +112,15 @@ const animationTime = 300;
                     break
                 }
             }
+            if(this.course.combinations[this.selected].length > 1){
+                const tutID = this.course.combinations[this.selected][1]
+                for(let i = 0; i < this.course.tutorials.length; i++){
+                    if(this.course.tutorials[i].name === tutID){
+                        this.tut = this.course.tutorials[i]
+                        break
+                    }
+                }
+            }
             console.log(this.lecture)
         },
         methods:{
@@ -191,6 +200,56 @@ const animationTime = 300;
                 else{
                     return ' '
                 }
+            },
+            convertLectureTime(){
+                let time = ""
+                if(this.lecture.days.includes('M')){
+                    time += "Mon "
+                }
+                if(this.lecture.days.includes('T')){
+                    time += "Tue "
+                }
+                if(this.lecture.days.includes('W')){
+                    time += "Wed "
+                }
+                if(this.lecture.days.includes('R')){
+                    time += "Thu "
+                }
+                if(this.lecture.days.includes('F')){
+                    time += "Fri "
+                }
+                time += this.convertTime(this.lecture.start) + " - " + this.convertTime(this.lecture.end)
+                return time
+            },
+            convertTutorialTime(){
+                let time = ""
+                if(this.tut.days.includes('M')){
+                    time += "Mon "
+                }
+                if(this.tut.days.includes('T')){
+                    time += "Tue "
+                }
+                if(this.tut.days.includes('W')){
+                    time += "Wed "
+                }
+                if(this.tut.days.includes('R')){
+                    time += "Thu "
+                }
+                if(this.tut.days.includes('F')){
+                    time += "Fri "
+                }
+                time += this.convertTime(this.tut.start) + " - " + this.convertTime(this.tut.end)
+                return time
+            },
+            convertTime(time){
+               
+                    const hours = Math.floor(time);
+                    const minutes = Math.round((time - hours) * 60);
+                    const period = hours >= 12 ? 'pm' : 'am';
+                    const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+                    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+                    return `${formattedHours}:${formattedMinutes}${period}`;
+
             }
         }
     }

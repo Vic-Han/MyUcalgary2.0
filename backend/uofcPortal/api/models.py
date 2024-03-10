@@ -27,12 +27,12 @@ class Program(models.Model):
     # program_stream = models.CharField(max_length=30)
     program_degree_level = models.CharField(max_length=30) #bach vs masters vs phd
     program_major = models.CharField(max_length=30)
-    program_minor = models.CharField(max_length=30)
+    program_minor = models.CharField(max_length=30, blank=True, null=True)
     program_honor = models.BooleanField()
 
     # faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
-    major_department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    minor_department = models.ForeignKey(Department, on_delete=models.CASCADE, blank=True, null=True)
+    major_department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="major_program")
+    minor_department = models.ForeignKey(Department, on_delete=models.CASCADE, blank=True, null=True, related_name="minor_program")
 
     # To show Program's name in admin panel
     def __str__(self):

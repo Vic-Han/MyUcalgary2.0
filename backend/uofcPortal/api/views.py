@@ -107,7 +107,7 @@ class StudentGradeView(APIView):
 
             for grade in grades:
                 course_info = {
-                    "name": enrollment.course.course_name,
+                    "name": enrollment.course.course_code,
                     "grade": grade.grade,
                     "letter": self.grade_to_letter(grade.grade),
                     "units": enrollment.course.units

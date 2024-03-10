@@ -202,6 +202,7 @@
     "model": "api.Term",
     "pk": "Fal2023",
     "fields": {
+      "term_key": "Fal2023",
       "term_name": "Fall",
       "term_year": 2023,
       "start_date": "2023-09-01",
@@ -212,6 +213,7 @@
     "model": "api.Term",
     "pk": "Win2024",
     "fields": {
+      "term_key": "Win2024",
       "term_name": "Winter",
       "term_year": 2024,
       "start_date": "2024-01-05",
@@ -222,6 +224,7 @@
     "model": "api.Term",
     "pk": "Spr2024",
     "fields": {
+      "term_key": "Spr2024",
       "term_name": "Spring",
       "term_year": 2024,
       "start_date": "2024-05-01",
@@ -232,6 +235,7 @@
     "model": "api.Term",
     "pk": "Sum2024",
     "fields": {
+      "term_key": "Sum2024",
       "term_name": "Summer",
       "term_year": 2024,
       "start_date": "2024-07-01",
@@ -540,6 +544,7 @@
     "model": "api.Instructor",
     "pk": "001",
     "fields": {
+      "instructor_id": "001",
       "instructor_first_name": "Alice",
       "instructor_last_name": "Johnson",
       "department": "Computer Science"
@@ -549,6 +554,7 @@
     "model": "api.Instructor",
     "pk": "002",
     "fields": {
+      "instructor_id": "002",
       "instructor_first_name": "Bob",
       "instructor_last_name": "Smith",
       "department": "Physics"
@@ -558,6 +564,7 @@
     "model": "api.Instructor",
     "pk": "003",
     "fields": {
+      "instructor_id": "003",
       "instructor_first_name": "Catherine",
       "instructor_last_name": "Davis",
       "department": "English Literature"
@@ -567,6 +574,7 @@
     "model": "api.Instructor",
     "pk": "004",
     "fields": {
+      "instructor_id": "004",
       "instructor_first_name": "David",
       "instructor_last_name": "Wilson",
       "department": "Marketing"

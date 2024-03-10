@@ -35,14 +35,15 @@ class Program(models.Model):
         return self.program_name
 
 class Term(models.Model):
-    term_name = models.CharField(max_length=20, unique=True, primary_key=True)  # Example: Fall
+    term_key = models.CharField(max_length=7, unique=True, primary_key=True)  # Example: Fal2023
+    term_name = models.CharField(max_length=20)
     term_year = models.IntegerField()
     start_date = models.DateField()
     end_date = models.DateField()
 
     def __str__(self):
-        return self.term_name
-
+        return self.term_key
+    
 class EmergencyContact(models.Model):
     emergency_contact_name = models.CharField(max_length=30)
     emergency_contact_phone = models.CharField(max_length=15)
@@ -87,7 +88,7 @@ class Student(models.Model):
 
     # To show Student's name in admin panel
     def __str__(self):
-        return self.student_id
+        return f"{self.student_id} - {self.student_last_name}, {self.student_first_name}"
     
 
 class Course(models.Model):
@@ -104,7 +105,7 @@ class Course(models.Model):
 
     # To show Course's name in admin panel
     def __str__(self):
-        return self.course_name
+        return f"{self.course_code} - {self.course_title}"
     
 class Instructor(models.Model):
     instructor_id = models.CharField(max_length=10)
@@ -115,7 +116,7 @@ class Instructor(models.Model):
 
     # To show Instructor's name in admin panel
     def __str__(self):
-        return self.instructor_id
+        return f"{self.instructor_id} - {self.instructor_last_name}, {self.instructor_first_name}"
 
 class Lecture(models.Model):
     lecture_id = models.CharField(max_length=10) # e.g. L01
@@ -129,7 +130,7 @@ class Lecture(models.Model):
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f"{self.course} - {self.lecture_term}"
+        return f"{self.course} - {self.lecture_id}"
     
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -146,5 +147,5 @@ class Grade(models.Model):
     enrollment = models.ForeignKey('Enrollment', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f"{self.enrollment.student} - {self.enrollment.course}: {self.grade}"
+        return f"{self.enrollment.student}: {self.grade}"
 

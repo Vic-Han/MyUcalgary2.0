@@ -29,7 +29,7 @@ class Program(models.Model):
     program_minor = models.CharField(max_length=30)
     program_honor = models.BooleanField()
 
-    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
+    # faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
 
     # To show Program's name in admin panel
@@ -45,7 +45,7 @@ class Term(models.Model):
         return self.term_name
 
 class Student(models.Model):
-    student_id = models.CharField(max_length=10)
+    student_id = models.CharField(max_length=10, unique=True, primary_key=True)
     student_first_name = models.CharField(max_length=30)
     student_last_name = models.CharField(max_length=30)
     date_of_birth = models.DateField()
@@ -95,7 +95,7 @@ class Course(models.Model):
     course_description = models.CharField(max_length=300)
     course_prerequisites = models.CharField(max_length=50)
     course_antirequisites = models.CharField(max_length=50)
-    course_units = models.IntegerField()
+    # course_units = models.IntegerField()
     course_notes = models.CharField(max_length=100)
     course_repeatability = models.BooleanField(default=False)
     course_type = models.CharField(max_length=20)

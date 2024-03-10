@@ -91,8 +91,8 @@ class Student(models.Model):
 
     gpa = models.FloatField()
 
-    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
+    # faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
+    # department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
     # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 

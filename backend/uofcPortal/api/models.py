@@ -22,15 +22,11 @@ class Department(models.Model):
 
 class Program(models.Model):
     program_name = models.CharField(max_length=10, unique=True, primary_key=True)
-    # program_year = models.DateField()
-    # program_load = models.IntegerField() # Let's define what this is
-    # program_stream = models.CharField(max_length=30)
     program_degree_level = models.CharField(max_length=30) #bach vs masters vs phd
     program_major = models.CharField(max_length=30)
     program_minor = models.CharField(max_length=30, blank=True, null=True)
     program_honor = models.BooleanField()
 
-    # faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     major_department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="major_program")
     minor_department = models.ForeignKey(Department, on_delete=models.CASCADE, blank=True, null=True, related_name="minor_program")
 
@@ -90,28 +86,6 @@ class Student(models.Model):
 
     program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
 
-    # gpa = models.FloatField()
-    # country = models.CharField(max_length=30)
-    # street_address = models.CharField(max_length=30)
-    # postal_code = models.CharField(max_length=10)
-    # city = models.CharField(max_length=30)
-    # province = models.CharField(max_length=30)    
-
-    # emergency_contact1_name = models.CharField(max_length=30)
-    # emergency_contact1_phone = models.CharField(max_length=15)
-    # emergency_contact1_relationship = models.CharField(max_length=30)
-    # emergency_contact2_name = models.CharField(blank=True, max_length=30)
-    # emergency_contact2_phone = models.CharField(blank=True, max_length=15)
-    # emergency_contact2_relationship = models.CharField(blank=True, max_length=30)
-    # emergency_contact3_name = models.CharField(blank=True, max_length=30)
-    # emergency_contact3_phone = models.CharField(blank=True, max_length=15)
-    # emergency_contact3_relationship = models.CharField(blank=True, max_length=30)
-    
-    # faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
-    # department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
-    
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-
     # To show Student's name in admin panel
     def __str__(self):
         return self.student_id
@@ -120,17 +94,12 @@ class Student(models.Model):
 class Course(models.Model):
     course_code = models.CharField(max_length=7, unique=True, primary_key=True) # e.g. SENG401
     course_title = models.CharField(max_length=60) # e.g. Software Architecture
-    #course_number = models.IntegerField()
     course_description = models.CharField(max_length=300)
     course_prerequisites = models.CharField(max_length=50, blank=True, null=True)
     course_antirequisites = models.CharField(max_length=50, blank=True, null=True)
     course_units = models.IntegerField()
     course_notes = models.CharField(max_length=100, blank=True, null=True)
     course_repeatability = models.BooleanField(default=False)
-    #course_type = models.CharField(max_length=20)
-    #units = models.IntegerField()
-
-    #faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, null=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
 
     # To show Course's name in admin panel
@@ -164,9 +133,6 @@ class Lecture(models.Model):
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)
-    # waitlisted = models.BooleanField(default=False)
-    # term = models.ForeignKey(Term, on_delete=models.CASCADE)
-    #year = models.IntegerField()
     
     class Meta:
         unique_together = ('student', 'lecture')  # Avoid duplicate enrollments

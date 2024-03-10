@@ -200,40 +200,40 @@
 
   {
     "model": "api.Term",
-    "pk": "Fall 2023",
+    "pk": "Fal2023",
     "fields": {
-      "term_name": "Fall 2023",
-      "term_year": 2019,
+      "term_name": "Fall",
+      "term_year": 2023,
       "start_date": "2023-09-01",
       "end_date": "2023-12-15"
     }
   },
   {
     "model": "api.Term",
-    "pk": "Winter 2024",
+    "pk": "Win2024",
     "fields": {
-      "term_name": "Winter 2024",
-      "term_year": 2018,
+      "term_name": "Winter",
+      "term_year": 2024,
       "start_date": "2024-01-05",
       "end_date": "2024-04-20"
     }
   },
   {
     "model": "api.Term",
-    "pk": "Spring 2024",
+    "pk": "Spr2024",
     "fields": {
-      "term_name": "Spring 2024",
-      "term_year": 2021,
+      "term_name": "Spring",
+      "term_year": 2024,
       "start_date": "2024-05-01",
       "end_date": "2024-08-15"
     }
   },
   {
     "model": "api.Term",
-    "pk": "Summer 2024",
+    "pk": "Sum2024",
     "fields": {
-      "term_name": "Summer 2024",
-      "term_year": 2022,
+      "term_name": "Summer",
+      "term_year": 2024,
       "start_date": "2024-07-01",
       "end_date": "2024-08-31"
     }
@@ -578,7 +578,7 @@
     "model": "api.Lecture",
     "pk": "01",
     "fields": {
-      "term": "Fall 2023",
+      "term": "Fal2023",
       "lecture_days": "MonWed",
       "lecture_starttime": "0900",
       "lecture_endtime": "1030",
@@ -591,7 +591,7 @@
     "model": "api.Lecture",
     "pk": "02",
     "fields": {
-      "term": "Winter 2024",
+      "term": "Win2024",
       "lecture_days": "TueThu",
       "lecture_starttime": "1100",
       "lecture_endtime": "1230",
@@ -604,7 +604,7 @@
     "model": "api.Lecture",
     "pk": "03",
     "fields": {
-      "term": "Fall 2023",
+      "term": "Fal2023",
       "lecture_days": "Fri",
       "lecture_starttime": "1400",
       "lecture_endtime": "1530",
@@ -617,7 +617,7 @@
     "model": "api.Lecture",
     "pk": "04",
     "fields": {
-      "term": "Winter 2024",
+      "term": "Win2024",
       "lecture_days": "MonWedFri",
       "lecture_starttime": "0800",
       "lecture_endtime": "0930",
@@ -692,7 +692,4 @@
       "enrollment": 4
     }
   }
-
-
-  
 ]

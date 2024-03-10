@@ -3,7 +3,9 @@
     <div class="px-4 py-4 w-full h-fit gap-4 bg-grey-100 grid grid-cols-3 grid-rows-5 shadow-inner">
         <router-link to="schedule" class=" flex items-center justify-items-center col-span-2 p-4 row-span-3 bg-white-100 rounded-xl shadow-lg"> <SchedPreview :schedule="Schedule"/> </router-link>
         <div class="col-start-3 row-span-3 bg-white-100 rounded-xl shadow-lg"><CalendarPreview/></div>
-        <router-link to="finances" class="row-start-4 row-span-2 bg-white-100 rounded-xl h-80 shadow-lg"><FinancePieChart/></router-link>
+        <router-link to="finances" class="row-start-4 row-span-2 bg-white-100 rounded-xl h-80 shadow-lg">
+            <FinancePieChart :term="FinancePreview.term" :amount="FinancePreview.amount" :status="FinancePreview.status" :due="FinancePreview.due"/>
+        </router-link>
         <router-link to="grades" class="relative pt-8 row-start-4 col-start-2 col-span-2 row-span-2 h-80 bg-white-100 rounded-xl shadow-lg">
             <GradePreview :term="GradePreview.term" :average="GradePreview.TermGPA" :letter="GradePreview.TermLetterGrade"
                 :courses="GradePreview.courses" :year="GradePreview.Level" :unitsEnrolled="GradePreview.UnitsEnrolled"
@@ -62,7 +64,13 @@ import Data from './SampleSched.json'
                               "letter": "B+"
                           },
                       ]
-                  },
+                },
+                FinancePreview: {
+                    term: "Winter 2024",
+                    amount: "3,125.03",
+                    status: "Paid",
+                    due: "February 25, 2024"
+                }
                 
             }
         },

@@ -44,9 +44,12 @@
         name: 'SchedPreview',
         props: {
             schedule: {
-                type: Object,
+                type: Array,
                 required: true
             }
+        },
+        created() {
+            console.log(this.schedule)
         },
         data: () =>{
             return{

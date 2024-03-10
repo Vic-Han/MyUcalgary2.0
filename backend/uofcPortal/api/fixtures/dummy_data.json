@@ -1,32 +1,77 @@
 [
   {
     "model": "api.Faculty",
-    "pk": "Engineering",
+    "pk": "Schulich School of Engineering",
     "fields": {}
   },
   {
     "model": "api.Faculty",
-    "pk": "Science",
+    "pk": "Faculty of Science",
     "fields": {}
   },
   {
     "model": "api.Faculty",
-    "pk": "Arts",
+    "pk": "Faculty of Arts",
     "fields": {}
   },
   {
     "model": "api.Faculty",
-    "pk": "Business",
+    "pk": "Haskayne School of Business",
     "fields": {}
   },
   {
     "model": "api.Faculty",
-    "pk": "Education",
+    "pk": "Werklund School of Education",
     "fields": {}
   },
   {
     "model": "api.Faculty",
-    "pk": "Mathematics and Statistics",
+    "pk": "Faculty of Law",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Veterinary Medicine",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Nursing",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Kinesiology",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "School of Public Policy",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Social Work",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Cumming School of Medicine",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "School of Architecture, Planning and Landscape",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Graduate Studies",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Nursing",
     "fields": {}
   },
 
@@ -34,49 +79,63 @@
     "model": "api.Department",
     "pk": "Computer Science",
     "fields": {
-      "faculty": "Engineering"
+      "faculty": "Schulich School of Engineering"
     }
   },
   {
     "model": "api.Department",
     "pk": "Physics",
     "fields": {
-      "faculty": "Science"
+      "faculty": "Faculty of Science"
     }
   },
   {
     "model": "api.Department",
     "pk": "English Literature",
     "fields": {
-      "faculty": "Arts"
+      "faculty": "Faculty of Arts"
     }
   },
   {
     "model": "api.Department",
     "pk": "Marketing",
     "fields": {
-      "faculty": "Business"
+      "faculty": "Haskayne School of Business"
     }
   },
   {
     "model": "api.Department",
     "pk": "Educational Psychology",
     "fields": {
-      "faculty": "Education"
+      "faculty": "Werklund School of Education"
     }
   },
   {
     "model": "api.Department",
-    "pk": "MATH",
+    "pk": "Engineering",
     "fields": {
-      "faculty": "Mathematics and Statistics"
+      "faculty": "Schulich School of Engineering"
+    }
+  },
+  {
+    "model": "api.Department",
+    "pk": "Mathematics and Statistics",
+    "fields": {
+      "faculty": "Faculty of Science"
     }
   },
   {
     "model": "api.Department",
     "pk": "Chemical and Petroleum Engineering",
     "fields": {
-      "faculty": "Science"
+      "faculty": "Faculty of Science"
+    }
+  },
+  {
+    "model": "api.Department",
+    "pk": "General Science",
+    "fields": {
+      "faculty": "Faculty of Science"
     }
   },
 
@@ -84,70 +143,58 @@
     "model": "api.Program",
     "pk": "ProgA",
     "fields": {
-      "program_year": "2020-01-01",
-      "program_load": 20,
-      "program_stream": "Stream1",
+      "program_degree_level": "Bachelor",
       "program_major": "Major1",
       "program_minor": "Minor1",
       "program_honor": true,
-      "faculty": "Engineering",
-      "department": "Computer Science"
+      "major_department": "Engineering",
+      "minor_department": "Computer Science"
     }
   },
   {
     "model": "api.Program",
     "pk": "ProgB",
     "fields": {
-      "program_year": "2021-01-01",
-      "program_load": 22,
-      "program_stream": "Stream2",
-      "program_major": "Major2",
-      "program_minor": "Minor2",
-      "program_honor": false,
-      "faculty": "Science",
-      "department": "Physics"
+      "program_degree_level": "Bachelor",
+      "program_major": "Major1",
+      "program_minor": "Minor1",
+      "program_honor": true,
+      "major_department": "General Science",
+      "minor_department": "Physics"
     }
   },
   {
     "model": "api.Program",
     "pk": "ProgC",
     "fields": {
-      "program_year": "2022-01-01",
-      "program_load": 18,
-      "program_stream": "Stream3",
+      "program_degree_level": "Master",
       "program_major": "Major3",
       "program_minor": "Minor3",
       "program_honor": true,
-      "faculty": "Arts",
-      "department": "English Literature"
+      "major_department": "Marketing",
+      "minor_department": "English Literature"
     }
   },
   {
     "model": "api.Program",
     "pk": "ProgD",
     "fields": {
-      "program_year": "2019-01-01",
-      "program_load": 24,
-      "program_stream": "Stream4",
+      "program_degree_level": "PhD",
       "program_major": "Major4",
       "program_minor": "Minor4",
       "program_honor": false,
-      "faculty": "Business",
-      "department": "Marketing"
+      "major_department": "Physics"
     }
   },
   {
     "model": "api.Program",
     "pk": "ProgE",
     "fields": {
-      "program_year": "2023-01-01",
-      "program_load": 25,
-      "program_stream": "Stream5",
+      "program_degree_level": "Bachelor",
       "program_major": "Major5",
       "program_minor": "Minor5",
-      "program_honor": true,
-      "faculty": "Education",
-      "department": "Educational Psychology"
+      "program_honor": false,
+      "major_department": "Computer Science"
     }
   },
 
@@ -156,6 +203,7 @@
     "pk": "Fall 2023",
     "fields": {
       "term_name": "Fall 2023",
+      "term_year": 2019,
       "start_date": "2023-09-01",
       "end_date": "2023-12-15"
     }
@@ -165,6 +213,7 @@
     "pk": "Winter 2024",
     "fields": {
       "term_name": "Winter 2024",
+      "term_year": 2018,
       "start_date": "2024-01-05",
       "end_date": "2024-04-20"
     }
@@ -174,6 +223,7 @@
     "pk": "Spring 2024",
     "fields": {
       "term_name": "Spring 2024",
+      "term_year": 2021,
       "start_date": "2024-05-01",
       "end_date": "2024-08-15"
     }
@@ -183,39 +233,132 @@
     "pk": "Summer 2024",
     "fields": {
       "term_name": "Summer 2024",
+      "term_year": 2022,
       "start_date": "2024-07-01",
       "end_date": "2024-08-31"
     }
   },
 
+  {
+    "model": "api.EmergencyContact",
+    "pk": 1,
+    "fields": {
+      "emergency_contact_name": "John Smith",
+      "emergency_contact_phone": "+123456789",
+      "emergency_contact_relationship": "Parent"
+    }
+  },
+  {
+    "model": "api.EmergencyContact",
+    "pk": 2,
+    "fields": {
+      "emergency_contact_name": "Alice Johnson",
+      "emergency_contact_phone": "+987654321",
+      "emergency_contact_relationship": "Sibling"
+    }
+  },
+  {
+    "model": "api.EmergencyContact",
+    "pk": 3,
+    "fields": {
+      "emergency_contact_name": "Emma Brown",
+      "emergency_contact_phone": "+111222333",
+      "emergency_contact_relationship": "Spouse"
+    }
+  },
+  {
+    "model": "api.EmergencyContact",
+    "pk": 4,
+    "fields": {
+      "emergency_contact_name": "Michael Wilson",
+      "emergency_contact_phone": "+444555666",
+      "emergency_contact_relationship": "Friend"
+    }
+  },
+  {
+    "model": "api.EmergencyContact",
+    "pk": 5,
+    "fields": {
+      "emergency_contact_name": "Sophia Garcia",
+      "emergency_contact_phone": "+777888999",
+      "emergency_contact_relationship": "Relative"
+    }
+  },
+
+  {
+    "model": "api.Address",
+    "pk": 1,
+    "fields": {
+      "address_street_address": "123 Main St",
+      "address_postal_code": "A1B 2C3",
+      "address_city": "Springfield",
+      "address_province": "Ontario",
+      "address_country": "Canada"
+    }
+  },
+  {
+    "model": "api.Address",
+    "pk": 2,
+    "fields": {
+      "address_street_address": "456 Elm St",
+      "address_postal_code": "X1Y 3Z9",
+      "address_city": "Maplewood",
+      "address_province": "Alberta",
+      "address_country": "Canada"
+    }
+  },
+  {
+    "model": "api.Address",
+    "pk": 3,
+    "fields": {
+      "address_street_address": "789 Oak St",
+      "address_postal_code": "L4M 5N6",
+      "address_city": "Greenville",
+      "address_province": "British Columbia",
+      "address_country": "Canada"
+    }
+  },
+  {
+    "model": "api.Address",
+    "pk": 4,
+    "fields": {
+      "address_street_address": "101 Pine St",
+      "address_postal_code": "K7L 8M9",
+      "address_city": "Riverside",
+      "address_province": "Manitoba",
+      "address_country": "Canada"
+    }
+  },
+  {
+    "model": "api.Address",
+    "pk": 5,
+    "fields": {
+      "address_street_address": "321 Cedar St",
+      "address_postal_code": "T2W 4R8",
+      "address_city": "Hilltown",
+      "address_province": "Saskatchewan",
+      "address_country": "Canada"
+    }
+  },
 
   {
     "model": "api.Student",
     "pk": 1,
     "fields": {
-      "student_id": "001",
       "student_first_name": "FirstName1",
       "student_last_name": "LastName1",
       "date_of_birth": "1997-07-18",
-      "country": "Country1",
       "citizenship_status": "CitizenshipStatus1",
-      "street_address": "123 Main St",
-      "postal_code": "704581",
-      "city": "City1",
-      "province": "Province1",
+
+      "address": 1,
+
       "home_phone_number": "+10469256700",
       "mobile_phone_number": "+17430957076",
       "preferred_phone": "mobile",
       "personal_email": "student1@personal.com",
       "school_email": "student1@school.com",
       "preferred_email": "school",
-      "emergency_contact1_name": "EmergencyContact1",
-      "emergency_contact1_phone": "+11785436222",
-      "emergency_contact1_relationship": "Parent",
-      "preferred_emergency_contact": "1",
-      "gpa": 3.48,
-      "faculty": "Arts",
-      "department": "Educational Psychology",
+
       "program": "ProgD"
     }
   },
@@ -224,16 +367,13 @@
     "model": "api.Student",
     "pk": 2,
     "fields": {
-      "student_id": "002",
       "student_first_name": "FirstName2",
       "student_last_name": "LastName2",
       "date_of_birth": "1995-07-13",
-      "country": "Country2",
       "citizenship_status": "CitizenshipStatus2",
-      "street_address": "123 Main St",
-      "postal_code": "513765",
-      "city": "City2",
-      "province": "Province2",
+
+      "address": 2,
+      
       "home_phone_number": "+19214062755",
       "mobile_phone_number": "+12282429445",
       "other_phone_number": "+11234567890",
@@ -241,16 +381,7 @@
       "personal_email": "student2@personal.com",
       "school_email": "student2@school.com",
       "preferred_email": "personal",
-      "emergency_contact1_name": "EmergencyContact2a",
-      "emergency_contact1_phone": "+14595657807",
-      "emergency_contact1_relationship": "Parent",
-      "emergency_contact2_name": "EmergencyContact2b",
-      "emergency_contact2_phone": "+14595657999",
-      "emergency_contact2_relationship": "Sibling",
-      "preferred_emergency_contact": "2",
-      "gpa": 2.61,
-      "faculty": "Science",
-      "department": "Marketing",
+      
       "program": "ProgC"
     }
   },
@@ -258,34 +389,19 @@
     "model": "api.Student",
     "pk": 3,
     "fields": {
-      "student_id": "003",
       "student_first_name": "FirstName3",
       "student_last_name": "LastName3",
       "date_of_birth": "1995-03-05",
-      "country": "Country3",
       "citizenship_status": "CitizenshipStatus3",
-      "street_address": "123 Main St",
-      "postal_code": "796100",
-      "city": "City3",
-      "province": "Province3",
+
+      "address": 3,
+     
       "mobile_phone_number": "+10705486898",
       "preferred_phone": "mobile",
       "personal_email": "student3@personal.com",
       "school_email": "student3@school.com",
       "preferred_email": "school",
-      "emergency_contact1_name": "EmergencyContact3a",
-      "emergency_contact1_phone": "+13333333333",
-      "emergency_contact1_relationship": "Parent",
-      "emergency_contact2_name": "EmergencyContact3b",
-      "emergency_contact2_phone": "+12222222222",
-      "emergency_contact2_relationship": "Sibling",
-      "emergency_contact3_name": "EmergencyContact3c",
-      "emergency_contact3_phone": "+11111111111",
-      "emergency_contact3_relationship": "Uncle",
-      "preferred_emergency_contact":"3",
-      "gpa": 3.25,
-      "faculty": "Engineering",
-      "department": "Computer Science",
+      
       "program": "ProgA"
     }
   },
@@ -293,29 +409,20 @@
     "model": "api.Student",
     "pk": 4,
     "fields": {
-      "student_id": "004",
       "student_first_name": "FirstName4",
       "student_last_name": "LastName4",
       "date_of_birth": "2001-11-29",
-      "country": "Country4",
       "citizenship_status": "CitizenshipStatus4",
-      "street_address": "123 Main St",
-      "postal_code": "123456",
-      "city": "City4",
-      "province": "Province4",
+
+      "address": 4,
+      
       "home_phone_number": "+11234567890",
       "mobile_phone_number": "+10987654321",
       "preferred_phone": "mobile",
       "personal_email": "student4@personal.com",
       "school_email": "student4@school.com",
       "preferred_email": "personal",
-      "emergency_contact1_name": "EmergencyContact4",
-      "emergency_contact1_phone": "+19876543210",
-      "emergency_contact1_relationship": "Parent",
-      "preferred_emergency_contact": "1",
-      "gpa": 3.67,
-      "faculty": "Business",
-      "department": "Marketing",
+      
       "program": "ProgD"
     }
   },
@@ -323,131 +430,118 @@
     "model": "api.Student",
     "pk": 5,
     "fields": {
-      "student_id": "005",
       "student_first_name": "FirstName5",
       "student_last_name": "LastName5",
       "date_of_birth": "1998-02-17",
-      "country": "Country5",
       "citizenship_status": "CitizenshipStatus5",
-      "street_address": "123 Main St",
-      "postal_code": "987654",
-      "city": "City5",
-      "province": "Province5",
+
+      "address": 5,
+      
       "home_phone_number": "+12345678901",
       "mobile_phone_number": "+19876543210",
       "preferred_phone": "home",
       "personal_email": "student5@personal.com",
       "school_email": "student5@school.com",
       "preferred_email": "school",
-      "emergency_contact1_name": "EmergencyContact5",
-      "emergency_contact1_phone": "+10123456789",
-      "emergency_contact1_relationship": "Parent",
-      "preferred_emergency_contact": "1",
-      "gpa": 3.89,
-      "faculty": "Education",
-      "department": "Educational Psychology",
+
       "program": "ProgE"
     }
   },
-  
+
 
   {
     "model": "api.Course",
-    "pk": "MATH",
+    "pk": "SENG401",
     "fields": {
-      "course_title": "Calculus I",
-      "course_number": 101,
-      "course_description": "Introduction to differential calculus.",
-      "course_prerequisites": "None",
-      "course_antirequisites": "None",
+      "course_title": "Software Architecture",
+      "course_description": "An in-depth study of high-level software structures. Covers architectural styles, design patterns, and evaluation techniques.",
+      "course_prerequisites": "SENG300, CPSC233",
       "course_units": 3,
-      "course_notes": "Required for Engineering students.",
-      "course_repeatability": false,
-      "course_type": "Core",
-      "units": 3,
-      "faculty": "Mathematics and Statistics",
-      "department": "MATH"
+      "department": "Computer Science"
     }
   },
   {
     "model": "api.Course",
-    "pk": "PHYS",
+    "pk": "PHYS303",
     "fields": {
-      "course_title": "Physics I",
-      "course_number": 101,
-      "course_description": "Fundamentals of physics.",
-      "course_prerequisites": "MATH 101",
-      "course_antirequisites": "None",
-      "course_units": 4,
-      "course_notes": "Lab required.",
-      "course_repeatability": false,
-      "course_type": "Core",
-      "units": 3,
-      "faculty": "Science",
+      "course_title": "Quantum Mechanics",
+      "course_description": "Introduction to the principles of quantum mechanics with applications to atomic, molecular, and solid-state physics.",
+      "course_prerequisites": "PHYS211, MATH211",
+      "course_units": 3,
       "department": "Physics"
     }
   },
   {
     "model": "api.Course",
-    "pk": "CHEM",
+    "pk": "ENGL201",
     "fields": {
-      "course_title": "Chemistry I",
-      "course_number": 101,
-      "course_description": "Introduction to chemistry.",
-      "course_prerequisites": "None",
-      "course_antirequisites": "None",
+      "course_title": "British Literature",
+      "course_description": "Survey of British literature from the Anglo-Saxon period to the 18th century.",
       "course_units": 3,
-      "course_notes": "Lab required.",
-      "course_repeatability": false,
-      "course_type": "Core",
-      "units": 3,
-      "faculty": "Science",
-      "department": "Chemical and Petroleum Engineering"
-    }
-  },
-  {
-    "model": "api.Course",
-    "pk": "ENGL",
-    "fields": {
-      "course_title": "English Literature I",
-      "course_number": 101,
-      "course_description": "Study of English literature.",
-      "course_prerequisites": "None",
-      "course_antirequisites": "None",
-      "course_units": 3,
-      "course_notes": "Elective for all departments.",
-      "course_repeatability": false,
-      "course_type": "Elective",
-      "units": 3,
-      "faculty": "Arts",
       "department": "English Literature"
     }
   },
   {
     "model": "api.Course",
-    "pk": "COMP",
+    "pk": "MARK401",
     "fields": {
-      "course_title": "Computer Science I",
-      "course_number": 101,
-      "course_description": "Introduction to computer programming.",
-      "course_prerequisites": "None",
-      "course_antirequisites": "None",
+      "course_title": "Advanced Marketing Strategies",
+      "course_description": "Examination of strategic marketing planning and implementation in competitive environments.",
+      "course_prerequisites": "MARK301",
       "course_units": 3,
-      "course_notes": "Required for Computer Science students.",
-      "course_repeatability": false,
-      "course_type": "Core",
-      "units": 3,
-      "faculty": "Science",
+      "department": "Marketing"
+    }
+  },
+  {
+    "model": "api.Course",
+    "pk": "SENG350",
+    "fields": {
+      "course_title": "Software Process and Product Management",
+      "course_description": "Covers concepts, methods, and tools for managing software development processes and products.",
+      "course_prerequisites": "SENG300",
+      "course_units": 3,
       "department": "Computer Science"
     }
   },
+  {
+    "model": "api.Course",
+    "pk": "PHYS207",
+    "fields": {
+      "course_title": "Electromagnetism",
+      "course_description": "Fundamentals of electric and magnetic fields and their applications.",
+      "course_prerequisites": "PHYS211",
+      "course_units": 3,
+      "department": "Physics"
+    }
+  },
+  {
+    "model": "api.Course",
+    "pk": "ENGL305",
+    "fields": {
+      "course_title": "Modern American Literature",
+      "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+      "course_units": 3,
+      "department": "English Literature"
+    }
+  },
+  {
+    "model": "api.Course",
+    "pk": "MARK305",
+    "fields": {
+      "course_title": "Digital Marketing",
+      "course_description": "Principles and practices of marketing in the digital era, covering social media, content marketing, and online advertising.",
+      "course_units": 3,
+      "department": "Marketing"
+    }
+  },
+
 
   {
     "model": "api.Instructor",
     "pk": "001",
     "fields": {
-      "instructor_first_name": "John",
-      "instructor_last_name": "Doe",
+      "instructor_first_name": "Alice",
+      "instructor_last_name": "Johnson",
       "department": "Computer Science"
     }
   },
@@ -455,7 +549,7 @@
     "model": "api.Instructor",
     "pk": "002",
     "fields": {
-      "instructor_first_name": "Jane",
+      "instructor_first_name": "Bob",
       "instructor_last_name": "Smith",
       "department": "Physics"
     }
@@ -464,8 +558,8 @@
     "model": "api.Instructor",
     "pk": "003",
     "fields": {
-      "instructor_first_name": "Alice",
-      "instructor_last_name": "Johnson",
+      "instructor_first_name": "Catherine",
+      "instructor_last_name": "Davis",
       "department": "English Literature"
     }
   },
@@ -473,216 +567,92 @@
     "model": "api.Instructor",
     "pk": "004",
     "fields": {
-      "instructor_first_name": "Bob",
-      "instructor_last_name": "Brown",
+      "instructor_first_name": "David",
+      "instructor_last_name": "Wilson",
       "department": "Marketing"
-    }
-  },
-  {
-    "model": "api.Instructor",
-    "pk": "005",
-    "fields": {
-      "instructor_first_name": "Charlie",
-      "instructor_last_name": "Green",
-      "department": "Educational Psychology"
     }
   },
 
 
   {
     "model": "api.Lecture",
-    "pk": "001",
+    "pk": "01",
     "fields": {
-      "lecture_term": "Fall 2023",
+      "term": "Fall 2023",
+      "lecture_days": "MonWed",
       "lecture_starttime": "0900",
-      "lecture_endtime": "1050",
-      "lecture_roomnumber": "B101",
-      "course": "MATH",
+      "lecture_endtime": "1030",
+      "lecture_roomnumber": "B100",
+      "course": "SENG401",
       "instructor": "001"
     }
   },
   {
     "model": "api.Lecture",
-    "pk": "002",
+    "pk": "02",
     "fields": {
-      "lecture_term": "Fall 2023",
+      "term": "Winter 2024",
+      "lecture_days": "TueThu",
       "lecture_starttime": "1100",
-      "lecture_endtime": "1250",
-      "lecture_roomnumber": "C301",
-      "course": "PHYS",
+      "lecture_endtime": "1230",
+      "lecture_roomnumber": "C200",
+      "course": "PHYS303",
       "instructor": "002"
     }
   },
   {
     "model": "api.Lecture",
-    "pk": "003",
+    "pk": "03",
     "fields": {
-      "lecture_term": "Spring 2024",
-      "lecture_starttime": "1300",
-      "lecture_endtime": "1450",
-      "lecture_roomnumber": "D205",
-      "course": "CHEM",
+      "term": "Fall 2023",
+      "lecture_days": "Fri",
+      "lecture_starttime": "1400",
+      "lecture_endtime": "1530",
+      "lecture_roomnumber": "D300",
+      "course": "ENGL201",
       "instructor": "003"
     }
   },
   {
     "model": "api.Lecture",
-    "pk": "004",
+    "pk": "04",
     "fields": {
-      "lecture_term": "Spring 2024",
-      "lecture_starttime": "1500",
-      "lecture_endtime": "1650",
-      "lecture_roomnumber": "E101",
-      "course": "ENGL",
+      "term": "Winter 2024",
+      "lecture_days": "MonWedFri",
+      "lecture_starttime": "0800",
+      "lecture_endtime": "0930",
+      "lecture_roomnumber": "E400",
+      "course": "MARK401",
       "instructor": "004"
     }
   },
-  {
-    "model": "api.Lecture",
-    "pk": "005",
-    "fields": {
-      "lecture_term": "Fall 2023",
-      "lecture_starttime": "1700",
-      "lecture_endtime": "1850",
-      "lecture_roomnumber": "F303",
-      "course": "COMP",
-      "instructor": "005"
-    }
-  },
 
   {
     "model": "api.Enrollment",
     "fields": {
-      "student": "001",
-      "course": "MATH",
-      "term": "Fall 2023",
-      "year": 1
+      "student": 1,
+      "lecture": "1"
     }
   },
   {
     "model": "api.Enrollment",
     "fields": {
-      "student": "002",
-      "course": "PHYS",
-      "term": "Fall 2023",
-      "year": 2
+      "student": 2,
+      "lecture": "2"
     }
   },
   {
     "model": "api.Enrollment",
     "fields": {
-      "student": "003",
-      "course": "CHEM",
-      "term": "Spring 2024",
-      "year": 3
+      "student": 3,
+      "lecture": "3"
     }
   },
   {
     "model": "api.Enrollment",
     "fields": {
-      "student": "004",
-      "course": "ENGL",
-      "term": "Spring 2024",
-      "year": 4
-    }
-  },
-  {
-    "model": "api.Enrollment",
-    "fields": {
-      "student": "005",
-      "course": "COMP",
-      "term": "Fall 2023",
-      "year": 6
-    }
-  },
-  {
-    "model": "api.Enrollment",
-    "fields": {
-      "student": "001",
-      "course": "PHYS",
-      "term": "Winter 2024",
-      "year": 2
-    }
-  },
-  {
-    "model": "api.Enrollment",
-    "fields": {
-      "student": "002",
-      "course": "CHEM",
-      "term": "Winter 2024",
-      "year": 4
-    }
-  },
-  {
-    "model": "api.Enrollment",
-    "fields": {
-      "student": "003",
-      "course": "ENGL",
-      "term": "Summer 2024",
-      "year": 2
-    }
-  },
-  {
-    "model": "api.Enrollment",
-    "fields": {
-      "student": "004",
-      "course": "COMP",
-      "term": "Summer 2024",
-      "year": 1
-    }
-  },
-  {
-    "model": "api.Enrollment",
-    "fields": {
-      "student": "005",
-      "course": "MATH",
-      "term": "Winter 2024",
-      "year": 4
-    }
-  },
-  {
-    "model": "api.Enrollment",
-    "fields": {
-        "student": "001",
-        "course": "CHEM",
-        "term": "Summer 2024",
-        "year": 3
-    }
-  },
-  {
-    "model": "api.Enrollment",
-    "fields": {
-        "student": "002",
-        "course": "MATH",
-        "term": "Summer 2024",
-        "year": 3
-    }
-  },
-  {
-    "model": "api.Enrollment",
-    "fields": {
-        "student": "003",
-        "course": "COMP",
-        "term": "Summer 2024",
-        "year": 3
-    }
-  },
-  {
-    "model": "api.Enrollment",
-    "fields": {
-        "student": "004",
-        "course": "PHYS",
-        "term": "Summer 2024",
-        "year": 3
-    }
-  },
-  {
-    "model": "api.Enrollment",
-    "fields": {
-        "student": "005",
-        "course": "ENGL",
-        "term": "Summer 2024",
-        "year": 3
+      "student": 4,
+      "lecture": "4"
     }
   },
 
@@ -690,71 +660,39 @@
   {
     "model": "api.Grade",
     "fields": {
-      "enrollment": "001",
-      "grade": 78
+      "grade": 92.5,
+      "enrollment": 1
     }
   },
   {
     "model": "api.Grade",
     "fields": {
-      "enrollment": "002",
-      "grade": 82
+      "grade": 85.0,
+      "enrollment": 2
     }
   },
   {
     "model": "api.Grade",
     "fields": {
-      "enrollment": "003",
-      "grade": 90
+      "grade": 78.0,
+      "enrollment": 3
     }
   },
   {
     "model": "api.Grade",
     "fields": {
-      "enrollment": "004",
-      "grade": 65
+      "grade": 88.5,
+      "enrollment": 4
     }
   },
   {
     "model": "api.Grade",
     "fields": {
-      "enrollment": "005",
-      "grade": 88
-    }
-  },
-  {
-    "model": "api.Grade",
-    "fields": {
-      "enrollment": "001",
-      "grade": 70
-    }
-  },
-  {
-    "model": "api.Grade",
-    "fields": {
-      "enrollment": "002",
-      "grade": 60
-    }
-  },
-  {
-    "model": "api.Grade",
-    "fields": {
-      "enrollment": "003",
-      "grade": 87
-    }
-  },
-  {
-    "model": "api.Grade",
-    "fields": {
-      "enrollment": "004",
-      "grade": 46
-    }
-  },
-  {
-    "model": "api.Grade",
-    "fields": {
-      "enrollment": "005",
-      "grade": 90
+      "grade": 90.0,
+      "enrollment": 4
     }
   }
+
+
+  
 ]

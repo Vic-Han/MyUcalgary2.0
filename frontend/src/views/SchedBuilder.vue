@@ -13,6 +13,7 @@
                 <div v-for = "(course,index) in courseSearchResults" :key="index">
                 <CoursePreview :course="course" :number="index" 
                 @addcourse="addCourseToCart"
+                @removecourse="removeCourseFromSelected"
                 ></CoursePreview>
                 </div>
             </div>
@@ -32,8 +33,14 @@
         
             <div class = "flex flex-row">
                 <div class = "flex flex-col px-10 w-full">
+                    <div v-for="(course,index) in currentSched" :key="index">
+                        <SelectedCourse :course="course" :number="index" :selected="0"></SelectedCourse>
+                    </div>
                     <div v-for="(course,index) in selectedCourses" :key="index">
-                        <SelectedCourse :course="course" :number="index"></SelectedCourse>
+                        <div v-if="!courseInSched(course.name)">
+                            <SelectedCourse :course="course" :number="index"></SelectedCourse>
+
+                        </div>
     
                     </div>
                 </div>
@@ -78,7 +85,6 @@ import SampleSchedule from './SampleSched.json'
                 schedsLoading: false,
                 workers:[],
                 advancedFilters: {
-
                 },
                 
             }
@@ -101,24 +107,67 @@ import SampleSchedule from './SampleSched.json'
                 }
                 this.courses.forEach((item) => {
                     if(item.name.toLowerCase().includes(term)){
-                        console.log(item.name)
-                        this.courseSearchResults.push(item)
-                    }
-                    else if(item.desc.toLowerCase().includes(term)){
+                        if(this.courseInSelected(item.name) || this.courseInSched(item.name)){
+                            item.included = true;
+                        }
+                        else{
+                            item.included = false;
+                        }
+                        
+                        console.log(item)
                         this.courseSearchResults.push(item)
                     }
                 })
             },
-            addCourseToCart(index){
-                this.selectedCourses.push(this.courseSearchResults[index])
-                const newArr = this.courseSearchResults.filter((item) => {
-                    return item != this.courseSearchResults[index]
-                })
-                this.courseSearchResults = newArr
+            addCourseToCart(courseName){
+            //     const index = this.courseSearchResults.findIndex((item) => {
+            //         return item.name == courseName
+            //     })
+            //     console.log(this.courseSearchResults[index])
+            //     console.log("this.courseSearchResults[index].included")
+            //     this.courseSearchResults[index].included = true;
+            //     this.courseSearchResults[index].selected = 0;
+            //     this.selectedCourses.push(this.courseSearchResults[index])
+            // },
+            // removeCourseFromSelected(courseName){
+            //     this.selectedCourses = this.selectedCourses.filter((item) => {
+            //         return item.name != courseName
+            //     })
+            //     this.courseSearchResults.forEach((item) => {
+            //         if(item.name == courseName){
+            //             item.included = false;
+            //         }
+            //     })
+            //     for(let i = 0; i < this.currentSched.length; i++){
+            //         if(this.currentSched[i].name == courseName){
+            //             this.currentSched.splice(i, 1)
+            //             this.computeSchedules()
+            //         }
+            //     }
+                return courseName
             },
             computeSchedules(){
                 
+            },
+            courseInSched(courseName){
+                for(let i = 0; i < this.currentSched.length; i++){
+                    if(this.currentSched[i].name == courseName){
+                        return true;
+                    }
+                }
+                return false;
+            },
+            courseInSelected(courseName){
+               for(let i = 0; i < this.selectedCourses.length; i++){
+                   if(this.selectedCourses[i].name == courseName){
+                       return true;
+                   }
+                }
+                return false;
             }
+        },
+        computed:{
+            
         }
     }
 </script>

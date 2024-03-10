@@ -7,7 +7,8 @@
             
         </div>
         <div class = "flex flex-col w-8">
-            <div @click="addCourseToCart"> + </div>
+            <div v-if="course.included" @click="removeCourseFromCart"> - </div>
+            <div v-else @click="addCourseToCart"> + </div>
         </div>
     </div>
     <div class = "w-full bg-white-200" v-if="dropDownVisible" :class="animation()">
@@ -43,7 +44,11 @@ const animationTime = 300
         },
         methods: {
             addCourseToCart(e){
-                this.$emit('addcourse', this.number)
+                this.$emit('addcourse', this.course.name)
+                e.stopPropagation()
+            },
+            removeCourseFromCart(e){
+                this.$emit('removecourse', this.course.name)
                 e.stopPropagation()
             },
             toggleDropdown(){

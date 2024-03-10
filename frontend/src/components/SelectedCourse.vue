@@ -11,7 +11,7 @@
 
         </div>
        <div class = "flex flex-row">
-            <div class="mx-1">Lecture number </div>
+            <div class="mx-1"> {{ lecture.name }} </div>
             <div class="mx-1"> Selected lecture time </div>
             <div class="mx-1">SA 104</div>
        </div>
@@ -34,13 +34,13 @@
         </div>
         <div v-if="!allClasses" class = "flex flex-row flex-wrap w-80"> 
             <div v-for="(section,index) in sections" :key="index" class = "mx-1">
-                <div>{{section.name}}</div>
+                <div>{{section[0] + " " + section[1]}}</div>
                 <input type = "checkbox" v-model="section.selected"> 
             </div>
         </div>
         <div class = "flex flex-col">
             <div class = "flex flex-row">
-                <div class = "mx-1"> Lecture number</div>
+                <div class = "mx-1"> {{lecture.name}}</div>
                 <div class="mx-1"> Lecture ID</div>
                 <div class="mx-1"> University of Calgary</div>
             </div>
@@ -84,6 +84,10 @@ const animationTime = 300;
             number:{
                 type: Number,
                 required: true
+            },
+            selected: {
+                type: Number,
+                required: true
             }
         },
         data: () => {
@@ -93,52 +97,22 @@ const animationTime = 300;
                 dropDownFadeDown: false,
                 dropDownVisible: false,
                 included: true,
-                sections: [
-                    {
-                        name: "L1 B1",
-                        selected: false
-                    },
-                    {
-                        name: "L2 B2",
-                        selected: false
-                    },
-                    {
-                        name: "L3 B3",
-                        selected: false
-                    },
-                    {
-                        name: "L4 B4",
-                        selected: false
-                    },
-                    {
-                        name: "L5 B5",
-                        selected: false
-                    },
-                    {
-                        name: "L6 B6",
-                        selected: false
-                    },
-                    {
-                        name: "L7 B7",
-                        selected: false
-                    },
-                    {
-                        name: "L8 B8",
-                        selected: false
-                    },
-                    {
-                        name: "L9 B9",
-                        selected: false
-                    },
-                    {
-                        name: "L10 B10",
-                        selected: false
-                    }
-                   
-                ],
+                sections: [],
                 allClasses: true,
-               
+                lecture: null,
+                tut: null,
             }
+        },
+        created()  {
+            this.sections = this.course.combinations
+            const lecID = this.course.combinations[this.selected][0]
+            for(let i = 0; i < this.course.lectures.length; i++){
+                if(this.course.lectures[i].name === lecID){
+                    this.lecture = this.course.lectures[i]
+                    break
+                }
+            }
+            console.log(this.lecture)
         },
         methods:{
             courseColor(){

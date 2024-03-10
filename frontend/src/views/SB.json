@@ -7,6 +7,13 @@
             "desc" : "Software architectures and design for non-functional software properties. Introduction to program comprehension skills including analysis of existing architectures.",
             "prereq": ["SENG 300"],
             "prereqfilled" : true,
+            "selected" : 0,
+            "combinations":[
+                ["L1", "T1"],
+                ["L2", "T1"],
+                ["L1", "T2"],
+                ["L2", "T2"]
+            ],
             "lectures": [
                 {
                     "name": "L1",
@@ -65,7 +72,13 @@
             "title": "Big Data",
             "desc" : "Big Data, Machine Learnin, and more buzz words",
             "prereq": ["SENG 300, CPSC 331"],
-            "prereqfilled" : "false- note that the student might be enrolled CPSC 331 in previous semester which would make them eligible for this course",
+            "selected" : 0,
+            "combinations":[
+                ["L1", "T1"],
+                ["L2", "T1"],
+                ["L1", "T2"],
+                ["L2", "T2"]
+            ],
             "lectures": [
                 {
                     "name": "L1",
@@ -120,8 +133,9 @@
             ]
         }
     ],
-    "current Sched including the shopping cart":{
-        "SENG 401":{
+    "current Sched including the shopping cart":[
+        {
+            "name" : "SENG 401",
             "Lecture" : {
                 "days" : "MWF",
                 "start" : 14,
@@ -137,7 +151,8 @@
                 "TutorialNO" : 1
             }
         },
-        "CPSC 559":{
+        {
+            "name" : "CPSC 559",
             "Lecture" : {
                 "days" : "MWF",
                 "start" : 14,
@@ -153,7 +168,8 @@
                 "TutorialNO" : 1
             }
         },
-        "ECON 373":{
+        {
+            "name" : "CPSC 471",
             "Lecture" : {
                 "days" : "MWF",
                 "start" : 14,
@@ -170,7 +186,7 @@
             }
 
         }
-    },
+    ],
     "academic Requirements":{
         "CPSC at the 500 level or above": [
             "CPSC 559"

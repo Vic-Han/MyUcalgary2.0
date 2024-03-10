@@ -24,7 +24,8 @@ class Program(models.Model):
     program_name = models.CharField(max_length=10, unique=True, primary_key=True)
     # program_year = models.DateField()
     # program_load = models.IntegerField() # Let's define what this is
-    program_stream = models.CharField(max_length=30)
+    # program_stream = models.CharField(max_length=30)
+    program_degree_level = models.CharField(max_length=30) #bach vs masters vs phd
     program_major = models.CharField(max_length=30)
     program_minor = models.CharField(max_length=30)
     program_honor = models.BooleanField()

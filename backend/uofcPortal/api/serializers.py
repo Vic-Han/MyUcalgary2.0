@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.authtoken.views import Token
-from .models import Student, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment
+from .models import Student, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -21,6 +21,11 @@ class UserSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
+        fields = '__all__'
+
+class AddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Address
         fields = '__all__'
 
 
@@ -47,16 +52,16 @@ class PersonalInfoSerializer(serializers.ModelSerializer):
 
     def get_citizenship(self, obj):
         return {
-            "country": obj.country,
+            "country": obj.address.address_country,
             "status": obj.citizenship_status
         }
 
     def get_address(self, obj):
         return {
-            "street address": obj.street_address,
-            "postal code": obj.postal_code,
-            "city": obj.city,
-            "province/state": obj.province
+            "street address": obj.address.address_street_address,
+            "postal code": obj.address.address_postal_code,
+            "city": obj.address.address_city,
+            "province/state": obj.address.address_province
         }
 
     def get_phone_numbers(self, obj):
@@ -76,15 +81,15 @@ class PersonalInfoSerializer(serializers.ModelSerializer):
 
     def get_emergency_contact(self, obj):
         return {
-            "name1": obj.emergency_contact1_name,
-            "phone1": obj.emergency_contact1_phone,
-            "relation1": obj.emergency_contact1_relationship,
-            "name2": obj.emergency_contact2_name if obj.emergency_contact2_name else None,
-            "phone2": obj.emergency_contact2_phone if obj.emergency_contact2_phone else None,
-            "relation2": obj.emergency_contact2_relationship if obj.emergency_contact2_relationship else None,
-            "name3": obj.emergency_contact3_name if obj.emergency_contact3_name else None,
-            "phone3": obj.emergency_contact3_phone if obj.emergency_contact3_phone else None,
-            "relation3": obj.emergency_contact3_relationship if obj.emergency_contact3_relationship else None,
+            "name1": obj.emergency_contact1.emergency_contact_name,
+            "phone1": obj.emergency_contact1.emergency_contact_phone,
+            "relation1": obj.emergency_contact1.emergency_contact_relationship,
+            "name2": obj.emergency_contact2.emergency_contact_name if obj.emergency_contact2.emergency_contact_name else None,
+            "phone2": obj.emergency_contact2.emergency_contact_phone if obj.emergency_contact2.emergency_contact_phone else None,
+            "relation2": obj.emergency_contact2.emergency_contact_relationship if obj.emergency_contact2.emergency_contact_relationship else None,
+            "name3": obj.emergency_contact3.emergency_contact_name if obj.emergency_contact3.emergency_contact_name else None,
+            "phone3": obj.emergency_contact3.emergency_contact_phone if obj.emergency_contact3.emergency_contact_phone else None,
+            "relation3": obj.emergency_contact3.emergency_contact_relationship if obj.emergency_contact3.emergency_contact_relationship else None,
             "preferred": obj.preferred_emergency_contact
         }
 

@@ -30,7 +30,8 @@ class Program(models.Model):
     program_honor = models.BooleanField()
 
     # faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    major_department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    minor_department = models.ForeignKey(Department, on_delete=models.CASCADE)
 
     # To show Program's name in admin panel
     def __str__(self):

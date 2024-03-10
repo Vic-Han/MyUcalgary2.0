@@ -144,8 +144,19 @@ class Enrollment(models.Model):
 
 class Grade(models.Model):
     grade = models.FloatField(validators=[MaxValueValidator(100)])
-    enrollment = models.ForeignKey('Enrollment', on_delete=models.CASCADE, null=True)
+    enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"{self.enrollment.student}: {self.grade}"
 
+class Transaction(models.Model):
+    transaction_name = models.CharField(max_length=50) # e.g. Bank of Montreal
+    transaction_posted_date = models.DateField()
+    transaction_type = models.CharField(max_length=10) # e.g. credit, debit, award
+    transaction_amount = models.FloatField()
+
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
+    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f"{self.transaction_type} - {self.transaction_name}: ${self.transaction_amount}"

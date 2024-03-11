@@ -2,31 +2,31 @@
     <div class="flex flex-row justify-between">
         <div class="flex flex-col items-center mx-10">
             <div class="text-2xl font-bold mb-4">Semester GPA</div>
-            <div class="rounded-full w-32 h-32 flex items-center justify-center flex-col border-8" :class="[gpaColours(letter)]" >
+            <div class="rounded-full w-52 h-52 flex items-center justify-center flex-col border-8" :class="[gpaColours(letter)]" >
                 <span class="text-4xl font-bold" :class="[gpaText(letter)]">{{ average }}</span>
                 <span class="text-4xl font-bold" :class="[gpaText(letter)]">{{ letter  }}</span>
             </div>
         </div>
         <div class="flex flex-col mx-2 justify-between">
             <div v-for="course in courses" :key="course.name"  class="flex flex-row py-1 justify-between">
-                <div class="mx-3 text-base w-28 text-left"> {{ course.name }}</div>
+                <div class="mx-3 text-lg w-28 text-left"> {{ course.name }}</div>
                 <div class="w-96 mx-0">
                     <div class="h-8 rounded-lg" :class="[barColor(course.letter),barWidth(course.letter)]"></div>
                 </div>
                 
 
 
-                <div class=" mx-6 pr-2 text-lg w-12 text-left">{{ course.letter }}</div>
+                <div class = " mx-6 pr-2 text-lg w-12 text-left">{{ course.letter }}</div>
             </div> 
         </div>
     </div>
-   <div v-if="!dashboardView" class="p-2 text-left text-sm">
+   <div class="p-2 text-left text-sm">
         <div>{{ term }}</div>
         <div> Level: {{ year }}</div>
         <div> Units Enrolled: {{ unitsEnrolled }}</div>
         <div> Plan: {{ plan }}</div>
         <div> Program: {{ program }}</div>
-   </div> -->
+   </div>
 </template>
 
 <script>
@@ -64,11 +64,8 @@
             program:{
                 type: String,
                 required: true
-            },
-            dashboardView: {
-                type: Boolean,
-                required: false
             }
+
         },
         methods:{
             barColor(grade){

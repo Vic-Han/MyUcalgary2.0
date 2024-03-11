@@ -1,5 +1,7 @@
 // worker.js
 let schedules = []
+
+
 self.onmessage = function(event) {
     schedules = []
 

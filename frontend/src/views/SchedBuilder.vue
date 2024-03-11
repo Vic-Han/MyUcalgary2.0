@@ -95,7 +95,7 @@ import SampleSchedule from './SampleSched.json'
             this.allInfo = backendPayload
             this.courses = this.allInfo['allCourses']
             this.degreeRequirements = this.allInfo['academic Requirements']
-            this.workers.push(new Worker('ScheduleWorker.js'))
+            this.worker = new Worker('./ScheduleWorker.js')
             
         },
         methods:{

@@ -91,7 +91,7 @@
   },
   {
     "model": "api.Department",
-    "pk": "English Literature",
+    "pk": "English",
     "fields": {
       "faculty": "Faculty of Arts"
     }
@@ -363,7 +363,11 @@
       "school_email": "student1@school.com",
       "preferred_email": "school",
 
-      "program": "ProgD"
+      "program": "ProgD",
+
+      "emergency_contact1":1,
+      "emergency_contact2":2,
+      "emergency_contact3":3
     }
   },
 
@@ -386,7 +390,11 @@
       "school_email": "student2@school.com",
       "preferred_email": "personal",
       
-      "program": "ProgC"
+      "program": "ProgC",
+
+      "emergency_contact1":2,
+      "emergency_contact2":3,
+      "emergency_contact3":4
     }
   },
   {
@@ -406,7 +414,11 @@
       "school_email": "student3@school.com",
       "preferred_email": "school",
       
-      "program": "ProgA"
+      "program": "ProgA",
+
+      "emergency_contact1":3,
+      "emergency_contact2":4,
+      "emergency_contact3":5
     }
   },
   {
@@ -427,7 +439,11 @@
       "school_email": "student4@school.com",
       "preferred_email": "personal",
       
-      "program": "ProgD"
+      "program": "ProgD",
+
+      "emergency_contact1":4,
+      "emergency_contact2":5,
+      "emergency_contact3":1
     }
   },
   {
@@ -448,7 +464,11 @@
       "school_email": "student5@school.com",
       "preferred_email": "school",
 
-      "program": "ProgE"
+      "program": "ProgE",
+
+      "emergency_contact1":1,
+      "emergency_contact2":2,
+      "emergency_contact3":3
     }
   },
 

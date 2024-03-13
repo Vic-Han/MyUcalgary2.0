@@ -327,12 +327,12 @@
       </div>
       <!-- Shared Continue Button - Specific to Step 4 -->
       <!-- Shared Continue Button -->
-      <div class="flex justify-end mt-4" :class="{ 'mb-4': currentStep !== 4, '-mb-32': currentStep === 4 }">
+      <!-- <div class="flex justify-end mt-4" :class="{ 'mb-4': currentStep !== 4, '-mb-32': currentStep === 4 }">
         <button class="bg-white hover:bg-red-700 text-red-500 font-bold py-2 px-4 rounded-md transition-colors"
           @click="goToNextStep">
           Continue
         </button>
-      </div>
+      </div> -->
 
 
     </div>
@@ -340,7 +340,7 @@
     <div class="flex justify-end mt-4" :class="{ 'mb-4': currentStep === 4 }">
       <button class="bg-white hover:bg-white-700 text-red-500 border border-red-500 font-bold py-2 px-4 rounded-md"
         @click="goToNextStep">
-        Continue
+        {{ currentStep === 4 ? 'Submit' : 'Continue' }}
       </button>
     </div>
 
@@ -383,10 +383,17 @@ export default {
       if (this.currentStep < 4) {
         this.currentStep++;
       }
+      else{
+        // call back end
+        this.$emit('submit')
+      }
     },
     goToPreviousStep() {
       if (this.currentStep > 1) {
         this.currentStep--;
+      }
+      else{
+        this.$emit('cancel')
       }
     },
   },

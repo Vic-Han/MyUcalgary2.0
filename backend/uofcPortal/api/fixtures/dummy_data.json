@@ -79,30 +79,24 @@
     "model": "api.Department",
     "pk": "Computer Science",
     "fields": {
-      "faculty": "Schulich School of Engineering"
+      "faculty": "Faculty of Science"
     }
   },
   {
     "model": "api.Department",
-    "pk": "Physics",
+    "pk": "Physics and Astronomy",
     "fields": {
       "faculty": "Faculty of Science"
     }
   },
   {
     "model": "api.Department",
-    "pk": "English Literature",
+    "pk": "English",
     "fields": {
       "faculty": "Faculty of Arts"
     }
   },
-  {
-    "model": "api.Department",
-    "pk": "Marketing",
-    "fields": {
-      "faculty": "Haskayne School of Business"
-    }
-  },
+  
   {
     "model": "api.Department",
     "pk": "Educational Psychology",
@@ -160,21 +154,10 @@
       "program_minor": "Minor1",
       "program_honor": true,
       "major_department": "General Science",
-      "minor_department": "Physics"
+      "minor_department": "Physics and Astronomy"
     }
   },
-  {
-    "model": "api.Program",
-    "pk": "ProgC",
-    "fields": {
-      "program_degree_level": "Master",
-      "program_major": "Major3",
-      "program_minor": "Minor3",
-      "program_honor": true,
-      "major_department": "Marketing",
-      "minor_department": "English Literature"
-    }
-  },
+ 
   {
     "model": "api.Program",
     "pk": "ProgD",
@@ -183,7 +166,7 @@
       "program_major": "Major4",
       "program_minor": "Minor4",
       "program_honor": false,
-      "major_department": "Physics"
+      "major_department": "Physics and Astronomy"
     }
   },
   {
@@ -363,7 +346,11 @@
       "school_email": "student1@school.com",
       "preferred_email": "school",
 
-      "program": "ProgD"
+      "program": "ProgD",
+
+      "emergency_contact1":1,
+      "emergency_contact2":2,
+      "emergency_contact3":3
     }
   },
 
@@ -386,7 +373,11 @@
       "school_email": "student2@school.com",
       "preferred_email": "personal",
       
-      "program": "ProgC"
+      "program": "ProgA",
+
+      "emergency_contact1":2,
+      "emergency_contact2":3,
+      "emergency_contact3":4
     }
   },
   {
@@ -406,7 +397,11 @@
       "school_email": "student3@school.com",
       "preferred_email": "school",
       
-      "program": "ProgA"
+      "program": "ProgA",
+
+      "emergency_contact1":3,
+      "emergency_contact2":4,
+      "emergency_contact3":5
     }
   },
   {
@@ -427,7 +422,11 @@
       "school_email": "student4@school.com",
       "preferred_email": "personal",
       
-      "program": "ProgD"
+      "program": "ProgD",
+
+      "emergency_contact1":4,
+      "emergency_contact2":5,
+      "emergency_contact3":1
     }
   },
   {
@@ -448,7 +447,11 @@
       "school_email": "student5@school.com",
       "preferred_email": "school",
 
-      "program": "ProgE"
+      "program": "ProgE",
+
+      "emergency_contact1":1,
+      "emergency_contact2":2,
+      "emergency_contact3":3
     }
   },
 
@@ -472,7 +475,7 @@
       "course_description": "Introduction to the principles of quantum mechanics with applications to atomic, molecular, and solid-state physics.",
       "course_prerequisites": "PHYS211, MATH211",
       "course_units": 3,
-      "department": "Physics"
+      "department": "Physics and Astronomy"
     }
   },
   {
@@ -482,20 +485,10 @@
       "course_title": "British Literature",
       "course_description": "Survey of British literature from the Anglo-Saxon period to the 18th century.",
       "course_units": 3,
-      "department": "English Literature"
+      "department": "English"
     }
   },
-  {
-    "model": "api.Course",
-    "pk": "MARK401",
-    "fields": {
-      "course_title": "Advanced Marketing Strategies",
-      "course_description": "Examination of strategic marketing planning and implementation in competitive environments.",
-      "course_prerequisites": "MARK301",
-      "course_units": 3,
-      "department": "Marketing"
-    }
-  },
+
   {
     "model": "api.Course",
     "pk": "SENG350",
@@ -515,7 +508,7 @@
       "course_description": "Fundamentals of electric and magnetic fields and their applications.",
       "course_prerequisites": "PHYS211",
       "course_units": 3,
-      "department": "Physics"
+      "department": "Physics and Astronomy"
     }
   },
   {
@@ -525,20 +518,9 @@
       "course_title": "Modern American Literature",
       "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
       "course_units": 3,
-      "department": "English Literature"
+      "department": "English"
     }
   },
-  {
-    "model": "api.Course",
-    "pk": "MARK305",
-    "fields": {
-      "course_title": "Digital Marketing",
-      "course_description": "Principles and practices of marketing in the digital era, covering social media, content marketing, and online advertising.",
-      "course_units": 3,
-      "department": "Marketing"
-    }
-  },
-
 
   {
     "model": "api.Instructor",
@@ -557,7 +539,7 @@
       "instructor_id": "002",
       "instructor_first_name": "Bob",
       "instructor_last_name": "Smith",
-      "department": "Physics"
+      "department": "Physics and Astronomy"
     }
   },
   {
@@ -567,19 +549,11 @@
       "instructor_id": "003",
       "instructor_first_name": "Catherine",
       "instructor_last_name": "Davis",
-      "department": "English Literature"
+      "department": "English"
     }
   },
-  {
-    "model": "api.Instructor",
-    "pk": "004",
-    "fields": {
-      "instructor_id": "004",
-      "instructor_first_name": "David",
-      "instructor_last_name": "Wilson",
-      "department": "Marketing"
-    }
-  },
+  
+
 
 
   {
@@ -624,21 +598,7 @@
       "instructor": "003"
     }
   },
-  {
-    "model": "api.Lecture",
-    "pk": "04",
-    "fields": {
-      "lecture_id": "L01",
-      "term": "Win2024",
-      "lecture_days": "MonWedFri",
-      "lecture_starttime": "0800",
-      "lecture_endtime": "0930",
-      "lecture_roomnumber": "E400",
-      "course": "MARK401",
-      "instructor": "004"
-    }
-  },
-
+  
   {
     "model": "api.Enrollment",
     "fields": {
@@ -660,13 +620,7 @@
       "lecture": "3"
     }
   },
-  {
-    "model": "api.Enrollment",
-    "fields": {
-      "student": 4,
-      "lecture": "4"
-    }
-  },
+
 
 
   {
@@ -690,21 +644,6 @@
       "enrollment": 3
     }
   },
-  {
-    "model": "api.Grade",
-    "fields": {
-      "grade": 88.5,
-      "enrollment": 4
-    }
-  },
-  {
-    "model": "api.Grade",
-    "fields": {
-      "grade": 90.0,
-      "enrollment": 4
-    }
-  },
-
 
   {
     "model": "api.Transaction",
@@ -887,4 +826,5 @@
       "term": "Sum2024"
     }
   }
+ 
 ]

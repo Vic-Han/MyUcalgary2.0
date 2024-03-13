@@ -10,6 +10,8 @@ import MiscLinks from '../views/MiscLinks.vue'
 import ProfileInfo from '../views/ProfileInfo.vue'
 import SchedBuilder from '../views/SchedBuilder.vue'
 import ApplicationHomepage from '../views/ApplicationHomepage.vue'
+import NewPage from '../components/NewPage.vue'
+
 
 // map routes to components imported above
 const routes =  [
@@ -21,7 +23,8 @@ const routes =  [
     { path: '/profile', component: ProfileInfo },
     { path: '/schedule', component: SchedBuilder },
     { path: '/academics', component: AcademicReport},
-    { path: '/application', component: ApplicationHomepage}
+    { path: '/application', component: ApplicationHomepage},
+    { path: '/new-page', name: 'NewPage', component: NewPage}
 ]
 
 // create the router instance and export it
@@ -31,7 +34,10 @@ const router = createRouter({
 })
 // check if the user is logged in before navigating to any route
 router.beforeEach((to, from, next) => {
-    if (to.path === '/')  {
+    if (to.path === '/login'){
+        next()
+    }   
+    else if (to.path === '/')  {
         if (VueCookies.get('auth-token')) {
             next('/dashboard')
         } else {
@@ -40,7 +46,12 @@ router.beforeEach((to, from, next) => {
         
     } 
     else {
-        next()
+        if (VueCookies.get('auth-token')) {
+            next()
+        } 
+        else {
+            next('/login')
+        }
     }
 })
 export default router

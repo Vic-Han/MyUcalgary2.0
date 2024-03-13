@@ -130,9 +130,9 @@
                 "LectureNO" : 1
             },
             "Tutorial":{
-                "days" : "TTH",
+                "days" : "TR",
                 "start" : 14,
-                "end" : 16,
+                "end" : 15.83,
                 "roomno": "KNB 132",
                 "TutorialNO" : 1
             }
@@ -146,7 +146,7 @@
                 "LectureNO" : 2
             },
             "Tutorial":{
-                "days" : "TTH",
+                "days" : "TR",
                 "start" : 14,
                 "end" : 15,
                 "roomno": "KNB 132",
@@ -162,7 +162,7 @@
                 "LecNO" : 1
             },
             "Tutorial":{
-                "days" : "TTH",
+                "days" : "TR",
                 "start" : 14,
                 "end" : 15,
                 "roomno": "KNB 132",

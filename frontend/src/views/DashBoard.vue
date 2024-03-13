@@ -13,7 +13,7 @@
             </GradePreview>
         </router-link>
     </div>
-
+<!-- 
     <div class="flex flex-wrap gap-4 mt-3 mx-3">
         <div class="flex-1 w-1-3 bg-gray-100 rounded-lg shadow-md p-4">
             <FinancePieChart />
@@ -34,7 +34,7 @@
             </router-link>
             </div>
         </div>
-    </div>
+    </div> -->
 
 </template>
   

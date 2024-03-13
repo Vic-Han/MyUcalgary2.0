@@ -20,7 +20,7 @@
             </div> 
         </div>
     </div>
-   <div class="p-2 text-left text-sm">
+   <div v-if="!dashboardView" class="p-2 text-left text-sm">
         <div>{{ term }}</div>
         <div> Level: {{ year }}</div>
         <div> Units Enrolled: {{ unitsEnrolled }}</div>
@@ -64,6 +64,11 @@
             program:{
                 type: String,
                 required: true
+            },
+            dashboardView:{
+                type: Boolean,
+                default: false,
+                required: false
             }
 
         },

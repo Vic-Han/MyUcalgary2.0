@@ -24,6 +24,7 @@
         },
         created(){
             // delete the whole "created" method afterwards
+            // this is just for you to see what this object looks like!
             console.log(this.requirements)
 
         }

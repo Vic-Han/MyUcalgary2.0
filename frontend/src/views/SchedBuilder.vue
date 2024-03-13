@@ -1,22 +1,25 @@
 <!-- This is the SchedBuilder component that toggles when the route is set to schedule -->
 <template>
     <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false"></AdvancedSearch>
+    <AcademicSchedulePopup v-if="academicRequirementsPopup" :requirements="degreeRequirements" @close="academicRequirementsPopup = false"></AcademicSchedulePopup>
     <div class = "flex flex-row">
-        <div class = "w-96 flex flex-col">
+        <div class = "w-96 flex flex-col h-screen">
             <img src = "@/assets/unilogo.png " class = "w-10/12">
             <div class = "flex flex-row w-10/12 relative left-5">
                 <input type = "text" v-model="courseSearchTerm" class = "w-40 border border-black-100">
                 <div class = "mx-3" @click = "searchResults"> Search</div>
                 <div @click = "advancedSearchOpen = true"> Advanced </div>
             </div>
-            <div>
-                <div v-for = "(course,index) in courseSearchResults" :key="index">
-                <CoursePreview :course="course" :number="index" 
-                @addcourse="addCourseToCart"
-                @removecourse="removeCourseFromSelected"
-                ></CoursePreview>
-                </div>
+            <div class = "h-4/6 overflow-y-auto">
+                    <div v-for = "(course,index) in courseSearchResults" :key="index">
+                    <CoursePreview :course="course" :number="index" 
+                    @addcourse="addCourseToCart"
+                    @removecourse="removeCourseFromSelected"
+                    ></CoursePreview>
+                    </div>
+                
             </div>
+            <div @click="academicRequirementsPopup=true"> Academic Requirements</div>
         </div>
         <div>
             <div class = "flex flex-row">
@@ -58,15 +61,18 @@ import SchedPreview from '@/components/SchedPreview.vue'
 import CoursePreview from '@/components/CoursePreview.vue'
 import SelectedCourse from '@/components/SelectedCourse.vue'
 import AdvancedSearch from '@/components/AdvancedSearch.vue'
+import AcademicSchedulePopup from '@/components/AcademicSchedulePopup.vue'
 import data from './SB.json'
 import SampleSchedule from './SampleSched.json'
+
     export default{
         name : 'SchedBuilder',
         components: {
             SchedPreview,
             CoursePreview,
             SelectedCourse,
-            AdvancedSearch
+            AdvancedSearch,
+            AcademicSchedulePopup
         },
         data : () => {
             return {
@@ -86,6 +92,7 @@ import SampleSchedule from './SampleSched.json'
                 workers:[],
                 advancedFilters: {
                 },
+                academicRequirementsPopup: false
                 
             }
         },

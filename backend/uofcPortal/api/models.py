@@ -1,7 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 # Create your models here.
+
+# this signal will automatically create a token for each new user
+@receiver(post_save, sender=User)
+def create_user_token(sender, instance, created, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
 
 class Faculty(models.Model):
     faculty_name = models.CharField(max_length=30, unique=True, primary_key=True)
@@ -86,6 +95,8 @@ class Student(models.Model):
     emergency_contact3 = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, null=True, related_name="contact3")
     program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
 
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+
     # To show Student's name in admin panel
     def __str__(self):
         return f"{self.student_id} - {self.student_last_name}, {self.student_first_name}"
@@ -156,7 +167,7 @@ class Transaction(models.Model):
     transaction_amount = models.FloatField()
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
-    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
+    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=False)
 
     def __str__(self):
         return f"{self.transaction_type} - {self.transaction_name}: ${self.transaction_amount}"

@@ -2,14 +2,15 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
+from .mixins import GradeMixins 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from .models import Student, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction
+from .models import Student, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications
 from .serializers import StudentSerializer, UserSerializer, FacultySerializer, DepartmentSerializer, ProgramSerializer, AddressSerializer
-from .serializers import CourseSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer
+from .serializers import CourseSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer, StudentApplicationsSerializer
 
 
 # Create your views here.
@@ -92,8 +93,15 @@ class TransactionViewSet(viewsets.ModelViewSet):
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
 
+# To be modifed
+class StudentApplicationsViewSet(viewsets.ModelViewSet):
+    queryset = StudentApplications.objects.all()
+    serializer_class = StudentApplicationsSerializer
+    # authentication_classes = (TokenAuthentication,)
+    # permission_classes = (IsAuthenticated,)
 
-class StudentGradeView(APIView):
+
+class StudentGradeView(APIView, GradeMixins):
     # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
     # permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
 
@@ -140,129 +148,7 @@ class StudentGradeView(APIView):
             "activity": activity
         }
         return Response(response)
-
-
-    def grade_to_letter(self, grade):
-        if grade >= 97:
-            return 'A+'
-        elif grade >= 93:
-            return 'A'
-        elif grade >= 90:
-            return 'A-'
-        elif grade >= 87:
-            return 'B+'
-        elif grade >= 83:
-            return 'B'
-        elif grade >= 80:
-            return 'B-'
-        elif grade >= 77:
-            return 'C+'
-        elif grade >= 73:
-            return 'C'
-        elif grade >= 70:
-            return 'C-'
-        elif grade >= 67:
-            return 'D+'
-        elif grade >= 63:
-            return 'D'
-        elif grade >= 60:
-            return 'D-'
-        else:
-            return 'F'
-        
-    # Convert numeric grade to GPA points.
-    def grade_to_gpa(self, grade):
-        if grade >= 97:
-            return 4.0  # A+
-        elif grade >= 93:
-            return 4.0  # A
-        elif grade >= 90:
-            return 3.7  # A-
-        elif grade >= 87:
-            return 3.3  # B+
-        elif grade >= 83:
-            return 3.0  # B
-        elif grade >= 80:
-            return 2.7  # B-
-        elif grade >= 77:
-            return 2.3  # C+
-        elif grade >= 73:
-            return 2.0  # C
-        elif grade >= 70:
-            return 1.7  # C-
-        elif grade >= 67:
-            return 1.3  # D+
-        elif grade >= 63:
-            return 1.0  # D
-        elif grade >= 60:
-            return 0.7  # D-
-        else:
-            return 0.0  # F
-
-    def gpa_to_letter_grade(self, gpa):
-        if gpa >= 4.0:
-            return 'A+'
-        elif gpa >= 3.7:
-            return 'A'
-        elif gpa >= 3.3:
-            return 'A-'
-        elif gpa >= 3.0:
-            return 'B+'
-        elif gpa >= 2.7:
-            return 'B'
-        elif gpa >= 2.3:
-            return 'B-'
-        elif gpa >= 2.0:
-            return 'C+'
-        elif gpa >= 1.7:
-            return 'C'
-        elif gpa >= 1.3:
-            return 'C-'
-        elif gpa >= 1.0:
-            return 'D+'
-        elif gpa >= 0.7:
-            return 'D'
-        elif gpa >= 0.0:
-            return 'F'
-        else:
-            return 'F'
-
-        
-    def calculate_term_gpa_and_letter_grade(self, courses):
-        if not courses:
-            return 0, 'N/A'  # If no courses taken in a semester, return 0 GPA and N/A as letter grade
-        
-
-        total_gpa = sum(self.grade_to_gpa(course['grade']) for course in courses)
-        term_gpa = total_gpa / len(courses)
-        letter_grade = self.gpa_to_letter_grade(term_gpa)
-        return term_gpa, letter_grade
-
-
-    def calculate_overall_gpa(self, activity):
-        total_units = 0
-        total_weighted_gpa = 0
-        
-        for term, info in activity.items():
-            # Calculate term GPA if not already done
-            if 'TermGPA' not in info or 'Units Enrolled' not in info:
-                term_gpa, term_letter_grade = self.calculate_term_gpa_and_letter_grade(info['courses'])
-                info['TermGPA'] = term_gpa
-                units_enrolled = sum(course.get('units', 3) for course in info['courses'])
-                info['Units Enrolled'] = units_enrolled
-            else:
-                units_enrolled = info['Units Enrolled']
-                term_gpa = info['TermGPA']
-            
-            total_units += units_enrolled
-            total_weighted_gpa += term_gpa * units_enrolled
-
-        if total_units == 0:
-            return 0  # Avoid division by zero
-        overall_gpa = round(total_weighted_gpa / total_units, 2)
-        return overall_gpa
     
-
 
 class StudentFinancesView(APIView):
     # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
@@ -307,7 +193,6 @@ class StudentFinancesView(APIView):
             else:
                 activity[term_name][1]["Debit"].append(transaction_entry)
 
-
         # Calculate financial summary
         total_paid = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_amount > 0)
         total_awards = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_type == "award")
@@ -324,3 +209,63 @@ class StudentFinancesView(APIView):
         }
 
         return Response(response_data)
+    
+
+class DashboardView(APIView, GradeMixins):
+
+    def get(self, request):
+        student = Student.objects.first()
+        if not student:
+            return Response({"error": "No student found"}, status=404)
+        
+        # Dashboard data structure
+        dashboard_data = {
+            "grades": {},
+            "finances": {}
+        }
+
+        # Grades
+        enrollments = Enrollment.objects.filter(student=student)
+        for enrollment in enrollments:
+            term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
+            grades = Grade.objects.filter(enrollment=enrollment)
+
+            if term_name not in dashboard_data["grades"]:
+                dashboard_data["grades"][term_name] = {
+                    "TermGPA": 0,
+                    "TermLetterGrade": "",
+                    "courses": []
+                }
+
+            for grade in grades:
+                course_info = {
+                    "name": enrollment.lecture.course.course_code,
+                    "letter": self.grade_to_letter(grade.grade),
+                    "grade": grade.grade,
+                }
+                dashboard_data["grades"][term_name]["courses"].append(course_info)
+
+            # Calculate TermGPA and TermLetterGrade
+            term_gpa, term_letter_grade = self.calculate_term_gpa_and_letter_grade(dashboard_data["grades"][term_name]["courses"])
+            dashboard_data["grades"][term_name]["TermGPA"] = term_gpa
+            dashboard_data["grades"][term_name]["TermLetterGrade"] = term_letter_grade
+
+        # Finances
+        transactions = Transaction.objects.filter(student=student).order_by('term__term_year', 'term__term_name')
+        for transaction in transactions:
+            term_name = f"{transaction.term.term_name} {transaction.term.term_year}"
+            if term_name not in dashboard_data["finances"]:
+                dashboard_data["finances"][term_name] = {
+                    "balance": 0,
+                    "due": "To Be Determined"  # To be adjust as needed
+                }
+
+            # Assuming negative amount is due and positive is paid/credit
+            dashboard_data["finances"][term_name]["balance"] += transaction.transaction_amount
+
+        return Response(dashboard_data)
+    
+
+
+
+

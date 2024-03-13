@@ -171,3 +171,16 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f"{self.transaction_type} - {self.transaction_name}: ${self.transaction_amount}"
+    
+
+# To be modifed
+class StudentApplications(models.Model):
+    application_recieved = models.DateField(auto_now_add=True)
+    application_status = models.CharField(max_length=30)
+    application_decision = models.CharField(max_length=30)
+
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
+    program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f"{self.application_id} - {self.student.student_id} - {self.program.program_name}"

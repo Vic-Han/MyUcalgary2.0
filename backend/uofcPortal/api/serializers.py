@@ -17,17 +17,37 @@ class UserSerializer(serializers.ModelSerializer):
         Token.objects.create(user=user) # to create a token for new users
         return user
 
-
-class StudentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Student
-        fields = '__all__'
-
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
         fields = '__all__'
-
+class StudentSerializer(serializers.ModelSerializer):
+    address = serializers.SerializerMethodField()
+    emergency_contact1 = serializers.SerializerMethodField()
+    emergency_contact2 = serializers.SerializerMethodField()
+    emergency_contact3 = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Student
+        fields = '__all__'
+    def get_address(self,obj):
+        address = obj.address
+        if address:
+            return f"{address.address_country},{address.address_province},{address.address_city},{address.address_street_address}, {address.address_postal_code}"
+        return ""
+    def get_emergency_contact1(self,obj):
+        if obj.emergency_contact1:
+            return f"{obj.emergency_contact1.emergency_contact_name},{obj.emergency_contact1.emergency_contact_phone},{obj.emergency_contact1.emergency_contact_relationship}"
+        return None
+    def get_emergency_contact2(self,obj):
+        if obj.emergency_contact2:
+            return f"{obj.emergency_contact2.emergency_contact_name},{obj.emergency_contact2.emergency_contact_phone},{obj.emergency_contact2.emergency_contact_relationship}"
+        return None
+    def get_emergency_contact3(self,obj):
+        if obj.emergency_contact3:
+            return f"{obj.emergency_contact3.emergency_contact_name},{obj.emergency_contact3.emergency_contact_phone},{obj.emergency_contact3.emergency_contact_relationship}"
+        return None
+    
 
 
 class PersonalInfoSerializer(serializers.ModelSerializer):

@@ -19,7 +19,7 @@ router.register('transactions', TransactionViewSet, basename='transaction')
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('api/student-grades/<str:student_id>/', StudentGradeView.as_view(), name='student-grade'),
+    path('api/student-grades/', StudentGradeView.as_view(), name='student-grade'),
     path('api/student-finances/', StudentFinancesView.as_view(), name='student-finances'),
 
 

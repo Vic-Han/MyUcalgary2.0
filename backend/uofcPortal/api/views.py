@@ -94,20 +94,25 @@ class TransactionViewSet(viewsets.ModelViewSet):
 
 
 class StudentGradeView(APIView):
-    def get(self, request, student_id):
-        student = Student.objects.get(student_id=student_id)
-        enrollments = Enrollment.objects.filter(student=student).select_related('course', 'term')
+    # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    # permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
+
+    def get(self, request):
+
+        student = Student.objects.first()  # Replace with authentication late
+        # enrollments = Enrollment.objects.filter(student=student).select_related('course', 'term')
+        enrollments = Enrollment.objects.filter(student=student)
         
         activity = {}
         for enrollment in enrollments:
-            term = enrollment.term.term_name
+            term = enrollment.lecture.term.term_name
             grades = Grade.objects.filter(enrollment=enrollment)
             if term not in activity:
                 activity[term] = {
                     "Units Enrolled": 0,
-                    "Program": f"{student.program.program_name}, {student.program.program_stream}, {student.program.program_major}",
-                    "Level": enrollment.year,
-                    "Plan": f"{student.program.program_stream}, {student.program.program_major}",
+                    "Program": f"{student.program.program_name}, {student.program.program_degree_level}, {student.program.program_major}",
+                    "Level": enrollment.lecture.term.term_year,
+                    "Plan": f"{student.program.program_degree_level}, {student.program.program_major}",
                     "TermGPA": 0,
                     "TermLetterGrade": "",
                     "courses": []
@@ -115,10 +120,10 @@ class StudentGradeView(APIView):
 
             for grade in grades:
                 course_info = {
-                    "name": enrollment.course.course_code,
+                    "name": enrollment.lecture.course.course_code,
                     "grade": grade.grade,
                     "letter": self.grade_to_letter(grade.grade),
-                    "units": enrollment.course.units
+                    "units": enrollment.lecture.course.course_units
                 }
                 activity[term]["courses"].append(course_info)
                 activity[term]["Units Enrolled"] += 3 # Assuming each course is 3 units

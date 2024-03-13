@@ -86,6 +86,8 @@ class Student(models.Model):
     emergency_contact3 = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, null=True, related_name="contact3")
     program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
 
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+
     # To show Student's name in admin panel
     def __str__(self):
         return f"{self.student_id} - {self.student_last_name}, {self.student_first_name}"
@@ -156,7 +158,7 @@ class Transaction(models.Model):
     transaction_amount = models.FloatField()
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
-    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
+    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=False)
 
     def __str__(self):
         return f"{self.transaction_type} - {self.transaction_name}: ${self.transaction_amount}"

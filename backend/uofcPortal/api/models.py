@@ -30,14 +30,10 @@ class Department(models.Model):
         return self.department_name
 
 class Program(models.Model):
-    program_name = models.CharField(max_length=10, unique=True, primary_key=True)
+    program_name = models.CharField(max_length=10, unique=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
     program_degree_level = models.CharField(max_length=30) #bach vs masters vs phd
-    program_major = models.CharField(max_length=30)
-    program_minor = models.CharField(max_length=30, blank=True, null=True)
     program_honor = models.BooleanField()
-
-    major_department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="major_program")
-    minor_department = models.ForeignKey(Department, on_delete=models.CASCADE, blank=True, null=True, related_name="minor_program")
 
     # To show Program's name in admin panel
     def __str__(self):
@@ -82,18 +78,16 @@ class Student(models.Model):
     mobile_phone_number = models.CharField(blank=True, max_length=15)
     other_phone_number = models.CharField(blank=True, max_length=15)
     preferred_phone = models.CharField(default="home", max_length=6)
-
     personal_email = models.EmailField()
     school_email = models.EmailField()
     preferred_email = models.CharField(default="personal", max_length=8)
-
     preferred_emergency_contact = models.CharField(default="1", max_length=1)
-
     address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
     emergency_contact1 = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, null=True, related_name="contact1")
     emergency_contact2 = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, null=True, related_name="contact2")
     emergency_contact3 = models.ForeignKey(EmergencyContact, on_delete=models.CASCADE, null=True, related_name="contact3")
-    program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
+
+    # program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 
@@ -172,15 +166,16 @@ class Transaction(models.Model):
     def __str__(self):
         return f"{self.transaction_type} - {self.transaction_name}: ${self.transaction_amount}"
     
-
-# To be modifed
 class StudentApplications(models.Model):
-    application_recieved = models.DateField(auto_now_add=True)
     application_status = models.CharField(max_length=30)
-    application_decision = models.CharField(max_length=30)
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
-    program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
+
+    major_program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name="major_program")
+    minor_program = models.ForeignKey(Program, on_delete=models.CASCADE, blank=True, null=True, related_name="minor_program")
+
+    concentration = models.BooleanField()
+    honors_program = models.BooleanField()
 
     def __str__(self):
-        return f"{self.application_id} - {self.student.student_id} - {self.program.program_name}"
+        return f"{self.id} - StudentID:{self.student.student_id} ({self.student.student_first_name} {self.student.student_last_name})"

@@ -94,12 +94,57 @@ class TransactionViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated,)
 
 # To be modifed
-class StudentApplicationsViewSet(viewsets.ModelViewSet):
-    queryset = StudentApplications.objects.all()
-    serializer_class = StudentApplicationsSerializer
+class StudentApplicationsViewSet(APIView):
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
 
+    def get(self, request):
+        student = Student.objects.first()  # Replace with authentication later
+        if not student:
+            return Response({"error": "No student found"}, status=404)
+        applications = StudentApplications.objects.filter(student=student)
+
+        undergrad_applications = [
+            {
+                "primary key": application.pk,
+                "faculty": application.major_program.department.faculty.faculty_name,
+                "program": application.major_program.program_name,
+                "major": application.major_program.program_name,
+                "minor": application.minor_program.program_name if application.minor_program else "None",
+                "concentration": application.concentration, 
+                "status": application.application_status
+            }
+            for application in applications.filter(major_program__program_degree_level="Bachelor")
+        ]       
+
+        graduate_applications = [
+            {
+                "primary key": application.pk,
+                "faculty": application.major_program.department.faculty.faculty_name,
+                "program": application.major_program.program_name,
+                "major": application.major_program.program_name,
+                "type": "Research (What is Type??)",
+                "Advisor": "Ronnie the software architecture goat", 
+                "status": application.application_status
+            }
+            for application in applications.filter(major_program__program_degree_level__in=["Master", "PhD"])
+        ]
+
+        # Mockup for scholarships
+        scholarships = [
+            {
+                "not implemented": "yet",
+            }
+        ]
+
+        # Construct the final response
+        response_data = {
+            "Undergrad applications": undergrad_applications,
+            "Graduate applications": graduate_applications,
+            "Scholarships": scholarships,
+        }
+
+        return Response(response_data)
 
 class StudentGradeView(APIView, GradeMixins):
     # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
@@ -108,8 +153,8 @@ class StudentGradeView(APIView, GradeMixins):
     def get(self, request):
 
         student = Student.objects.first()  # Replace with authentication late
-        # enrollments = Enrollment.objects.filter(student=student).select_related('course', 'term')
         enrollments = Enrollment.objects.filter(student=student)
+        applications = StudentApplications.objects.filter(student=student).first()
         
         activity = {}
         for enrollment in enrollments:
@@ -118,9 +163,9 @@ class StudentGradeView(APIView, GradeMixins):
             if term not in activity:
                 activity[term] = {
                     "Units Enrolled": 0,
-                    "Program": f"{student.program.program_name}, {student.program.program_degree_level}, {student.program.program_major}",
+                    "Program": applications.major_program.program_name,
                     "Level": enrollment.lecture.term.term_year,
-                    "Plan": f"{student.program.program_degree_level}, {student.program.program_major}",
+                    "Plan": f"{applications.major_program.program_degree_level}, {applications.major_program.program_name}",
                     "TermGPA": 0,
                     "TermLetterGrade": "",
                     "courses": []
@@ -161,7 +206,6 @@ class StudentFinancesView(APIView):
         student = Student.objects.first()  # Replace with authentication later
         if not student:
             return Response({"error": "No student found"}, status=404)
-
 
         # Fetch all transactions for the student, ordered by term
         transactions = Transaction.objects.filter(student=student).order_by('term__term_year', 'term__term_name')

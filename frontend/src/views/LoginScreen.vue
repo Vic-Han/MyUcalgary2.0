@@ -49,26 +49,38 @@ export default {
       }, 3000)
     },
     loginAttempt() {
+      // the hard coded server location defined globally
       const serverPath = this.$store.state.serverPath
+      // the endpoint specific to the login
       const apiPath = "/auth/"
 
-      // const body = JSON.stringify({
-      //   username: this.username,
-      //   password: this.password
-      // });
+
+      // creates a json that can be sent in the body of the request
+      // compatible with the library(axios) used
       const body = new FormData()
       body.append('username', this.username)
       body.append('password', this.password)
-
-      console.log(`Request URL: ${serverPath}${apiPath}`, `Request Body:`, body); // Debugging - remove later
-
+      // {
+      //   username: this.username,
+      //   password: this.password
+      // }
+    
+      // the headers that are sent with the request
       const headers=  {
           'Content-Type': 'application/json',
       }
+      // this.$http is equivalent to axios
+      // this.$http.post creates a post request to the server
+      // the first argument is the url of the server
+      // the second argument is the body of the request
+      // the third argument is the headers of the request
       this.$http.post(`${serverPath}${apiPath}`, body, {headers}).then(response => {
+        // response the the response from the server, includes status code, data, and headers
+        // response.data is the data sent from the server
         this.$cookies.set('auth-token', response.data.token)
         this.loginCorrect()
       }).catch(error => {
+        // error is the error from the server, includes status code, data, and headers
         this.loginIncorrect()
         console.log(error)
       })

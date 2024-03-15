@@ -151,8 +151,8 @@ class StudentGradeView(APIView, GradeMixins):
     
 
 class StudentFinancesView(APIView):
-    # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
-    # permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
+    authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
 
     def get(self, request):
        
@@ -267,5 +267,10 @@ class DashboardView(APIView, GradeMixins):
     
 
 
+class StudentScheduleBuilderView(APIView):
+    # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    # permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
 
-
+    def get(self,obj):
+        
+        return Response()

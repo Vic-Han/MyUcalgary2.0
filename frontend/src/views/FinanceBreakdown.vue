@@ -432,6 +432,20 @@
       this.$emit('show-navbar')
       this.$emit('show-search')
       this.$emit('show-profile')
+      const serverpath = this.$store.state.serverPath
+      const apiPath = "/api/student-finances"
+
+      const headers=  {
+          'Content-Type': 'application/json',
+          'Authorization' :`Token ${this.$cookies.get("auth-token")}` 
+      }
+      
+      this.$http.get(`${serverpath}${apiPath}`,{headers}).then(response => {
+        const data = response.data
+        console.log(data)
+
+      })
+      
     }
   };
   

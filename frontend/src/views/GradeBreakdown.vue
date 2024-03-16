@@ -228,9 +228,3 @@ import GradePreview from '@/components/GradePreview.vue';
     }
 };
 </script>
-
-<style>
-select option:hover {
-  background-color: red;
-}
-</style>

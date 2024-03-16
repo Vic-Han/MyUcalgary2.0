@@ -12,7 +12,7 @@
             </div>
             <div class = "h-4/6 overflow-y-auto">
                 <div v-for = "(course,index) in searchedCourses" :key="index">
-                    <CoursePreview :course="course" :number="index" 
+                    <CoursePreview :course="course" :number="computeColor(course.name)" 
                     @addcourse="searchedToSched"
                     @removecourse="removeCourse"
                     ></CoursePreview>
@@ -45,13 +45,17 @@
                         :course="course" :number="index"
                         @unselect="schedToCart"
                         @removecourse="removeCourseFromSched"
+                        @addsection="addSection"
+                        @removesection="removeSection"
                         ></SelectedCourse>
                     </div>
                     <div v-for="(course,index) in cartCourses" :key="index">
                         <SelectedCourse 
-                        :course="course" :number="index"
+                        :course="course" :number="index + schedCourses.length"
                         @select="cartToSched"
                         @removecourse="removeCourseFromCart"
+                        @addsection="addSection"
+                        @removesection="removeSection"
                         ></SelectedCourse>
                     </div>
                 </div>
@@ -112,7 +116,7 @@ let allCourses = []
             allCourses = this.allInfo['allCourses']
             this.degreeRequirements = this.allInfo['academic Requirements']
             this.schedCourses.forEach((item) => {
-                item.included = true;
+                item.included = 'sched';
                 item.selected = 0;
             })
             this.worker = new Worker('./ScheduleWorker.js')
@@ -127,9 +131,13 @@ let allCourses = []
                 }
                 allCourses.forEach((item) => {
                     if(item.name.toLowerCase().includes(term)){
-                        if(this.courseInCart(item.name) || this.courseInSched(item.name)){
-                            item.included = true;
+                        if(this.courseInSched(item.name)){
+                            item.included = 'sched';
                         }
+                        else if(this.courseInCart(item.name) ){
+                            item.included = 'cart';
+                        }
+                       
                         else{
                             item.included = false;
                         }
@@ -142,7 +150,7 @@ let allCourses = []
                     return item.name == courseName
                 })
                 const course = this.searchedCourses[index]
-                course.included = true;
+                course.included = 'sched';
                 course.selected = 0;
                 course.selectedIndices =  Array(course.combinations.length).fill(true)
                 const newSched = [...this.schedCourses, course]
@@ -153,7 +161,7 @@ let allCourses = []
                     return item.name == courseName
                 })
                 const course = this.schedCourses[index]
-                course.included = false;
+                course.included = 'cart';
                 const newCart = [...this.cartCourses, course]
                 this.cartCourses = newCart
                 const newSched = this.schedCourses.filter((item) => {
@@ -162,17 +170,10 @@ let allCourses = []
                 this.schedCourses = newSched
             },
             removeCourseFromCart(courseName){
-                const index = this.cartCourses.findIndex((item) => {
-                    return item.name == courseName
+                const newCart = this.cartCourses.filter((item) => {
+                    return item.name != courseName
                 })
-                for(let i = 0; i < this.searchedCourses; i++){
-                    if(this.searchedCourses[i].name == courseName){
-                        this.searchedCourses[i].included = false;
-                        this.searchedCourses[i].selected = 0;
-                        break;
-                    }
-                }
-                this.cartCourses.splice(index, 1)
+                this.cartCourses = newCart
                 for(let i = 0; i < this.searchedCourses.length; i++){
                     if(this.searchedCourses[i].name == courseName){
                         this.searchedCourses[i].included = false;
@@ -228,7 +229,7 @@ let allCourses = []
                     return item.name == courseName
                 })
                 const course = this.cartCourses[index]
-                course.included = true;
+                course.included = 'sched';
                 const newSched = [...this.schedCourses, course]
                 this.schedCourses = newSched
                 const newCart = this.cartCourses.filter((item) => {
@@ -324,6 +325,49 @@ let allCourses = []
             decrementSchedIndex(){
                 if(this.schedIndex > 0){
                     this.schedIndex = this.schedIndex - 1;
+                }
+            },
+            computeColor(courseName){
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    if(this.schedCourses[i].name === courseName){
+                        return i
+                    }
+                }
+                for(let i = 0; i < this.cartCourses.length; i++){
+                    if(this.cartCourses[i].name === courseName){
+                        return i + this.schedCourses.length
+                    }
+                }
+                return this.schedCourses.length + this.cartCourses.length
+            },
+            addSection(courseName,sectionIndex){
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    if(this.schedCourses[i].name === courseName){
+                        this.schedCourses[i].selectedIndices[sectionIndex] = true
+                        this.computeSchedules()
+                        return
+                    }
+                }
+                for(let i = 0; i < this.cartCourses.length; i++){
+                    if(this.cartCourses[i].name === courseName){
+                        this.cartCourses[i].selectedIndices[sectionIndex] = true
+                        return
+                    }
+                }
+            },
+            removeSection(courseName, sectionIndex){
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    if(this.schedCourses[i].name === courseName){
+                        this.schedCourses[i].selectedIndices[sectionIndex] = false
+                        this.computeSchedules()
+                        return
+                    }
+                }
+                for(let i = 0; i < this.cartCourses.length; i++){
+                    if(this.cartCourses[i].name === courseName){
+                        this.cartCourses[i].selectedIndices[sectionIndex] = false
+                        return
+                    }
                 }
             }
 

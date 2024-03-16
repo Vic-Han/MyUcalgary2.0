@@ -3,7 +3,7 @@
         <div class = "flex flex-row px-3 py-2 text-base" > 
             <div class = "mx-2">{{ course.name }}</div>
             <div class = "mx-2"> {{ course.title }}</div>
-            <div class = "bg-red-100 h-4 w-4" @click="toggleOn" v-if="!course.included"></div>
+            <div class = "bg-red-100 h-4 w-4" @click="toggleOn" v-if="course.included != 'sched' "></div>
             <div class="bg-green-100 h-4 w-4" @click="toggleOff" v-else ></div>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" @click="removeCourse">
                 <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
@@ -35,7 +35,9 @@
         <div v-if="!allClasses" class = "flex flex-row flex-wrap w-80"> 
             <div v-for="(section,index) in sections" :key="index" class = "mx-1">
                 <div>{{section[0] + " " + section[1]}}</div>
-                <input type = "checkbox" v-model="section.selected"> 
+                {{ course.selectedIndices[index] }}
+                <div class="w-4 h-4 bg-green-100" v-if="course.selectedIndices[index]" @click="removeSection(index)"></div>
+                <div class="w-4 h-4 bg-red-100" v-else @click="addSection(index)"></div>
             </div>
         </div>
         <div class = "flex flex-col">
@@ -55,7 +57,7 @@
         </div>
         <div class = "flex flex-col">
             <div class = "flex flex-row">
-                <div class = "mx-1"> Lab Number</div>
+                <div class = "mx-1"> {{tut.name}}</div>
                 <div class="mx-1"> Lab ID</div>
                 <div class="mx-1"> University of Calgary</div>
             </div>
@@ -86,7 +88,7 @@ const animationTime = 300;
                 required: true
             },
         },
-        emits: ['removecourse', 'select', 'unselect'],
+        emits: ['removecourse', 'select', 'unselect', 'addsection', 'removesection'],
         data: () => {
             return {
                 dropDownOpen: true,
@@ -116,6 +118,29 @@ const animationTime = 300;
                         break
                     }
                 }
+            }
+        },
+        watch:{
+            course:{
+                handler(){
+                    const lecID = this.course.combinations[this.course.selected][0]
+                    for(let i = 0; i < this.course.lectures.length; i++){
+                        if(this.course.lectures[i].name === lecID){
+                            this.lecture = this.course.lectures[i]
+                            break
+                        }
+                    }
+                    if(this.course.combinations[this.course.selected].length > 1){
+                        const tutID = this.course.combinations[this.course.selected][1]
+                        for(let i = 0; i < this.course.tutorials.length; i++){
+                            if(this.course.tutorials[i].name === tutID){
+                                this.tut = this.course.tutorials[i]
+                                break
+                            }
+                        }
+                    }
+                },
+                deep: true
             }
         },
         methods:{
@@ -249,6 +274,12 @@ const animationTime = 300;
                 const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
                 const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
                 return `${formattedHours}:${formattedMinutes}${period}`;
+            },
+            addSection(index){
+                this.$emit('addsection', this.course.name, index)
+            },
+            removeSection(index){
+                this.$emit('removesection', this.course.name, index)
             }
         }
     }

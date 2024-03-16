@@ -146,6 +146,9 @@ function depthFirstSearch(remainingCourses, currentSchedule){
                 depthFirstSearch(newRemainingCourses, newSchedule)
             }
         }
+        else{
+            console.log("Invalid Entry")
+        }
     }
     
 }

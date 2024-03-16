@@ -17,7 +17,6 @@
                     @removecourse="removeCourse"
                     ></CoursePreview>
                 </div>
-                
             </div>
             <div @click="academicRequirementsPopup=true"> Academic Requirements</div>
         </div>
@@ -29,28 +28,28 @@
                 
             </div>
             <div class = "flex flex-row">
-                <div class="mx-1"> {{'|<'}} </div>
-                <div class="mx-1"> {{ '<' }} </div>
+                <div class="mx-1" @click="resetSelectedToZero"> {{'|<'}} </div>
+                <div class="mx-1" @click="decrementSchedIndex"> {{ '<' }} </div>
                 <div class="flex flex-col p-2">
                     <div> Result </div>
                     <div> {{ schedules.length > 0 ?  (schedIndex + 1)+ ' of ' + schedules.length : '0 of 0'}} </div>
                 </div>
-                <div class="mx-1"> {{'>'}} </div>
-                <div class="mx-1"> {{'>|'}} </div>
+                <div class="mx-1" @click="incrementSchedIndex"> {{'>'}} </div>
+                <div class="mx-1" @click="setSelectedToLast"> {{'>|'}} </div>
             </div>
         
             <div class = "flex flex-row">
                 <div class = "flex flex-col px-10 w-full">
                     <div v-for="(course,index) in schedCourses" :key="index">
                         <SelectedCourse 
-                        :course="course" :number="index" :selected="0"
+                        :course="course" :number="index"
                         @unselect="schedToCart"
                         @removecourse="removeCourseFromSched"
                         ></SelectedCourse>
                     </div>
                     <div v-for="(course,index) in cartCourses" :key="index">
                         <SelectedCourse 
-                        :course="course" :number="index" :selected="0"
+                        :course="course" :number="index"
                         @select="cartToSched"
                         @removecourse="removeCourseFromCart"
                         ></SelectedCourse>
@@ -58,7 +57,7 @@
                 </div>
                 <div class = "flex flex-col">
                     <!-- <SchedPreview :sched="schedules.length > 0 ? schedules[selectedSched] : null"> </SchedPreview> -->
-                    <SchedPreview :schedule="currentSched"></SchedPreview>
+                    <SchedPreview :schedule="courseListToSched()"></SchedPreview>
                 </div>
             </div>
         </div>
@@ -153,8 +152,14 @@ let allCourses = []
                 const index = this.schedCourses.findIndex((item) => {
                     return item.name == courseName
                 })
-                this.cartCourses.push(this.schedCourses[index])
-                this.schedCourses.splice(index, 1)
+                const course = this.schedCourses[index]
+                course.included = false;
+                const newCart = [...this.cartCourses, course]
+                this.cartCourses = newCart
+                const newSched = this.schedCourses.filter((item) => {
+                    return item.name != courseName
+                })
+                this.schedCourses = newSched
             },
             removeCourseFromCart(courseName){
                 const index = this.cartCourses.findIndex((item) => {
@@ -176,18 +181,12 @@ let allCourses = []
                     }
                 }
             },
-            removeCourseFromSched(courseName){
-                const index = this.schedCourses.findIndex((item) => {
-                    return item.name == courseName
+            removeCourseFromSched(courseName){    
+                const newSched = this.schedCourses.filter((item) => {
+                    return item.name != courseName
                 })
-                for(let i = 0; i < this.searchedCourses; i++){
-                    if(this.searchedCourses[i].name == courseName){
-                        this.searchedCourses[i].included = false;
-                        this.searchedCourses[i].selected = 0;
-                        break;
-                    }
-                }
-                this.schedCourses.splice(index, 1)
+                this.schedCourses = newSched
+    
                 for(let i = 0; i < this.searchedCourses.length; i++){
                     if(this.searchedCourses[i].name == courseName){
                         this.searchedCourses[i].included = false;
@@ -207,13 +206,12 @@ let allCourses = []
             computeSchedules(){
            
                 this.worker.onmessage = (e) => {
-                    console.log(e.data.schedules)
+                    //console.log(e.data.schedules)
                     this.schedules = e.data.schedules
                     this.schedsLoading = false
         
                 }
                 this.worker.onerror = (e) => {
-                    console.log("error!!")
                     console.log(e)
                 }
                 const courses = JSON.parse(JSON.stringify(this.schedCourses));
@@ -221,16 +219,22 @@ let allCourses = []
                     courses: courses
                 })
                 
-                // console.log("message posted!!")
-                // this.schedsLoading = true
+               
+                this.schedsLoading = true
     
             },
             cartToSched(courseName){
                 const index = this.cartCourses.findIndex((item) => {
                     return item.name == courseName
                 })
-                this.schedCourses.push(this.cartCourses[index])
-                this.cartCourses.splice(index, 1)
+                const course = this.cartCourses[index]
+                course.included = true;
+                const newSched = [...this.schedCourses, course]
+                this.schedCourses = newSched
+                const newCart = this.cartCourses.filter((item) => {
+                    return item.name != courseName
+                })
+                this.cartCourses = newCart
             },
             courseInSched(courseName){
                 for(let i = 0; i < this.schedCourses.length; i++){
@@ -248,6 +252,81 @@ let allCourses = []
                 }
                 return false;
             },
+            courseListToSched(){
+                let sched = []
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    const course = this.schedCourses[i]
+                    const selected = course.combinations[course.selected]
+                    console.log(selected)
+                    const schedCourse = {
+                        courseCode: course.name,
+                        courseTitle : course.title,
+                        Lecture : null,
+                        Tutorial:null
+                    }
+                    const lecture = {
+                            days : null,
+                            start : null,
+                            end : null,
+                            roomno: null,
+                            LectureNO : null
+                    }
+                    for(let j = 0; j < course.lectures.length; j++){
+                        console.log(course.lectures[j].name, selected[0])
+                        if(course.lectures[j].name === selected[0]){
+                            lecture.days = course.lectures[j].days
+                            lecture.start = course.lectures[j].start
+                            lecture.end = course.lectures[j].end
+                            lecture.roomno = course.lectures[j].roomno
+                            lecture.LectureNO = course.lectures[j].name
+                            break
+                        }
+                    }
+                    schedCourse.Lecture = lecture
+                    if(selected.length > 1){
+                        const tutorial = {
+                            days : null,
+                            start : null,
+                            end : null,
+                            roomno: null,
+                            TutorialNO : null
+                        }
+                        for(let j = 0; j < course.tutorials.length; j++){
+                            if(course.tutorials[j].name === selected[1]){
+                                tutorial.days = course.tutorials[j].days
+                                tutorial.start = course.tutorials[j].start
+                                tutorial.end = course.tutorials[j].end
+                                tutorial.roomno = course.tutorials[j].roomno
+                                tutorial.TutorialNO = course.tutorials[j].name
+                                break
+                            }
+                        }
+                        schedCourse.Tutorial = tutorial
+                    }
+                    console.log(schedCourse)
+                    sched.push(schedCourse)
+                }
+                return sched
+            },
+            resetSelectedToZero(){
+                this.schedIndex = 0;
+            },
+            setSelectedToLast(){
+                if(this.schedules.length > 0){
+                    this.schedIndex = this.schedules.length - 1;
+                }
+            },
+            incrementSchedIndex(){
+                if(this.schedIndex < this.schedules.length - 1){
+                    this.schedIndex = this.schedIndex + 1;
+                }
+            },
+            decrementSchedIndex(){
+                if(this.schedIndex > 0){
+                    this.schedIndex = this.schedIndex - 1;
+                }
+            }
+
         },
         computed:{
             
@@ -255,12 +334,9 @@ let allCourses = []
         watch:{
             schedCourses:{
                 handler(newList, oldList) {
-                    console.log('schedCourses changed:', newList, oldList);
+                    
                     if (newList.length !== oldList.length) {
                         this.computeSchedules();
-                    }
-                    else{
-                        console.log("no change")
                     }
                 },
                 deep: true,

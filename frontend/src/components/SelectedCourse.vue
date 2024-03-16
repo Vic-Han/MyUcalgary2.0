@@ -85,10 +85,6 @@ const animationTime = 300;
                 type: Number,
                 required: true
             },
-            selected: {
-                type: Number,
-                required: true
-            }
         },
         emits: ['removecourse', 'select', 'unselect'],
         data: () => {
@@ -105,15 +101,15 @@ const animationTime = 300;
         },
         created()  {
             this.sections = this.course.combinations
-            const lecID = this.course.combinations[this.selected][0]
+            const lecID = this.course.combinations[this.course.selected][0]
             for(let i = 0; i < this.course.lectures.length; i++){
                 if(this.course.lectures[i].name === lecID){
                     this.lecture = this.course.lectures[i]
                     break
                 }
             }
-            if(this.course.combinations[this.selected].length > 1){
-                const tutID = this.course.combinations[this.selected][1]
+            if(this.course.combinations[this.course.selected].length > 1){
+                const tutID = this.course.combinations[this.course.selected][1]
                 for(let i = 0; i < this.course.tutorials.length; i++){
                     if(this.course.tutorials[i].name === tutID){
                         this.tut = this.course.tutorials[i]
@@ -185,7 +181,6 @@ const animationTime = 300;
                 else{
                     this.$emit('removecourse', this.course.name)
                 }
-                console.log("Sup")
                 e.stopPropagation()
             },
             toggleOn(e){

@@ -47,7 +47,7 @@
                 :class="classStyles(day,section.Tutorial.start,section.Tutorial.end,index)">
                     {{ section.courseCode + ' ' + section.Tutorial.TutorialNO }}
                 </div>
-        </div>
+            </div>
         
         </div>
         
@@ -67,6 +67,8 @@ const topPos = {
     8: 'top-0',
     8.25: 'top-10',
     9: 'top-10',
+    9.25: 'top-20',
+    9.5: 'top-20',
     10: 'top-20',
     11: 'top-32',
     12: 'top-40',
@@ -104,18 +106,16 @@ const classColor= {
             }
         },
         created() {
-            console.log(this.schedule)
+            //console.log(this.schedule)
         },
         methods: {
             classStyles(day,starttime,endtime,classno){
                 let style = 'absolute ';
                 style += leftPos[day] + ' ';
-                style += 'w-40 box-content p-2';
+                style += 'w-40 box-content p-2 ';
                 style += topPos[starttime] + ' ';
                 style += height[endtime-starttime] + ' ';
-                console.log(classno)
                 style += classColor[classno] + ' ';
-                console.log(day)
                 return style;
             }
         },
@@ -134,9 +134,10 @@ const classColor= {
                     "5pm",
                     "6pm",
                     "7pm",
-                ]
+                ],
+                courses : []
             }
-        }
+        },
     }
 </script>
 <!-- 

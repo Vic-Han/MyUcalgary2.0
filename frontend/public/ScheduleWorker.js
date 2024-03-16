@@ -20,9 +20,9 @@ class Schedule {
             this.takenTimes = [[],[],[],[],[]]
         }
         else{
-            this.selectedOptions = oldSched.selectedOptions
+            this.selectedOptions = [...oldSched.selectedOptions]
             this.selectedOptions.push(index)
-            this.takenTimes = oldSched.takenTimes
+            this.takenTimes = [...oldSched.takenTimes]
             for(let i = 0; i < section.lecture.days.length; i++){
                 const day = section.lecture.days[i]
                 const index = dayToIndex[day]
@@ -97,17 +97,17 @@ function validEntry(currentSchedule, newLecture){
 }
 
 function depthFirstSearch(remainingCourses, currentSchedule){
+    if(remainingCourses.length == 0){
+        return
+    }
     course = remainingCourses[remainingCourses.length - 1]
     const newRemainingCourses = remainingCourses.slice(0, remainingCourses.length - 1);
     // Todo pick course based on heurstic
-    console.log(course)
     for(let index = 0; index < course.selectedIndices.length; index++){
         const section = course.combinations[index]
-        console.log(index)
         if(!course.selectedIndices[index]){
             continue
         }
-        console.log(section)
         const lectureInfo = {
             lecture: {
                 start: null,
@@ -138,10 +138,7 @@ function depthFirstSearch(remainingCourses, currentSchedule){
             }
         }
         if(validEntry(currentSchedule, lectureInfo)){
-            console.log('valid')
-            console.log(currentSchedule)
             const newSchedule = new Schedule(currentSchedule, lectureInfo, index)
-            console.log(newSchedule)
             if(newRemainingCourses.length == 0){
                 schedules.push(newSchedule.selectedOptions)
             }

@@ -94,6 +94,7 @@
 <script>
   export default {
     name: 'AcademicReport',
+    emits: ['show-navbar', 'set-title'],
     data() {
       return {
 
@@ -279,8 +280,6 @@
     },
     created() {
       this.$emit('show-navbar')
-      this.$emit('show-search')
-      this.$emit('show-profile')
       this.$emit('set-title','Academic Report')
       // Preset data should not be modified here, it should be set in data() or computed
     }

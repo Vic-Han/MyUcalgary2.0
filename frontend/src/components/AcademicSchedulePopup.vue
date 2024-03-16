@@ -14,6 +14,7 @@
                 required: true
             }
         },
+        emits: ['close', 'selectcourse'],
         methods: {
             closePopup() {
                 this.$emit('close')

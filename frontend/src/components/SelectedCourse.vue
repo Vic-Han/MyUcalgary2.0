@@ -3,8 +3,8 @@
         <div class = "flex flex-row px-3 py-2 text-base" > 
             <div class = "mx-2">{{ course.name }}</div>
             <div class = "mx-2"> {{ course.title }}</div>
-            <div class = "bg-red-100 h-4 w-4" @click="toggleOff" v-if="included"></div>
-            <div class="bg-green-100 h-4 w-4" @click="toggleOn" v-else ></div>
+            <div class = "bg-red-100 h-4 w-4" @click="toggleOn" v-if="!course.included"></div>
+            <div class="bg-green-100 h-4 w-4" @click="toggleOff" v-else ></div>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" @click="removeCourse">
                 <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
             </svg>       
@@ -90,13 +90,13 @@ const animationTime = 300;
                 required: true
             }
         },
+        emits: ['removecourse', 'select', 'unselect'],
         data: () => {
             return {
                 dropDownOpen: true,
                 dropDownFadeUp: false,
                 dropDownFadeDown: false,
                 dropDownVisible: false,
-                included: true,
                 sections: [],
                 allClasses: true,
                 lecture: null,
@@ -121,7 +121,6 @@ const animationTime = 300;
                     }
                 }
             }
-            console.log(this.lecture)
         },
         methods:{
             courseColor(){
@@ -179,15 +178,22 @@ const animationTime = 300;
                     }, animationTime)
                 }
             },
-            removeCourse(){
-                this.$emit('removecourse', this.number)
+            removeCourse(e){
+                if(this.course.included){
+                    this.$emit('removecourse', this.course.name)
+                }
+                else{
+                    this.$emit('removecourse', this.course.name)
+                }
+                console.log("Sup")
+                e.stopPropagation()
             },
             toggleOn(e){
-                this.included = true
+                this.$emit('select', this.course.name)
                 e.stopPropagation()
             },
             toggleOff(e){
-                this.included = false
+                this.$emit('unselect', this.course.name)
                 e.stopPropagation()
             },
             animation(){
@@ -242,14 +248,12 @@ const animationTime = 300;
                 return time
             },
             convertTime(time){
-               
-                    const hours = Math.floor(time);
-                    const minutes = Math.round((time - hours) * 60);
-                    const period = hours >= 12 ? 'pm' : 'am';
-                    const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
-                    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-                    return `${formattedHours}:${formattedMinutes}${period}`;
-
+                const hours = Math.floor(time);
+                const minutes = Math.round((time - hours) * 60);
+                const period = hours >= 12 ? 'pm' : 'am';
+                const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+                const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+                return `${formattedHours}:${formattedMinutes}${period}`;
             }
         }
     }

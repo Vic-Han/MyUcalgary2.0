@@ -17,7 +17,7 @@
             "lectures": [
                 {
                     "name": "L1",
-                    "days": "TTH",
+                    "days": "TR",
                     "start": 8,
                     "end": 9.25,
                     "Prof": "Ronnie",
@@ -29,7 +29,7 @@
                 },
                 {
                     "name": "L2",
-                    "days": "TTH",
+                    "days": "TR",
                     "start": 9.5,
                     "end": 10.75,
                     "Prof": "Ronnie",
@@ -82,7 +82,7 @@
             "lectures": [
                 {
                     "name": "L1",
-                    "days": "TTH",
+                    "days": "TR",
                     "start": 14,
                     "end": 15.25,
                     "Prof": "Shah",
@@ -144,7 +144,7 @@
                 "LectureNO" : 1
             },
             "Tutorial":{
-                "days" : "TTH",
+                "days" : "TR",
                 "start" : 14,
                 "end" : 16,
                 "roomno": "KNB 132",
@@ -161,7 +161,7 @@
                 "LectureNO" : 2
             },
             "Tutorial":{
-                "days" : "TTH",
+                "days" : "TR",
                 "start" : 14,
                 "end" : 15,
                 "roomno": "KNB 132",
@@ -178,7 +178,7 @@
                 "LecNO" : 1
             },
             "Tutorial":{
-                "days" : "TTH",
+                "days" : "TR",
                 "start" : 14,
                 "end" : 15,
                 "roomno": "KNB 132",

@@ -145,7 +145,7 @@
             closeAdvancedSearch(){
                 this.$emit('close')
             },
-            appluAdvancedSearch(){
+            applyAdvancedSearch(){
                 this.$emit('applyadvancedsearch')
             }
         }

@@ -33,6 +33,7 @@ import Data from './SampleSched.json'
             FinancePieChart,
             SchedPreview
         },
+        emits: ['show-navbar', 'toggle-selected'],
         data: () =>{
             return{
                 Schedule: Data,

@@ -13,15 +13,16 @@
         </div>
         <ProfilePreview v-if="navbarVisible" class="ml-auto mr-5" />
       </div>
-
-      <router-view
-        class="w-full"
+      <div class="w-full">
+        <router-view
         @show-navbar="showNavbar"
         @hide-navbar="hideNavbar"
         @logout-possible="logoutPossible = true"
         @logout-not-possible="logoutPossible = false"
         @toggle-selected="toggleSelected"
       />
+      </div>
+      
       <LogoutOverlay v-if="logout" />
     </div>
   </div>
@@ -33,6 +34,7 @@ import ProfilePreview from './components/ProfilePreview.vue'
 import LogoutOverlay from './components/LogoutOverlay.vue'
 export default {
   name: 'App',
+  
   components: {
     AppNavbar,
     ProfilePreview,

@@ -38,6 +38,7 @@
 import GradePreview from '@/components/GradePreview.vue';
   export default {
     name: 'GradeBreakdown',
+    emits: ['show-navbar', 'toggle-selected'],
     components: {
         GradePreview
     },

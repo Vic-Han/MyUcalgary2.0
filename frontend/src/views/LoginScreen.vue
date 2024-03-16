@@ -26,6 +26,7 @@
 <script>
 export default {
   name: 'LoginScreen',
+  emits : ['logout-possible', 'logout-not-possible', 'hide-navbar'],
   data: () => {
     return {
       username: "",
@@ -67,7 +68,7 @@ export default {
     
       // the headers that are sent with the request
       const headers=  {
-          'Content-Type': 'application/json',
+        'Content-Type': 'application/json',
       }
       // this.$http is equivalent to axios
       // this.$http.post creates a post request to the server

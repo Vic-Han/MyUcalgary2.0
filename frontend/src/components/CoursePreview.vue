@@ -34,6 +34,7 @@ const animationTime = 300
                 required: true
             }
         },
+        emits: ['addcourse', 'removecourse'],
         data:() =>{
             return {
                 dropDownOpen: true,

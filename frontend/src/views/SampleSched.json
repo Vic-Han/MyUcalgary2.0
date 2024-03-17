@@ -4,8 +4,8 @@
         "courseTitle" : "Computer Networks",
         "Lecture" : {
             "days" : "MWF",
-            "start" : 14,
-            "end" : 15,
+            "start" : 12,
+            "end" : 13,
             "roomno": "ICT 121",
             "LectureNO" : "LEC 2"
         },
@@ -29,7 +29,7 @@
             "LectureNO" : "LEC 1"
         },
         "Tutorial":{
-            "days" : "W",
+            "days" : "R",
             "start" : 16,
             "end" : 18,
             "roomno": "ENA 305",

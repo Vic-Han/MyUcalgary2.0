@@ -1,41 +1,56 @@
 <template>
     <div class="academic-report bg-grey-100 shadow-inner p-4 ">
-      <div class="program-information bg-white shadow-md rounded-lg p-6 mb-6 bg-white-100 w-2/5 text-start">
-        <h1 class="text-xl font-semibold mb-4">Program Information</h1>
-        <p><strong>Degree Stream:</strong> {{ programInfo.degree }}</p>
-        <p><strong>Major:</strong> {{ programInfo.major }}</p>
-        <p><strong>Minor:</strong> {{ programInfo.minor }}</p>
-        <p><strong>Concentration:</strong> {{ programInfo.concentrartion }}</p>
-        <p><strong>Year of Program:</strong> {{ programInfo.Year }}</p>
-        <p><strong>Academic Load:</strong> {{ programInfo.academicLoad }}</p>
+      <div class="flex flex-row">
+        <div class="program-information bg-white shadow-md rounded-lg p-6 mb-4 bg-white-100 w-2/5 text-start">
+          <h1 class="text-xl font-semibold mb-4">Program Information</h1>
+          <p><strong>Degree Stream:</strong> {{ programInfo.degree }}</p>
+          <p><strong>Major:</strong> {{ programInfo.major }}</p>
+          <p><strong>Minor:</strong> {{ programInfo.minor }}</p>
+          <p><strong>Concentration:</strong> {{ programInfo.concentrartion }}</p>
+          <p><strong>Year of Program:</strong> {{ programInfo.Year }}</p>
+          <p><strong>Academic Load:</strong> {{ programInfo.academicLoad }}</p>
+        </div>
+        <div class="bg-white-100 rounded-lg shadow-md px-6 mb-4 ml-4 w-3/5">
+          <div class="text-left font-semibold text-xl pt-6">Degree Progress</div>
+          <div class="w-full h-10 bg-grey-100 shadow-xl mt-10 rounded-lg"></div>
+          <div class="absolute -translate-y-20 w-16 h-10 bg-green-100 mt-10 rounded-lg">
+            <div class="pt-1 text-2xl text-white-100 font-semibold">{{ completedProgress }}%</div>
+          </div>
+          <div class="flex flex-row mt-2">
+            <div class="w-1/3 text-lg font-semibold text-left">0%</div>
+            <div class="w-1/3 text-lg font-semibold">50%</div>
+            <div class="w-1/3 text-lg font-semibold text-right">100%</div>
+          </div>
+        </div>
       </div>
-  
-      
+      <div class="h-full w-full bg-white-100 rounded-xl shadow-xl">
+        <div></div>
+      </div>
       <!-- Academic Report Details -->
-      <div class="academic-report-details bg-white shadow-md rounded-lg p-6 mb-6 bg-white-100 overflow-x-hidden" :class="{ 'overflow-hidden': !expandedReport, 'overflow-auto h-96': expandedReport }">
-        <h2 class="text-xl font-semibold mb-4">Academic Report</h2>
+      <!-- <div class="academic-report-details bg-white shadow-md rounded-lg p-6 mb-6 bg-white-100 overflow-x-hidden" :class="{ 'overflow-hidden': !expandedReport, 'overflow-auto h-full': expandedReport }">
+        <h2 class="text-xl font-semibold mb-4">Academic Report</h2> -->
       
         <!-- Major Field -->
-        <div class="font-semibold col-span-full">Major Field</div>
+        <!-- <div class="font-semibold col-span-full">Major Field</div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
           <template v-for="(course, index) in incompleteMajorField" :key="`major-${index}`">
             <div class="course-item relative group" 
               @mouseenter="course.hovered = true" 
-              @mouseleave="course.hovered = false">
+              @mouseleave="course.hovered = false"> -->
               <!-- Course box -->
-              <div :class="{
+              <!-- <div :class="{
                 'bg-green-200': course.status === 'completed',
-                'bg-yellow-200': course.status === 'in progress',
-                'bg-white-100': course.status === 'incomplete',
+                'bg-yellow-200': course.status === 'in-progress',
+                'bg-white-100 border border-grey-100': course.status === 'incomplete',
                 'p-2': true,
                 'rounded': true,
                 'shadow': true,
                 'text-center': true
               }" class="hover:-translate-y-1 transition-transform duration-300">
                 {{ course.code }}
-              </div>
+              </div> -->
               <!-- Tooltip -->
-              <div v-if="course.hovered" class="tooltip absolute bottom-full mb-2 -translate-x-1/2 left-1/2 text-black p-2 border border-gray-500 bg-white-100 rounded shadow-lg whitespace-nowrap max-w-screen overflow-x-auto z-10">
+              <!-- <div v-if="course.hovered" class="tooltip absolute bottom-full mb-2 -translate-x-1/2 left-1/2 text-black p-2 border border-gray-500 bg-white-100 rounded shadow-lg whitespace-nowrap max-w-screen overflow-x-auto z-10">
                 <div><strong>Description:</strong> {{ course.description }}</div>
                 <div><strong>Units:</strong> {{ course.units }}</div>
                 <div><strong>Semester:</strong> {{ course.semester }}</div>
@@ -43,31 +58,31 @@
               </div>
             </div>
           </template>
-        </div>
+        </div> -->
 
         <!-- Required Options -->
-        <div class="flex flex-col my-4 gap-y-4">
+        <!-- <div class="flex flex-col my-4 gap-y-4">
             <div v-for="(option, index) in requiredOptions" :key="index">
               <h3 class="font-semibold">{{ option.name }}</h3>
               <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <template v-for="(course, index) in option.courses" :key="`major-${index}`">
                   <div class="course-item relative group" 
                     @mouseenter="course.hovered = true" 
-                    @mouseleave="course.hovered = false">
+                    @mouseleave="course.hovered = false"> -->
                     <!-- Course box -->
-                    <div :class="{
+                    <!-- <div :class="{
                       'bg-green-200': course.status === 'completed',
-                      'bg-yellow-200': course.status === 'in progress',
-                      'bg-white-100': course.status === 'incomplete',
+                      'bg-yellow-200': course.status === 'in-progress',
+                      'bg-white-100 border border-grey-100' : course.status === 'incomplete',
                       'p-2': true,
                       'rounded': true,
                       'shadow': true,
                       'text-center': true
                     }" class="hover:-translate-y-1 transition-transform duration-300">
                       {{ course.code }}
-                    </div>
+                    </div> -->
                     <!-- Tooltip -->
-                    <div v-if="course.hovered" class="tooltip absolute bottom-full mb-2 -translate-x-1/2 left-1/2 text-black p-2 border border-gray-500 bg-white-100 rounded shadow-lg whitespace-nowrap max-w-screen overflow-x-auto z-10">
+                    <!-- <div v-if="course.hovered" class="tooltip absolute bottom-full mb-2 -translate-x-1/2 left-1/2 text-black p-2 border border-gray-500 bg-white-100 rounded shadow-lg whitespace-nowrap max-w-screen overflow-x-auto z-10">
                       <div><strong>Description:</strong> {{ course.description }}</div>
                       <div><strong>Units:</strong> {{ course.units }}</div>
                       <div><strong>Semester:</strong> {{ course.semester }}</div>
@@ -77,16 +92,16 @@
                 </template>
               </div>
             </div>
-        </div>
+        </div> -->
+<!-- 
+      </div> -->
 
-      </div>
-
-      <div class="flex justify-center mt-4">
+      <!-- <div class="flex justify-center mt-4">
           <button class="btn bg-gray-100 py-2 px-4 rounded transition-colors flex items-center justify-center gap-2" @click="toggleExpandedReport">
             <span v-if="expandedReport" class="text-lg transform rotate-[-90deg] text-black-100">&#8250;</span>
             <span v-else class="text-lg transform rotate-[90deg] text-black-100">&#8250;</span>
           </button>
-        </div>
+        </div> -->
     </div>
   </template>
   
@@ -95,11 +110,11 @@
   export default {
     name: 'AcademicReport',
     emits: ['show-navbar', 'set-title'],
-    data() {
+    data: ()=> {
       return {
 
         expandedReport: false,
-
+        completedProgress: 0,
         programInfo: {
           degree: "Bachelor of Science",
           major: "Computer Science",
@@ -108,56 +123,60 @@
           Year: 4,
           academicLoad: "Full-Time"
         },
+        requiredCourses:
+        [
+          
+        ]
            
-        requiredCourses: {
-            status: 'incomplete',
-            courses: [
-              { code: 'CPSC 231', status: 'completed', description: 'Introduction to Computer Science', units: 3, semester: 'Fall 2020', grade: 'A+', hovered: false, type: 'majorReq' },
-              { code: 'CPSC 233', status: 'completed', description: 'Principles of Software Design', units: 3, semester: 'Winter 2021', grade: 'A', hovered: false, type: 'majorReq' },
-              { code: 'CPSC 331', status: 'completed', description: 'Data Structures, Algorithms, and Their Analysis', units: 3, semester: 'Spring 2021', grade: 'B+', hovered: false, type: 'majorReq' },
-              { code: 'CPSC 313', status: 'completed', description: 'Computer Hardware and Operating Systems', units: 3, semester: 'Fall 2021', grade: 'B', hovered: false, type: 'majorReq' },
-              { code: 'CPSC 449', status: 'in progress', description: 'Advanced Programming Techniques', units: 3, semester: 'Winter 2022', grade: 'In Progress', hovered: false, type: 'majorReq' },
-              { code: 'CPSC 457', status: 'in progress', description: 'Principles of Operating Systems', units: 3, semester: 'Winter 2022', grade: 'In Progress', hovered: false, type: 'majorReq' },
-              { code: 'CPSC 471', status: 'incomplete', description: 'Database Systems', units: 3, semester: 'To Be Taken', grade: 'N/A', hovered: false, type: 'majorReq' },
-              { code: 'CPSC 481', status: 'incomplete', description: 'Human-Computer Interaction I', units: 3, semester: 'To Be Taken', grade: 'N/A', hovered: false, type: 'majorReq' },
-            ]
-        },
+        // requiredCourses: {
+        //     status: 'incomplete',
+        //     courses: [
+        //       { code: 'CPSC 231', status: 'completed', description: 'Introduction to Computer Science', units: 3, semester: 'Fall 2020', grade: 'A+', hovered: false, type: 'majorReq' },
+        //       { code: 'CPSC 233', status: 'completed', description: 'Principles of Software Design', units: 3, semester: 'Winter 2021', grade: 'A', hovered: false, type: 'majorReq' },
+        //       { code: 'CPSC 331', status: 'completed', description: 'Data Structures, Algorithms, and Their Analysis', units: 3, semester: 'Spring 2021', grade: 'B+', hovered: false, type: 'majorReq' },
+        //       { code: 'CPSC 313', status: 'completed', description: 'Computer Hardware and Operating Systems', units: 3, semester: 'Fall 2021', grade: 'B', hovered: false, type: 'majorReq' },
+        //       { code: 'CPSC 449', status: 'in-progress', description: 'Advanced Programming Techniques', units: 3, semester: 'Winter 2022', grade: 'in-progress', hovered: false, type: 'majorReq' },
+        //       { code: 'CPSC 457', status: 'in-progress', description: 'Principles of Operating Systems', units: 3, semester: 'Winter 2022', grade: 'in-progress', hovered: false, type: 'majorReq' },
+        //       { code: 'CPSC 471', status: 'incomplete', description: 'Database Systems', units: 3, semester: 'To Be Taken', grade: 'N/A', hovered: false, type: 'majorReq' },
+        //       { code: 'CPSC 481', status: 'incomplete', description: 'Human-Computer Interaction I', units: 3, semester: 'To Be Taken', grade: 'N/A', hovered: false, type: 'majorReq' },
+        //     ]
+        // },
 
-        requiredOptions: [
-          {
-            name: '500+ level',
-            status: 'in progress',
-            courses: [
-            { code: 'CPSC 533', status: 'completed' },
-            { code: 'CPSC 535', status: 'completed' },
-            { code: 'CPSC 537', status: 'in progress' },
-            ]
-          },
-          {
-            name: '400+ level',
-            status: 'incomplete',
-            courses: [
-            { code: 'CPSC 541', status: 'in progress' },
-            { code: 'CPSC 453', status: 'completed' },
-            { code: 'CPSC 457', status: 'completed' },
-            { code: 'CPSC 471', status: 'in progress' },
-            ]
-          },
-          {
-            name: '300+ level',
-            status: 'completed',
-            courses: [
-            { code: 'CPSC 319', status: 'in progress' },
-            { code: 'CPSC 355', status: 'completed' },
-            ]
-          },
-        ],
+        // requiredOptions: [
+        //   {
+        //     name: '500+ level',
+        //     status: 'in-progress',
+        //     courses: [
+        //     { code: 'CPSC 533', status: 'completed' },
+        //     { code: 'CPSC 535', status: 'completed' },
+        //     { code: 'CPSC 537', status: 'in-progress' },
+        //     ]
+        //   },
+        //   {
+        //     name: '400+ level',
+        //     status: 'incomplete',
+        //     courses: [
+        //     { code: 'CPSC 541', status: 'in-progress' },
+        //     { code: 'CPSC 453', status: 'completed' },
+        //     { code: 'CPSC 457', status: 'completed' },
+        //     { code: 'CPSC 471', status: 'in-progress' },
+        //     ]
+        //   },
+        //   {
+        //     name: '300+ level',
+        //     status: 'completed',
+        //     courses: [
+        //     { code: 'CPSC 319', status: 'in-progress' },
+        //     { code: 'CPSC 355', status: 'completed' },
+        //     ]
+        //   },
+        // ],
       }
     },
     computed: {
         incompleteMajorField() {
             if (this.expandedReport) {
-                return this.requiredCourses.courses.filter(course => course.status === 'incomplete' || course.status === 'in progress' || course.status === 'completed');
+                return this.requiredCourses.courses.filter(course => course.status === 'incomplete' || course.status === 'in-progress' || course.status === 'completed');
                 
             } else {
                 return this.requiredCourses.courses.filter(course => course.status === 'incomplete');
@@ -167,7 +186,7 @@
         incompleteOptions() {
             if (this.expandedReport) {
                 return this.requiredOptions.map(option => ({...option,
-                courses: option.courses.filter(course => course.status === 'incomplete' || course.status === 'in progress' || course.status === 'completed')}));
+                courses: option.courses.filter(course => course.status === 'incomplete' || course.status === 'in-progress' || course.status === 'completed')}));
             } else {
                 return this.requiredOptions.map(option => ({...option,
                 courses: option.courses.filter(course => course.status === 'incomplete')}));
@@ -282,6 +301,121 @@
       this.$emit('show-navbar')
       this.$emit('toggle-selected','academics')
 
+      const backendData = {
+        "requirements":
+        [
+            {
+                "description": "requiredCourses",
+                "requiredUnits": 9,
+                "status": "in progress",
+                "courses":
+                [
+                    {
+                        "name": "CPSC231",
+                        "units": 3,
+                        "status": "completed"
+                    },
+                    {
+                        "name": "CPSC233",
+                        "units": 3,
+                        "status": "in progress"
+                    },
+                    {
+                        "name": "CPSC331",
+                        "units": 3,
+                        "status": "incomplete"
+                    }
+                ]
+            },
+            {
+                "description": "technicalElectives",
+                "requiredUnits": 6,
+                "status": "complete",
+                "courses":
+                [
+                    {
+                        "name": "CPSC231",
+                        "units": 3,
+                        "status": "completed"
+                    },
+                    {
+                        "name": "CPSC233",
+                        "units": 3,
+                        "status": "complete"
+                    },
+                    {
+                        "name": "CPSC331",
+                        "units": 3,
+                        "status": "incomplete"
+                    }
+                ]
+            },
+            {
+                "description": "400 Level MATH Courses",
+                "requiredUnits": 6,
+                "status": "incomplete",
+                "courses":
+                [
+                    {
+                        "name": "MATH401",
+                        "units": 3,
+                        "status": "incomplete"
+                    },
+                    {
+                        "name": "MATH456",
+                        "units": 3,
+                        "status": "incomplete"
+                    },
+                    {
+                        "name": "MATH491",
+                        "units": 3,
+                        "status": "incomplete"
+                    }
+                ]
+            }
+        ]
+      } 
+      let totalUnits = 0
+      let takenUnits = 0
+      let pendingUnits = 0
+      for(let i = 0; i<backendData.requirements[0].courses.length; i++){
+        if(backendData.requirements[0].courses[i].status == 'complete') {
+          takenUnits += backendData.requirements[0].courses[i].units 
+        }
+        if(backendData.requirements[0].courses[i].status == 'in-progress') {
+          pendingUnits += backendData.requirements[0].courses[i].units 
+        }
+      }
+      this.requiredCourses.push(backendData.requirements[0])
+      totalUnits += backendData.requirements[0].requiredUnits
+      for(let i = 1; i < backendData.requirements.length; i++) {
+        totalUnits += backendData.requirements[i].requiredUnits
+        const requiredCourseNos = backendData.requirements[i].requiredUnits / 3
+        this.requiredCourses.push({
+          description: backendData.requirements[i].description,
+          requiredUnits: backendData.requirements[i].requiredUnits,
+          status: backendData.requirements[i].status,
+          courses: []
+        })
+        for(let j = 0; j < requiredCourseNos; j++) {
+          if(backendData.requirements[i].courses[j].status == 'complete') {
+            takenUnits += backendData.requirements[i].courses[j].units
+            this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
+          }
+          if(backendData.requirements[i].courses[j].status == 'in-progress') {
+            pendingUnits += backendData.requirements[i].courses[j].units
+            this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
+          }
+          if(backendData.requirements[i].courses[j].status == 'incomplete') {
+            this.requiredCourses[i].courses.push({
+              name: "Option",
+              units: 3,
+              status: "incomplete"
+            })
+          }
+        }
+      }
+      this.completedProgress = Math.round((takenUnits/totalUnits)*100)
       // Preset data should not be modified here, it should be set in data() or computed
     }
   }

@@ -8,8 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from .models import Student, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications
-from .serializers import StudentSerializer, UserSerializer, FacultySerializer, DepartmentSerializer, ProgramSerializer, AddressSerializer
+from .models import Student, Requirement, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications
+from .serializers import StudentSerializer, RequirementSerializer, UserSerializer, FacultySerializer, DepartmentSerializer, ProgramSerializer, AddressSerializer
 from .serializers import CourseSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer, StudentApplicationsSerializer
 
 
@@ -294,7 +294,30 @@ class DashboardView(APIView, GradeMixins):
 
         return Response(dashboard_data)
     
+class StudentRequirementsView(APIView):
+    def get(self, request):
+        student = Student.objects.first()
+        if not student:
+            return Response({"error": "No student found"}, status=404)
+        
+        requirement_data = {
+            "programInfo": {
+                "degree":{},
+                "major":{},
+                "minor":{},
+                "concentration": "none",
+                "year": {},
+                "academicLoad":{}
+            },
+            "requirements": {}
+        }
 
+        applications = StudentApplications.objects.filter(student_id=student)
+        for application in applications:
+            requirement_data["programInfo"]["degree"] = application.application_status
+            requirement_data["programInfo"]["major"] = application.major_program.program_name
+            requirement_data["programInfo"]["minor"] = application.minor_program.program_name
 
+        return Response(requirement_data)
 
 

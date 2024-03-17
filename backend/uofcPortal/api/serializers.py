@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.authtoken.views import Token
-from .models import Student, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications
+from .models import Student, Requirement, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -162,4 +162,9 @@ class TransactionSerializer(serializers.ModelSerializer):
 class StudentApplicationsSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentApplications
+        fields = '__all__'
+
+class RequirementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Requirement
         fields = '__all__'

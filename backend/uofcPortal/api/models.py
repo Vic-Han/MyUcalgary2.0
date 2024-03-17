@@ -194,3 +194,14 @@ class StudentApplications(models.Model):
 
     def __str__(self):
         return f"{self.id} - StudentID:{self.student.student_id} ({self.student.student_first_name} {self.student.student_last_name})"
+
+class Requirement(models.Model):
+    description = models.CharField(max_length=50)
+    required_units = models.IntegerField()
+    # "complete", "in progress", or "incomplete"
+    courses = models.ManyToManyField(Course, related_name="courses")
+
+    program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f"{self.program.program_name}, {self.description}"

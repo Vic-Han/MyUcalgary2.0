@@ -258,7 +258,6 @@ let allCourses = []
                 for(let i = 0; i < this.schedCourses.length; i++){
                     const course = this.schedCourses[i]
                     const selected = course.combinations[course.selected]
-                    console.log(selected)
                     const schedCourse = {
                         courseCode: course.name,
                         courseTitle : course.title,
@@ -273,7 +272,6 @@ let allCourses = []
                             LectureNO : null
                     }
                     for(let j = 0; j < course.lectures.length; j++){
-                        console.log(course.lectures[j].name, selected[0])
                         if(course.lectures[j].name === selected[0]){
                             lecture.days = course.lectures[j].days
                             lecture.start = course.lectures[j].start
@@ -304,7 +302,6 @@ let allCourses = []
                         }
                         schedCourse.Tutorial = tutorial
                     }
-                    console.log(schedCourse)
                     sched.push(schedCourse)
                 }
                 return sched
@@ -343,7 +340,9 @@ let allCourses = []
             addSection(courseName,sectionIndex){
                 for(let i = 0; i < this.schedCourses.length; i++){
                     if(this.schedCourses[i].name === courseName){
-                        this.schedCourses[i].selectedIndices[sectionIndex] = true
+                        const newSched = [...this.schedCourses]
+                        newSched[i].selectedIndices[sectionIndex] = true
+                        this.schedCourses = newSched
                         this.computeSchedules()
                         return
                     }
@@ -358,7 +357,9 @@ let allCourses = []
             removeSection(courseName, sectionIndex){
                 for(let i = 0; i < this.schedCourses.length; i++){
                     if(this.schedCourses[i].name === courseName){
-                        this.schedCourses[i].selectedIndices[sectionIndex] = false
+                        const newSched = [...this.schedCourses]
+                        newSched[i].selectedIndices[sectionIndex] = false
+                        this.schedCourses = newSched
                         this.computeSchedules()
                         return
                     }
@@ -380,7 +381,8 @@ let allCourses = []
                 handler(newList, oldList) {
                     
                     if (newList.length !== oldList.length) {
-                        this.computeSchedules();
+                        this.computeSchedules()
+                        return
                     }
                 },
                 deep: true,

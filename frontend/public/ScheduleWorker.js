@@ -100,7 +100,7 @@ function depthFirstSearch(remainingCourses, currentSchedule){
     if(remainingCourses.length == 0){
         return
     }
-    course = remainingCourses[remainingCourses.length - 1]
+    const course = remainingCourses[remainingCourses.length - 1]
     const newRemainingCourses = remainingCourses.slice(0, remainingCourses.length - 1);
     // Todo pick course based on heurstic
     for(let index = 0; index < course.selectedIndices.length; index++){
@@ -145,9 +145,6 @@ function depthFirstSearch(remainingCourses, currentSchedule){
             else{
                 depthFirstSearch(newRemainingCourses, newSchedule)
             }
-        }
-        else{
-            console.log("Invalid Entry")
         }
     }
     

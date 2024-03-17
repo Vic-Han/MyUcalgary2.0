@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row w-screen h-screen overflow-hidden bg-grey-100" v-bind:class="{'pl-96':navbarVisible}">
+  <div class="flex flex-row w-screen h-screen overflow-x-hidden bg-grey-100" v-bind:class="{'pl-96':navbarVisible}">
     <AppNavbar v-if="navbarVisible" :selected="selected" />
     <div class="w-full">
       <div class="flex items-center justify-start py-4 px-4 bg-gray-200">
@@ -13,7 +13,7 @@
         </div>
         <ProfilePreview v-if="navbarVisible" class="ml-auto mr-5" />
       </div>
-      <div class="w-full">
+      <div class="w-full pb-10">
         <router-view
         @show-navbar="showNavbar"
         @hide-navbar="hideNavbar"

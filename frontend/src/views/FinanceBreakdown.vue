@@ -285,11 +285,11 @@
                     </a>
                 </div>
             </div>
-            <div class = " bg-white-100 p-5 rounded-xl shadow-lg"> 
+            <div class = " bg-white-100 px-5 pt-5 pb-7 rounded-xl shadow-lg"> 
               <div class="relative flex justify-end mr-4 mb-8">
                   <select v-model="selectedTerm"
                       class="rounded-lg border-2 focus:outline-none 
-                      focus:ring-2 focus:ring-gray-600 focus:border-red transition duration-200 ease-in-out appearance-none bg-white py-2 w-48 pr-10 pl-2 text-left">
+                      focus:ring-2 focus:ring-gray-600 focus:border-red transition duration-200 ease-in-out appearance-none bg-white py-2 pr-10 pl-2 text-left">
                       <option v-for="(value,key) in terms" :value="key" :key="key" class="mb-2">
                           {{ key }}
                       </option>
@@ -299,11 +299,11 @@
 
 
                   <div class = "grid grid-cols-5">
-                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='all'}" @click = "activeTab = 'all' "> All</div>
-                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='fee'}" @click = "activeTab = 'fee' "> Fees</div>
-                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='scholarship'}" @click = " activeTab = 'scholarship'"> Scholarships </div>
-                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='award'}" @click = "activeTab = 'award'"> Awards </div>
-                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class =  "{'bg-gray-300' : activeTab =='payment'}" @click = "activeTab = 'payment'"> My Pay </div>
+                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='all'}" @click = "activeTab = 'all' ">All</div>
+                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='fee'}" @click = "activeTab = 'fee' ">Fees</div>
+                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class =  "{'bg-gray-300' : activeTab =='payment'}" @click = "activeTab = 'payment'">Payments</div>
+                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='scholarship'}" @click = " activeTab = 'scholarship'">Scholarships</div>
+                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='award'}" @click = "activeTab = 'award'">Awards</div>
                   </div>
                   <div class = "flex flex-col rounded-lg shadow-md border border-gray-300 rounded-tl-none">
                     <div class = "flex flex-row">
@@ -356,7 +356,151 @@
                     "date" : "2020-01-03",
                     "amount" : 5000,
                     "type": "fee"
-                }
+                },
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                },
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                },
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                },
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                },
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                },
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                },
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                },
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                },
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                },
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                },
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                },
+                {
+                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
+                    "date" : "2020-01-01",
+                    "amount" : 5000,
+                    "type": "payment"
+                },
+                {
+                    "name" : "Tutution Fees",
+                    "date" : "2020-01-03",
+                    "amount" : 5000,
+                    "type": "fee"
+                },
             ],
             "Winter 2023": [
                 {

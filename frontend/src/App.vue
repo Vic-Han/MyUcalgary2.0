@@ -64,18 +64,19 @@ export default {
         console.log("Searching for " + this.searchTerm)
       },
       toggleSelected(selected){
-        if(selected === "grades"){
-          this.selected = 'dashboard'
-        }
-        else if(selected === "finances"){
-          this.selected = 'dashboard'
-        }
-        else if(selected === "profile"){
-          this.selected = 'dashboard'
-        }
-        else{
-          this.selected = selected
-        }
+        this.selected = selected
+        // if(selected === "grades"){
+        //   this.selected = 'dashboard'
+        // }
+        // else if(selected === "finances"){
+        //   this.selected = 'dashboard'
+        // }
+        // else if(selected === "profile"){
+        //   this.selected = 'dashboard'
+        // }
+        // else{
+        //   this.selected = selected
+        // }
       },
       resetAuth(){
         const token = this.$cookies.get('auth-token')

@@ -11,6 +11,22 @@
         </svg>
         <span class="text-2xl">Dashboard</span>
       </router-link>
+
+      <router-link to="/finances" class="group flex flex-row items-center p-4 border border-white-300 shadow-md mt-4 rounded-xl hover:bg-grey-100"
+      v-bind:class="{'bg-red-100 text-white-100 hover:bg-red-100' : selected === 'finances'}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-8" v-bind:class="{'fill-white-100' : selected === 'finances'}" viewBox="0 -960 960 960">
+          <path d="M444-200h70v-50q50-9 86-39t36-89q0-42-24-77t-96-61q-60-20-83-35t-23-41q0-26 18.5-41t53.5-15q32 0 50 15.5t26 38.5l64-26q-11-35-40.5-61T516-710v-50h-70v50q-50 11-78 44t-28 74q0 47 27.5 76t86.5 50q63 23 87.5 41t24.5 47q0 33-23.5 48.5T486-314q-33 0-58.5-20.5T390-396l-66 26q14 48 43.5 77.5T444-252v52Zm36 120q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>
+        </svg>
+        <span class="text-2xl group-hover:text-white focus:text-white">Finances</span>
+      </router-link>
+
+      <router-link to="/grades" class="group flex flex-row items-center p-4 border border-white-300 shadow-md mt-4 rounded-xl hover:bg-grey-100"
+      v-bind:class="{'bg-red-100 text-white-100 hover:bg-red-100' : selected === 'grades'}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-8" v-bind:class="{'fill-white-100' : selected === 'grades'}" viewBox="0 -960 960 960">
+          <path d="m40-200 210-560h100l210 560h-96l-51-143H187l-51 143H40Zm176-224h168l-82-232h-4l-82 232Zm504 104v-120H600v-80h120v-120h80v120h120v80H800v120h-80Z"/>
+        </svg>
+        <span class="text-2xl group-hover:text-white focus:text-white">Grades</span>
+      </router-link>
       
       <router-link to="/academics" class="group flex flex-row items-center p-4 
       border border-white-300 shadow-md mt-4 rounded-xl hover:bg-grey-100" v-bind:class="{'bg-red-100 text-white-100 hover:bg-red-100'  : selected === 'academics'}">

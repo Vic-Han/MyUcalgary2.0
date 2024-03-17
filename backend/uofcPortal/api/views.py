@@ -199,60 +199,45 @@ class StudentFinancesView(APIView):
     # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
     # permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
 
-    def get(self, request):
-       
-        # student = get_object_or_404(Student, user=request.user)
+    # student = get_object_or_404(Student, user=request.user)
 
+    def get(self, request):
         student = Student.objects.first()  # Replace with authentication later
         if not student:
             return Response({"error": "No student found"}, status=404)
 
-        # Fetch all transactions for the student, ordered by term
         transactions = Transaction.objects.filter(student=student).order_by('term__term_year', 'term__term_name')
         
         activity = {}
         for transaction in transactions:
-            term_name = transaction.term.term_name + " " + str(transaction.term.term_year)
+            term_name = f"{transaction.term.term_name} {transaction.term.term_year}"
             if term_name not in activity:
                 activity[term_name] = []
             
-            # Initialize Credit and Debit categories if they don't exist
-            if not any("Credit" in entry for entry in activity[term_name]):
-                activity[term_name].append({"Credit": []})
-            if not any("Debit" in entry for entry in activity[term_name]):
-                activity[term_name].append({"Debit": []})
-
             transaction_entry = {
                 "name": transaction.transaction_name,
-                "date": transaction.transaction_posted_date,
-                "amount": transaction.transaction_amount,
-                "type": transaction.transaction_type,
+                "date": transaction.transaction_posted_date.strftime('%Y-%m-%d'),
+                "amount": abs(transaction.transaction_amount),
+                "type": "credit" if transaction.transaction_amount > 0 else "debit",
             }
+            
+            activity[term_name].append(transaction_entry)
 
-            # Determine if the transaction is a Credit or Debit and add it to the correct category
-                # If amount > 0, it's a Credit
-                # If amount < 0, it's a Debit
-            if transaction.transaction_amount > 0:
-                activity[term_name][0]["Credit"].append(transaction_entry)
-            else:
-                activity[term_name][1]["Debit"].append(transaction_entry)
-
-        # Calculate financial summary
         total_paid = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_amount > 0)
         total_awards = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_type == "award")
         total_due = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_amount < 0)
         due_by_date = "Jan 1, 2024 (HARDCODED)"  # Ask Vic about this? what's the overall due date mean?
 
-        # Prepare response data
         response_data = {
             "paid": total_paid,
             "awards": total_awards,
-            "due": total_due*-1, # Convert negative due amount to positive
+            "due": total_due * -1,  # Convert negative due amount to positive
             "dueBy": due_by_date,
             "activity": activity
         }
 
         return Response(response_data)
+
     
 
 class DashboardView(APIView, GradeMixins):

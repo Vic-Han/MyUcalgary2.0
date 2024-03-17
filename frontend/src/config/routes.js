@@ -11,6 +11,7 @@ import ProfileInfo from '../views/ProfileInfo.vue'
 import SchedBuilder from '../views/SchedBuilder.vue'
 import ApplicationHomepage from '../views/ApplicationHomepage.vue'
 
+
 // map routes to components imported above
 const routes =  [
     { path: '/login', component: LoginScreen },
@@ -21,7 +22,7 @@ const routes =  [
     { path: '/profile', component: ProfileInfo },
     { path: '/schedule', component: SchedBuilder },
     { path: '/academics', component: AcademicReport},
-    { path: '/application', component: ApplicationHomepage}
+    { path: '/application', component: ApplicationHomepage},
 ]
 
 // create the router instance and export it

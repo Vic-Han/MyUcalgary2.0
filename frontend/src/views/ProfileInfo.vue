@@ -372,6 +372,7 @@
 <script>
     export default{
         name : 'ProfileInfo',
+        emits: ['show-navbar','toggle-selected'],
         components:{
             
         },

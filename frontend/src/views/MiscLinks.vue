@@ -36,7 +36,7 @@
     },
     created() {
       this.$emit('show-navbar')
-      this.$emit('toggle-selected','misc')
+      this.$emit('toggle-selected', 'misc')
       this.groupLinks();
     },
     computed: {

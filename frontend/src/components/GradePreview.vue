@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-row justify-between">
         <div class="flex flex-col items-center mx-10">
-            <div class="text-2xl font-bold mb-4">Semester GPA</div>
+            <div class="text-2xl font-bold mb-4">{{term}}</div>
             <div class="rounded-full w-52 h-52 flex items-center justify-center flex-col border-8" :class="[gpaColours(letter)]" >
                 <span class="text-4xl font-bold" :class="[gpaText(letter)]">{{ average }}</span>
                 <span class="text-4xl font-bold" :class="[gpaText(letter)]">{{ letter  }}</span>
@@ -20,9 +20,8 @@
             </div> 
         </div>
     </div>
-   <div class="p-2 text-left text-sm">
-        <div>{{ term }}</div>
-        <div> Level: {{ year }}</div>
+   <div v-if="!dashboardView" class="p-2 text-left text-sm">
+        <div class="mt-1"> Level: {{ year }}</div>
         <div> Units Enrolled: {{ unitsEnrolled }}</div>
         <div> Plan: {{ plan }}</div>
         <div> Program: {{ program }}</div>
@@ -64,6 +63,11 @@
             program:{
                 type: String,
                 required: true
+            },
+            dashboardView:{
+                type: Boolean,
+                default: false,
+                required: false
             }
 
         },
@@ -173,7 +177,7 @@
             }
         },
         created(){
-            console.log(this.courses)
+            // console.log(this.courses)
         }
 
 }

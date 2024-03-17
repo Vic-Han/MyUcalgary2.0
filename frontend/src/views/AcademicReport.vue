@@ -1,5 +1,5 @@
 <template>
-    <div class="academic-report bg-gray-100 p-4 ">
+    <div class="academic-report bg-grey-100 shadow-inner p-4 ">
       <div class="program-information bg-white shadow-md rounded-lg p-6 mb-6 bg-white-100 w-2/5 text-start">
         <h1 class="text-xl font-semibold mb-4">Program Information</h1>
         <p><strong>Degree Stream:</strong> {{ programInfo.degree }}</p>

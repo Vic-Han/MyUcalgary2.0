@@ -280,7 +280,8 @@
     },
     created() {
       this.$emit('show-navbar')
-      this.$emit('set-title','Academic Report')
+      this.$emit('toggle-selected','academics')
+
       // Preset data should not be modified here, it should be set in data() or computed
     }
   }

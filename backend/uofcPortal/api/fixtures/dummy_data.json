@@ -621,8 +621,8 @@
       "lecture_id": "L01",
       "term": "Fal2023",
       "lecture_days": "MW",
-      "lecture_starttime": "0900",
-      "lecture_endtime": "1030",
+      "lecture_starttime": 9.00,
+      "lecture_endtime": 10.50,
       "lecture_roomnumber": "B100",
       "course": "SENG401",
       "instructor": "001"
@@ -635,8 +635,8 @@
       "lecture_id": "L01",
       "term": "Win2024",
       "lecture_days": "TR",
-      "lecture_starttime": "1100",
-      "lecture_endtime": "1230",
+      "lecture_starttime": 11.00,
+      "lecture_endtime": 12.50,
       "lecture_roomnumber": "C200",
       "course": "PHYS303",
       "instructor": "002"
@@ -649,8 +649,8 @@
       "lecture_id": "L01",
       "term": "Fal2023",
       "lecture_days": "F",
-      "lecture_starttime": "1400",
-      "lecture_endtime": "1530",
+      "lecture_starttime": 14.00,
+      "lecture_endtime": 15.50,
       "lecture_roomnumber": "D300",
       "course": "ENGL201",
       "instructor": "003"

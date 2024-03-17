@@ -620,7 +620,7 @@
     "fields": {
       "lecture_id": "L01",
       "term": "Fal2023",
-      "lecture_days": "MonWed",
+      "lecture_days": "MW",
       "lecture_starttime": "0900",
       "lecture_endtime": "1030",
       "lecture_roomnumber": "B100",
@@ -634,7 +634,7 @@
     "fields": {
       "lecture_id": "L01",
       "term": "Win2024",
-      "lecture_days": "TueThu",
+      "lecture_days": "TR",
       "lecture_starttime": "1100",
       "lecture_endtime": "1230",
       "lecture_roomnumber": "C200",
@@ -648,7 +648,7 @@
     "fields": {
       "lecture_id": "L01",
       "term": "Fal2023",
-      "lecture_days": "Fri",
+      "lecture_days": "F",
       "lecture_starttime": "1400",
       "lecture_endtime": "1530",
       "lecture_roomnumber": "D300",

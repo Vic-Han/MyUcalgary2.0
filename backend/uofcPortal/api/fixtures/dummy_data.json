@@ -190,49 +190,52 @@
 
   {
     "model": "api.Program",
-    "pk": "ProgA",
+    "pk": "1",
     "fields": {
+      "program_name": "Software Engineering",
+      "department": "Engineering",
       "program_degree_level": "Bachelor",
-      "program_major": "Major1",
-      "program_minor": "Minor1",
-      "program_honor": true,
-      "major_department": "Engineering",
-      "minor_department": "Computer Science"
+      "program_honor": false
     }
   },
   {
     "model": "api.Program",
-    "pk": "ProgB",
+    "pk": "2",
     "fields": {
+      "program_name": "Computer Science",
+      "department": "Computer Science",
       "program_degree_level": "Bachelor",
-      "program_major": "Major1",
-      "program_minor": "Minor1",
-      "program_honor": true,
-      "major_department": "General Science",
-      "minor_department": "Physics and Astronomy"
+      "program_honor": true
     }
   },
- 
   {
     "model": "api.Program",
-    "pk": "ProgD",
+    "pk": "3",
     "fields": {
+      "program_name": "Astrophysics",
+      "department": "Physics and Astronomy",
+      "program_degree_level": "Master",
+      "program_honor": false
+    }
+  },
+  {
+    "model": "api.Program",
+    "pk": "4",
+    "fields": {
+      "program_name": "English Literature",
+      "department": "English",
+      "program_degree_level": "Bachelor",
+      "program_honor": true
+    }
+  },
+  {
+    "model": "api.Program",
+    "pk": "5",
+    "fields": {
+      "program_name": "Educational Psychology",
+      "department": "Educational Psychology",
       "program_degree_level": "PhD",
-      "program_major": "Major4",
-      "program_minor": "Minor4",
-      "program_honor": false,
-      "major_department": "Physics and Astronomy"
-    }
-  },
-  {
-    "model": "api.Program",
-    "pk": "ProgE",
-    "fields": {
-      "program_degree_level": "Bachelor",
-      "program_major": "Major5",
-      "program_minor": "Minor5",
-      "program_honor": false,
-      "major_department": "Computer Science"
+      "program_honor": false
     }
   },
 
@@ -403,8 +406,6 @@
       "school_email": "student1@school.com",
       "preferred_email": "school",
 
-      "program": "ProgD",
-
       "emergency_contact1":1,
       "emergency_contact2":2,
       "emergency_contact3":3
@@ -432,8 +433,6 @@
       "school_email": "student2@school.com",
       "preferred_email": "personal",
       
-      "program": "ProgA",
-
       "emergency_contact1":2,
       "emergency_contact2":3,
       "emergency_contact3":4
@@ -458,8 +457,6 @@
       "school_email": "student3@school.com",
       "preferred_email": "school",
       
-      "program": "ProgA",
-
       "emergency_contact1":3,
       "emergency_contact2":4,
       "emergency_contact3":5
@@ -485,8 +482,6 @@
       "school_email": "student4@school.com",
       "preferred_email": "personal",
       
-      "program": "ProgD",
-
       "emergency_contact1":4,
       "emergency_contact2":5,
       "emergency_contact3":1
@@ -511,8 +506,6 @@
       "personal_email": "michael.adams@example.com",
       "school_email": "student5@school.com",
       "preferred_email": "school",
-
-      "program": "ProgE",
 
       "emergency_contact1":1,
       "emergency_contact2":2,
@@ -889,6 +882,62 @@
       "transaction_amount": -150.00,
       "student": 5,
       "term": "Sum2024"
+    }
+  },
+
+  {
+    "model": "api.StudentApplications",
+    "fields": {
+      "application_status": "Submitted",
+      "student": 1,
+      "major_program": "1",
+      "minor_program": "2",
+      "concentration": true,
+      "honors_program": false
+    }
+  },
+  {
+    "model": "api.StudentApplications",
+    "fields": {
+      "application_status": "Under Review",
+      "student": 2,
+      "major_program": "2",
+      "minor_program": null,
+      "concentration": false,
+      "honors_program": true
+    }
+  },
+  {
+    "model": "api.StudentApplications",
+    "fields": {
+      "application_status": "Accepted",
+      "student": 3,
+      "major_program": "3",
+      "minor_program": "2",
+      "concentration": true,
+      "honors_program": false
+    }
+  },
+  {
+    "model": "api.StudentApplications",
+    "fields": {
+      "application_status": "Rejected",
+      "student": 4,
+      "major_program": "4",
+      "minor_program": null,
+      "concentration": false,
+      "honors_program": true
+    }
+  },
+  {
+    "model": "api.StudentApplications",
+    "fields": {
+      "application_status": "Accepted",
+      "student": 5,
+      "major_program": "5",
+      "minor_program": "4",
+      "concentration": true,
+      "honors_program": false
     }
   }
  

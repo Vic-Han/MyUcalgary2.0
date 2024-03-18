@@ -35,6 +35,7 @@
                 <div v-if="time == '7pm'" class="h-5 w-40 px-1 box-content bg-white-200 rounded-br-xl"></div>
                 <div v-else class="h-5 w-40 px-1 box-content bg-white-200 border-b border-grey-200"></div>
             </div>
+            <div class="w-12 text-grey-200 text-right pr-1 h-10">{{ time }}</div>
         </div>
         
         <div class = "absolute w-sched" v-for="(section,index) in schedule" :key="index">
@@ -48,10 +49,7 @@
                     {{ section.courseCode + ' ' + section.Tutorial.TutorialNO }}
                 </div>
             </div>
-        
         </div>
-        
-        
     </div>
 </template>
 
@@ -64,26 +62,33 @@ const leftPos = {
     'F': 'left-friday'
 }
 const topPos = {
-    8: 'top-0',
-    8.25: 'top-10',
-    9: 'top-10',
-    9.25: 'top-20',
-    9.5: 'top-20',
-    10: 'top-20',
-    11: 'top-32',
-    12: 'top-40',
-    13: 'top-52',
-    14: 'top-60',
-    15: 'top-80',
-    16: 'top-80',
-    17: 'top-80',
-    18: 'top-96',
-    19: 'top-96'
+    8: 'top-800',
+    9: 'top-900',
+    9.5: 'top-950',
+    10: 'top-1000',
+    10.5 : 'top-1050',
+    11: 'top-1100',
+    11.5: 'top-1150',
+    12: 'top-1200',
+    12.5: 'top-1250',
+    13: 'top-1300',
+    13.5: 'top-1350',
+    14: 'top-1400',
+    14.5: 'top-1450',
+    15: 'top-1500',
+    15.5 : 'top-1550',
+    16: 'top-1600',
+    16.5: 'top-1650',
+    17: 'top-1700',
+    17.5: 'top-1750',
+    18: 'top-1800',
+    18.5: 'top-1850',
+    19: 'top-1900'
 }
 const height = {
-    1: 'h-5',
-    1.25: 'h-10',
-    2: 'h-20',
+    1: 'height-50',
+    1.25: 'height-115',
+    2: 'height-150',
 }
 const classColor= {
     0: 'bg-course-100',
@@ -112,7 +117,7 @@ const classColor= {
             classStyles(day,starttime,endtime,classno){
                 let style = 'absolute ';
                 style += leftPos[day] + ' ';
-                style += 'w-40 box-content p-2 ';
+                style += 'w-36 box-content p-2 rounded-sm opacity-80 ';
                 style += topPos[starttime] + ' ';
                 style += height[endtime-starttime] + ' ';
                 style += classColor[classno] + ' ';
@@ -140,38 +145,93 @@ const classColor= {
         },
     }
 </script>
-<!-- 
-    Really quick hotfix should be removed later
--->
+
 <style>
     .w-sched{
         width: 55.75rem;
     }
     .left-monday{
-        left: 1rem;
+        left: 3.18rem;
     }
     .left-tuesday{
-        left: 15rem;
+        left: 13.71rem;
     }
     .left-wednesday{
-        left: 30rem;
+        left: 24.26rem;
     }
     .left-thursday{
-        left: 45rem;
+        left: 34.8rem;
     }
     .left-friday{
-        left: 60rem;
+        left: 45.4rem;
     }
     .top-800{
-
+        top: 1.5rem;
     }
     .top-900{
-
+        top: 4.06rem;
+    }
+    .top-950{
+        top: 5.4rem;
     }
     .top-1000{
-
+        top: 6.72rem;
     }
     .top-1100{
-
+        top: 9.98rem;
+    }
+    .top-1200{
+        top: 11.76rem;
+    }
+    .top-1250{
+        top: 13.3rem;
+    }
+    .top-1300{
+        top: 14.6rem;
+    }
+    .top-1350{
+        top: 15.9rem;
+    }
+    .top-1400{
+        top: 16.95rem;
+    }
+    .top-1450{
+        top: 18.1rem;
+    }
+    .top-1500{
+        top: 19.3rem;
+    }
+    .top-1550{
+        top: 20.8rem;
+    }
+    .top-1600{
+        top: 22.05rem;
+    }
+    .top-1650{
+        top: 23.3rem;
+    }
+    .top-1700{
+        top: 24.2rem;
+    }
+    .top-1750{
+        top: 25.2rem;
+    }
+    .top-1800{
+        top: 26.1rem;
+    }
+    .top-1850{
+        top: 27.1rem;
+    }
+    .top-1900{
+        top: 28rem;
+    }
+    .height-50{
+        height: 1.15rem;
+    }
+    .height-115{
+        height: 2.25rem;
+    }
+    .height-150{
+        height: 3.6rem;
     }
 </style>

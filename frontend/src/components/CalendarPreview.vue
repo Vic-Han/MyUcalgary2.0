@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white rounded-lg p-4">
+  <div class="bg-white rounded-lg px-4 py-4">
     <h2 class="font-bold text-3xl mb-10 text-left">Important Dates</h2>
     <!-- Add color codes -->
     <ul class="space-y-2 overflow-y-auto max-h-96 pr-2">
@@ -10,7 +10,7 @@
         <p class="text-3xl font-bold text-gray-800">{{ date.day }}</p>
         </div>
         <div class="mx-12">
-        <p class="font-semibold text-gray-500 text-left">{{ date.event }}</p>
+        <p class="font-semibold text-gray-500 text-left mx-2">{{ date.event }}</p>
         </div>
     </li>
     </ul>

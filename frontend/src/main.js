@@ -8,10 +8,12 @@ import store from './config/store.js'
 // import the global css file and tailwind utilities
 import './index.css'
 import './tailwind.css'
+import axios from 'axios'
 
 const app = createApp(App)
 //app.use(VueWorker)
-app.use(VueCookies, { expires: '30m'})
+app.use(VueCookies, { expires: '20s'})
 app.use(router)
 app.use(store)
+app.config.globalProperties.$http = axios
 app.mount('#app')

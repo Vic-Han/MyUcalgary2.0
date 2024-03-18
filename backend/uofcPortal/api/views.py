@@ -19,6 +19,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
 class AddressViewSet(viewsets.ModelViewSet):
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
@@ -147,12 +148,13 @@ class StudentApplicationsViewSet(APIView):
         return Response(response_data)
 
 class StudentGradeView(APIView, GradeMixins):
-    # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
-    # permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
+    authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
 
     def get(self, request):
 
-        student = Student.objects.first()  # Replace with authentication late
+        #student = Student.objects.first()  # Replace with authentication late
+        student = get_object_or_404(Student, user=request.user)
         enrollments = Enrollment.objects.filter(student=student)
         applications = StudentApplications.objects.filter(student=student).first()
         

@@ -225,62 +225,62 @@
         </div>
       </div>
     </div> -->
-    <div class = "bg-grey-100 flex flex-col px-5 w-full">
-        <div class="flex items-center justify-start text-2xl my-4">
+    <div class = "bg-grey-100 flex flex-col p-5 w-full">
+        <!-- <div class="flex items-center justify-start text-2xl my-4">
           <span class="inline-block transform rotate-180 text-4xl">&#8250;</span>
           <span class="ml-2">Finances</span>
-        </div>
+        </div> -->
         <div class = "flex flex-row gap-x-4">
             <div class = "flex flex-col gap-y-4"> 
                 <div class = "bg-white-100 p-10 rounded-xl shadow-lg"> 
-                   <div class = "text-lg mb-8"> {{ currentTerm }} </div>
-                   <div class = "rounded-full w-64 h-64 mx-8" :style="pieChartStyle"></div>
+                   <div class = "text-2xl mb-4"> {{ currentTerm }} </div>
+                   <div class = "rounded-full w-64 h-64 mx-8 border-grey-200 border-2" :style="pieChartStyle"></div>
                    <div class = "flex flex-row mt-8 justify-center">
                           <div class = "flex items-center mx-4">
-                            <span class="inline-block w-3 h-3 bg-red-500 mr-1"></span><span class="text-red-500">Due</span>
+                            <span class="inline-block w-4 h-4 bg-red-100 mr-1 rounded-sm"></span><span class="text-grey-200">Due</span>
                           </div>
                           <div class = "flex items-center mx-2">
-                            <span class="inline-block w-3 h-3 bg-green-500 mr-1"></span><span class="text-green-500">Paid</span>
+                            <span class="inline-block w-4 h-4 bg-green-100 mr-1 rounded-sm"></span><span class="text-grey-200">Paid</span>
                           </div>
                           <div class = "flex items-center mx-4">
-                            <span class="inline-block w-3 h-3 bg-yellow-500 mr-1"></span><span class="text-yellow-500">Awards</span>
+                            <span class="inline-block w-4 h-4 bg-yellow-100 mr-1 rounded-sm"></span><span class="text-grey-200">Awards</span>
                           </div>
                    </div>
                 </div>
-                <div class = "bg-white-100  flex flex-col p-5 rounded-xl shadow-lg h-80"> 
-                    <div class = "flex flex-col flex-wrap h-64">
-                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                <div class = "bg-white-100  flex flex-col p-5 rounded-xl shadow-lg h-96"> 
+                    <div class = "flex flex-col flex-wrap h-80">
+                    <a href="#" class="text-center text-grey-200 font-bold hover:underline my-5">
                         UPass Opt-in 
                     </a>
-                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                    <a href="#" class="text-center text-grey-200 font-bold hover:underline my-5">
                         Payment Plans
                     </a>
-                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                    <a href="#" class="text-center text-grey-200 font-bold hover:underline my-5">
                         Student Donation Opt-out
                     </a>
-                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                    <a href="#" class="text-center text-grey-200 font-bold hover:underline my-5">
                         Account Inquiry
                     </a>
-                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                    <a href="#" class="text-center text-grey-200 font-bold hover:underline my-5">
                         Health & Dental Opt-out
                     </a>
-                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                    <a href="#" class="text-center text-grey-200 font-bold hover:underline my-5">
                         Payments
                     </a>
-                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                    <a href="#" class="text-center text-grey-200 font-bold hover:underline my-5">
                         Donation Receipt
                     </a>
-                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                    <a href="#" class="text-center text-grey-200 font-bold hover:underline my-5">
                         Receipts
                     </a>
-                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                    <a href="#" class="text-center text-grey-200 font-bold hover:underline my-5">
                         Refunds
                     </a>
-                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                    <a href="#" class="text-center text-grey-200 font-bold hover:underline my-5">
                         Fees Calendar
                     </a>
                     </div>
-                    <a href="#" class="text-center text-black font-bold hover:text-indigo-800 transition duration-150 ease-in-out my-3">
+                    <a href="#" class="text-center text-grey-200 font-bold hover:underline my-3">
                         T2202
                     </a>
                 </div>
@@ -299,15 +299,15 @@
 
 
                   <div class = "grid grid-cols-5">
-                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='all'}" @click = "activeTab = 'all' ">All</div>
-                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='fee'}" @click = "activeTab = 'fee' ">Fees</div>
-                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class =  "{'bg-gray-300' : activeTab =='payment'}" @click = "activeTab = 'payment'">Payments</div>
-                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='scholarship'}" @click = " activeTab = 'scholarship'">Scholarships</div>
-                    <div class = " text-center rounded-t-2xl p-4 bg-white-100 border border-gray-300" v-bind:class = "{'bg-gray-300' : activeTab =='award'}" @click = "activeTab = 'award'">Awards</div>
+                    <div class = " text-center rounded-tl-xl px-4 py-4 bg-grey-100 border border-gray-300" v-bind:class = "{'bg-white-100 border-b-0' : activeTab =='all'}" @click = "activeTab = 'all' ">All</div>
+                    <div class = " text-center px-4 py-4 bg-grey-100 border border-gray-300" v-bind:class = "{'bg-white-100 border-b-0' : activeTab =='fee'}" @click = "activeTab = 'fee' ">Fees</div>
+                    <div class = " text-center px-4 py-4 bg-grey-100 border border-gray-300" v-bind:class =  "{'bg-white-100 border-b-0' : activeTab =='payment'}" @click = "activeTab = 'payment'">Payments</div>
+                    <div class = " text-center px-4 py-4 bg-grey-100 border border-gray-300" v-bind:class = "{'bg-white-100 border-b-0' : activeTab =='scholarship'}" @click = " activeTab = 'scholarship'">Scholarships</div>
+                    <div class = " text-center rounded-tr-xl px-4 pt-4 pb-4 bg-grey-100 border border-gray-300" v-bind:class = "{'bg-white-100 border-b-0' : activeTab =='award'}" @click = "activeTab = 'award'">Awards</div>
                   </div>
-                  <div class = "flex flex-col rounded-lg shadow-md border border-gray-300 rounded-tl-none">
+                  <div class = "flex flex-col rounded-lg shadow-md border-b border-r border-l border-gray-300 rounded-tl-none">
                     <div class = "flex flex-row">
-                        <div class = "p-4 text-left w-64"> Item </div>
+                        <div class = "p-4 text-left w-60"> Item </div>
                         <div class = "p-4 text-left w-36"> Type </div>
                         <div class = "p-4 text-left w-36"> Posted Date </div>
                         <div class = "p-4 text-left w-36"> Charge </div>
@@ -316,7 +316,7 @@
                     </div>
                     <div v-for= '(item, index) in terms[selectedTerm]' :key="index">
                         <div v-if="item.type == activeTab || activeTab == 'all'" class = "flex flex-row border-t-2 border-gray-200">
-                            <div class = "p-4 text-left w-64"> {{ item.name }} </div>
+                            <div class = "p-4 text-left w-60"> {{ item.name }} </div>
                             <div class = "p-4 text-left w-36"> {{ item.type }} </div>
                             <div class = "p-4 text-left w-36"> {{ item.date }} </div>
                             <div class = "p-4 text-left w-36"> {{ paymentType(item.type) == 'charge' ? item.amount : 0}} </div>
@@ -345,150 +345,6 @@
         activeTab: 'all',
         terms:{
             "Winter 2024": [
-                {
-                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
-                    "date" : "2020-01-01",
-                    "amount" : 5000,
-                    "type": "payment"
-                },
-                {
-                    "name" : "Tutution Fees",
-                    "date" : "2020-01-03",
-                    "amount" : 5000,
-                    "type": "fee"
-                },
-                {
-                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
-                    "date" : "2020-01-01",
-                    "amount" : 5000,
-                    "type": "payment"
-                },
-                {
-                    "name" : "Tutution Fees",
-                    "date" : "2020-01-03",
-                    "amount" : 5000,
-                    "type": "fee"
-                },
-                {
-                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
-                    "date" : "2020-01-01",
-                    "amount" : 5000,
-                    "type": "payment"
-                },
-                {
-                    "name" : "Tutution Fees",
-                    "date" : "2020-01-03",
-                    "amount" : 5000,
-                    "type": "fee"
-                },
-                {
-                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
-                    "date" : "2020-01-01",
-                    "amount" : 5000,
-                    "type": "payment"
-                },
-                {
-                    "name" : "Tutution Fees",
-                    "date" : "2020-01-03",
-                    "amount" : 5000,
-                    "type": "fee"
-                },
-                {
-                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
-                    "date" : "2020-01-01",
-                    "amount" : 5000,
-                    "type": "payment"
-                },
-                {
-                    "name" : "Tutution Fees",
-                    "date" : "2020-01-03",
-                    "amount" : 5000,
-                    "type": "fee"
-                },
-                {
-                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
-                    "date" : "2020-01-01",
-                    "amount" : 5000,
-                    "type": "payment"
-                },
-                {
-                    "name" : "Tutution Fees",
-                    "date" : "2020-01-03",
-                    "amount" : 5000,
-                    "type": "fee"
-                },
-                {
-                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
-                    "date" : "2020-01-01",
-                    "amount" : 5000,
-                    "type": "payment"
-                },
-                {
-                    "name" : "Tutution Fees",
-                    "date" : "2020-01-03",
-                    "amount" : 5000,
-                    "type": "fee"
-                },
-                {
-                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
-                    "date" : "2020-01-01",
-                    "amount" : 5000,
-                    "type": "payment"
-                },
-                {
-                    "name" : "Tutution Fees",
-                    "date" : "2020-01-03",
-                    "amount" : 5000,
-                    "type": "fee"
-                },
-                {
-                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
-                    "date" : "2020-01-01",
-                    "amount" : 5000,
-                    "type": "payment"
-                },
-                {
-                    "name" : "Tutution Fees",
-                    "date" : "2020-01-03",
-                    "amount" : 5000,
-                    "type": "fee"
-                },
-                {
-                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
-                    "date" : "2020-01-01",
-                    "amount" : 5000,
-                    "type": "payment"
-                },
-                {
-                    "name" : "Tutution Fees",
-                    "date" : "2020-01-03",
-                    "amount" : 5000,
-                    "type": "fee"
-                },
-                {
-                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
-                    "date" : "2020-01-01",
-                    "amount" : 5000,
-                    "type": "payment"
-                },
-                {
-                    "name" : "Tutution Fees",
-                    "date" : "2020-01-03",
-                    "amount" : 5000,
-                    "type": "fee"
-                },
-                {
-                    "name" : "CIBC Stdnt Pay Tuition & General Fees",
-                    "date" : "2020-01-01",
-                    "amount" : 5000,
-                    "type": "payment"
-                },
-                {
-                    "name" : "Tutution Fees",
-                    "date" : "2020-01-03",
-                    "amount" : 5000,
-                    "type": "fee"
-                },
                 {
                     "name" : "CIBC Stdnt Pay Tuition & General Fees",
                     "date" : "2020-01-01",
@@ -532,9 +388,9 @@
             ],
         },
         pieChartColors: {
-          due: 'red',
-          paid: 'green',
-          awards: 'yellow',
+          due: '#D6001C',
+          paid: '#47A67C',
+          awards: '#FFCD00',
         },
         pieChartSegments: {
           due: { start: '0%', end: '60%' },
@@ -579,14 +435,8 @@
     }
   };
   
-  </script>
+</script>
   
-  
-  <!-- <style scoped>.pie-chart-scale {
-    @apply scale-50;
-  }
-  
-  
-  .transform-scale {
-    @apply scale-50;
-  }</style> -->
+<style>
+
+</style>

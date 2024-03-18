@@ -678,7 +678,13 @@
       "lecture": "3"
     }
   },
-
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": 1,
+      "lecture": "2"
+    }
+  },
 
 
   {
@@ -700,6 +706,13 @@
     "fields": {
       "grade": 78.0,
       "enrollment": 3
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "grade": 62.5,
+      "enrollment": 4
     }
   },
 

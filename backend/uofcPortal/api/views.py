@@ -305,9 +305,9 @@ class StudentRequirementsView(APIView):
                 "degree":{},
                 "major":{},
                 "minor":{},
-                "concentration": "none (HARDCODED)",
-                "year": "3 (HARDCODED)",
-                "academicLoad": "full time (HARDCODED)"
+                "concentration": "none",
+                "year": "3",
+                "academicLoad": "full-time"
             },
             "requirements": []
         }
@@ -322,20 +322,44 @@ class StudentRequirementsView(APIView):
         requirement_data["programInfo"]["major"] = maj_prog.program_name
         requirement_data["programInfo"]["minor"] = min_prog.program_name            
             
+        enrollments = Enrollment.objects.filter(student_id=student)
+        lecture_list = []
+        grade_list = []
+        for enrollment in enrollments:
+            lectures = Lecture.objects.filter(lecture_id=enrollment.lecture_id)
+            for lecture in lectures:
+                lecture_list.append(lecture)
+            grades = Grade.objects.filter(enrollment_id=enrollment)
+            for grade in grades:
+                grade_list.append(grade)
+
         major_requirements = Requirement.objects.filter(program_id=maj_prog)
         for requirement in major_requirements:                
             courses = Course.objects.filter(course_code__in=requirement.courses.all())
             course_data = []
+            units_completed = 0
             for course in courses:
+                status = "incomplete"
+                for grade in grade_list:
+                    if grade.enrollment.lecture.course == course and grade.grade >= 50:
+                        status = "complete"
+                        units_completed += course.course_units
                 course_data.append({
                     "name": course.course_code,
                     "units": course.course_units,
-                    "status": "in-progress (HARDCODED)"
+                    "status": status
                 })
+            req_status = ""
+            if units_completed == requirement.required_units:
+                req_status = "complete"
+            elif 0 < units_completed and units_completed < requirement.required_units:
+                req_status = "in-progress"
+            else:
+                req_status = "incomplete"
             requirement_data["requirements"].append({
                 "description": requirement.description,
                 "requiredUnits": requirement.required_units,
-                "status": "in-progress (HARDCODED)",
+                "status": req_status,
                 "courses": course_data
             })
 

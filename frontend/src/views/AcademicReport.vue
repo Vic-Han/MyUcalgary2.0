@@ -23,22 +23,41 @@
           </div>
         </div>
       </div>
-      <div class="h-full w-full bg-white-100 rounded-xl shadow-xl p-6">
+      <div class="h-2/3 w-full bg-white-100 rounded-xl shadow-xl p-6">
         <div class="font-semibold text-2xl text-left pb-4">Course Breakdown</div>
-        <div v-for="(Requirement,index) in requiredCourses" :key="index">
-          <div class="flex flex-row">
-            <div class="text-left font-semibold text-l w-fit">{{ Requirement.description }}:</div>
-            <div v-if="Requirement.status =='complete'" class="flex flex-row items-center pl-6">
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-green-100" viewBox="0 -960 960 960">
-                  <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
-                </svg>
+        <div class="overflow-y-auto max-h-2/3">
+          <div v-for="(Requirement,index) in requiredCourses" :key="index">
+            <div class="flex flex-row">
+              <div class="text-left font-semibold text-l w-fit">{{ Requirement.description }}:</div>
+              <div v-if="Requirement.status =='complete'" class="flex flex-row items-center pl-6">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-green-100" viewBox="0 -960 960 960">
+                    <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
+                  </svg>
+                </div>
+                <div class="pl-2 text-sm italic text-green-100">Complete</div>
               </div>
-              <div class="pl-2 text-sm italic text-green-100">Complete</div>
+            </div>
+            <div v-if="index == 0" class="grid grid-cols-1">
+              <div v-for="(semester,i) in Requirement.courses">
+                <div class="font-semibold">{{ semester.year }}</div>
+                <div class="grid grid-cols-5 gap-4">
+                  <div v-for="(course,j) in semester.fall">
+                    <div>
+                      {{ course.name }}
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-5 gap-4 pt-2">
+                  <div v-for="(course,j) in semester.winter">
+                    <div>
+                      {{ course.name }}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-
         </div>
       </div>
       <!-- Academic Report Details -->
@@ -133,10 +152,10 @@
         pendingProgress:0,
         programInfo: {
           degree: "Bachelor of Science",
-          major: "Computer Science",
+          major: "Software Engineering Internship Designation",
           minor: "None",
           concentrartion: 'None',
-          Year: 4,
+          Year: 6,
           academicLoad: "Full-Time"
         },
         requiredCourses:
@@ -325,29 +344,209 @@
         "requirements":
         [
             {
-                "description": "Required Cources",
-                "requiredUnits": 9,
+                "description": "Required Courses",
+                "requiredUnits": 96,
                 "status": "in-progress",
                 "courses":
                 [
                     {
-                        "name": "CPSC231",
+                        "name": "CHEM209",
                         "units": 3,
                         "status": "complete",
                         "semester": "F1"
                     },
                     {
-                        "name": "CPSC233",
+                        "name": "ENGG233",
                         "units": 3,
-                        "status": "in-progress",
+                        "status": "complete",
                         "semester": "F1"
                     },
                     {
-                        "name": "CPSC331",
+                        "name": "MATH275",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "F1"
+                    },
+                    {
+                        "name": "MATH211",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "F1"
+                    },
+                    {
+                        "name": "ENGG225",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "F1"
+                    },
+                    {
+                        "name": "ENGG201",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W1"
+                    },
+                    {
+                        "name": "ENGG202",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W1"
+                    },
+                    {
+                        "name": "MATH277",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W1"
+                    },
+                    {
+                        "name": "PHYS259",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W1"
+                    },
+                    {
+                        "name": "ENGG200",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W1"
+                    },
+                    {
+                        "name": "ENGG319",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "F2"
+                    },
+                    {
+                        "name": "PHYS365",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "F2"
+                    },
+                    {
+                        "name": "MATH375",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "F2"
+                    },
+                    {
+                        "name": "ENSF337",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "F2"
+                    },
+                    {
+                        "name": "ENEL353",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "F2"
+                    },
+                    {
+                        "name": "MATH271",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W2"
+                    },
+                    {
+                        "name": "ENEL327",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W2"
+                    },
+                    {
+                        "name": "ENSF409",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W2"
+                    },
+                    {
+                        "name": "ENCM369",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W2"
+                    },
+                    {
+                        "name": "CPSC319",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W2"
+                    },
+                    {
+                        "name": "ENSF480",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "F3"
+                    },
+                    {
+                        "name": "ENCM511",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "F3"
+                    },
+                    {
+                        "name": "CPSC457",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "F3"
+                    },
+                    {
+                        "name": "SENG401",
+                        "units": 3,
+                        "status": "in-progress",
+                        "semester": "W3"
+                    },
+                    {
+                        "name": "SENG438",
+                        "units": 3,
+                        "status": "in-progress",
+                        "semester": "W3"
+                    },
+                    {
+                        "name": "SENG471",
+                        "units": 3,
+                        "status": "in-progress",
+                        "semester": "W3"
+                    },
+                    {
+                        "name": "CPSC441",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W3"
+                    },
+                    {
+                        "name": "CPSC471",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W3"
+                    },
+                    {
+                        "name": "CPSC471",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W3"
+                    },
+                    {
+                        "name": "ENEL500A",
                         "units": 3,
                         "status": "incomplete",
-                        "semester": "F1"
-                    }
+                        "semester": "F4"
+                    },
+                    {
+                        "name": "SENG511",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "F4"
+                    },
+                    {
+                        "name": "ENEL500B",
+                        "units": 3,
+                        "status": "incomplete",
+                        "semester": "W4"
+                    },
+                    {
+                        "name": "SENG533",
+                        "units": 3,
+                        "status": "complete",
+                        "semester": "W4"
+                    },
                 ]
             },
             {
@@ -357,42 +556,90 @@
                 "courses":
                 [
                     {
-                        "name": "CPSC231",
+                        "name": "SENG550",
                         "units": 3,
                         "status": "complete"
                     },
                     {
-                        "name": "CPSC233",
+                        "name": "SENG567",
                         "units": 3,
-                        "status": "complete"
+                        "status": "incomplete"
                     },
                     {
-                        "name": "CPSC331",
+                        "name": "SENG512",
+                        "units": 3,
+                        "status": "incomplete"
+                    },
+                    {
+                        "name": "SENG570",
+                        "units": 3,
+                        "status": "incomplete"
+                    },
+                    {
+                        "name": "SENG580",
                         "units": 3,
                         "status": "incomplete"
                     }
                 ]
             },
             {
-                "description": "400 Level MATH Courses",
-                "requiredUnits": 6,
-                "status": "incomplete",
+                "description": "Complementary Studies",
+                "requiredUnits": 18,
+                "status": "in-progress",
                 "courses":
                 [
                     {
-                        "name": "MATH401",
+                        "name": "ECON201",
+                        "units": 3,
+                        "status": "complete"
+                    },
+                    {
+                        "name": "ECON203",
+                        "units": 3,
+                        "status": "complete"
+                    },
+                    {
+                        "name": "ENGG209",
+                        "units": 3,
+                        "status": "complete"
+                    },
+                    {
+                        "name": "COMS363",
+                        "units": 3,
+                        "status": "complete"
+                    },
+                    {
+                        "name": "ENGG481",
+                        "units": 3,
+                        "status": "complete"
+                    },
+                    {
+                        "name": "ENGG513",
                         "units": 3,
                         "status": "incomplete"
                     },
+                ]
+            },
+            {
+                "description": "Internship designation",
+                "requiredUnits": 9,
+                "status": "complete",
+                "courses":
+                [
                     {
-                        "name": "MATH456",
+                        "name": "INTE513.1",
                         "units": 3,
-                        "status": "incomplete"
+                        "status": "complete"
                     },
                     {
-                        "name": "MATH491",
+                        "name": "INTE513.2",
                         "units": 3,
-                        "status": "incomplete"
+                        "status": "complete"
+                    },
+                    {
+                        "name": "INTE513.3",
+                        "units": 3,
+                        "status": "complete"
                     }
                 ]
             }

@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-white-100 fixed w-screen h-screen z-30"></div>
-    <div class="fixed w-1/3 h-3/4 z-40 bg-white rounded-xl left-1/2 transform -translate-x-1/2 top-1/3 -translate-y-1/2 shadow-lg">
+    <div class="bg-black-100 fixed opacity-50 w-screen h-screen z-30"></div>
+    <div class="fixed w-1/3 h-3/4 bg-white-100 rounded-xl left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 shadow-lg z-40">
          <div class="flex flex-col p-8">
              <div class="flex justify-between items-center mb-6">
                  <h2 class="text-2xl font-semibold">Degree Requirements</h2>

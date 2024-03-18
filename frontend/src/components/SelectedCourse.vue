@@ -1,8 +1,8 @@
 <template>
     <div class = "w-full rounded-t-xl mt-5 flex flex-col py-4 z-10" v-bind:class="courseColor() + roundedBottom()" @click="toggleDropdown" >
         <div class = "flex flex-row px-3 py-2 text-base" > 
-            <div class = "mx-2">{{ course.name }}</div>
-            <div class = "mx-2"> {{ course.title }}</div>
+            <div class = "w-20 mx-2">{{ course.name }}</div>
+            <div class = "w-20 mx-2"> {{ course.title }}</div>
             <div class = "bg-red-100 h-4 w-4" @click="toggleOn" v-if="course.included != 'sched' "></div>
             <div class="bg-green-100 h-4 w-4" @click="toggleOff" v-else ></div>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" @click="removeCourse">

@@ -6,9 +6,8 @@
         <div class = "w-fit flex flex-col h-screen box-content">
             <img src = "@/assets/unilogo.png " class = "w-96 mx-12">
             <div class = "flex flex-row w-full relative left-5">
-                <input type = "text" v-model="courseSearchTerm" class = "w-40 border border-black-100">
-                <div class = "mx-3" @click = "searchResults"> Search</div>
-                <div @click = "advancedSearchOpen = true"> Advanced </div>
+                <input type="text" placeholder="search" @keydown.enter="searchResults" v-model="courseSearchTerm" class="w-60 text-xl h-9 border border-black-100 rounded-md">
+                <div class="text-lg" @click = "advancedSearchOpen = true"> Advanced Search</div>
             </div>
             <div class = "h-4/6 overflow-y-auto">
                 <div v-for = "(course,index) in searchedCourses" :key="index">

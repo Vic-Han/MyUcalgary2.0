@@ -1,5 +1,5 @@
 <template>
-    <div class = "bg-white-100 w-96 rounded-t-xl mt-5 flex flex-row py-4" :class="roundedBottom()" @click="toggleDropdown">
+    <div class = "bg-white-100 w-96 rounded-t-xl mt-5 flex flex-row py-4 ml-3" :class="roundedBottom()" @click="toggleDropdown">
         <div class = "flex flex-col w-20 h-16 px-3 py-2 text-base" v-bind:class="courseColor()"> {{ course.name }}</div>
         <div class = "flex flex-col w-52 h-16 align-middle text-lg text-left px-2">
             <div>{{ course.title }}</div>
@@ -11,11 +11,11 @@
             <div v-else @click="addCourseToCart"> + </div>
         </div>
     </div>
-    <div class = "bg-white-200 w-96 rounded-b-lg" v-if="dropDownVisible" :class="animation()">
-        <div class="text-xs text-left" > Description: {{ course.desc }}</div>
-        <div class = "text-xs text-left" > Prerequisites: {{ course.prereq }}</div>
-        <div class = "text-xs text-left"> AntiRequisites: {{ course.antireq }}:)</div>
-        <div class = "text-sm text-left"> Course attributes: {{ course.attributes }} :)</div>
+    <div class = "bg-white-200 w-96 rounded-b-lg px-2 ml-3" v-if="dropDownVisible" :class="animation()">
+        <div class="text-base text-left" > Description: {{ course.desc }} </div>
+        <div class = "text-base text-left" > Prerequisites: {{ course.prereq }}</div>
+        <div class = "text-base text-left"> AntiRequisites: {{ course.antireq }}:)</div>
+        <div class = "text-base text-left"> Course attributes: {{ course.attributes }} :)</div>
     </div>
 
 </template>  
@@ -124,7 +124,7 @@ const animationTime = 300
                     return ' fade-up'
                 }
                 else{
-                    return ' h-40'
+                    return ' h-44'
                 }
             }
         },
@@ -149,12 +149,12 @@ const animationTime = 300
     height: 0;
   }
   100% {
-    height: 160px;
+    height: 176px;
   }
 }
 @keyframes fade-up{
     0% {
-    height: 160px;
+    height: 176px;
   }
   100% {
     height: 0;

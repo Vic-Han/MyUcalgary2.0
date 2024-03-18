@@ -397,20 +397,47 @@ const countryValid = (country) =>{
     return true
 }
 const postalValid = (postal) =>{
-    if(postal == ''){
+    if(postal.length != 7){
+        return false
+    }
+    if(postal[3] != ' '){
         return false
     }
     return true
 }
-
+// (403)-220-5738
 const phoneValid = (phone) =>{
-    if(phone == ''){
+    if(phone.length != 14){
         return false
+    }
+    if(phone[0] != '(' || phone[4] != ')' || phone[5] != '-' || phone[9] != '-'){
+        return false
+    }
+    for(let i = 1; i < 4; i++){
+        if(isNaN(phone[i])){
+            return false
+        }
+    }
+    for(let i = 6; i < 9; i++){
+        if(isNaN(phone[i])){
+            return false
+        }
+    }
+    for(let i = 10; i < 14; i++){
+        if(isNaN(phone[i])){
+            return false
+        }
     }
     return true
 }
 const emailValid = (email) =>{  
-    if(email == ''){
+    if(email.length < 5){
+        return false
+    }
+    if(!email.contains('@')){
+        return false
+    }
+    if(!email.contains('.')){
         return false
     }
     return true

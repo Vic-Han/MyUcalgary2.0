@@ -309,7 +309,7 @@ class StudentRequirementsView(APIView):
                 "year": "3 (HARDCODED)",
                 "academicLoad": "full time (HARDCODED)"
             },
-            "requirements": {}
+            "requirements": []
         }
 
 
@@ -323,7 +323,22 @@ class StudentRequirementsView(APIView):
         requirement_data["programInfo"]["minor"] = min_prog.program_name            
             
         major_requirements = Requirement.objects.filter(program_id=maj_prog)
-        
+        for requirement in major_requirements:                
+            courses = Course.objects.filter(course_code__in=requirement.courses.all())
+            course_data = []
+            for course in courses:
+                course_data.append({
+                    "name": course.course_code,
+                    "units": course.course_units,
+                    "status": "in-progress (HARDCODED)"
+                })
+            requirement_data["requirements"].append({
+                "description": requirement.description,
+                "requiredUnits": requirement.required_units,
+                "status": "in-progress (HARDCODED)",
+                "courses": course_data
+            })
+
 
         return Response(requirement_data)
 

@@ -1,5 +1,5 @@
 <template>
-    <div class = "w-fit rounded-xl mt-5 flex flex-col py-4 z-10" v-bind:class="courseColor()" @click="toggleDropdown" >
+    <div class = "w-full rounded-t-xl mt-5 flex flex-col py-4 z-10" v-bind:class="courseColor() + roundedBottom()" @click="toggleDropdown" >
         <div class = "flex flex-row px-3 py-2 text-base" > 
             <div class = "mx-2">{{ course.name }}</div>
             <div class = "mx-2"> {{ course.title }}</div>
@@ -27,7 +27,7 @@
         </div>
 
     </div>
-    <div class = "bg-white-100 flex flex-col z-0" v-if="dropDownVisible" :class="animation()"> 
+    <div class = "bg-white-100 flex flex-col z-0 h-52 w-full rounded-b-xl " v-if="dropDownVisible" :class="animation()"> 
         <div class = "flex flex-row">
             <div> Try all classes </div>
             <input type = "checkbox" class = "mx-1" v-model="allClasses">    
@@ -48,11 +48,11 @@
             </div>
             <div class = "flex flex-row">
                 <div class = "mx-1"> Seats</div>
-                <div class="mx-1"> Current/Max Seats</div>
+                <div class="mx-1"> {{ lecture.seatsFilled + '/' + lecture.totalSeats}} Seats</div>
             </div>
             <div class = "flex flex-row">
                 <div class = "mx-1"> Waitlist</div>
-                <div class="mx-1"> Current/Max Waitlist</div>
+                <div class="mx-1"> {{lecture.waitlistFilled + '/' + lecture.totalWaitlist}} Waitlist</div>
             </div>
         </div>
         <div class = "flex flex-col">
@@ -63,11 +63,11 @@
             </div>
             <div class = "flex flex-row">
                 <div class = "mx-1"> Seats</div>
-                <div class="mx-1"> Current/Max Seats</div>
+                <div class="mx-1"> {{ tut.seatsFilled + '/' + tut.totalSeats}} Seats</div>
             </div>
             <div class = "flex flex-row">
                 <div class = "mx-1"> Waitlist</div>
-                <div class="mx-1"> Current/Max Waitlist</div>
+                <div class="mx-1"> {{ tut.waitlistFilled + '/' + tut.totalWaitlist}} Waitlist</div>
             </div>
         </div>
 
@@ -171,6 +171,14 @@ const animationTime = 300;
                 }
                 else{
                     return 'bg-course-900'
+                }
+            },
+            roundedBottom(){
+                if(this.dropDownVisible){
+                    return ' rounded-b-xl'
+                }
+                else{
+                    return ' '
                 }
             },
             toggleDropdown(){
@@ -285,7 +293,7 @@ const animationTime = 300;
     }
 </script>
 
-<style>
+<style scoped>
 .fade-down{
     overflow-y: hidden;
     animation: fade-down 0.3s;
@@ -299,12 +307,12 @@ const animationTime = 300;
     height: 0;
   }
   100% {
-    height: 168px;
+    height: 208px;
   }
 }
 @keyframes fade-up{
     0% {
-    height: 168px;
+    height: 208px;
   }
   100% {
     height: 0;

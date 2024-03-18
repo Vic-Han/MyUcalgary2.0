@@ -3,9 +3,9 @@
     <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false"></AdvancedSearch>
     <AcademicSchedulePopup v-if="academicRequirementsPopup" :requirements="degreeRequirements" @close="academicRequirementsPopup = false"></AcademicSchedulePopup>
     <div class = "flex flex-row">
-        <div class = "w-96 flex flex-col h-screen">
-            <img src = "@/assets/unilogo.png " class = "w-10/12">
-            <div class = "flex flex-row w-10/12 relative left-5">
+        <div class = "w-fit flex flex-col h-screen box-content">
+            <img src = "@/assets/unilogo.png " class = "w-96 mx-12">
+            <div class = "flex flex-row w-full relative left-5">
                 <input type = "text" v-model="courseSearchTerm" class = "w-40 border border-black-100">
                 <div class = "mx-3" @click = "searchResults"> Search</div>
                 <div @click = "advancedSearchOpen = true"> Advanced </div>
@@ -20,26 +20,26 @@
             </div>
             <div @click="academicRequirementsPopup=true"> Academic Requirements</div>
         </div>
-        <div>
-            <div class = "flex flex-row">
-                <div> Back </div> 
-                <div>Fall 2024</div>
-                <div> Forward</div>
+        <div class="flex flex-col w-full">
+            <div class = "flex flex-row relative left-1/2 -translate-x-1/2 w-fit my-5">
+                <div class="text-5xl mx-5">  {{ '<' }} </div> 
+                <div class="text-5xl mx-40">Fall 2024</div>
+                <div class="text-5xl mx-5"> {{'>'}}</div>
                 
             </div>
-            <div class = "flex flex-row">
-                <div class="mx-1" @click="resetSelectedToZero"> {{'|<'}} </div>
-                <div class="mx-1" @click="decrementSchedIndex"> {{ '<' }} </div>
-                <div class="flex flex-col p-2">
-                    <div> Result </div>
-                    <div> {{ schedules.length > 0 ?  (schedIndex + 1)+ ' of ' + schedules.length : '0 of 0'}} </div>
+            <div class = "flex flex-row relative left-1/2 -translate-x-1/2 w-fit mb-5">
+                <div class="text-3xl mx-4 mt-4" @click="resetSelectedToZero"> {{'|<'}} </div>
+                <div class="text-3xl mx-4 mt-4" @click="decrementSchedIndex"> {{ '<' }} </div>
+                <div class="flex flex-col p-2 mx-8">
+                    <div class="text-3xl"> Result </div>
+                    <div class="text-3xl"> {{ schedules.length > 0 ?  (schedIndex + 1)+ ' of ' + schedules.length : '0 of 0'}} </div>
                 </div>
-                <div class="mx-1" @click="incrementSchedIndex"> {{'>'}} </div>
-                <div class="mx-1" @click="setSelectedToLast"> {{'>|'}} </div>
+                <div class="text-3xl mx-4 mt-4" @click="incrementSchedIndex"> {{'>'}} </div>
+                <div class="text-3xl mx-4 mt-4" @click="setSelectedToLast"> {{'>|'}} </div>
             </div>
         
-            <div class = "flex flex-row">
-                <div class = "flex flex-col px-10 w-full">
+            <div class = "grid grid-cols-11">
+                <div class = "col-span-4 flex flex-col px-10 -translate-y-10">
                     <div v-for="(course,index) in schedCourses" :key="index">
                         <SelectedCourse 
                         :course="course" :number="index"
@@ -59,9 +59,10 @@
                         ></SelectedCourse>
                     </div>
                 </div>
-                <div class = "flex flex-col">
+                <div class = "flex flex-col col-span-7">
                     <!-- <SchedPreview :sched="schedules.length > 0 ? schedules[selectedSched] : null"> </SchedPreview> -->
                     <SchedPreview :schedule="courseListToSched()"></SchedPreview>
+                    <div class="border border-grey-200 mt-4 w-fit relative left-1/2 -translate-x-1/2 p-10 text-xl rounded-xl"> Get Schedule!</div>
                 </div>
             </div>
         </div>

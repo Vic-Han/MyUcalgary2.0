@@ -23,8 +23,21 @@
           </div>
         </div>
       </div>
-      <div class="h-full w-full bg-white-100 rounded-xl shadow-xl">
-        <div></div>
+      <div class="h-full w-full bg-white-100 rounded-xl shadow-xl p-6">
+        <div class="font-semibold text-2xl text-left pb-4">Course Breakdown</div>
+        <div v-for="(Requirement,index) in requiredCourses" :key="index">
+          <div class="flex flex-row">
+            <div class="text-left font-semibold text-l w-fit">{{ Requirement.description }}:</div>
+            <div v-if="Requirement.status =='complete'" class="flex flex-row items-center pl-6">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-green-100" viewBox="0 -960 960 960">
+                  <path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm94-278 226-226-56-58-170 170-86-84-56 56 142 142Z"/>
+                </svg>
+              </div>
+              <div class="pl-2 text-sm italic text-green-100">Complete</div>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- Academic Report Details -->
       <!-- <div class="academic-report-details bg-white shadow-md rounded-lg p-6 mb-6 bg-white-100 overflow-x-hidden" :class="{ 'overflow-hidden': !expandedReport, 'overflow-auto h-full': expandedReport }">
@@ -115,6 +128,7 @@
 
         expandedReport: false,
         completedProgress: 0,
+        pendingProgress:0,
         programInfo: {
           degree: "Bachelor of Science",
           major: "Computer Science",
@@ -313,7 +327,7 @@
                     {
                         "name": "CPSC231",
                         "units": 3,
-                        "status": "completed"
+                        "status": "complete"
                     },
                     {
                         "name": "CPSC233",
@@ -336,7 +350,7 @@
                     {
                         "name": "CPSC231",
                         "units": 3,
-                        "status": "completed"
+                        "status": "complete"
                     },
                     {
                         "name": "CPSC233",
@@ -416,6 +430,7 @@
         }
       }
       this.completedProgress = Math.round((takenUnits/totalUnits)*100)
+      this.pendingProgress = Math.round((pendingUnits/totalUnits)*100)
       // Preset data should not be modified here, it should be set in data() or computed
     }
   }

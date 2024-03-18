@@ -12,7 +12,7 @@ import axios from 'axios'
 
 const app = createApp(App)
 //app.use(VueWorker)
-app.use(VueCookies, { expires: '20s'})
+app.use(VueCookies, { expires: '1800s'})
 app.use(router)
 app.use(store)
 app.config.globalProperties.$http = axios

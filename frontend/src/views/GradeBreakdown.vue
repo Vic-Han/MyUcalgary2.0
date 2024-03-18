@@ -279,7 +279,9 @@ import GradePreview from '@/components/GradePreview.vue';
         console.log(this.termViews)
 
 
-      })
+      }).catch(error => {
+        console.log(error)
+      } )
 
     }
 };

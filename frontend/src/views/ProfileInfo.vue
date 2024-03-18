@@ -371,6 +371,51 @@
 
 <script>
 let initialValue = null;
+const streetValid = (street) =>{
+    if(street == ''){
+        return false
+    }
+    return true
+
+}
+const cityValid = (city) =>{
+    if(city == ''){
+        return false
+    }
+    return true
+}
+const provinceValid = (province) =>{
+    if(province == ''){
+        return false
+    }
+    return true
+}
+const countryValid = (country) =>{
+    if(country == ''){
+        return false
+    }
+    return true
+}
+const postalValid = (postal) =>{
+    if(postal == ''){
+        return false
+    }
+    return true
+}
+
+const phoneValid = (phone) =>{
+    if(phone == ''){
+        return false
+    }
+    return true
+}
+const emailValid = (email) =>{  
+    if(email == ''){
+        return false
+    }
+    return true
+}
+
     export default{
         name : 'ProfileInfo',
         emits: ['show-navbar','toggle-selected'],
@@ -488,8 +533,9 @@ let initialValue = null;
                 console.log(initialValue)
                 if(this.editingID !== initialValue) {
                     if(this.editingID == 'Address') {
-                        console.log('fukc')
-                       if(this.Address.Street == "" || this.Address.City == '' || this.Address.Province == '' || this.Address.Country == '' || this.Address.Postal == '') {
+                       if(!streetValid(this.Address.Street) || !cityValid(this.Address.City)  
+                       || !provinceValid(this.Address.Province) || !countryValid(this.Address.Country) 
+                       || !postalValid(this.Address.Postal)) {
                             this.editingID = null;
                             this.Address = initialValue;
                             initialValue = null;
@@ -497,8 +543,7 @@ let initialValue = null;
                         }
                     }
                     else if(this.editingID == 'Phone') {
-                        console.log('fukc')
-                        if(this.Phone.Home == '' || this.Phone.Mobile == '') {
+                        if(!phoneValid(this.Phone.Home) || !phoneValid(this.Phone.Mobile)) {
                             this.editingID = null;
                             this.Phone = initialValue;
                             initialValue = null;
@@ -506,8 +551,7 @@ let initialValue = null;
                         }
                     }
                     else if(this.editingID == 'Email') {
-                        console.log('fukc')
-                        if(this.Email.School == '' || this.Email.Personal == '') {
+                        if(!emailValid(this.Email.School) || !emailValid(this.Email.Personal)) {
                             this.editingID = null;
                             this.Email = initialValue;
                             initialValue = null;
@@ -515,13 +559,11 @@ let initialValue = null;
                         }
                     }
                     else if(this.editingID == 1 || this.editingID == 0 || this.editingID == 2) {
-                        if(this.EmergencyContacts[this.editingID].Name == '' || this.EmergencyContacts[this.editingID].Relationship == '' || this.EmergencyContacts[this.editingID].Phone == '') {
-                            this.editingID = null;
-                            console.log(initialValue)
-                            this.EmergencyContacts[this.editingID] = initialValue;
-                            console.log(this.EmergencyContacts[this.editingID])
-                            initialValue = null;
+                        if(this.EmergencyContacts[this.editingID].Name == '' || this.EmergencyContacts[this.editingID].Relationship == '' || !phoneValid(this.EmergencyContacts[this.editingID].Phone)) {
                             
+                            this.EmergencyContacts[this.editingID] = initialValue;
+                            initialValue = null;
+                            this.editingID = null;
                             return
                         }
                     }
@@ -539,6 +581,7 @@ let initialValue = null;
                 else{
                     this.editingID = null;
                 }
+                
             },
             editContact(index) {
                 document.removeEventListener("click",this.eventLister)

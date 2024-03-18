@@ -305,18 +305,25 @@ class StudentRequirementsView(APIView):
                 "degree":{},
                 "major":{},
                 "minor":{},
-                "concentration": "none",
-                "year": {},
-                "academicLoad":{}
+                "concentration": "none (HARDCODED)",
+                "year": "3 (HARDCODED)",
+                "academicLoad": "full time (HARDCODED)"
             },
             "requirements": {}
         }
 
+
         applications = StudentApplications.objects.filter(student_id=student)
-        for application in applications:
-            requirement_data["programInfo"]["degree"] = application.application_status
-            requirement_data["programInfo"]["major"] = application.major_program.program_name
-            requirement_data["programInfo"]["minor"] = application.minor_program.program_name
+        application = applications[0]
+        maj_prog = application.major_program
+        min_prog = application.minor_program
+
+        requirement_data["programInfo"]["degree"] = maj_prog.program_degree_level
+        requirement_data["programInfo"]["major"] = maj_prog.program_name
+        requirement_data["programInfo"]["minor"] = min_prog.program_name            
+            
+        major_requirements = Requirement.objects.filter(program_id=maj_prog)
+        
 
         return Response(requirement_data)
 

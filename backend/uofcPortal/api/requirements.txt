@@ -13,18 +13,18 @@
         {
             "description": "requiredCourses",
             "requiredUnits": 9,
-            "status": "in progress",
+            "status": "in-progress",
             "courses":
             [
                 {
                     "name": "CPSC231",
                     "units": 3,
-                    "status": "completed"
+                    "status": "complete"
                 },
                 {
                     "name": "CPSC233",
                     "units": 3,
-                    "status": "in progress"
+                    "status": "in-progress"
                 },
                 {
                     "name": "CPSC331",
@@ -42,7 +42,7 @@
                 {
                     "name": "CPSC231",
                     "units": 3,
-                    "status": "completed"
+                    "status": "complete"
                 },
                 {
                     "name": "CPSC233",
@@ -82,4 +82,4 @@
     ]
 }
 
-sort by completed, in-progress, then incomplete
+sort by complete, in-progress, then incomplete

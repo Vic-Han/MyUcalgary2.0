@@ -198,6 +198,7 @@ class StudentApplications(models.Model):
 class Requirement(models.Model):
     description = models.CharField(max_length=50)
     required_units = models.IntegerField()
+    semester = models.CharField(max_length=2, null=True)
     # "complete", "in progress", or "incomplete"
     courses = models.ManyToManyField(Course, related_name="courses")
 

@@ -37,6 +37,8 @@
               <div class="pl-2 text-sm italic text-green-100">Complete</div>
             </div>
           </div>
+
+
         </div>
       </div>
       <!-- Academic Report Details -->
@@ -315,34 +317,41 @@
       this.$emit('show-navbar')
       this.$emit('toggle-selected','academics')
 
+      function filterSemester(course, predicate) {
+        return course.semester == predicate
+      }
+
       const backendData = {
         "requirements":
         [
             {
-                "description": "requiredCourses",
+                "description": "Required Cources",
                 "requiredUnits": 9,
-                "status": "in progress",
+                "status": "in-progress",
                 "courses":
                 [
                     {
                         "name": "CPSC231",
                         "units": 3,
-                        "status": "complete"
+                        "status": "complete",
+                        "semester": "F1"
                     },
                     {
                         "name": "CPSC233",
                         "units": 3,
-                        "status": "in progress"
+                        "status": "in-progress",
+                        "semester": "F1"
                     },
                     {
                         "name": "CPSC331",
                         "units": 3,
-                        "status": "incomplete"
+                        "status": "incomplete",
+                        "semester": "F1"
                     }
                 ]
             },
             {
-                "description": "technicalElectives",
+                "description": "Technical Electives",
                 "requiredUnits": 6,
                 "status": "complete",
                 "courses":
@@ -392,6 +401,33 @@
       let totalUnits = 0
       let takenUnits = 0
       let pendingUnits = 0
+      this.requiredCourses.push({
+        description: backendData.requirements[0].description,
+        requiredUnits: backendData.requirements[0].requiredUnits,
+        status: backendData.requirements[0].status,
+        courses: [
+          {
+            year: "First Year",
+            fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F1")),
+            winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W1"))
+          },
+          {
+            year: "Second Year",
+            fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F2")),
+            winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W2"))
+          },
+          {
+            year: "Third Year",
+            fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F3")),
+            winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W3"))
+          },
+          {
+            year: "Fourth Year",
+            fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F4")),
+            winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W4"))
+          }
+        ]
+      })
       for(let i = 0; i<backendData.requirements[0].courses.length; i++){
         if(backendData.requirements[0].courses[i].status == 'complete') {
           takenUnits += backendData.requirements[0].courses[i].units 
@@ -400,7 +436,6 @@
           pendingUnits += backendData.requirements[0].courses[i].units 
         }
       }
-      this.requiredCourses.push(backendData.requirements[0])
       totalUnits += backendData.requirements[0].requiredUnits
       for(let i = 1; i < backendData.requirements.length; i++) {
         totalUnits += backendData.requirements[i].requiredUnits

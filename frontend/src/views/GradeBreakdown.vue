@@ -117,144 +117,170 @@ import GradePreview from '@/components/GradePreview.vue';
     created(){
       this.$emit('show-navbar')
       this.$emit('toggle-selected', 'grades');
-        const backendPayload = {
-          "overallGPA": 3.71,
-          "letterGrade": "A-",
-          "activity": {
-            "Fall 2023" : {
-                  "UnitsEnrolled": 15,
-                  "Program": "Schulich Sch of EN Bachelor",
-                  "Level": 4,
-                  "Plan": "Bachelor of Science, Internship Program, Software Engineering",
-                  "TermGPA": 3.6,
-                  "TermLetterGrade": "A-",
-                  "courses" : [
-                      {
-                          "name" : "SENG 550",
-                          "letter": "A"
-                      },
-                      {
-                          "name" : "SENG 513",
-                          "letter" : "A"
-                      },
-                      {
-                          "name" : "CPSC 481",
-                          "letter": "A-"
-                      },
-                      {
-                          "name" : "CPSC 411",
-                          "letter" : "B"
-                      },
-                      {
-                          "name" : "ECON 341",
-                          "letter": "B+"
-                      },
-                      {
-                          "name" : "VICT 301",
-                          "letter": "A+"
-                      }
-                  ]
-              },
-              "Winter 2024" : {
-                  "UnitsEnrolled": 15,
-                  "Program": "Schulich Sch of EN Bachelor",
-                  "Level": 4,
-                  "Plan": "Bachelor of Science, Internship Program, Software Engineering",
-                  "TermGPA": 3.6,
-                  "TermLetterGrade": "A-",
-                  "courses" : [
-                      {
-                          "name" : "SENG 550",
-                          "letter": "A"
-                      },
-                      {
-                          "name" : "SENG 513",
-                          "letter" : "A"
-                      },
-                      {
-                          "name" : "ECON 341",
-                          "letter": "B+"
-                      },
-                      {
-                          "name" : "CPSC 411",
-                          "letter" : "B"
-                      },
-                      {
-                          "name" : "ECON 341",
-                          "letter": "B+"
-                      }
-                  ]
-              },
-              "Summer 2023":{
-                "UnitsEnrolled": 15,
-                  "Program": "Schulich Sch of EN Bachelor",
-                  "Level": 4,
-                  "Plan": "Bachelor of Science, Internship Program, Software Engineering",
-                  "TermGPA": 3.6,
-                  "TermLetterGrade": "A-",
-                  "courses" : [
-                      {
-                          "name" : "SENG 550",
-                          "letter": "A"
-                      },
-                      {
-                          "name" : "SENG 513",
-                          "letter" : "A"
-                      },
-                      {
-                          "name" : "ECON 341",
-                          "letter": "B+"
-                      },
-                      {
-                          "name" : "CPSC 411",
-                          "letter" : "B"
-                      },
-                      {
-                          "name" : "ECON 341",
-                          "letter": "B+"
-                      }
-                  ]
-              },
-              "Winter 2023" : {
-                  "Units Enrolled": 12,
-                  "Program": "Schulich Sch of EN Bachelor",
-                  "Level": 3,
-                  "Plan": "Bachelor of Science, Internship Program, Software Engineering",
-                  "TermGPA": 3.15,
-                  "TermLetterGrade": "A-",
-                  "courses" : [
-                      {
-                          "name" : "CPSC 441",
-                          "letter": "C-"
-                      },
-                      {
-                          "name" : "CPSC 599",
-                          "letter" : "A"
-                      },
-                      {
-                          "name" : "CPSC 457",
-                          "letter": "A"
-                      },
-                      {
-                          "name" : "SENG 300",
-                          "letter" : "B"
-                      }
+      //   const backendPayload = {
+      //     "overallGPA": 3.71,
+      //     "letterGrade": "A-",
+      //     "activity": {
+      //       "Fall 2023" : {
+      //             "UnitsEnrolled": 15,
+      //             "Program": "Schulich Sch of EN Bachelor",
+      //             "Level": 4,
+      //             "Plan": "Bachelor of Science, Internship Program, Software Engineering",
+      //             "TermGPA": 3.6,
+      //             "TermLetterGrade": "A-",
+      //             "courses" : [
+      //                 {
+      //                     "name" : "SENG 550",
+      //                     "letter": "A"
+      //                 },
+      //                 {
+      //                     "name" : "SENG 513",
+      //                     "letter" : "A"
+      //                 },
+      //                 {
+      //                     "name" : "CPSC 481",
+      //                     "letter": "A-"
+      //                 },
+      //                 {
+      //                     "name" : "CPSC 411",
+      //                     "letter" : "B"
+      //                 },
+      //                 {
+      //                     "name" : "ECON 341",
+      //                     "letter": "B+"
+      //                 },
+      //                 {
+      //                     "name" : "VICT 301",
+      //                     "letter": "A+"
+      //                 }
+      //             ]
+      //         },
+      //         "Winter 2024" : {
+      //             "UnitsEnrolled": 15,
+      //             "Program": "Schulich Sch of EN Bachelor",
+      //             "Level": 4,
+      //             "Plan": "Bachelor of Science, Internship Program, Software Engineering",
+      //             "TermGPA": 3.6,
+      //             "TermLetterGrade": "A-",
+      //             "courses" : [
+      //                 {
+      //                     "name" : "SENG 550",
+      //                     "letter": "A"
+      //                 },
+      //                 {
+      //                     "name" : "SENG 513",
+      //                     "letter" : "A"
+      //                 },
+      //                 {
+      //                     "name" : "ECON 341",
+      //                     "letter": "B+"
+      //                 },
+      //                 {
+      //                     "name" : "CPSC 411",
+      //                     "letter" : "B"
+      //                 },
+      //                 {
+      //                     "name" : "ECON 341",
+      //                     "letter": "B+"
+      //                 }
+      //             ]
+      //         },
+      //         "Summer 2023":{
+      //           "UnitsEnrolled": 15,
+      //             "Program": "Schulich Sch of EN Bachelor",
+      //             "Level": 4,
+      //             "Plan": "Bachelor of Science, Internship Program, Software Engineering",
+      //             "TermGPA": 3.6,
+      //             "TermLetterGrade": "A-",
+      //             "courses" : [
+      //                 {
+      //                     "name" : "SENG 550",
+      //                     "letter": "A"
+      //                 },
+      //                 {
+      //                     "name" : "SENG 513",
+      //                     "letter" : "A"
+      //                 },
+      //                 {
+      //                     "name" : "ECON 341",
+      //                     "letter": "B+"
+      //                 },
+      //                 {
+      //                     "name" : "CPSC 411",
+      //                     "letter" : "B"
+      //                 },
+      //                 {
+      //                     "name" : "ECON 341",
+      //                     "letter": "B+"
+      //                 }
+      //             ]
+      //         },
+      //         "Winter 2023" : {
+      //             "Units Enrolled": 12,
+      //             "Program": "Schulich Sch of EN Bachelor",
+      //             "Level": 3,
+      //             "Plan": "Bachelor of Science, Internship Program, Software Engineering",
+      //             "TermGPA": 3.15,
+      //             "TermLetterGrade": "A-",
+      //             "courses" : [
+      //                 {
+      //                     "name" : "CPSC 441",
+      //                     "letter": "C-"
+      //                 },
+      //                 {
+      //                     "name" : "CPSC 599",
+      //                     "letter" : "A"
+      //                 },
+      //                 {
+      //                     "name" : "CPSC 457",
+      //                     "letter": "A"
+      //                 },
+      //                 {
+      //                     "name" : "SENG 300",
+      //                     "letter" : "B"
+      //                 }
 
-                  ]
-              }
+      //             ]
+      //         }
+      //     }
+      // }
+      // console.log(backendPayload)
+      // this.overallGPA = backendPayload.overallGPA
+      // this.overallLetterGrade = backendPayload.letterGrade
+      // for(const [key, value] of Object.entries(backendPayload.activity)){
+      //   if (!this.termViews[this.termToYear(key)]) {
+      //     this.termViews[this.termToYear(key)] = {};
+      //   }
+      //   this.termViews[this.termToYear(key)][key] = value
+      // }
+      // this.selectedOption = Object.keys(this.termViews)[0]
+      // console.log(this.termViews)
+      
+      const serverpath = this.$store.state.serverPath
+      const apiPath = "/api/student-grades"
+      const headers = {
+          'Content-Type': 'application/json',
+          'Authorization' :`Token ${this.$cookies.get("auth-token")}`
+      }
+
+
+      this.$http.get(`${serverpath}${apiPath}`,{headers}).then(response => {
+        const data = response.data
+        console.log(data)
+        this.overallGPA = data.overallGPA
+        this.overallLetterGrade = data.letterGrade
+        for(const [key, value] of Object.entries(data.activity)){
+          if (!this.termViews[this.termToYear(key)]) {
+            this.termViews[this.termToYear(key)] = {};
           }
-      }
-      console.log(backendPayload)
-      this.overallGPA = backendPayload.overallGPA
-      this.overallLetterGrade = backendPayload.letterGrade
-      for(const [key, value] of Object.entries(backendPayload.activity)){
-        if (!this.termViews[this.termToYear(key)]) {
-          this.termViews[this.termToYear(key)] = {};
+          this.termViews[this.termToYear(key)][key] = value
         }
-        this.termViews[this.termToYear(key)][key] = value
-      }
-      this.selectedOption = Object.keys(this.termViews)[0]
-      console.log(this.termViews)
+        this.selectedOption = Object.keys(this.termViews)[0]
+        console.log(this.termViews)
+
+
+      })
+
     }
 };
 </script>

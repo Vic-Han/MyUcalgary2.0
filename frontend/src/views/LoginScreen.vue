@@ -46,6 +46,14 @@ export default {
     loginIncorrect() {
       this.error = true
       this.$refs.username.focus()
+      const initials = this.username.split(' ').map((n) => n[0]).join('')
+
+      let expiryDate = new Date();
+      expiryDate.setMonth(expiryDate.getMonth() + 30);
+
+      this.$cookies.set('initials', initials, {
+        expires: expiryDate
+      });
       setTimeout(() => {
         this.error = false
       }, 3000)

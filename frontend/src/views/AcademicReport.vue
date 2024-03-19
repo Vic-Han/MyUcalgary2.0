@@ -12,9 +12,10 @@
         </div>
         <div class="bg-white-100 rounded-lg shadow-md px-6 mb-4 ml-4 w-3/5">
           <div class="text-left font-semibold text-xl pt-6">Degree Progress</div>
-          <div class="w-full h-10 bg-grey-100 shadow-xl mt-10 rounded-lg"></div>
-          <div class="absolute -translate-y-20 w-16 h-10 bg-green-100 mt-10 rounded-lg">
-            <div class="pt-1 text-2xl text-white-100 font-semibold">{{ completedProgress }}%</div>
+          <div class="w-full h-10 bg-grey-100 shadow-xl mt-10 rounded-lg">
+            <div class="relative h-10 bg-green-100 mt-10 rounded-lg" :style="{ width: completedProgress + '%' }">
+              <div class="pt-1 text-2xl text-white-100 font-semibold">{{ completedProgress }}%</div>
+            </div>
           </div>
           <div class="flex flex-row mt-2">
             <div class="w-1/3 text-lg font-semibold text-left">0%</div>
@@ -70,6 +71,23 @@
                       {{ course.name }}
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div v-else>
+              <div class="grid grid-cols-5 gap-4 py-2">
+                <div v-for="(course, i) in Requirement.courses" :key="i">
+                  <div :class="{
+                    'bg-green-200': course.status === 'complete',
+                    'bg-yellow-200': course.status === 'in-progress',
+                    'bg-white-100 border border-grey-100': course.status === 'incomplete',
+                    'p-2': true,
+                    'rounded-lg': true,
+                    'shadow': true,
+                    'text-center': true
+                    }">
+                      {{ course.name }}
+                    </div>
                 </div>
               </div>
             </div>
@@ -304,6 +322,9 @@
     }
     },
     methods: {
+        getWidth() {
+          return "w-[" + this.completedProgress + "%]"
+        },
         toggleExpandedReport() {
             this.expandedReport = !this.expandedReport;
         },

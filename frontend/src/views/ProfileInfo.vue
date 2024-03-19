@@ -434,10 +434,10 @@ const emailValid = (email) =>{
     if(email.length < 5){
         return false
     }
-    if(!email.contains('@')){
+    if(!email.includes('@')){
         return false
     }
-    if(!email.contains('.')){
+    if(!email.includes('.')){
         return false
     }
     return true

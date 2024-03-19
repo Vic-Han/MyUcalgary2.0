@@ -1,4 +1,5 @@
 
+import math
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
@@ -157,6 +158,11 @@ class StudentGradeView(APIView, GradeMixins):
         student = get_object_or_404(Student, user=request.user)
         enrollments = Enrollment.objects.filter(student=student)
         applications = StudentApplications.objects.filter(student=student).first()
+
+
+        # Calculate the student's year
+        total_courses = len(enrollments)
+        student_year = min(4, math.ceil(total_courses / 10)) # Assuming 10 courses per year, calculate the student's year
         
         activity = {}
         for enrollment in enrollments:
@@ -167,7 +173,7 @@ class StudentGradeView(APIView, GradeMixins):
                 activity[termYear] = {
                     "Units Enrolled": 0,
                     "Program": applications.major_program.program_name,
-                    "Level": enrollment.lecture.term.term_year,
+                    "Level": student_year,
                     "Plan": f"{applications.major_program.program_degree_level}, {applications.major_program.program_name}",
                     "TermGPA": 0,
                     "TermLetterGrade": "",

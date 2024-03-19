@@ -39,17 +39,17 @@
               </div>
             </div>
             <div v-if="index == 0" class="grid grid-cols-1">
-              <div v-for="(semester,i) in Requirement.courses">
+              <div v-for="(semester,i) in Requirement.courses" :key="i">
                 <div class="font-semibold">{{ semester.year }}</div>
                 <div class="grid grid-cols-5 gap-4">
-                  <div v-for="(course,j) in semester.fall">
+                  <div v-for="(course,j) in semester.fall"  :key="j">
                     <div>
                       {{ course.name }}
                     </div>
                   </div>
                 </div>
                 <div class="grid grid-cols-5 gap-4 pt-2">
-                  <div v-for="(course,j) in semester.winter">
+                  <div v-for="(course,j) in semester.winter"  :key="j">
                     <div>
                       {{ course.name }}
                     </div>

@@ -1,4 +1,5 @@
 
+import math
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
@@ -153,20 +154,26 @@ class StudentGradeView(APIView, GradeMixins):
 
     def get(self, request):
 
-        #student = Student.objects.first()  # Replace with authentication late
+        # student = Student.objects.first()  # Replace with authentication late
         student = get_object_or_404(Student, user=request.user)
         enrollments = Enrollment.objects.filter(student=student)
         applications = StudentApplications.objects.filter(student=student).first()
+
+
+        # Calculate the student's year
+        total_courses = len(enrollments)
+        student_year = min(4, math.ceil(total_courses / 10)) # Assuming 10 courses per year, calculate the student's year
         
         activity = {}
         for enrollment in enrollments:
             term = enrollment.lecture.term.term_name
             grades = Grade.objects.filter(enrollment=enrollment)
-            if term not in activity:
-                activity[term] = {
+            termYear = f"{term} {enrollment.lecture.term.term_year}"
+            if termYear not in activity:
+                activity[termYear] = {
                     "Units Enrolled": 0,
                     "Program": applications.major_program.program_name,
-                    "Level": enrollment.lecture.term.term_year,
+                    "Level": student_year,
                     "Plan": f"{applications.major_program.program_degree_level}, {applications.major_program.program_name}",
                     "TermGPA": 0,
                     "TermLetterGrade": "",
@@ -180,8 +187,8 @@ class StudentGradeView(APIView, GradeMixins):
                     "letter": self.grade_to_letter(grade.grade),
                     "units": enrollment.lecture.course.course_units
                 }
-                activity[term]["courses"].append(course_info)
-                activity[term]["Units Enrolled"] += 3 # Assuming each course is 3 units
+                activity[termYear]["courses"].append(course_info)
+                activity[termYear]["Units Enrolled"] += 3 # Assuming each course is 3 units
 
         for term, info in activity.items():
             term_gpa, term_letter_grade = self.calculate_term_gpa_and_letter_grade(info['courses'])

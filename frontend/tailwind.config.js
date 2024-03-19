@@ -62,6 +62,16 @@ module.exports = {
           800: '#C9C1FC',
           900: '#98C3F6',
         },
+      },
+      size: {
+        '128': '34rem',
+      },
+      spacing: {
+        '112': '28rem',
+        '128': '34rem',
+      },
+      maxHeight: {
+        '112': '28rem',
       }
     },
   },

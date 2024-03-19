@@ -23,9 +23,9 @@
           </div>
         </div>
       </div>
-      <div class="h-2/3 w-full bg-white-100 rounded-xl shadow-xl p-6">
+      <div class="h-128 w-full bg-white-100 rounded-xl shadow-xl p-6">
         <div class="font-semibold text-2xl text-left pb-4">Course Breakdown</div>
-        <div class="overflow-y-auto max-h-2/3">
+        <div class="overflow-y-auto max-h-112">
           <div v-for="(Requirement,index) in requiredCourses" :key="index">
             <div class="flex flex-row">
               <div class="text-left font-semibold text-l w-fit">{{ Requirement.description }}:</div>
@@ -39,18 +39,34 @@
               </div>
             </div>
             <div v-if="index == 0" class="grid grid-cols-1">
-              <div v-for="(semester,i) in Requirement.courses">
-                <div class="font-semibold">{{ semester.year }}</div>
-                <div class="grid grid-cols-5 gap-4">
-                  <div v-for="(course,j) in semester.fall">
-                    <div>
+              <div v-for="(semester,i) in Requirement.courses" :key="i">
+                <div class="font-semibold text-left pl-10">{{ semester.year }}:</div>
+                <div class="grid grid-cols-5 gap-4 pt-2">
+                  <div v-for="(course,j) in semester.fall" :key="j">
+                    <div :class="{
+                    'bg-green-200': course.status === 'complete',
+                    'bg-yellow-200': course.status === 'in-progress',
+                    'bg-white-100 border border-grey-100': course.status === 'incomplete',
+                    'p-2': true,
+                    'rounded-lg': true,
+                    'shadow': true,
+                    'text-center': true
+                    }">
                       {{ course.name }}
                     </div>
                   </div>
                 </div>
-                <div class="grid grid-cols-5 gap-4 pt-2">
-                  <div v-for="(course,j) in semester.winter">
-                    <div>
+                <div class="grid grid-cols-5 gap-4 py-2">
+                  <div v-for="(course,j) in semester.winter" :key="j">
+                    <div :class="{
+                    'bg-green-200': course.status === 'complete',
+                    'bg-yellow-200': course.status === 'in-progress',
+                    'bg-white-100 border border-grey-100': course.status === 'incomplete',
+                    'p-2': true,
+                    'rounded-lg': true,
+                    'shadow': true,
+                    'text-center': true
+                    }">
                       {{ course.name }}
                     </div>
                   </div>
@@ -518,12 +534,6 @@
                         "semester": "W3"
                     },
                     {
-                        "name": "CPSC471",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W3"
-                    },
-                    {
                         "name": "ENEL500A",
                         "units": 3,
                         "status": "incomplete",
@@ -544,15 +554,15 @@
                     {
                         "name": "SENG533",
                         "units": 3,
-                        "status": "complete",
+                        "status": "in-progress",
                         "semester": "W4"
                     },
                 ]
             },
             {
                 "description": "Technical Electives",
-                "requiredUnits": 6,
-                "status": "complete",
+                "requiredUnits": 15,
+                "status": "in-progress",
                 "courses":
                 [
                     {

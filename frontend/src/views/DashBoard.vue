@@ -1,7 +1,7 @@
 <!-- This is the primary dashboard component that is active when the route is dashboard -->
 <template>
     <div class="px-4 py-4 w-full h-fit gap-4 bg-grey-100 grid grid-cols-3 grid-rows-5 shadow-inner">
-        <router-link to="schedule" class=" flex items-center justify-items-center col-span-2 px-10 py-4 row-span-3 bg-white-100 rounded-xl shadow-lg"> 
+        <router-link to="schedule" class=" flex items-center justify-items-center col-span-2 px-6 py-4 row-span-3 bg-white-100 rounded-xl shadow-lg"> 
             <SchedPreview :schedule="Schedule"/> 
         </router-link>
         <div class="col-start-3 row-span-3 bg-white-100 rounded-xl shadow-lg"><CalendarPreview/></div>

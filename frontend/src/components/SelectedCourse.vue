@@ -231,7 +231,7 @@ const animationTime = 300;
                 else if(this.dropDownFadeUp){
                     return 'fade-up'
                 }
-                else if(allClasses){
+                else if(!this.allClasses){
                     return ' h-auto'
                 }
                 else{

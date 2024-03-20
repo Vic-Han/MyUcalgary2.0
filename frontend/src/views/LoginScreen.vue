@@ -1,9 +1,9 @@
 <template>
   <img src = "../assets/login.png" class = "fixed w-full h-screen z-10"/>
-  <div class="flex flex-col absolute -translate-y-2/4 -translate-x-2/4 left-1/2 top-1/2 bg-white-100 rounded-xl w-2/6 h-5/12 z-20">
+  <div class="flex flex-col absolute -translate-y-2/4 -translate-x-2/4 left-1/2 top-1/2 bg-white-100 rounded-xl w-2/6 h-5/12 z-20 shadow-xl">
     <img src = "../assets/unilogo.png" class = "w-64 ml-5 mb-14 mt-5"/> 
-    <input type = "text" placeholder = "Username" class = "w-8/12 h-7 mb-2 p-2 border border-grey-200 rounded-md relative -translate-x-2/4 left-1/2 outline-red drop-shadow-sm" v-model="username"/>
-    <input type = "password" placeholder = "Password" class = "w-8/12 h-7 p-2 mb-2 border border-grey-200 rounded-md relative -translate-x-2/4 left-1/2 outline-red drop-shadow-sm" v-model="password"/>
+    <input type = "text" placeholder = "Username" v-on:keyup.enter="$refs.password.focus()" ref="username" class = "w-8/12 h-7 mb-2 p-2 border border-grey-200 rounded-md relative -translate-x-2/4 left-1/2 outline-red shadow-md" v-model="username"/>
+    <input type = "password" placeholder = "Password" v-on:keyup.enter="loginAttempt" ref="password" class = "w-8/12 h-7 p-2 mb-2 border border-grey-200 rounded-md relative -translate-x-2/4 left-1/2 outline-red shadow-md" v-model="password"/>
     <div class = "w-8/12 relative -translate-x-2/4 left-1/2 mb-6 mt-4">
       <div class="w-32 border-2 border-red-100 rounded-md text-red-100 
       relative left-full -translate-x-full transition hover:bg-red-100 hover hover:text-white-100 drop-shadow-sm" @click="loginAttempt()">
@@ -37,6 +37,14 @@ export default {
   methods: {
     loginCorrect() {
       this.$emit('logout-possible')
+      const initials = this.username.split('.')[0][0] + this.username.split('.')[1][0]
+      console.log(initials)
+      let expiryDate = new Date();
+      expiryDate.setMonth(expiryDate.getMonth() + 30);
+
+      this.$cookies.set('initials', initials, {
+        expires: expiryDate
+      });
       if(this.$cookies.get('lastPage')) {
         this.$router.push(this.$cookies.get('lastPage'))
       } else {
@@ -45,6 +53,8 @@ export default {
     },
     loginIncorrect() {
       this.error = true
+      this.$refs.username.focus()
+      
       setTimeout(() => {
         this.error = false
       }, 3000)
@@ -93,6 +103,9 @@ export default {
     }
     this.$emit('logout-not-possible')
     this.$emit('hide-navbar')
+  },
+  mounted(){
+    this.$refs.username.focus()
   }
 }
 </script>

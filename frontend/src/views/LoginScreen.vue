@@ -37,6 +37,14 @@ export default {
   methods: {
     loginCorrect() {
       this.$emit('logout-possible')
+      const initials = this.username.split('.')[0][0] + this.username.split('.')[1][0]
+      console.log(initials)
+      let expiryDate = new Date();
+      expiryDate.setMonth(expiryDate.getMonth() + 30);
+
+      this.$cookies.set('initials', initials, {
+        expires: expiryDate
+      });
       if(this.$cookies.get('lastPage')) {
         this.$router.push(this.$cookies.get('lastPage'))
       } else {
@@ -46,14 +54,7 @@ export default {
     loginIncorrect() {
       this.error = true
       this.$refs.username.focus()
-      const initials = this.username.split(' ').map((n) => n[0]).join('')
-
-      let expiryDate = new Date();
-      expiryDate.setMonth(expiryDate.getMonth() + 30);
-
-      this.$cookies.set('initials', initials, {
-        expires: expiryDate
-      });
+      
       setTimeout(() => {
         this.error = false
       }, 3000)

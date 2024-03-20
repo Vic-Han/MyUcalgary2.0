@@ -419,6 +419,20 @@ export default {
         this.awards = data.awards;
         this.due = data.due;
         this.selectedTerm = data.selectedTerm;
+
+        const total = this.paid + this.awards + this.due;
+        if(total == 0){
+          this.pieChartSegments = {
+            paid: { start: '0%', end: '100%' },
+          }
+        }
+        else{
+          this.pieChartSegments = {
+            due: { start: '0%', end: `${(this.due / total) * 100}%` },
+            paid: { start: `${(this.due / total) * 100}%`, end: `${((this.due + this.paid) / total) * 100}%` },
+            awards: { start: `${((this.due + this.paid) / total) * 100}%`, end: '100%' },
+          }
+        }
       })
       .catch(error => console.error('Error fetching data:', error));
     },

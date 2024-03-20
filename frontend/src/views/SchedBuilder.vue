@@ -74,6 +74,7 @@
             </div>
             <div class="grid grid-cols-11 h-200">
                 <div class="col-span-4 flex flex-col px-10 h-full bg-white-100 rounded-xl shadow-xl mb-4 mx-4 p-4">
+                    <div v-if="schedCourses.length+cartCourses.length == 0" class="text-grey-200 text-2xl font-semibold pt-20"> Add Courses to Your Schedule by Searching for a Course </div>
                     <div v-for="(course,index) in schedCourses" :key="index">
                         <SelectedCourse 
                         :course="course" :number="index"

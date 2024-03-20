@@ -233,7 +233,7 @@
       <div class = "flex flex-row gap-x-4">
           <div class = "flex flex-col gap-y-4"> 
               <div class = "bg-white-100 p-10 rounded-xl shadow-lg"> 
-                 <div class = "text-2xl mb-4"> {{ currentTerm }} </div>
+                 <div class = "text-2xl mb-4"> {{ selectedTerm }} </div>
                  <div class = "rounded-full w-64 h-64 mx-8 border-grey-200 border-2" :style="pieChartStyle"></div>
                  <div class = "flex flex-row mt-8 justify-center">
                         <div class = "flex items-center mx-4">

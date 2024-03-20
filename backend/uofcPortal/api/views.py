@@ -240,7 +240,7 @@ class StudentFinancesView(APIView):
             "paid": total_paid,
             "awards": total_awards,
             "due": total_due * -1,  # Convert negative due amount to positive
-            "selectedTerm": transaction.term.term_name,
+            "selectedTerm": f"{transaction.term.term_name} {transaction.term.term_year}",
             "activity": activity
         }
 

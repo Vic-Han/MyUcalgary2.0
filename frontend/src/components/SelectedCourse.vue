@@ -35,7 +35,7 @@
         </div>
 
     </div>
-    <div class="bg-white-200 flex flex-col z-0 w-full rounded-b-xl " v-if="dropDownVisible" :class="animation()"> 
+    <div class="bg-white-200 flex flex-col z-0 w-full rounded-b-xl shadow-md" v-if="dropDownVisible" :class="animation()"> 
         <div class="flex flex-row pl-2">
             <div> Try all classes </div>
             <input type="checkbox" class="mx-1" v-model="allClasses">    
@@ -183,7 +183,7 @@ const animationTime = 300;
             },
             roundedBottom(){
                 if(!this.dropDownVisible){
-                    return ' rounded-b-xl'
+                    return ' shadow-md rounded-b-xl '
                 }
                 else{
                     return ' '

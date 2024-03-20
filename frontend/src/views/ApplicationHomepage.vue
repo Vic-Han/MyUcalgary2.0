@@ -1,19 +1,20 @@
-<template>
-    <div class="bg-grey-100">
-       
+<template> 
+  <div>
       <ApplicationForm v-if="applicationForm" @cancel="closeApplicationForm" @submit="closeApplicationForm"/>
-      <div v-else class="bg-white-100 w-3/4 relative left-1/2 -translate-x-1/2 top-40">
-        <div>
-          My Applications
+      <div v-else class="bg-white-100 w-5/6 relative left-1/2 -translate-x-1/2 top-10 rounded-xl">
+        <div class="text-left p-5 text-3xl text-grey-200"> My Applications </div>
+        <div class = "flex flex-row px-20">
+          <div class="border border-grey-200 rounded-tl-lg w-1/4 py-3 bg-gray-300" 
+          @click="selected='ugrad'" v-bind:class="{'bg-white-100 border-b-0' : selected==='ugrad'}"> Undergrad </div>
+          <div class="border border-grey-200 w-1/4 py-3 bg-gray-300" 
+          @click="selected='award'" v-bind:class="{'bg-white-100 border-b-0' : selected==='award'}"> Awards </div>
+          <div class="border border-grey-200 w-1/4 py-3 bg-gray-300" 
+          @click="selected='scholarship'" v-bind:class="{'bg-white-100 border-b-0' : selected==='scholarship'}"> Scholarships </div>
+          <div class="border border-grey-200 rounded-tr-lg w-1/4 py-3 bg-gray-300" 
+          @click="selected='grad'" v-bind:class="{'bg-white-100 border-b-0' : selected==='grad'}"> Grad</div>
         </div>
-        <div class = "flex flex-row">
-          <div class="border border-black-100 p-3" @click="selected='ugrad'"> Undergrad </div>
-          <div class="border border-black-100 p-3" @click="selected='award'"> Awards </div>
-          <div class="border border-black-100 p-3" @click="selected='scholarship'"> Scholarships </div>
-          <div class="border border-black-100 p-3" @click="selected='grad'"> Grad</div>
-        </div>
-        <div class = "bg-grey-100 p-10"> 
-          <div class="flex flex-row" v-if="selected === 'ugrad'">
+        <div class = "px-20"> 
+          <div class="flex flex-row p-20 h-96 box-content border-x border-grey-200 border-b" v-if="selected === 'ugrad'">
             <div v-for="(app,index) in ugradApps" :key="index" class="border border-black-100 p-3">
               <div>Faculty: {{app.faculty}}</div>
               <div>Program: {{app.program}}</div>
@@ -23,21 +24,21 @@
               <div>Status: {{app.status}}</div>
             </div>
           </div>
-          <div class="flex flex-row" v-else-if="selected === 'award'">
+          <div class="flex flex-row p-20 h-96 box-content border-x border-grey-200 border-b" v-else-if="selected === 'award'">
             <div v-for="(award,index) in awards" :key="index" class="border border-black-100 p-3">
               <div>Name: {{award.name}}</div>
               <div>Amount: {{award.amount}}</div>
               <div>Status: {{award.status}}</div>
             </div>
           </div>
-          <div class="flex flex-row" v-else-if="selected === 'scholarship'">
+          <div class="flex flex-row p-20 h-96 box-content border-x border-grey-200 border-b" v-else-if="selected === 'scholarship'">
             <div v-for="(scholarship,index) in scholarships" :key="index" class="border border-black-100 p-3">
               <div>Name: {{scholarship.name}}</div>
               <div>Amount: {{scholarship.amount}}</div>
               <div>Status: {{scholarship.status}}</div>
             </div>
           </div>
-          <div class="flex flex-row" v-else-if="selected === 'grad'">
+          <div class="flex flex-row p-20 h-96 box-content border-x border-grey-200 border-b" v-else-if="selected === 'grad'">
             <div v-for="(app,index) in gradApps" :key="index" class="border border-black-100 p-3 m-5">
               <div>Faculty: {{app.faculty}}</div>
               <div>Program: {{app.program}}</div>

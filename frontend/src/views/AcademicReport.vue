@@ -49,6 +49,7 @@
                   <div class="pl-2 text-sm italic text-green-100">Complete</div>
                 </div>
               </div>
+
               <div v-if="Requirement.expanded == true">
                 <div v-if="index == 0" class="grid grid-cols-1">
                   <div v-for="(semester,i) in Requirement.courses" :key="i">
@@ -120,6 +121,7 @@
                               <div v-if="course.status == 'complete'" class="text-left"><strong>Grade:</strong> {{ course.grade }}</div>
                           </div>
                         </div>
+
                     </div>
                   </div>
                 </div>

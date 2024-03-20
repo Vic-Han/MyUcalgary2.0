@@ -25,7 +25,7 @@
             </div>
             <div class="row-span-3 col-start-6 col-span-3 bg-white-100 w-full h-56 rounded-lg shadow-xl">
                 <h2 class="relative w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Citizenship</h2>
-                <div class="grid grid-cols-1 divide-y divide-grey-200 px-4 pt-4 text-lg">
+                <div class="grid grid-cols-1 px-4 pt-4 text-lg">
                     <div class="pb-4">
                         <div class="flex flex-row">
                             <div class="w-fit font-semibold pr-1">Country:</div>
@@ -53,7 +53,7 @@
                 <div class="flex flex-row w-full">
                     <h2 class="w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Address</h2>
                     <div class="w-full">
-                        <div v-if="editingID == Address" class="absolute pt-4 mx-4 w-fit right-0">
+                        <div v-if="editingID == 'Address'" class="absolute pt-4 mx-4 w-fit right-0">
                             <svg xmlns="http://www.w3.org/2000/svg" @click="setView()"  class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                                 <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
                             </svg>
@@ -64,13 +64,13 @@
                             </svg>
                         </div>
                         <div v-else class="absolute pt-4 mx-4 w-fit right-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" @click="setEditing(Address)" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                            <svg xmlns="http://www.w3.org/2000/svg" @click="setEditing('Address')" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                                 <path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/>
                             </svg>
                         </div>
                     </div>
                 </div>
-                <div v-if="this.editingID == Address" class="px-4 pt-4 text-left text-lg">
+                <div v-if="this.editingID == 'Address'" class="px-4 pt-4 text-left text-lg">
                     <div class="font-semibold pb-2">Street Address: *</div>
                     <div class="pb-2">
                         <input type="text" placeholder="Required" v-model="Address.Street" class="w-10/12 border-2 rounded-md text-md border-grey-100 outline-red-100 pl-2">
@@ -115,7 +115,7 @@
                 <div class="flex flex-row w-full">
                     <h2 class="w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Phone</h2>
                     <div class="w-full">
-                        <div v-if="editingID == Phone" class="absolute pt-4 mx-4 w-fit right-0">
+                        <div v-if="editingID == 'Phone'" class="absolute pt-4 mx-4 w-fit right-0">
                             <svg xmlns="http://www.w3.org/2000/svg" @click="setView()"  class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                                 <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
                             </svg>
@@ -126,13 +126,13 @@
                             </svg>
                         </div>
                         <div v-else class="absolute pt-4 mx-4 w-fit right-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" @click="setEditing(Phone)" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                            <svg xmlns="http://www.w3.org/2000/svg" @click="setEditing('Phone')" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                                 <path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/>
                             </svg>
                         </div>
                     </div>
                 </div>
-                <div v-if="this.editingID == Phone" class="px-4 pt-4 text-left text-lg">
+                <div v-if="this.editingID == 'Phone'" class="px-4 pt-4 text-left text-lg">
                     <div class="flex flex-row">
                         <div class="font-semibold pb-2 w-5/12 mr-6">Home: *</div>
                         <span  class="flex items-center italic text-grey-200 text-xs">Preferred</span>
@@ -190,7 +190,7 @@
                 <div class="flex flex-row w-full">
                     <h2 class="w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Email</h2>
                     <div class="w-full">
-                        <div v-if="editingID == Email" class="absolute pt-4 mx-4 w-fit right-0">
+                        <div v-if="editingID == 'Email'" class="absolute pt-4 mx-4 w-fit right-0">
                             <svg xmlns="http://www.w3.org/2000/svg" @click="setView()"  class="h-10 w-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                                 <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
                             </svg>
@@ -201,13 +201,13 @@
                             </svg>
                         </div>
                         <div v-else class="absolute pt-4 mx-4 w-fit right-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" @click="setEditing(Email)" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                            <svg xmlns="http://www.w3.org/2000/svg" @click="setEditing('Email')" class="h-8 w-8 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                                 <path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/>
                             </svg>
                         </div>
                     </div>
                 </div>
-                <div v-if="this.editingID == Email" class="px-4 pt-4 text-left text-lg">
+                <div v-if="this.editingID == 'Email'" class="px-4 pt-4 text-left text-lg">
                     <div class="flex flex-row">
                         <div class="font-semibold pb-2 w-3/4 mr-5">School: *</div>
                         <span  class="flex items-center italic text-grey-200 text-xs">Preferred</span>
@@ -370,6 +370,79 @@
 </template>
 
 <script>
+let initialValue = null;
+const streetValid = (street) =>{
+    if(street == ''){
+        return false
+    }
+    return true
+
+}
+const cityValid = (city) =>{
+    if(city == ''){
+        return false
+    }
+    return true
+}
+const provinceValid = (province) =>{
+    if(province == ''){
+        return false
+    }
+    return true
+}
+const countryValid = (country) =>{
+    if(country == ''){
+        return false
+    }
+    return true
+}
+const postalValid = (postal) =>{
+    if(postal.length != 7){
+        return false
+    }
+    if(postal[3] != ' '){
+        return false
+    }
+    return true
+}
+// (403)-220-5738
+const phoneValid = (phone) =>{
+    if(phone.length != 14){
+        return false
+    }
+    if(phone[0] != '(' || phone[4] != ')' || phone[5] != '-' || phone[9] != '-'){
+        return false
+    }
+    for(let i = 1; i < 4; i++){
+        if(isNaN(phone[i])){
+            return false
+        }
+    }
+    for(let i = 6; i < 9; i++){
+        if(isNaN(phone[i])){
+            return false
+        }
+    }
+    for(let i = 10; i < 14; i++){
+        if(isNaN(phone[i])){
+            return false
+        }
+    }
+    return true
+}
+const emailValid = (email) =>{  
+    if(email.length < 5){
+        return false
+    }
+    if(!email.includes('@')){
+        return false
+    }
+    if(!email.includes('.')){
+        return false
+    }
+    return true
+}
+
     export default{
         name : 'ProfileInfo',
         emits: ['show-navbar','toggle-selected'],
@@ -432,14 +505,110 @@
             this.$emit('toggle-selected', 'profile')
         }, 
         methods:{
-            back(){
-                this.$router.go(-1)
+            async editInfo(){
+                
+                // call back end and return false if there was an error
+                
+                return true
             },
             setEditing(element) {
                 this.editingID = element;
+                if(element == 'Address') {
+                    initialValue = {
+                        Street: this.Address.Street,
+                        City: this.Address.City,
+                        Province: this.Address.Province,
+                        Country: this.Address.Country,
+                        Postal: this.Address.Postal,
+                        Apt: this.Address.Apt
+                    }
+                }
+                else if(element == 'Phone') {
+                    initialValue = {
+                        Home: this.Phone.Home,
+                        Mobile: this.Phone.Mobile,
+                        Other: this.Phone.Other,
+                        Preferred: this.Phone.Preferred
+                    }
+                }
+                else if(element == 'Email') {
+                    initialValue = {
+                        School: this.Email.School,
+                        Personal: this.Email.Personal,
+                        Preferred: this.Email.Preferred
+                    }
+                }
+                else if(element == 'EmergencyContacts') {
+                    initialValue = {
+                        Name: this.EmergencyContacts[element].Name,
+                        Relationship: this.EmergencyContacts[element].Relationship,
+                        Phone: this.EmergencyContacts[element].Phone,
+                        Primary: this.EmergencyContacts[element].Primary
+                    }
+                }
+                else{
+                    initialValue = {
+                        Name: this.EmergencyContacts[element].Name,
+                        Relationship: this.EmergencyContacts[element].Relationship,
+                        Phone: this.EmergencyContacts[element].Phone,
+                        Primary: this.EmergencyContacts[element].Primary
+                    }
+                    console.log(initialValue)
+                }
             },
             setView() {
-                this.editingID = null;
+                console.log(initialValue)
+                if(this.editingID !== initialValue) {
+                    if(this.editingID == 'Address') {
+                       if(!streetValid(this.Address.Street) || !cityValid(this.Address.City)  
+                       || !provinceValid(this.Address.Province) || !countryValid(this.Address.Country) 
+                       || !postalValid(this.Address.Postal)) {
+                            this.editingID = null;
+                            this.Address = initialValue;
+                            initialValue = null;
+                            return
+                        }
+                    }
+                    else if(this.editingID == 'Phone') {
+                        if(!phoneValid(this.Phone.Home) || !phoneValid(this.Phone.Mobile)) {
+                            this.editingID = null;
+                            this.Phone = initialValue;
+                            initialValue = null;
+                            return
+                        }
+                    }
+                    else if(this.editingID == 'Email') {
+                        if(!emailValid(this.Email.School) || !emailValid(this.Email.Personal)) {
+                            this.editingID = null;
+                            this.Email = initialValue;
+                            initialValue = null;
+                            return
+                        }
+                    }
+                    else if(this.editingID == 1 || this.editingID == 0 || this.editingID == 2) {
+                        if(this.EmergencyContacts[this.editingID].Name == '' || this.EmergencyContacts[this.editingID].Relationship == '' || !phoneValid(this.EmergencyContacts[this.editingID].Phone)) {
+                            
+                            this.EmergencyContacts[this.editingID] = initialValue;
+                            initialValue = null;
+                            this.editingID = null;
+                            return
+                        }
+                    }
+
+
+                    this.editInfo().then(res =>{
+                        if(res){
+                            this.editingID = null;
+                        } else {
+                            this[this.editingID] = initialValue;
+                            this.editingID = null;
+                        }
+                    })
+                }
+                else{
+                    this.editingID = null;
+                }
+                
             },
             editContact(index) {
                 document.removeEventListener("click",this.eventLister)
@@ -453,6 +622,7 @@
                     document.removeEventListener("click",this.eventLister)
                 }
             },
+        
             closeDropdown () {
                 this.dropdownVisible = null
             },
@@ -483,9 +653,9 @@
             },
             addContact() {
                 this.EmergencyContacts.push({
-                    Name: null,
-                    Relationship: null,
-                    Phone: null,
+                    Name: "Name",
+                    Relationship: "Relationship",
+                    Phone: '123-456-7890',
                     Primary: false
                 })
                 this.setEditing(this.EmergencyContacts.length - 1)

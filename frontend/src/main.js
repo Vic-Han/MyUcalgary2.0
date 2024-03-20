@@ -9,7 +9,6 @@ import axios from 'axios'
 // import the global css file and tailwind utilities
 import './index.css'
 import './tailwind.css'
-//import axios from 'axios'
 
 const app = createApp(App)
 //app.use(VueWorker)

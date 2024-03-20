@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row w-screen h-screen overflow-hidden bg-grey-100" v-bind:class="{'pl-96':navbarVisible}">
+  <div class="flex flex-row w-screen h-screen overflow-hidden shadow-inner bg-grey-100" v-bind:class="{'pl-96':navbarVisible}">
     <AppNavbar v-if="navbarVisible" :selected="selected" />
     <div class="w-full">
       <div v-if="navbarVisible" class="flex items-center justify-start py-4 px-4 bg-gray-200">

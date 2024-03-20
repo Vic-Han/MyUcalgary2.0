@@ -16,7 +16,7 @@
                 <div class="font-semibold text-grey-200 text-2xl" v-bind:class="{'text-red-100' : backHover}">Back to Home</div>
             </router-link>
             <div class="flex flex-row items-center w-full relative left-5">
-                <input type="text" placeholder="search" @keydown="searchResults" v-model="courseSearchTerm" class="w-2/3 text-xl pl-2 h-9 border border-black-100 rounded-md">
+                <input type="text" placeholder="search" @keydown="searchResults" v-model="courseSearchTerm" class="w-2/3 text-xl pl-2 h-9 border border-black-100 rounded-md outline-red-100 ">
                 <div class="text-lg w-fit px-3 cursor-pointer text-left text-grey-200 hover:text-red-100" @click="advancedSearchOpen = true"> Advanced Search</div>
             </div>
             <div class="h-4/6 overflow-y-auto">
@@ -32,20 +32,44 @@
         <div class="flex flex-col w-full">
             <div class="bg-white-100 rounded-xl shadow-xl m-4">
                 <div class="flex flex-row relative left-1/2 -translate-x-1/2 w-fit my-5">
-                    <div class="text-5xl mx-5">  {{ '<' }} </div> 
-                    <div class="text-5xl mx-40">Fall 2024</div>
-                    <div class="text-5xl mx-5"> {{'>'}}</div>
+                    <div class="text-5xl mx-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                            <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
+                        </svg>
+                    </div> 
+                    <div class="text-5xl pt-4 mx-40 text-grey-200">Fall 2024</div>
+                    <div class="text-5xl mx-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 -rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                            <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
+                        </svg>
+                    </div>
                     
                 </div>
                 <div class="flex flex-row relative left-1/2 -translate-x-1/2 w-fit mb-5">
-                    <div class="text-3xl mx-4 mt-4" @click="resetSelectedToZero"> {{'|<'}} </div>
-                    <div class="text-3xl mx-4 mt-4" @click="decrementSchedIndex"> {{ '<' }} </div>
-                    <div class="flex flex-col p-2 mx-8">
-                        <div class="text-3xl"> Result </div>
-                        <div class="text-3xl"> {{ schedules.length > 0 ?  (schedIndex + 1)+ ' of ' + schedules.length : '0 of 0'}} </div>
+                    <div class="text-3xl mx-4 mt-4" @click="resetSelectedToZero">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                            <path d="M240-240v-480h80v480h-80Zm440 0L440-480l240-240 56 56-184 184 184 184-56 56Z"/>
+                        </svg>
                     </div>
-                    <div class="text-3xl mx-4 mt-4" @click="incrementSchedIndex"> {{'>'}} </div>
-                    <div class="text-3xl mx-4 mt-4" @click="setSelectedToLast"> {{'>|'}} </div>
+                    <div class="text-3xl mx-4 mt-4" @click="decrementSchedIndex">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                            <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col p-2 mx-8">
+                        <div class="text-3xl text-grey-200"> Result </div>
+                        <div class="text-3xl text-grey-200"> {{ schedules.length > 0 ?  (schedIndex + 1)+ ' of ' + schedules.length : '0 of 0'}} </div>
+                    </div>
+                    <div class="text-3xl mx-4 mt-4" @click="incrementSchedIndex">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 -rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                            <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
+                        </svg>
+                    </div>
+                    <div class="text-3xl mx-4 mt-4" @click="setSelectedToLast">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 rotate-180 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                            <path d="M240-240v-480h80v480h-80Zm440 0L440-480l240-240 56 56-184 184 184 184-56 56Z"/>
+                        </svg>
+                    </div>
                 </div>
             </div>
             <div class="grid grid-cols-11 h-200">
@@ -69,10 +93,10 @@
                         ></SelectedCourse>
                     </div>
                 </div>
-                <div class="flex flex-col col-span-7 h-full bg-white-100 rounded-xl shadow-xl mb-4 mr-4 p-4">
+                <div class="flex flex-col items-center col-span-7 h-full bg-white-100 rounded-xl shadow-xl mb-4 mr-4 p-4">
                     <!-- <SchedPreview :sched="schedules.length > 0 ? schedules[selectedSched] : null"> </SchedPreview> -->
                     <SchedPreview :schedule="courseListToSched()"></SchedPreview>
-                    <div class="border border-grey-200 mt-4 w-fit relative left-1/2 -translate-x-1/2 p-10 text-xl rounded-xl"> Get Schedule!</div>
+                    <div class="border-4 font-semibold border-red-100 mt-4 w-fit relative left-1/3 translate-x-2 p-3 text-xl rounded-xl text-red-100 hover:bg-red-100 hover:text-white-100">Get Schedule</div>
                 </div>
             </div>
         </div>

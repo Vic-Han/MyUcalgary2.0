@@ -16,8 +16,8 @@
         <div class = "px-20"> 
           <div class="p-5 h-144 box-content border-x border-grey-200 border-b rounded-b-xl flex-wrap" v-if="selected === 'ugrad'">
             <div class="flex flex-row overflow-x-auto bg-white-200 p-1 h-full rounded-xl">
-            <div v-if="ugradApps.length == 0">
-              Sup
+            <div v-if="ugradApps.length == 0" class="text-7xl text-grey-200 p-16 leading-loose">
+              No applications for undergrad programs. You can start an application below.
             </div>
             <div v-for="(app,index) in ugradApps" :key="index" class="bg-grey-100 rounded-lg p-5 h-fit w-fit ml-12 mb-2 mt-12">
               <div class="flex flex-row justify-between w-144">
@@ -67,8 +67,8 @@
           </div>
           <div class=" p-5 h-144 box-content border-x border-grey-200 border-b rounded-b-xl" v-else-if="selected === 'scholarship'">
             <div class="overflow-x-auto bg-white-200 p-1 flex flex-row h-full rounded-xl">
-              <div v-if="scholarships.length === 0">
-                Sup
+              <div v-if="scholarships.length === 0" class="text-7xl text-grey-200 p-20 leading-loose">
+                No applications for scholarships. You can start an application below.
               </div>
             <div v-for="(scholarship,index) in scholarships" :key="index" class="bg-grey-100 rounded-lg p-5 h-fit w-fit ml-12 mb-2 mt-12">
               <div class="flex flex-row p-2 justify-between w-144">
@@ -91,8 +91,8 @@
           </div>
           <div class="px-5 py-10 h-144 box-content border-x border-grey-200 border-b rounded-b-xl " v-else-if="selected === 'grad'">
             <div class="overflow-x-auto bg-white-200 p-1 flex flex-row h-full rounded-xl">
-              <div v-if="gradApps.length == 0" class="text-9xl text-grey-200">
-                Sup
+              <div v-if="gradApps.length == 0" class="text-7xl text-grey-200 p-18 leading-loose">
+                No applications for graduate programs. You can start an application below.
               </div>
               <div v-for="(app,index) in gradApps" :key="index" class="bg-grey-100 rounded-lg p-5 h-fit w-fit ml-12 mb-2 mt-12">
               <div class="flex flex-row p-2 justify-between w-144">

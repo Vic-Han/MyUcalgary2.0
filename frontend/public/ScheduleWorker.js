@@ -27,32 +27,32 @@ class Schedule {
                 const day = section.lecture.days[i]
                 const index = dayToIndex[day]
                 this.takenTimes[index].push([section.lecture.start, section.lecture.end])
-                // for(let i = this.takenTimes[index].length - 1; i > 0; i--){
-                //     if(this.takenTimes[index][i][0] < this.takenTimes[index][i-1][0]){
-                //         const temp = this.takenTimes[index][i]
-                //         this.takenTimes[index][i] = this.takenTimes[index][i-1]
-                //         this.takenTimes[index][i-1] = temp
-                //     }
-                //     else{
-                //         break
-                //     }
-                // }
+                for(let i = this.takenTimes[index].length - 1; i > 0; i--){
+                    if(this.takenTimes[index][i][0] < this.takenTimes[index][i-1][0]){
+                        const temp = this.takenTimes[index][i]
+                        this.takenTimes[index][i] = this.takenTimes[index][i-1]
+                        this.takenTimes[index][i-1] = temp
+                    }
+                    else{
+                        break
+                    }
+                }
             }
             if(section.tutorial.start){
                 for(let i = 0; i < section.tutorial.days.length; i++){
                     const day = section.tutorial.days[i]
                     const index = dayToIndex[day]
                     this.takenTimes[index].push([section.tutorial.start, section.tutorial.end])
-                    // for(let i = this.takenTimes[index].length - 1; i > 0; i--){
-                    //     if(this.takenTimes[index][i][0] < this.takenTimes[index][i-1][0]){
-                    //         const temp = this.takenTimes[index][i]
-                    //         this.takenTimes[index][i] = this.takenTimes[index][i-1]
-                    //         this.takenTimes[index][i-1] = temp
-                    //     }
-                    //     else{
-                    //         break
-                    //     }
-                    // }
+                    for(let i = this.takenTimes[index].length - 1; i > 0; i--){
+                        if(this.takenTimes[index][i][0] < this.takenTimes[index][i-1][0]){
+                            const temp = this.takenTimes[index][i]
+                            this.takenTimes[index][i] = this.takenTimes[index][i-1]
+                            this.takenTimes[index][i-1] = temp
+                        }
+                        else{
+                            break
+                        }
+                    }
                 }
             }
         }
@@ -67,11 +67,11 @@ function validEntry(currentSchedule, newLecture){
         const index = dayToIndex[day]
         for(time in currentSchedule.takenTimes[index]){
             // if the new lecture starts before the current lecture ends and ends after the current lecture starts
-            if(time[1] > lecStart && time[0] < lecStart){
+            if(time[1] >= lecStart && time[0] <= lecStart){
                 return false
             }
             // if the new lecture starts before the current lecture ends and ends after the current lecture starts
-            if(time[0] < lecEnd && time[1] > lecEnd){
+            if(time[0] <= lecEnd && time[1] >= lecEnd){
                 return false
             }
         }

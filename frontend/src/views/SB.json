@@ -120,7 +120,7 @@
                 },
                 {
                     "name": "T2",
-                    "days": "M",
+                    "days": "W",
                     "start": 16,
                     "end": 18,
                     "TA": "Lets not implement this :)",

@@ -3,7 +3,7 @@
     <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false"></AdvancedSearch>
     <AcademicSchedulePopup v-if="academicRequirementsPopup" :requirements="degreeRequirements" @close="academicRequirementsPopup = false"></AcademicSchedulePopup>
     <div class="flex flex-row">
-        <div class="w-1/4 flex flex-col h-screen box-content bg-white-100 shadow-xl">
+        <div class=" px-2 flex flex-col h-screen box-content bg-white-100 shadow-xl">
             <a href="https://www.ucalgary.ca/" target="_blank">
                 <img  src="@/assets/unilogo.png" alt="University Logo" class="w-96 self-center">
             </a>
@@ -19,7 +19,7 @@
                 <input type="text" placeholder="search" @keydown="searchResults" v-model="courseSearchTerm" class="w-2/3 text-xl pl-2 h-9 border border-black-100 rounded-md">
                 <div class="text-lg w-fit px-3 cursor-pointer text-left text-grey-200 hover:text-red-100" @click="advancedSearchOpen = true"> Advanced Search</div>
             </div>
-            <div class="h-4/6 overflow-y-auto">
+            <div class="h-4/6 overflow-y-auto w-96">
                 <div v-for="(course,index) in searchedCourses" :key="index">
                     <CoursePreview :course="course" :number="computeColor(course.name)" 
                     @addcourse="searchedToSched"

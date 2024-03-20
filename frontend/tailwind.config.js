@@ -65,11 +65,13 @@ module.exports = {
       },
       size: {
         '128': '34rem',
+        '200': '55rem'
       },
       spacing: {
         '112': '28rem',
         '128': '34rem',
         '144': '36rem',
+        '200': '55rem'
       },
       maxHeight: {
         '112': '28rem',

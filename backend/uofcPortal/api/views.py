@@ -205,15 +205,15 @@ class StudentGradeView(APIView, GradeMixins):
     
 
 class StudentFinancesView(APIView):
-    # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
-    # permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
-
-    # student = get_object_or_404(Student, user=request.user)
+    authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
 
     def get(self, request):
-        student = Student.objects.first()  # Replace with authentication later
-        if not student:
-            return Response({"error": "No student found"}, status=404)
+        student = get_object_or_404(Student, user=request.user)
+
+        # student = Student.objects.first()  # Replace with authentication later
+        # if not student:
+        #     return Response({"error": "No student found"}, status=404)
 
         transactions = Transaction.objects.filter(student=student).order_by('term__term_year', 'term__term_name')
         
@@ -235,13 +235,12 @@ class StudentFinancesView(APIView):
         total_paid = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_amount > 0)
         total_awards = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_type == "award")
         total_due = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_amount < 0)
-        due_by_date = "Jan 1, 2024 (HARDCODED)"  # Ask Vic about this? what's the overall due date mean?
 
         response_data = {
             "paid": total_paid,
             "awards": total_awards,
             "due": total_due * -1,  # Convert negative due amount to positive
-            "dueBy": due_by_date,
+            "selectedTerm": transaction.term.term_name,
             "activity": activity
         }
 

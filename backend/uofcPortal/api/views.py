@@ -171,7 +171,7 @@ class StudentGradeView(APIView, GradeMixins):
             termYear = f"{term} {enrollment.lecture.term.term_year}"
             if termYear not in activity:
                 activity[termYear] = {
-                    "Units Enrolled": 0,
+                    "UnitsEnrolled": 0,
                     "Program": applications.major_program.program_name,
                     "Level": student_year,
                     "Plan": f"{applications.major_program.program_degree_level}, {applications.major_program.program_name}",
@@ -188,7 +188,7 @@ class StudentGradeView(APIView, GradeMixins):
                     "units": enrollment.lecture.course.course_units
                 }
                 activity[termYear]["courses"].append(course_info)
-                activity[termYear]["Units Enrolled"] += 3 # Assuming each course is 3 units
+                activity[termYear]["UnitsEnrolled"] += 3 # Assuming each course is 3 units
 
         for term, info in activity.items():
             term_gpa, term_letter_grade = self.calculate_term_gpa_and_letter_grade(info['courses'])

@@ -9,7 +9,8 @@ import axios from 'axios'
 // import the global css file and tailwind utilities
 import './index.css'
 import './tailwind.css'
-//import axios from 'axios'
+//import gsap
+import gsap from 'gsap'
 
 const app = createApp(App)
 //app.use(VueWorker)
@@ -17,4 +18,13 @@ app.use(VueCookies, { expires: '1800s'})
 app.use(router)
 app.use(store)
 app.config.globalProperties.$http = axios
+
+// Add Vue utilities to global scope
+app.config.globalProperties.$ref = ref;
+app.config.globalProperties.$reactive = reactive;
+app.config.globalProperties.$watch = watch;
+
+// Add GSAP to global scope
+app.config.globalProperties.$gsap = gsap;
+
 app.mount('#app')

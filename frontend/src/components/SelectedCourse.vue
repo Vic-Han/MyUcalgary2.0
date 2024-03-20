@@ -35,7 +35,7 @@
         </div>
 
     </div>
-    <div class="bg-white-200 flex flex-col z-0 h-52 w-full rounded-b-xl " v-if="dropDownVisible" :class="animation()"> 
+    <div class="bg-white-200 flex flex-col z-0 w-full rounded-b-xl " v-if="dropDownVisible" :class="animation()"> 
         <div class="flex flex-row pl-2">
             <div> Try all classes </div>
             <input type="checkbox" class="mx-1" v-model="allClasses">    
@@ -239,8 +239,11 @@ const animationTime = 300;
                 else if(this.dropDownFadeUp){
                     return 'fade-up'
                 }
+                else if(!this.allClasses){
+                    return ' h-auto'
+                }
                 else{
-                    return ' '
+                    return ' h-52'
                 }
             },
             convertLectureTime(){

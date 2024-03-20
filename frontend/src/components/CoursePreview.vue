@@ -1,5 +1,5 @@
 <template>
-    <div class = "bg-white-200 w-96 rounded-t-xl mt-5 flex flex-row py-4 ml-3 shadow-md border border-grey-200" :class="roundedBottom()" @click="toggleDropdown">
+    <div class = "bg-white-100 w-96 rounded-t-xl mt-5 flex flex-row py-4 border border-white-200" :class="roundedBottom()" @click="toggleDropdown">
         <div class = "flex flex-col w-20 h-16 px-3 py-2 text-base rounded-r-sm" v-bind:class="courseColor()"> {{ course.name }}</div>
         <div class = "flex flex-col w-52 h-16 align-middle text-lg text-left px-2">
             <div>{{ course.title }}</div>
@@ -15,7 +15,7 @@
             </svg>        
         </div>
     </div>
-    <div class = "bg-white-200 w-96 rounded-b-lg px-2 ml-3 shadow-md border-t-0 border border-grey-200" v-if="dropDownVisible" :class="animation()">
+    <div class = "bg-white-200 w-96 rounded-b-lg px-2 shadow-md border-t-0 border border-white-200" v-if="dropDownVisible" :class="animation()">
         <div class="text-base text-left" > Description: {{ course.desc }} </div>
         <div class = "text-base text-left" > Prerequisites: {{ course.prereq }}</div>
         <div class = "text-base text-left"> AntiRequisites: {{ course.antireq }}</div>
@@ -58,7 +58,7 @@ const animationTime = 300
             },
             roundedBottom(){
                 if(!this.dropDownVisible){
-                    return ' rounded-b-xl'
+                    return ' rounded-b-xl shadow-md'
                 }
                 else{
                     return ' border-b-0'

@@ -15,7 +15,7 @@
       </div>
 
       <router-view
-        class="w-full"
+        class="w-full p-5"
         @show-navbar="showNavbar"
         @hide-navbar="hideNavbar"
         @logout-possible="logoutPossible = true"

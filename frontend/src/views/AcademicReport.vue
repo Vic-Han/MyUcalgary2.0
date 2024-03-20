@@ -159,85 +159,6 @@
         ]
       }
     },
-    computed: {
-        // incompleteMajorField() {
-        //     if (this.expandedReport) {
-        //         return this.requiredCourses.courses.filter(course => course.status === 'incomplete' || course.status === 'in-progress' || course.status === 'completed');
-                
-        //     } else {
-        //         return this.requiredCourses.courses.filter(course => course.status === 'incomplete');
-        //     }
-        // },
-
-        // incompleteOptions() {
-        //     if (this.expandedReport) {
-        //         return this.requiredOptions.map(option => ({...option,
-        //         courses: option.courses.filter(course => course.status === 'incomplete' || course.status === 'in-progress' || course.status === 'completed')}));
-        //     } else {
-        //         return this.requiredOptions.map(option => ({...option,
-        //         courses: option.courses.filter(course => course.status === 'incomplete')}));
-        //     }
-        // },
-    
-      // canApplyForGraduation() {
-      //   // Logic to determine if the student can apply for graduation
-      //   return this.academicReport.programs.some(program => {
-      //     return program.unitsNeeded === 0;
-      //   });
-      // },
-      // completedCoursesReport() {
-      //   return this.academicReport.programs.map(program => {
-      //   const updatedProgram = { ...program };
-      //   updatedProgram.courseCategory = program.courseCategory.map(category => {
-      //       const updatedCategory = { ...category };
-      //       updatedCategory.courseField = category.courseField.map(field => {
-      //       const updatedField = { ...field };
-      //       updatedField.courses = field.courses.filter(course => course.status === 'complete');
-      //       return updatedField;
-      //       });
-      //       return updatedCategory;
-      //   });
-      //   return updatedProgram;
-      //   });
-      // },
-    //   programUnits() {
-    //     // Check if `academicReport` and `programs` are defined and if they are arrays.
-    //     if (!this.academicReport || !Array.isArray(this.academicReport.programs)) {
-    //     return []; // Return an empty array if not defined or not an array
-    //     }
-
-    //     return this.academicReport.programs.map(program => {
-    //     // Start with zero units taken and then sum up based on course status
-    //     let unitsTaken = 0;
-
-    //     // Check if `courseCategory` exists and is an array before iterating over it
-    //     if (Array.isArray(program.courseCategory)) {
-    //         program.courseCategory.forEach(category => {
-    //         // Check if `courseField` exists and is an array before iterating over it
-    //         if (Array.isArray(category.courseField)) {
-    //             category.courseField.forEach(field => {
-    //             field.courses.forEach(course => {
-    //                 if (course.status === 'complete' || course.status === 'incomplete') {
-    //                 unitsTaken = unitsTaken + 3; // Assuming each course is worth one unit
-    //                 }
-    //             });
-    //             });
-    //         }
-    //         });
-    //     }
-
-    //     // Calculate units needed based on the units taken
-    //     const unitsNeeded = Math.max(program.unitsRequired - unitsTaken, 0); // Ensure it doesn't go below zero
-
-    //     // Return an object with the computed units information for the program
-    //     return {
-    //         ...program,
-    //         unitsTaken,
-    //         unitsNeeded
-    //     };
-    //     });
-    // }
-    },
     methods: {
         getWidth() {
           return "w-[" + this.completedProgress + "%]"
@@ -248,46 +169,6 @@
         incrementPCT() {
           this.percentage++
         },
-        // toggleReportDetails(index) {
-        //     const program = this.academicReport.programs[index];
-        //     // Ensure program exists and has courseCategory defined
-        //     if (program && Array.isArray(program.courseCategory)) {
-        //     program.isExpanded = !program.isExpanded;
-        //     if (!program.isExpanded) {
-        //         // Store full course list if not done already
-        //         if (!program.fullCourseList) {
-        //         program.fullCourseList = program.courseCategory.map(category => ({
-        //             ...category, 
-        //             courseField: category.courseField.map(field => ({ ...field }))
-        //         }));
-        //         }
-        //         // Filter out completed and inProgress courses
-        //         program.courseCategory.forEach(category => {
-        //         category.courseField.forEach(field => {
-        //             field.courses = field.courses.filter(course => course.status === 'incomplete');
-        //         });
-        //         });
-        //     } else {
-        //         // Restore the full course list if it has been stored
-        //         if (program.fullCourseList) {
-        //         program.courseCategory = program.fullCourseList.map(category => ({
-        //             ...category, 
-        //             courseField: category.courseField.map(field => ({ ...field }))
-        //         }));
-        //         }
-        //     }
-        //     } else {
-        //     console.error('Program or courseCategory is undefined.');
-        //     }
-        // },
-        // toggleAllReports() {
-        //     this.areAllReportsExpanded = !this.areAllReportsExpanded;
-        //     this.academicReport.programs.forEach((program, index) => {
-        //     // Toggle the expanded state for each program
-        //     this.toggleReportDetails(index);
-        //     });
-
-        // }
     },
     watch: {
       completedProgress: {
@@ -709,6 +590,7 @@
             year: "First Year",
             fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F1")),
             winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W1"))
+
           },
           {
             year: "Second Year",

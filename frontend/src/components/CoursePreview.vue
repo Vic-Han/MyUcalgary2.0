@@ -1,8 +1,8 @@
 <template>
     <div class = "bg-white-100 w-96 rounded-t-xl mt-5 flex flex-row py-4 border border-white-200" :class="roundedBottom()" @click="toggleDropdown">
-        <div class = "flex flex-col w-20 h-16 px-3 py-2 text-base rounded-r-sm" v-bind:class="courseColor()"> {{ course.name }}</div>
-        <div class = "flex flex-col w-52 h-16 align-middle text-lg text-left px-2">
-            <div>{{ course.title }}</div>
+        <div class = "flex flex-col w-24 h-16 px-3 py-2 text-base rounded-r-sm" v-bind:class="courseColor()"> {{ course.name }}</div>
+        <div class = "flex flex-col w-64 h-16 align-middle text-lg text-left px-2">
+            <div class="font-semibold">{{ course.title }}</div>
             <div> {{  }} </div> 
             
         </div>

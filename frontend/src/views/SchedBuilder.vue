@@ -2,43 +2,54 @@
 <template>
     <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false"></AdvancedSearch>
     <AcademicSchedulePopup v-if="academicRequirementsPopup" :requirements="degreeRequirements" @close="academicRequirementsPopup = false"></AcademicSchedulePopup>
-    <div class = "flex flex-row">
-        <div class = "w-fit flex flex-col h-screen box-content">
-            <img src = "@/assets/unilogo.png " class = "w-96 mx-12">
-            <div class = "flex flex-row w-full relative left-5">
-                <input type="text" placeholder="search" @keydown.enter="searchResults" v-model="courseSearchTerm" class="w-60 text-xl h-9 border border-black-100 rounded-md">
-                <div class="text-lg" @click = "advancedSearchOpen = true"> Advanced Search</div>
+    <div class="flex flex-row">
+        <div class="w-1/4 flex flex-col h-screen box-content bg-white-100 shadow-xl">
+            <a href="https://www.ucalgary.ca/" target="_blank">
+                <img  src="@/assets/unilogo.png" alt="University Logo" class="w-96 self-center">
+            </a>
+            <router-link to="/dashboard" class="flex flex-row py-6 items-center" @mouseenter="backHover = true" @mouseleave="backHover = false">
+                <div class="w-1/3 relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="absolute rotate-90 h-16 w-16 fill-grey-200 -translate-y-8 right-1" v-bind:class="{'fill-red-100' : backHover}" viewBox="0 -960 960 960">
+                        <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
+                    </svg>
+                </div>
+                <div class="font-semibold text-grey-200 text-2xl" v-bind:class="{'text-red-100' : backHover}">Back to Home</div>
+            </router-link>
+            <div class="flex flex-row items-center w-full relative left-5">
+                <input type="text" placeholder="search" @keydown="searchResults" v-model="courseSearchTerm" class="w-2/3 text-xl pl-2 h-9 border border-black-100 rounded-md">
+                <div class="text-lg w-fit px-3 cursor-pointer text-left text-grey-200 hover:text-red-100" @click="advancedSearchOpen = true"> Advanced Search</div>
             </div>
-            <div class = "h-4/6 overflow-y-auto">
-                <div v-for = "(course,index) in searchedCourses" :key="index">
+            <div class="h-4/6 overflow-y-auto">
+                <div v-for="(course,index) in searchedCourses" :key="index">
                     <CoursePreview :course="course" :number="computeColor(course.name)" 
                     @addcourse="searchedToSched"
                     @removecourse="removeCourse"
                     ></CoursePreview>
                 </div>
             </div>
-            <div @click="academicRequirementsPopup=true"> Academic Requirements</div>
+            <div @click="academicRequirementsPopup=true" class="relative left-1/2 -translate-x-1/2 border-4 border-red-100 rounded-lg text-red-100 font-semibold cursor-pointer w-fit text-center p-3 hover:bg-red-100 hover:text-white-100"> Academic Requirements</div>
         </div>
         <div class="flex flex-col w-full">
-            <div class = "flex flex-row relative left-1/2 -translate-x-1/2 w-fit my-5">
-                <div class="text-5xl mx-5">  {{ '<' }} </div> 
-                <div class="text-5xl mx-40">Fall 2024</div>
-                <div class="text-5xl mx-5"> {{'>'}}</div>
-                
-            </div>
-            <div class = "flex flex-row relative left-1/2 -translate-x-1/2 w-fit mb-5">
-                <div class="text-3xl mx-4 mt-4" @click="resetSelectedToZero"> {{'|<'}} </div>
-                <div class="text-3xl mx-4 mt-4" @click="decrementSchedIndex"> {{ '<' }} </div>
-                <div class="flex flex-col p-2 mx-8">
-                    <div class="text-3xl"> Result </div>
-                    <div class="text-3xl"> {{ schedules.length > 0 ?  (schedIndex + 1)+ ' of ' + schedules.length : '0 of 0'}} </div>
+            <div class="bg-white-100 rounded-xl shadow-xl m-4">
+                <div class="flex flex-row relative left-1/2 -translate-x-1/2 w-fit my-5">
+                    <div class="text-5xl mx-5">  {{ '<' }} </div> 
+                    <div class="text-5xl mx-40">Fall 2024</div>
+                    <div class="text-5xl mx-5"> {{'>'}}</div>
+                    
                 </div>
-                <div class="text-3xl mx-4 mt-4" @click="incrementSchedIndex"> {{'>'}} </div>
-                <div class="text-3xl mx-4 mt-4" @click="setSelectedToLast"> {{'>|'}} </div>
+                <div class="flex flex-row relative left-1/2 -translate-x-1/2 w-fit mb-5">
+                    <div class="text-3xl mx-4 mt-4" @click="resetSelectedToZero"> {{'|<'}} </div>
+                    <div class="text-3xl mx-4 mt-4" @click="decrementSchedIndex"> {{ '<' }} </div>
+                    <div class="flex flex-col p-2 mx-8">
+                        <div class="text-3xl"> Result </div>
+                        <div class="text-3xl"> {{ schedules.length > 0 ?  (schedIndex + 1)+ ' of ' + schedules.length : '0 of 0'}} </div>
+                    </div>
+                    <div class="text-3xl mx-4 mt-4" @click="incrementSchedIndex"> {{'>'}} </div>
+                    <div class="text-3xl mx-4 mt-4" @click="setSelectedToLast"> {{'>|'}} </div>
+                </div>
             </div>
-        
-            <div class = "grid grid-cols-11">
-                <div class = "col-span-4 flex flex-col px-10 -translate-y-10">
+            <div class="grid grid-cols-11 h-200">
+                <div class="col-span-4 flex flex-col px-10 h-full bg-white-100 rounded-xl shadow-xl mb-4 mx-4 p-4">
                     <div v-for="(course,index) in schedCourses" :key="index">
                         <SelectedCourse 
                         :course="course" :number="index"
@@ -58,7 +69,7 @@
                         ></SelectedCourse>
                     </div>
                 </div>
-                <div class = "flex flex-col col-span-7">
+                <div class="flex flex-col col-span-7 h-full bg-white-100 rounded-xl shadow-xl mb-4 mr-4 p-4">
                     <!-- <SchedPreview :sched="schedules.length > 0 ? schedules[selectedSched] : null"> </SchedPreview> -->
                     <SchedPreview :schedule="courseListToSched()"></SchedPreview>
                     <div class="border border-grey-200 mt-4 w-fit relative left-1/2 -translate-x-1/2 p-10 text-xl rounded-xl"> Get Schedule!</div>
@@ -89,6 +100,7 @@ let allCourses = []
         },
         data : () => {
             return {
+                backHover: false,
                 allInfo: {
                 },
                 selectedTerm: '',

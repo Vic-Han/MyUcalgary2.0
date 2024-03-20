@@ -9,8 +9,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from .models import Student, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications
-from .serializers import StudentSerializer, UserSerializer, FacultySerializer, DepartmentSerializer, ProgramSerializer, AddressSerializer
+from .models import Student, Requirement, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications
+from .serializers import StudentSerializer, RequirementSerializer, UserSerializer, FacultySerializer, DepartmentSerializer, ProgramSerializer, AddressSerializer
 from .serializers import CourseSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer, StudentApplicationsSerializer
 
 
@@ -303,7 +303,76 @@ class DashboardView(APIView, GradeMixins):
 
         return Response(dashboard_data)
     
+class StudentRequirementsView(APIView):
+    def get(self, request):
+        student = Student.objects.first()
+        if not student:
+            return Response({"error": "No student found"}, status=404)
+        
+        requirement_data = {
+            "programInfo": {
+                "degree":{},
+                "major":{},
+                "minor":{},
+                "concentration": "none",
+                "year": "3",
+                "academicLoad": "full-time"
+            },
+            "requirements": []
+        }
 
 
+        applications = StudentApplications.objects.filter(student_id=student)
+        application = applications[0]
+        maj_prog = application.major_program
+        min_prog = application.minor_program
+
+        requirement_data["programInfo"]["degree"] = maj_prog.program_degree_level
+        requirement_data["programInfo"]["major"] = maj_prog.program_name
+        requirement_data["programInfo"]["minor"] = min_prog.program_name            
+            
+        enrollments = Enrollment.objects.filter(student_id=student)
+        lecture_list = []
+        grade_list = []
+        for enrollment in enrollments:
+            lectures = Lecture.objects.filter(lecture_id=enrollment.lecture_id)
+            for lecture in lectures:
+                lecture_list.append(lecture)
+            grades = Grade.objects.filter(enrollment_id=enrollment)
+            for grade in grades:
+                grade_list.append(grade)
+
+        major_requirements = Requirement.objects.filter(program_id=maj_prog)
+        for requirement in major_requirements:                
+            courses = Course.objects.filter(course_code__in=requirement.courses.all())
+            course_data = []
+            units_completed = 0
+            for course in courses:
+                status = "incomplete"
+                for grade in grade_list:
+                    if grade.enrollment.lecture.course == course and grade.grade >= 50:
+                        status = "complete"
+                        units_completed += course.course_units
+                course_data.append({
+                    "name": course.course_code,
+                    "units": course.course_units,
+                    "status": status
+                })
+            req_status = ""
+            if units_completed == requirement.required_units:
+                req_status = "complete"
+            elif 0 < units_completed and units_completed < requirement.required_units:
+                req_status = "in-progress"
+            else:
+                req_status = "incomplete"
+            requirement_data["requirements"].append({
+                "description": requirement.description,
+                "requiredUnits": requirement.required_units,
+                "status": req_status,
+                "courses": course_data
+            })
+
+
+        return Response(requirement_data)
 
 

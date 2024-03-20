@@ -678,7 +678,13 @@
       "lecture": "3"
     }
   },
-
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": 1,
+      "lecture": "2"
+    }
+  },
 
 
   {
@@ -700,6 +706,13 @@
     "fields": {
       "grade": 78.0,
       "enrollment": 3
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "grade": 62.5,
+      "enrollment": 4
     }
   },
 
@@ -939,6 +952,33 @@
       "concentration": true,
       "honors_program": false
     }
-  }
+  },
  
+  {
+    "model": "api.Requirement",
+    "fields": {
+      "description": "First Year Common Core",
+      "required_units": 6,
+      "program": 1,
+      "courses": ["SENG401", "SENG350"]
+    }
+  },
+  {
+    "model": "api.Requirement",
+    "fields": {
+      "description": "Technical Electives",
+      "required_units": 3,
+      "program": 1,
+      "courses": ["PHYS303", "PHYS207"]
+    }
+  },
+  {
+    "model": "api.Requirement",
+    "fields": {
+      "description": "Complementary Studies",
+      "required_units": 3,
+      "program": 1,
+      "courses": ["ENGL201", "ENGL305"]
+    }
+  }
 ]

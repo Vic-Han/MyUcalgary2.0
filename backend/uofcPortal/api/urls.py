@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import UserViewSet, StudentViewSet, FacultyViewSet, DepartmentViewSet, ProgramViewSet, PersonalInfoViewSet, CourseViewSet, InstructorViewSet, LectureViewSet, GradeViewSet, EnrollmentViewSet, TransactionViewSet, StudentApplicationsViewSet, StudentGradeView, StudentFinancesView, DashboardView
+from .views import UserViewSet, StudentRequirementsView, StudentViewSet, FacultyViewSet, DepartmentViewSet, ProgramViewSet, PersonalInfoViewSet, CourseViewSet, InstructorViewSet, LectureViewSet, GradeViewSet, EnrollmentViewSet, TransactionViewSet, StudentApplicationsViewSet, StudentGradeView, StudentFinancesView, DashboardView
 
 router = DefaultRouter()
 router.register('users', UserViewSet)
@@ -21,5 +21,6 @@ urlpatterns = [
     path('api/student-grades/', StudentGradeView.as_view(), name='student-grade'),
     path('api/student-finances/', StudentFinancesView.as_view(), name='student-finances'),
     path('api/dashboard/', DashboardView.as_view(), name='dashboard'),
-    path('api/student-applications/', StudentApplicationsViewSet.as_view(), name='student-applications')
+    path('api/student-applications/', StudentApplicationsViewSet.as_view(), name='student-applications'),
+    path('api/course-requirements/', StudentRequirementsView.as_view(), name='course-requirements')
 ]

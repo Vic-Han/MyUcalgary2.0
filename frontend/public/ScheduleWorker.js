@@ -91,6 +91,7 @@ function depthFirstSearch(remainingCourses, currentSchedule){
             },
             
         }
+
         for(let i = 0; i < course.lectures.length; i++){
             if(course.lectures[i].name == section[0]){
                 lectureInfo.lecture.start = course.lectures[i].start
@@ -109,35 +110,36 @@ function depthFirstSearch(remainingCourses, currentSchedule){
         }
         if(validEntry(currentSchedule, lectureInfo)){
             currentSchedule.selectedOptions.push(index);
-            for(let i = 0; i < section.lecture.days.length; i++){
-                const day = section.lecture.days[i]
+
+            for(let i = 0; i < lectureInfo.lecture.days.length; i++){
+                const day = lectureInfo.lecture.days[i]
                 const index = dayToIndex[day]
-                this.takenTimes[index].push([section.lecture.start, section.lecture.end])
+                currentSchedule.takenTimes[index].push([lectureInfo.lecture.start, lectureInfo.lecture.end])
                
             }
-            if(section.tutorial.start){
-                for(let i = 0; i < section.tutorial.days.length; i++){
-                    const day = section.tutorial.days[i]
+            if(lectureInfo.tutorial.start){
+                for(let i = 0; i < lectureInfo.tutorial.days.length; i++){
+                    const day = lectureInfo.tutorial.days[i]
                     const index = dayToIndex[day]
-                    this.takenTimes[index].push([section.tutorial.start, section.tutorial.end])
+                    currentSchedule.takenTimes[index].push([lectureInfo.tutorial.start, lectureInfo.tutorial.end])
                 }
             }
-            {
+                console.log(currentSchedule)
                 depthFirstSearch(newRemainingCourses, currentSchedule)
                 currentSchedule.selectedOptions.pop(); 
-                for(let i = 0; i < section.lecture.days.length; i++){
-                    const day = section.lecture.days[i]
+                for(let i = 0; i < lectureInfo.lecture.days.length; i++){
+                    const day = lectureInfo.lecture.days[i]
                     const index = dayToIndex[day]
-                    this.takenTimes[index].pop()
+                    currentSchedule.takenTimes[index].pop()
                 }
-                if(section.tutorial.start){
-                    for(let i = 0; i < section.tutorial.days.length; i++){
-                        const day = section.tutorial.days[i]
+                if(lectureInfo.tutorial.start){
+                    for(let i = 0; i < lectureInfo.tutorial.days.length; i++){
+                        const day = lectureInfo.tutorial.days[i]
                         const index = dayToIndex[day]
-                        this.takenTimes[index].pop()
+                        currentSchedule.takenTimes[index].pop()
                     }
                 }
-            }
+            
         }
     }
     

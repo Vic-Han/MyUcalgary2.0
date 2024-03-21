@@ -23,7 +23,38 @@ class Schedule {
             this.selectedOptions = [...oldSched.selectedOptions]
             this.selectedOptions.push(index)
             this.takenTimes = [...oldSched.takenTimes]
-           
+            for(let i = 0; i < section.lecture.days.length; i++){
+                const day = section.lecture.days[i]
+                const index = dayToIndex[day]
+                this.takenTimes[index].push([section.lecture.start, section.lecture.end])
+                for(let i = this.takenTimes[index].length - 1; i > 0; i--){
+                    if(this.takenTimes[index][i][0] < this.takenTimes[index][i-1][0]){
+                        const temp = this.takenTimes[index][i]
+                        this.takenTimes[index][i] = this.takenTimes[index][i-1]
+                        this.takenTimes[index][i-1] = temp
+                    }
+                    else{
+                        break
+                    }
+                }
+            }
+            if(section.tutorial.start){
+                for(let i = 0; i < section.tutorial.days.length; i++){
+                    const day = section.tutorial.days[i]
+                    const index = dayToIndex[day]
+                    this.takenTimes[index].push([section.tutorial.start, section.tutorial.end])
+                    for(let i = this.takenTimes[index].length - 1; i > 0; i--){
+                        if(this.takenTimes[index][i][0] < this.takenTimes[index][i-1][0]){
+                            const temp = this.takenTimes[index][i]
+                            this.takenTimes[index][i] = this.takenTimes[index][i-1]
+                            this.takenTimes[index][i-1] = temp
+                        }
+                        else{
+                            break
+                        }
+                    }
+                }
+            }
         }
         
     }
@@ -66,9 +97,8 @@ function validEntry(currentSchedule, newLecture){
 }
 
 function depthFirstSearch(remainingCourses, currentSchedule){
-    if (remainingCourses.length === 0) {
-        schedules.push(currentSchedule.selectedOptions.slice()); // Create copy
-        return;
+    if(remainingCourses.length == 0){
+        return
     }
     const course = remainingCourses[remainingCourses.length - 1]
     const newRemainingCourses = remainingCourses.slice(0, remainingCourses.length - 1);
@@ -108,35 +138,12 @@ function depthFirstSearch(remainingCourses, currentSchedule){
             }
         }
         if(validEntry(currentSchedule, lectureInfo)){
-            currentSchedule.selectedOptions.push(index);
-            for(let i = 0; i < section.lecture.days.length; i++){
-                const day = section.lecture.days[i]
-                const index = dayToIndex[day]
-                this.takenTimes[index].push([section.lecture.start, section.lecture.end])
-               
+            const newSchedule = new Schedule(currentSchedule, lectureInfo, index)
+            if(newRemainingCourses.length == 0){
+                schedules.push(newSchedule.selectedOptions)
             }
-            if(section.tutorial.start){
-                for(let i = 0; i < section.tutorial.days.length; i++){
-                    const day = section.tutorial.days[i]
-                    const index = dayToIndex[day]
-                    this.takenTimes[index].push([section.tutorial.start, section.tutorial.end])
-                }
-            }
-            {
-                depthFirstSearch(newRemainingCourses, currentSchedule)
-                currentSchedule.selectedOptions.pop(); 
-                for(let i = 0; i < section.lecture.days.length; i++){
-                    const day = section.lecture.days[i]
-                    const index = dayToIndex[day]
-                    this.takenTimes[index].pop()
-                }
-                if(section.tutorial.start){
-                    for(let i = 0; i < section.tutorial.days.length; i++){
-                        const day = section.tutorial.days[i]
-                        const index = dayToIndex[day]
-                        this.takenTimes[index].pop()
-                    }
-                }
+            else{
+                depthFirstSearch(newRemainingCourses, newSchedule)
             }
         }
     }

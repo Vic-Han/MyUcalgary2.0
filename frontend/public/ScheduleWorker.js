@@ -1,8 +1,6 @@
 
-
 // // worker.js
 let schedules = []
-
 self.onmessage = function(event) {
     schedules = []
     const courses = event.data.courses;
@@ -22,59 +20,159 @@ class Schedule {
         else{
             this.selectedOptions = [...oldSched.selectedOptions]
             this.selectedOptions.push(index)
-            this.takenTimes = [...oldSched.takenTimes]
-           
+            this.takenTimes =[...oldSched.takenTimes];
+            for(let i = 0; i < section.lecture.days.length; i++){
+                const day = section.lecture.days[i]
+                const index = dayToIndex[day]
+                this.takenTimes[index].push([section.lecture.start, section.lecture.end])
+                // for(let i = this.takenTimes[index].length - 1; i > 0; i--){
+                //     if(this.takenTimes[index][i][0] < this.takenTimes[index][i-1][0]){
+                //         const temp = this.takenTimes[index][i]
+                //         this.takenTimes[index][i] = this.takenTimes[index][i-1]
+                //         this.takenTimes[index][i-1] = temp
+                //     }
+                //     else{
+                //         break
+                //     }
+                // }
+            }
+            if(section.tutorial.start){
+                for(let i = 0; i < section.tutorial.days.length; i++){
+                    const day = section.tutorial.days[i]
+                    const index = dayToIndex[day]
+                    this.takenTimes[index].push([section.tutorial.start, section.tutorial.end])
+                    // for(let i = this.takenTimes[index].length - 1; i > 0; i--){
+                    //     if(this.takenTimes[index][i][0] < this.takenTimes[index][i-1][0]){
+                    //         const temp = this.takenTimes[index][i]
+                    //         this.takenTimes[index][i] = this.takenTimes[index][i-1]
+                    //         this.takenTimes[index][i-1] = temp
+                    //     }
+                    //     else{
+                    //         break
+                    //     }
+                    // }
+                }
+            }
         }
         
     }
 }
 
-function validEntry(currentSchedule, newLecture){
-    const lecStart = newLecture.lecture.start
-    const lecEnd = newLecture.lecture.end
-    for(day in newLecture.lecture.days){
-        const index = dayToIndex[day]
-        for(time in currentSchedule.takenTimes[index]){
-            // if the new lecture starts before the current lecture ends and ends after the current lecture starts
-            if(time[1] >= lecStart && time[0] <= lecStart){
-                return false
-            }
-            // if the new lecture starts before the current lecture ends and ends after the current lecture starts
-            if(time[0] <= lecEnd && time[1] >= lecEnd){
-                return false
-            }
-        }
-    }
-    if(newLecture.tutorial.start){
-        const tutStart = newLecture.tutorial.start
-        const tutEnd = newLecture.tutorial.end
-        for(day in newLecture.tutorial.days){
-            const index = dayToIndex[day]
-            for(time in currentSchedule.takenTimes[index]){
-                // if the new lecture starts before the current lecture ends and ends after the current lecture starts
-                if(time[1] > tutStart && time[0] < tutStart){
-                    return false
-                }
-                // if the new lecture starts before the current lecture ends and ends after the current lecture starts
-                if(time[0] < tutEnd && time[1] > tutEnd){
-                    return false
-                }
-            }
-        }
-    }
-    return true
-}
+// function validEntry(currentSchedule, newLecture){
+//     const lecStart = newLecture.lecture.start
+//     const lecEnd = newLecture.lecture.end
+//     for(day in newLecture.lecture.days){
+//         const index = dayToIndex[day]
+//         for(time in currentSchedule.takenTimes[index]){
+//             // if the new lecture starts before the current lecture ends and ends after the current lecture starts
+//             if(time[1] > lecStart && time[0] < lecStart){
+//                 return false
+//             }
+//             // if the new lecture starts before the current lecture ends and ends after the current lecture starts
+//             if(time[0] < lecEnd && time[1] > lecEnd){
+//                 return false
+//             }
+//         }
+//     }
+//     if(newLecture.tutorial.start){
+//         const tutStart = newLecture.tutorial.start
+//         const tutEnd = newLecture.tutorial.end
+//         for(day in newLecture.tutorial.days){
+//             const index = dayToIndex[day]
+//             for(time in currentSchedule.takenTimes[index]){
+//                 // if the new lecture starts before the current lecture ends and ends after the current lecture starts
+//                 if(time[1] > tutStart && time[0] < tutStart){
+//                     return false
+//                 }
+//                 // if the new lecture starts before the current lecture ends and ends after the current lecture starts
+//                 if(time[0] < tutEnd && time[1] > tutEnd){
+//                     return false
+//                 }
+//             }
+//         }
+//     }
+//     return true
+// }
 
+// function validEntry(currentSchedule, newLecture){
+//         const lecStart = newLecture.lecture.start
+//         const lecEnd = newLecture.lecture.end
+//         for (const day of newLecture.lecture.days) {
+//             const index = dayToIndex[day];
+//             for (const time of currentSchedule.takenTimes[index]) {
+//                 // Check if the new lecture overlaps with the current time slot:
+//                 if ((lecStart >= time[0] && lecStart < time[1]) || (lecEnd > time[0] && lecEnd <= time[1])) {
+//                     return false; // There is a conflict
+//                 }
+//             }
+//         }
+    
+//         // Check for tutorial overlaps in a similar manner
+//         if (newLecture.tutorial.start) {
+//             const tutStart = newLecture.tutorial.start;
+//             const tutEnd = newLecture.tutorial.end;
+            
+//             for (const day of newLecture.tutorial.days) {
+//                 const index = dayToIndex[day];
+//                 for (const time of currentSchedule.takenTimes[index]) {
+//                     // Check if the new lecture overlaps with the current time slot:
+//                     console.log(time, tutStart, tutEnd)
+//                     if ((tutStart >= time[0] && tutStart < time[1]) || (tutEnd > time[0] && tutEnd <= time[1])) {
+//                         return false; // There is a conflict
+//                     }
+//                 }
+//             }
+//         }
+        
+//         return true
+//     }
+function validEntry(currentSchedule, newLecture){
+        const lecStart = newLecture.lecture.start
+        const lecEnd = newLecture.lecture.end
+    for (const day of Object.keys(currentSchedule.takenTimes)) { // Iterate over days
+        const index = dayToIndex[day];
+
+        for (const existingInterval of currentSchedule.takenTimes[index]) { // Iterate over existing intervals
+            const existingStart = existingInterval[0];
+            const existingEnd = existingInterval[1];
+
+            // Check for any overlap:
+            if (!(lecEnd <= existingStart || lecStart >= existingEnd)) { 
+                return false; // Intervals overlap
+            }
+        }
+        }
+    
+        // Check for tutorial overlaps in a similar manner
+        if (newLecture.tutorial.start) {
+            const tutStart = newLecture.tutorial.start;
+            const tutEnd = newLecture.tutorial.end;
+            
+            for (const day of newLecture.tutorial.days) {
+                const index = dayToIndex[day];
+                for (const time of currentSchedule.takenTimes[index]) {
+                    // Check if the new lecture overlaps with the current time slot:
+                    console.log(time, tutStart, tutEnd)
+                    if ((tutStart >= time[0] && tutStart < time[1]) || (tutEnd > time[0] && tutEnd <= time[1])) {
+                        return false; // There is a conflict
+                    }
+                }
+            }
+        }
+        
+        return true
+    }
 function depthFirstSearch(remainingCourses, currentSchedule){
-    if (remainingCourses.length === 0) {
-        schedules.push(currentSchedule.selectedOptions.slice()); // Create copy
-        return;
+    if(remainingCourses.length == 0){
+        schedules.push(currentSchedule.selectedOptions.slice())
+        return
     }
     const course = remainingCourses[remainingCourses.length - 1]
     const newRemainingCourses = remainingCourses.slice(0, remainingCourses.length - 1);
     // Todo pick course based on heurstic
     for(let index = 0; index < course.selectedIndices.length; index++){
         const section = course.combinations[index]
+
         if(!course.selectedIndices[index]){
             continue
         }
@@ -91,7 +189,6 @@ function depthFirstSearch(remainingCourses, currentSchedule){
             },
             
         }
-
         for(let i = 0; i < course.lectures.length; i++){
             if(course.lectures[i].name == section[0]){
                 lectureInfo.lecture.start = course.lectures[i].start
@@ -108,9 +205,11 @@ function depthFirstSearch(remainingCourses, currentSchedule){
                 }
             }
         }
+        if(lectureInfo.tutorial.start === 16 && currentSchedule.selectedOptions.length == 1){
+            console.log(lectureInfo, currentSchedule)
+        }
         if(validEntry(currentSchedule, lectureInfo)){
-            currentSchedule.selectedOptions.push(index);
-
+            currentSchedule.selectedOptions.push(index)
             for(let i = 0; i < lectureInfo.lecture.days.length; i++){
                 const day = lectureInfo.lecture.days[i]
                 const index = dayToIndex[day]
@@ -124,9 +223,10 @@ function depthFirstSearch(remainingCourses, currentSchedule){
                     currentSchedule.takenTimes[index].push([lectureInfo.tutorial.start, lectureInfo.tutorial.end])
                 }
             }
-                console.log(currentSchedule)
+            
+
                 depthFirstSearch(newRemainingCourses, currentSchedule)
-                currentSchedule.selectedOptions.pop(); 
+                currentSchedule.selectedOptions.pop()
                 for(let i = 0; i < lectureInfo.lecture.days.length; i++){
                     const day = lectureInfo.lecture.days[i]
                     const index = dayToIndex[day]
@@ -144,3 +244,21 @@ function depthFirstSearch(remainingCourses, currentSchedule){
     }
     
 }
+
+const samplesched = {
+    selectedOptions: [2],
+    takenTimes: [[],[[14,15.25]],[[16,18]],[[14,15.25]],[]]
+}
+const samplelec={
+    lecture: {
+        start: 8,
+        end: 9.25,
+        days: "TR"
+    },
+    tutorial: {
+        start: 16,
+        end: 18,
+        days: "W"
+    }
+}
+console.log(validEntry(samplesched, samplelec))

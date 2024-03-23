@@ -86,9 +86,9 @@ const topPos = {
     19: 'top-1900'
 }
 const height = {
-    1: 'height-50',
+    0.83: 'height-50',
     1.25: 'height-115',
-    2: 'height-150',
+    1.83: 'height-150',
 }
 const classColor= {
     0: 'bg-course-100',

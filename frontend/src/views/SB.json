@@ -133,7 +133,7 @@
             ]
         }
     ],
-    "current Sched including the shopping cart":[
+    "currentSched":[
         {
             "name" : "SENG 401",
             "Lecture" : {
@@ -152,7 +152,7 @@
             }
         },
         {
-            "name" : "CPSC 559",
+            "name" : "SENG 550",
             "Lecture" : {
                 "days" : "MWF",
                 "start" : 14,
@@ -167,27 +167,9 @@
                 "roomno": "KNB 132",
                 "TutorialNO" : 1
             }
-        },
-        {
-            "name" : "CPSC 471",
-            "Lecture" : {
-                "days" : "MWF",
-                "start" : 14,
-                "end" : 14.83,
-                "roomno": "KNB 132",
-                "LecNO" : 1
-            },
-            "Tutorial":{
-                "days" : "TR",
-                "start" : 14,
-                "end" : 14.83,
-                "roomno": "KNB 132",
-                "LecNO" : 1
-            }
-
         }
     ],
-    "academic Requirements":{
+    "academicRequirements":{
         "CPSC at the 500 level or above": [
             "CPSC 559",
             "SENG 550"

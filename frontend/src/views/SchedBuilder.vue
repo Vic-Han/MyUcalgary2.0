@@ -155,8 +155,8 @@ let allCourses = []
             this.$emit('hide-navbar')
             const backendPayload = data
             this.allInfo = backendPayload
-            allCourses = this.allInfo['allCourses']
-            this.degreeRequirements = this.allInfo['academic Requirements']
+            allCourses = this.allInfo.allCourses
+            this.degreeRequirements = this.allInfo.academicRequirements
             this.schedCourses.forEach((item) => {
                 item.included = 'sched';
                 item.selected = 0;

@@ -82,6 +82,8 @@
                         @removecourse="removeCourseFromSched"
                         @addsection="addSection"
                         @removesection="removeSection"
+                        @selectall="reselectall"
+                        @selectset="updateset"
                         ></SelectedCourse>
                     </div>
                     <div v-for="(course,index) in cartCourses" :key="index">
@@ -91,6 +93,8 @@
                         @removecourse="removeCourseFromCart"
                         @addsection="addSection"
                         @removesection="removeSection"
+                        @selectall="reselectall"
+                        @selectset="updateset"
                         ></SelectedCourse>
                     </div>
                 </div>
@@ -407,6 +411,10 @@ let allCourses = []
                         return
                     }
                 }
+            },
+            applyAdvancedFilters(filters){
+                this.advancedSearchOpen = false
+                console.log(filters)
             }
 
         },

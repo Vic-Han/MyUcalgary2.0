@@ -149,6 +149,14 @@ const animationTime = 300;
                     }
                 },
                 deep: true
+            },
+            allClasses(oldVal,newVal){
+                if(oldVal){
+                    this.$emit('selectset', this.course.name, this.course.selectedIndices)
+                }
+                else if(newVal){
+                    this.$emit('selectall', this.course.name)
+                }
             }
         },
         methods:{

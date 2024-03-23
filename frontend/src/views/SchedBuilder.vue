@@ -248,6 +248,16 @@ let allCourses = []
             },
             addCourseFromRequirements(course){
                 this.searchedCourses = []
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    if(this.schedCourses[i].name == course){
+                        return
+                    }
+                }
+                for(let i = 0; i < this.cartCourses.length; i++){
+                    if(this.cartCourses[i].name == course){
+                        return
+                    }
+                }
                 for(let i = 0; i < allCourses.length; i++){
                     if(allCourses[i].name == course){
                         allCourses[i].included = 'sched';

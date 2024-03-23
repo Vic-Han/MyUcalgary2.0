@@ -245,20 +245,20 @@ function depthFirstSearch(remainingCourses, currentSchedule){
     
 }
 
-const samplesched = {
-    selectedOptions: [2],
-    takenTimes: [[],[[14,15.25]],[[16,18]],[[14,15.25]],[]]
-}
-const samplelec={
-    lecture: {
-        start: 8,
-        end: 9.25,
-        days: "TR"
-    },
-    tutorial: {
-        start: 16,
-        end: 18,
-        days: "W"
-    }
-}
-console.log(validEntry(samplesched, samplelec))
+// const samplesched = {
+//     selectedOptions: [2],
+//     takenTimes: [[],[[14,15.25]],[[16,18]],[[14,15.25]],[]]
+// }
+// const samplelec={
+//     lecture: {
+//         start: 8,
+//         end: 9.25,
+//         days: "TR"
+//     },
+//     tutorial: {
+//         start: 16,
+//         end: 18,
+//         days: "W"
+//     }
+// }
+// console.log(validEntry(samplesched, samplelec))

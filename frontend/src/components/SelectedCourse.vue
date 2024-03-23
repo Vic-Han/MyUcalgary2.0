@@ -1,22 +1,23 @@
 <template>
-    <div class="w-full rounded-t-xl mt-5 flex flex-col py-4 z-10" v-bind:class="courseColor() + roundedBottom()" @click="toggleDropdown" >
+    <div class="w-full rounded-t-xl mt-5 flex flex-col py-2 z-10" v-bind:class="courseColor() + roundedBottom()" @click="toggleDropdown" >
         <div class="flex flex-row px-3 py-2 text-base" > 
-            <div class="w-20 mx-2 font-semibold">{{ course.name }}</div>
-            <div class="w-20 mx-2 font-semibold"> {{ course.title }}</div>
-            <div class="" @click="toggleOn" v-if="course.included != 'sched' ">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
-                    <path d="M792-56 624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM480-320q11 0 20.5-1t20.5-4L305-541q-3 11-4 20.5t-1 20.5q0 75 52.5 127.5T480-320Zm292 18L645-428q7-17 11-34.5t4-37.5q0-75-52.5-127.5T480-680q-20 0-37.5 4T408-664L306-766q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302ZM587-486 467-606q28-5 51.5 4.5T559-574q17 18 24.5 41.5T587-486Z"/>
-                </svg>
+            <div class="w-1/4 mx-2 font-semibold text-xl">{{ course.name }}</div>
+            <div class="w-3/5 mx-2 font-semibold text-left"> {{ course.title }}</div>
+            <div class="flex flex-row">
+                <div class="pr-1" @click="toggleOn" v-if="course.included != 'sched' ">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <path d="M792-56 624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM480-320q11 0 20.5-1t20.5-4L305-541q-3 11-4 20.5t-1 20.5q0 75 52.5 127.5T480-320Zm292 18L645-428q7-17 11-34.5t4-37.5q0-75-52.5-127.5T480-680q-20 0-37.5 4T408-664L306-766q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302ZM587-486 467-606q28-5 51.5 4.5T559-574q17 18 24.5 41.5T587-486Z"/>
+                    </svg>
+                </div>
+                <div class="pr-1" @click="toggleOff" v-else >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Z"/>
+                    </svg>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960" @click="removeCourse">
+                    <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
+                </svg>       
             </div>
-            <div class="" @click="toggleOff" v-else >
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
-                    <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Z"/>
-                </svg>
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960" @click="removeCourse">
-                <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
-            </svg>       
-
         </div>
        <div class="flex flex-row pl-2">
             <div class="mx-1"> {{ lecture.name }} </div>
@@ -38,15 +39,15 @@
     <div class="bg-white-200 flex flex-col z-0 w-full rounded-b-xl shadow-md" v-if="dropDownVisible" :class="animation()"> 
         <div class="flex flex-row pl-2">
             <div> Try all classes </div>
-            <input type="checkbox" class="mx-1" v-model="allClasses">    
+            <input type="checkbox" class="mx-1 accent-red-100" v-model="allClasses">    
         </div>
-        <div v-if="!allClasses" class="flex flex-row flex-wrap w-80"> 
+        <div v-if="!allClasses" class="flex flex-row flex-wrap w-80 pl-2 divide-x-2 divide-dashed divide-grey-100"> 
             <div v-for="(section,index) in sections" :key="index" class="mx-1">
-                <div>{{section[0] + " " + section[1]}}</div>
-                <!-- <div class="w-4 h-4 bg-green-100" v-if="course.selectedIndices[index]" @click="removeSection(index)"></div>
-                <div class="w-4 h-4 bg-red-100" v-else @click="addSection(index)"></div> -->
-                <input type="checkbox" v-if="course.selectedIndices[index]" @click="removeSection(index)" checked>
-                <input type="checkbox" v-else @click="addSection(index)">
+                <div class="flex flex-row pl-1">
+                    <input type="checkbox" v-if="course.selectedIndices[index]" class="accent-red-100" @click="removeSection(index)" checked>
+                    <input type="checkbox" v-else @click="addSection(index)">
+                    <div class="pl-1">{{section[0] + " - " + section[1]}}</div>
+                </div>
             </div>
         </div>
         <div class="flex flex-col pl-2">

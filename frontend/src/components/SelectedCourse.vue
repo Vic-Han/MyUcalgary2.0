@@ -151,10 +151,10 @@ const animationTime = 300;
                 deep: true
             },
             allClasses(oldVal,newVal){
-                if(oldVal){
+                if(newVal){
                     this.$emit('selectset', this.course.name, this.course.selectedIndices)
                 }
-                else if(newVal){
+                else if(oldVal){
                     this.$emit('selectall', this.course.name)
                 }
             }

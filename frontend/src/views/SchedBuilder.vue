@@ -412,9 +412,48 @@ let allCourses = []
                     }
                 }
             },
+            reselectall(courseName){
+                console.log('reselecting all')
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    if(this.schedCourses[i].name === courseName){
+                        const newSched = [...this.schedCourses]
+                        newSched[i].selectedIndices = Array(newSched[i].combinations.length).fill(true)
+                        this.schedCourses = newSched
+                        this.computeSchedules()
+                        return
+                    }
+                }
+                for(let i = 0; i < this.cartCourses.length; i++){
+                    if(this.cartCourses[i].name === courseName){
+                        this.cartCourses[i].selectedIndices = Array(this.cartCourses[i].combinations.length).fill(true)
+                        return
+                    } 
+                }
+            },
+            updateset(courseName, newList){
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    if(this.schedCourses[i].name === courseName){
+                        const newSched = [...this.schedCourses]
+                        newSched[i].selectedIndices = [...newList]
+                        this.schedCourses = newSched
+                        this.computeSchedules()
+
+                        return
+                    }
+                }
+                for(let i = 0; i < this.cartCourses.length; i++){
+                    if(this.cartCourses[i].name === courseName){
+                        this.cartCourses[i].selectedIndices = [...newList]
+                        return
+                    }
+                }
+            },
             applyAdvancedFilters(filters){
                 this.advancedSearchOpen = false
                 console.log(filters)
+            },
+            getSchedule(){
+                console.log('getting schedule')
             }
 
         },

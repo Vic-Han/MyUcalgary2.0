@@ -29,7 +29,7 @@
             <select v-model="selectedEq" class="relative w-20 rounded-lg border-2 outline-blue-500 border-grey-200 focus:border-blue-500 py-2 px-1 my-3 text-center">
                 <option v-for="type in eqTypes" :key="type" :value="type" :class="{ 'bg-red-100': type === selectedFacultyType }" class="">{{ type }}</option>
             </select>
-            <input type="text" id="inputBox" v-model="courseInputValue" class="w-24 rounded-lg border-2 border-grey-200 outline-blue-500 focus:border-blue-500 py-2 px-2 m-3">
+            <input type="number" id="inputBox" min="200" max="599" v-model="courseInputValue" class="w-24 rounded-lg border-2 border-grey-200 outline-blue-500 focus:border-blue-500 py-2 px-2 m-3">
             </div>
         </div>
 
@@ -54,19 +54,19 @@
             <label class="block text-grey-200 font-semibold text-xl mb-2 mr-2">Time</label>
             <div class="flex ml-auto">
                 <input
-                    type="text"
-                    id="start-time"
-                    placeholder="HH:MM"
+                    type="number"
                     class="w-24 px-3 py-2 text-center rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:ring-1"
                     v-model="startTime"
+                    min="8"
+                    :max="endTime - 1"
                 />
                 <span class="flex items-center justify-between mx-2 text-xl">to</span>
                 <input
-                    type="text"
-                    id="end-time"
-                    placeholder="HH:MM"
+                    type="number"
                     class="w-24 px-3 py-2 text-center rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:ring-1"
                     v-model="endTime"
+                    :min="startTime + 1"
+                    max="19"
                 />
             </div>
         </div>
@@ -87,9 +87,12 @@
   
         <!-- Search button -->
         <div class="flex items-center justify-center">
-          <button class="bg-white-100 border-2 border-grey-200 hover:bg-red-100 hover:text-white-100 hover:border-red-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          <!-- <button class="bg-white-100 border-2 border-grey-200 hover:bg-red-100 hover:text-white-100 hover:border-red-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" @click="applyAdvancedSearch">
             Search
-          </button>
+          </button> -->
+          <div class="bg-white-100 border-2 border-grey-200 hover:bg-red-100 hover:text-white-100 hover:border-red-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" @click="applyAdvancedSearch">
+            Search
+          </div>
         </div>
       </form>
     </div>
@@ -101,16 +104,18 @@
         data : () => {
             return {
                 days: [
-                    false,
-                    false,
-                    false,
-                    false,
-                    false                    
+                    true,
+                    true,
+                    true,
+                    true,
+                    true                    
                 ],
-                selectedMajorType: '',
+                startTime: 8,
+                endTime: 19,
+                selectedMajorType: 'SENG',
                 majorType: ['MATH', 'SENG', 'ENSF', 'ENEL', 'ECON', 'ENGG', 'INTE', 'CPSC', 'PHIL', 'BMEN', 'ENCI', 'ENCM', 'ENME', 'GRST', 'SOCI', 'DNCE'],
-                courseInputValue: '',
-                selectedEq: '',
+                courseInputValue: 200,
+                selectedEq: '>',
                 eqTypes: ['=', '>', '<', '>=', '<='],
                 isOnline: false,
             }
@@ -119,14 +124,21 @@
 
             toggleMode() {
                 this.isOnline = !this.isOnline;
-                // You can emit an event here if you want to notify the parent component about the mode change
-                // this.$emit('mode-changed', this.isOnline);
             },
             closeAdvancedSearch(){
                 this.$emit('close')
             },
             applyAdvancedSearch(){
-                this.$emit('applyadvancedsearch')
+                const filters = {
+                    major: this.selectedMajorType,
+                    courseNumber: this.courseInputValue,
+                    eq: this.selectedEq,
+                    isOnline: this.isOnline,
+                    startTime: this.startTime,
+                    endTime: this.endTime,
+                    days: this.days
+                }
+                this.$emit('applyadvancedsearch', filters)
             },
         }
     }

@@ -1,6 +1,6 @@
 <!-- This is the SchedBuilder component that toggles when the route is set to schedule -->
 <template>
-    <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false"></AdvancedSearch>
+    <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false" @applyadvancedsearch="applyAdvancedFilters"></AdvancedSearch>
     <AcademicSchedulePopup v-if="academicRequirementsPopup" :requirements="degreeRequirements" @close="academicRequirementsPopup = false" @selectcourse="addCourseFromRequirements"></AcademicSchedulePopup>
     <div class="flex flex-row">
         <div class=" px-2 flex flex-col h-screen box-content bg-white-100 shadow-xl">
@@ -117,6 +117,59 @@ import AdvancedSearch from '@/components/AdvancedSearch.vue'
 import AcademicSchedulePopup from '@/components/AcademicSchedulePopup.vue'
 import data from './SB.json'
 let allCourses = []
+const courseCode = (course, filters) =>{
+                    return course.name.includes(filters.major)
+                }
+                const getcourseNumber = (courseName) =>{
+                    
+                    return parseInt(courseName[courseName.length - 3] + courseName[courseName.length - 2] + courseName[courseName.length - 1])
+                }
+                const courseNumber = (course, filters) =>{
+                    switch(filters.eq){
+                        case '=':
+                            return getcourseNumber(course.name) == filters.courseNumber
+                        case '>':
+                            return getcourseNumber(course.name) > filters.courseNumber
+                        case '<':
+                            return getcourseNumber(course.name) < filters.courseNumber
+                        case '>=':
+                            return getcourseNumber(course.name) >= filters.courseNumber
+                        case '<=':
+                            return getcourseNumber(course.name) <= filters.courseNumber
+                    }
+                }
+const createLecInfo = (course, index) =>{
+                        const section = course.combinations[index]
+    const lectureInfo = {
+                            lecture: {
+                                start: null,
+                                end: null,
+                                days: null,
+                            },
+                            tutorial: {
+                                start: null,
+                                end: null,
+                                days: null,
+                            },
+                            
+                        }
+                        for(let i = 0; i < course.lectures.length; i++){
+                            if(course.lectures[i].name == section[0]){
+                                lectureInfo.lecture.start = course.lectures[i].start
+                                lectureInfo.lecture.end = course.lectures[i].end
+                                lectureInfo.lecture.days = course.lectures[i].days
+                            }
+                        }
+                        if(section.length > 1){
+                            for(let i = 0; i < course.tutorials.length; i++){
+                                if(course.tutorials[i].name == section[1]){
+                                    lectureInfo.tutorial.start = course.tutorials[i].start
+                                    lectureInfo.tutorial.end = course.tutorials[i].end
+                                    lectureInfo.tutorial.days = course.tutorials[i].days
+                                }
+                            }
+                        }
+}
 //const worker = new Worker('./ScheduleWorker.js')
     export default{
         name : 'SchedBuilder',
@@ -475,7 +528,40 @@ let allCourses = []
             },
             applyAdvancedFilters(filters){
                 this.advancedSearchOpen = false
-                console.log(filters)
+                
+                const courseDaysandTime = (course) =>{
+                    const daytoIndex = {
+                        'M': 0,
+                        'T': 1,
+                        'W': 2,
+                        'R': 3,
+                        'F': 4
+                    }
+                    for(let i = 0; i < course.combinations.length; i++){
+                        const lectureInfo = createLecInfo(course, i)
+                        if(lectureInfo.lecture.start > filters.startTime && lectureInfo.lecture.end < filters.endTime){
+                            if(lectureInfo.lecture.days.every((day) => filters.days[daytoIndex[day]])){
+                                if(section.length > 1){
+                                    if(lectureInfo.tutorial.start > filters.startTime && lectureInfo.tutorial.end < filters.endTime){
+                                        if(lectureInfo.tutorial.days.every((day) => filters.days[daytoIndex[day]])){
+                                            return true
+                                        }
+                                    }
+                                }
+                                else{
+                                    return true
+                                }
+                            }
+                        }
+                    }
+                    return false
+                }
+                const courseOnline = (course) =>{
+                    return (course.lectures[0].roomno == 'online') === filters.isOnline
+                }
+                this.searchedCourses = allCourses.filter((course) => {
+                    return courseCode(course, filters) && courseNumber(course, filters) && courseDaysandTime(course) && courseOnline(course)
+                })
             },
             getSchedule(){
                 console.log('getting schedule')

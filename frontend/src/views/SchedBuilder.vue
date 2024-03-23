@@ -1,7 +1,7 @@
 <!-- This is the SchedBuilder component that toggles when the route is set to schedule -->
 <template>
     <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false"></AdvancedSearch>
-    <AcademicSchedulePopup v-if="academicRequirementsPopup" :requirements="degreeRequirements" @close="academicRequirementsPopup = false"></AcademicSchedulePopup>
+    <AcademicSchedulePopup v-if="academicRequirementsPopup" :requirements="degreeRequirements" @close="academicRequirementsPopup = false" @selectcourse="addCourseFromRequirements"></AcademicSchedulePopup>
     <div class="flex flex-row">
         <div class=" px-2 flex flex-col h-screen box-content bg-white-100 shadow-xl">
             <a href="https://www.ucalgary.ca/" target="_blank">
@@ -101,7 +101,8 @@
                 <div class="flex flex-col items-center col-span-7 h-full bg-white-100 rounded-xl shadow-xl mb-4 mr-4 p-4">
                     <!-- <SchedPreview :sched="schedules.length > 0 ? schedules[selectedSched] : null"> </SchedPreview> -->
                     <SchedPreview :schedule="courseListToSched()"></SchedPreview>
-                    <div class="border-4 font-semibold border-red-100 mt-4 w-fit relative left-1/3 translate-x-2 p-3 text-xl rounded-xl text-red-100 hover:bg-red-100 hover:text-white-100">Get Schedule</div>
+                    <div class="border-4 font-semibold border-red-100 mt-4 w-fit relative left-1/3 translate-x-2 p-3 text-xl rounded-xl text-red-100 hover:bg-red-100 hover:text-white-100"
+                    @click="getSchedule">Get Schedule</div>
                 </div>
             </div>
         </div>
@@ -244,6 +245,20 @@ let allCourses = []
                 else if(this.courseInSched(coursename)){
                     this.removeCourseFromSched(coursename)
                 }
+            },
+            addCourseFromRequirements(course){
+                this.searchedCourses = []
+                for(let i = 0; i < allCourses.length; i++){
+                    if(allCourses[i].name == course){
+                        allCourses[i].included = 'sched';
+                        allCourses[i].selected = 0;
+                        allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(true)
+                        const newSched = [...this.schedCourses, allCourses[i]]
+                        this.schedCourses = newSched
+                        break;
+                    }
+                }
+                this.academicRequirementsPopup = false
             },
             computeSchedules(){
            

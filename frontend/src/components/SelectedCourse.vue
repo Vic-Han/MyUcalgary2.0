@@ -43,9 +43,10 @@
         <div v-if="!allClasses" class="flex flex-row flex-wrap w-80"> 
             <div v-for="(section,index) in sections" :key="index" class="mx-1">
                 <div>{{section[0] + " " + section[1]}}</div>
-                {{ course.selectedIndices[index] }}
-                <div class="w-4 h-4 bg-green-100" v-if="course.selectedIndices[index]" @click="removeSection(index)"></div>
-                <div class="w-4 h-4 bg-red-100" v-else @click="addSection(index)"></div>
+                <!-- <div class="w-4 h-4 bg-green-100" v-if="course.selectedIndices[index]" @click="removeSection(index)"></div>
+                <div class="w-4 h-4 bg-red-100" v-else @click="addSection(index)"></div> -->
+                <input type="checkbox" v-if="course.selectedIndices[index]" @click="removeSection(index)" checked>
+                <input type="checkbox" v-else @click="addSection(index)">
             </div>
         </div>
         <div class="flex flex-col pl-2">

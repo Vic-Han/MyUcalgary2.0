@@ -127,21 +127,19 @@ class Schedule {
 //         return true
 //     }
 function validEntry(currentSchedule, newLecture){
-        const lecStart = newLecture.lecture.start
-        const lecEnd = newLecture.lecture.end
-    for (const day of Object.keys(currentSchedule.takenTimes)) { // Iterate over days
+    const lecStart = newLecture.lecture.start;
+    const lecEnd = newLecture.lecture.end;
+    
+    for (const day of newLecture.lecture.days) {
         const index = dayToIndex[day];
-
-        for (const existingInterval of currentSchedule.takenTimes[index]) { // Iterate over existing intervals
-            const existingStart = existingInterval[0];
-            const existingEnd = existingInterval[1];
-
-            // Check for any overlap:
-            if (!(lecEnd <= existingStart || lecStart >= existingEnd)) { 
-                return false; // Intervals overlap
+        for (const time of currentSchedule.takenTimes[index]) {
+            // Check if the new lecture overlaps with the current time slot:
+            console.log(time, lecStart, lecEnd)
+            if ((lecStart >= time[0] && lecStart < time[1]) || (lecEnd > time[0] && lecEnd <= time[1])) {
+                return false; // There is a conflict
             }
         }
-        }
+    }
     
         // Check for tutorial overlaps in a similar manner
         if (newLecture.tutorial.start) {

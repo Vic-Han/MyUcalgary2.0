@@ -26,7 +26,7 @@
                   <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
                 </svg>
               </div>
-              <div class="my-1 text-sm font-semibold text-white-100 rounded-xl w-fit h-fit px-2 py-1" :class="statusColor(app.status)">{{app.status}}</div>
+              <div class="my-1 text-sm font-semibold rounded-xl w-fit h-fit px-2 py-1" :class="statusColor(app.status)">{{app.status}}</div>
               <img src="../assets/UndergradApplication.png" alt="graduation cap" class="h-80 w-144 square rounded-xl mt-5"/>
 
               <div class='relative'>
@@ -52,7 +52,7 @@
                   <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
                 </svg>
               </div>
-              <div class="my-1 text-sm font-semibold text-white-100 rounded-xl w-fit h-fit px-2 py-1" :class="statusColor(award.status)">{{award.status}}</div>
+              <div class="my-1 text-sm font-semibold rounded-xl w-fit h-fit px-2 py-1" :class="statusColor(award.status)">{{award.status}}</div>
               <img src="../assets/AwardApplication.png" alt="graduation cap" class="h-80 w-144 square rounded-xl mt-5"/>
               
               <div class='relative'>
@@ -75,7 +75,7 @@
                   <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
                 </svg>
               </div>
-              <div class="my-1 text-sm font-semibold text-white-100 rounded-xl w-fit h-fit px-2 py-1" :class="statusColor(scholarship.status)">{{scholarship.status}}</div>
+              <div class="my-1 text-sm font-semibold rounded-xl w-fit h-fit px-2 py-1" :class="statusColor(scholarship.status)">{{scholarship.status}}</div>
               <img src="../assets/ScholarshipApplication.png" alt="graduation cap" class="h-80 w-144 square rounded-xl mt-5"/>
               <div class='relative'>
                 <div class="absolute opacity-80 bottom-4  right-4 bg-white-100 text-black-100 text-xl w-30 p-4 text-left rounded-xl">
@@ -97,7 +97,7 @@
                   <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
                 </svg>
               </div>
-              <div class="my-1 text-sm font-semibold text-white-100 rounded-xl w-fit h-fit px-2 py-1" :class="statusColor(app.status)">{{app.status}}</div>
+              <div class="my-1 text-sm font-semibold rounded-xl w-fit h-fit px-2 py-1" :class="statusColor(app.status)">{{app.status}}</div>
               <img src="../assets/GraduateApplication.png" alt="graduation cap" class="h-80 w-144 square rounded-xl mt-5"/>
               
               <div class='relative'>
@@ -143,12 +143,14 @@ export default {
       this.applicationForm = false
     },
     statusColor(status) {
-      if(status === "Pending") {
-        return "bg-blue-500"
+      if(status === "Under Review") {
+        return "bg-blue-500 text-white-100"
       } else if(status === "Accepted") {
-        return "bg-green-100"
+        return "bg-green-100 text-white-100"
       } else if(status === "Rejected") {
-        return "bg-red-100"
+        return "bg-red-100 text-white-100"
+      } else {
+        return "bg-white-100 text-grey-200 border-2 border-grey-200"
       }
     },
     deleteApplication(appID) {
@@ -167,14 +169,14 @@ export default {
         "major": "Software Engineering",
         "minor": "Embedded Systems",
         "concentration": "none",
-        "status": "Pending"
+        "status": "Under Review"
     }],
     "Scholarships": [{
         "the primary key" : "we will use this to withdraw the application in a delete request",
         "name": "The you're a good student scholarship",
         "amount": 1000,
         "type": "idk but this is probably an enum in the back end. Or just don't include this",
-        "status": "Pending"
+        "status": "Under Review"
     }],
     "Graduate applications": [{
         "the primary key" : "we will use this to withdraw the application in a delete request",
@@ -183,7 +185,7 @@ export default {
         "major": "Software Engineering",
         "type": "Research",
         "Advisor": "Ronnie the software architecture goat",
-        "status": "Pending"
+        "status": "Under Review"
     },
     {
         "the primary key" : "we will use this to withdraw the application in a delete request",
@@ -210,14 +212,14 @@ export default {
         "major": "Software Engineering",
         "type": "Research",
         "Advisor": "Ronnie the software architecture goat",
-        "status": "Pending"
+        "status": "Under Review"
     }],
     "awards": [{
         "the primary key" : "we will",
         "name": "The you're a good student scholarship",
         "amount": 1000,
         "type": "idk but this is probably an enum in the back end. Or just don't include this",
-        "status": "Pending"
+        "status": "Submitted"
     }]
     }
     this.ugradApps = backend["Undergrad applications"]

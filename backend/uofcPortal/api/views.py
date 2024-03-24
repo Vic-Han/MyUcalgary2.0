@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from .models import Student, Requirement, Tutorial, Lab, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications
+from .models import Student, Requirement, Tutorial, Lab, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications, Term
 from .serializers import StudentSerializer, RequirementSerializer, UserSerializer, FacultySerializer, DepartmentSerializer, ProgramSerializer, AddressSerializer
 from .serializers import CourseSerializer, TutorialSerializer, LabSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer, StudentApplicationsSerializer
 
@@ -387,23 +387,41 @@ class StudentRequirementsView(APIView):
         return Response(requirement_data)
 
 
-class ScheduleBuilderView(APIView):      
+class ScheduleBuilderView(APIView):    
+    authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication  
     def get_queryset(self):
         term = self.request.query_params.get('term')
+    
+
+
+    
+
 
     def get(self, request):
-        student = Student.objects.first()
+        student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)
         schedule_builder_data = {
-            "all courses that are offered": [],
+            "allCourses": [],
             "current schedule": {},
             "academic requirements": {}
         }
+        # hardcoded term
+        term = None
+        try:
+            term = Term.objects.get(term_key="Fal2023")
+        except Term.DoesNotExist:
+            return Response({"error": "Term not found"}, status=404)
 
+        
         # offered course retrieval
         courses = Course.objects.all()
         for course in courses:
+
+            if not Lecture.objects.filter(course=course, term=term).exists():
+                continue
+
             course_data = {
                 "name": course.course_code,
                 "title": course.course_title,
@@ -412,7 +430,7 @@ class ScheduleBuilderView(APIView):
                 "combinations": [],
                 "lectures": [],
                 "tutorials": [],
-                "labs": []
+                #"labs": []
             }
 
             lectures = Lecture.objects.filter(course=course)
@@ -423,10 +441,10 @@ class ScheduleBuilderView(APIView):
                     "start": lecture.lecture_starttime,
                     "end": lecture.lecture_endtime,
                     "Prof": lecture.instructor.instructor_last_name + ", " + lecture.instructor.instructor_first_name,
-                    "totalSeats": "100 (HARDCODED)",
-                    "seatsFilled": "50 (HARDCODED)",
-                    "totalWaitlist": "10 (HARDCODED)",
-                    "waitlistFilled": "0 (HARDCODED)",
+                    "totalSeats": 100, # hardcoded
+                    "seatsFilled": 50, # hardcoded
+                    "totalWaitlist": 10, # hardcoded
+                    "waitlistFilled": 0, # hardcoded
                     "roomno": lecture.lecture_roomnumber
                 })
             
@@ -437,7 +455,6 @@ class ScheduleBuilderView(APIView):
                     "days": tutorial.tutorial_days,
                     "start": tutorial.tutorial_starttime,
                     "end": tutorial.tutorial_endtime,
-                    "TA": "Sal from Khan Academy",
                     "totalSeats": "100 (HARDCODED)",
                     "seatsFilled": "50 (HARDCODED)",
                     "totalWaitlist": "10 (HARDCODED)",
@@ -445,23 +462,31 @@ class ScheduleBuilderView(APIView):
                     "roomno": tutorial.tutorial_roomnumber
                 })
 
-            labs = Lab.objects.filter(course=course)
-            for lab in labs:
-                course_data["labs"].append({
-                    "name": lab.lab_id,
-                    "days": lab.lab_days,
-                    "start": lab.lab_starttime,
-                    "end": lab.lab_endtime,
-                    "TA": "Sal from Khan Academy",
-                    "totalSeats": "100 (HARDCODED)",
-                    "seatsFilled": "50 (HARDCODED)",
-                    "totalWaitlist": "10 (HARDCODED)",
-                    "waitlistFilled": "0 (HARDCODED)",
-                    "roomno": lab.lab_roomnumber
-                })
-            course_data["combinations"].append({"L01, T01, B01 (HARDCODED)"})
+            # labs = Lab.objects.filter(course=course)
+            # for lab in labs:
+            #     course_data["labs"].append({
+            #         "name": lab.lab_id,
+            #         "days": lab.lab_days,
+            #         "start": lab.lab_starttime,
+            #         "end": lab.lab_endtime,
+            #         "totalSeats": 100, # hardcoded
+            #         "seatsFilled": 50, # hardcoded
+            #         "totalWaitlist": 10, # hardcoded
+            #         "waitlistFilled": 0, # hardcoded
+            #         "roomno": lab.lab_roomnumber
+            #     })
+            for lecture in lectures:
+                if(len(tutorials)) > 0:
+                    for tutorial in tutorials:
+                        course_data["combinations"].append([lecture.lecture_id, tutorial.tutorial_id])
+                else:
+                    course_data["combinations"].append([lecture.lecture_id])
+
+
+
+            #course_data["combinations"].append({"L01, T01, B01 (HARDCODED)"})
             
-            schedule_builder_data["all courses that are offered"].append(course_data)
+            schedule_builder_data["allCourses"].append(course_data)
         
         # current schedule retrieval
         enrollments = Enrollment.objects.filter(student=student)

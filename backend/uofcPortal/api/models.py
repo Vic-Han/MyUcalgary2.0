@@ -185,7 +185,7 @@ class Lab(models.Model):
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)
-    
+    # tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE, null=True)
     class Meta:
         unique_together = ('student', 'lecture')  # Avoid duplicate enrollments
 

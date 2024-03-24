@@ -206,6 +206,18 @@ const createLecInfo = (course, index) =>{
         },
         created(){
             this.$emit('hide-navbar')
+            const serverPath   = this.$store.state.serverPath
+            const apiPath = '/api/schedule-builder/'
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${this.$cookies.get('auth-token')}`
+            }
+
+            this.$http.get(serverPath + apiPath, {headers: headers}).then(res =>{
+                console.log(res.data)
+            })
+
+
             const backendPayload = data
             this.allInfo = backendPayload
             allCourses = this.allInfo.allCourses

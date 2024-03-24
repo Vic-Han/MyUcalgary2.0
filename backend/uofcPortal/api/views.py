@@ -476,4 +476,59 @@ class ScheduleBuilderView(APIView):
                     "Lab": "B01 (HARDCODED)"
                 }
 
+        # academic requirements retrieval
+        requirement_data = {
+            "requirements": []
+        }
+
+
+        applications = StudentApplications.objects.filter(student_id=student)
+        application = applications[0]
+        maj_prog = application.major_program
+        min_prog = application.minor_program
+
+        enrollments = Enrollment.objects.filter(student_id=student)
+        lecture_list = []
+        grade_list = []
+        for enrollment in enrollments:
+            lectures = Lecture.objects.filter(lecture_id=enrollment.lecture_id)
+            for lecture in lectures:
+                lecture_list.append(lecture)
+            grades = Grade.objects.filter(enrollment_id=enrollment)
+            for grade in grades:
+                grade_list.append(grade)
+
+        major_requirements = Requirement.objects.filter(program_id=maj_prog)
+        for requirement in major_requirements:                
+            courses = Course.objects.filter(course_code__in=requirement.courses.all())
+            course_data = []
+            units_completed = 0
+            for course in courses:
+                status = "incomplete"
+                for grade in grade_list:
+                    if grade.enrollment.lecture.course == course and grade.grade >= 50:
+                        status = "complete"
+                        units_completed += course.course_units
+                if status == "incomplete":
+                    course_data.append({
+                        "name": course.course_code,
+                        "units": course.course_units,
+                        "status": status
+                    })
+            req_status = ""
+            if units_completed == requirement.required_units:
+                req_status = "complete"
+            elif 0 < units_completed and units_completed < requirement.required_units:
+                req_status = "in-progress"
+            else:
+                req_status = "incomplete"
+            if req_status == "incomplete" or req_status == "in-progress":
+                requirement_data["requirements"].append({
+                    "description": requirement.description,
+                    "requiredUnits": requirement.required_units,
+                    "status": req_status,
+                    "courses": course_data
+                })
+        schedule_builder_data["academic requirements"] = requirement_data
+
         return Response(schedule_builder_data)

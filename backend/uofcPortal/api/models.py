@@ -128,20 +128,6 @@ class Lecture(models.Model):
     lecture_days = models.CharField(max_length=10)
     lecture_starttime = models.FloatField(validators=[MaxValueValidator(23.00)])
     lecture_endtime = models.FloatField(validators=[MaxValueValidator(23.83)])
-    
-    # Float values for lecture start and endtimes are as follow:
-    # 12:00am =  0.00
-    # 01:05am =  1.08
-    # 09:10am =  9.17
-    # 10:15am = 10.25
-    # 11:20am = 11.33
-    # 12:25pm = 12.42
-    # 01:30pm = 13.50
-    # 07:35pm = 19.58
-    # 08:40pm = 20.67
-    # 09:45pm = 21.75
-    # 10:50pm = 22.83
-    # 11:55pm = 23.92
 
     lecture_roomnumber = models.CharField(max_length=10)
 
@@ -150,8 +136,52 @@ class Lecture(models.Model):
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f"{self.course} - {self.lecture_id}"
+        return f"{self.course} - {self.lecture_id}"   
+
+class Tutorial(models.Model):
+    tutorial_id = models.CharField(max_length=10) # e.g. T01
+    tutorial_days = models.CharField(max_length=10)
+    tutorial_starttime = models.FloatField(validators=[MaxValueValidator(23.00)])
+    tutorial_endtime = models.FloatField(validators=[MaxValueValidator(23.83)])
+
+    tutorial_roomnumber = models.CharField(max_length=10)
+
+    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
+    lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True)
+    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f"{self.lecture.course} - {self.lecture.lecture_id} - {self.tutorial_id}"
     
+class Lab(models.Model):
+    lab_id = models.CharField(max_length=10) # e.g. B01
+    lab_days = models.CharField(max_length=10)
+    lab_starttime = models.FloatField(validators=[MaxValueValidator(23.00)])
+    lab_endtime = models.FloatField(validators=[MaxValueValidator(23.83)])
+
+    lab_roomnumber = models.CharField(max_length=10)
+
+    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
+    lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True)
+    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f"{self.lecture.course} - {self.lecture.lecture_id} - {self.lab_id}"
+    
+# Float values for lecture, tutorial, and lab start and endtimes are as follow:
+# 12:00am =  0.00
+# 01:05am =  1.08
+# 09:10am =  9.17
+# 10:15am = 10.25
+# 11:20am = 11.33
+# 12:25pm = 12.42
+# 01:30pm = 13.50
+# 07:35pm = 19.58
+# 08:40pm = 20.67
+# 09:45pm = 21.75
+# 10:50pm = 22.83
+# 11:55pm = 23.92 
+
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)

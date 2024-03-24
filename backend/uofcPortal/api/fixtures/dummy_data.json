@@ -656,6 +656,92 @@
       "instructor": "003"
     }
   },
+
+  {
+    "model": "api.Tutorial",
+    "pk": "01",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2023",
+      "tutorial_days": "F",
+      "tutorial_starttime": 16.00,
+      "tutorial_endtime": 16.50,
+      "tutorial_roomnumber": "X777",
+      "lecture": "01",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "02",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2024",
+      "tutorial_days": "W",
+      "tutorial_starttime": 12.00,
+      "tutorial_endtime": 12.50,
+      "tutorial_roomnumber": "Y888",
+      "lecture": "02",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "03",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2023",
+      "tutorial_days": "M",
+      "tutorial_starttime": 8.00,
+      "tutorial_endtime": 8.50,
+      "tutorial_roomnumber": "Z999",
+      "lecture": "03",
+      "instructor": "003"
+    }
+  },
+
+  {
+    "model": "api.Lab",
+    "pk": "01",
+    "fields": {
+      "lab_id": "B01",
+      "term": "Fal2023",
+      "lab_days": "T",
+      "lab_starttime": 9.00,
+      "lab_endtime": 11.50,
+      "lab_roomnumber": "G000",
+      "lecture": "01",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Lab",
+    "pk": "02",
+    "fields": {
+      "lab_id": "B01",
+      "term": "Win2024",
+      "lab_days": "F",
+      "lab_starttime": 11.00,
+      "lab_endtime": 13.50,
+      "lab_roomnumber": "H111",
+      "lecture": "02",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Lab",
+    "pk": "03",
+    "fields": {
+      "lab_id": "B01",
+      "term": "Fal2023",
+      "lab_days": "R",
+      "lab_starttime": 8.00,
+      "lab_endtime": 10.50,
+      "lab_roomnumber": "I222",
+      "lecture": "03",
+      "instructor": "003"
+    }
+  },
   
   {
     "model": "api.Enrollment",

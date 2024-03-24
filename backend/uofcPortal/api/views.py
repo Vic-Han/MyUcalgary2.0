@@ -9,9 +9,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from .models import Student, Requirement, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications
+from .models import Student, Requirement, Tutorial, Lab, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications
 from .serializers import StudentSerializer, RequirementSerializer, UserSerializer, FacultySerializer, DepartmentSerializer, ProgramSerializer, AddressSerializer
-from .serializers import CourseSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer, StudentApplicationsSerializer
+from .serializers import CourseSerializer, TutorialSerializer, LabSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer, StudentApplicationsSerializer
 
 
 # Create your views here.
@@ -74,6 +74,18 @@ class InstructorViewSet(viewsets.ModelViewSet):
 class LectureViewSet(viewsets.ModelViewSet):
     queryset = Lecture.objects.all()
     serializer_class = LectureSerializer
+    # authentication_classes = (TokenAuthentication,)
+    # permission_classes = (IsAuthenticated,)
+
+class TutorialViewSet(viewsets.ModelViewSet):
+    queryset = Tutorial.objects.all()
+    serializer_class = TutorialSerializer
+    # authentication_classes = (TokenAuthentication,)
+    # permission_classes = (IsAuthenticated,)
+
+class LabViewSet(viewsets.ModelViewSet):
+    queryset = Lab.objects.all()
+    serializer_class = LabSerializer
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
 
@@ -375,3 +387,25 @@ class StudentRequirementsView(APIView):
         return Response(requirement_data)
 
 
+class ScheduleBuilderView(APIView):      
+    def get_queryset(self):
+        term = self.request.query_params.get('term')
+
+    def get(self, request):
+        student = Student.objects.first()
+        if not student:
+            return Response({"error": "No student found"}, status=404)
+        schedule_builder_data = {
+            "all courses that are offered": [],
+            "current schedule": {},
+            "academic requirements": {}
+        }
+
+        # offered course retrieval
+        courses = Course.objects.all()
+        for course in courses:
+            lectures = Lecture.objects.filter(course=course.course_code)
+            course_data = {
+
+            }
+        return Response(schedule_builder_data)

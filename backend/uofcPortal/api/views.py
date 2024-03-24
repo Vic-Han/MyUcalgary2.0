@@ -161,19 +161,41 @@ class StudentGradeView(APIView, GradeMixins):
 
 
         # Calculate the student's year
-        total_courses = len(enrollments)
+        total_courses = 0
+
+        for enrollment in enrollments:
+            total_courses += enrollment.lecture.course.course_units
+
         student_year = min(4, math.ceil(total_courses / 10)) # Assuming 10 courses per year, calculate the student's year
-        
+
+        currentStudentInfo = {
+            "program": applications.major_program.program_name,
+            "level": student_year,
+            "plan": f"{applications.major_program.program_degree_level}, {applications.major_program.program_name}"
+        }
+
         activity = {}
         for enrollment in enrollments:
-            term = enrollment.lecture.term.term_name
+            term = enrollment.lecture.term
+            term_name = enrollment.lecture.term.term_name
             grades = Grade.objects.filter(enrollment=enrollment)
-            termYear = f"{term} {enrollment.lecture.term.term_year}"
+            if not grades:
+                continue
+            
+            total_units_term = 0
+            for enrollment in enrollments:
+                if enrollment.lecture.term.start_date <= term.start_date:
+                    total_courses += enrollment.lecture.course.course_units
+            
+            student_year_term = min(4, math.ceil(total_courses / 10))
+
+            termYear = f"{term_name} {enrollment.lecture.term.term_year}"
+
             if termYear not in activity:
                 activity[termYear] = {
                     "UnitsEnrolled": 0,
                     "Program": applications.major_program.program_name,
-                    "Level": student_year,
+                    "Level": student_year_term,
                     "Plan": f"{applications.major_program.program_degree_level}, {applications.major_program.program_name}",
                     "TermGPA": 0,
                     "TermLetterGrade": "",
@@ -188,7 +210,7 @@ class StudentGradeView(APIView, GradeMixins):
                     "units": enrollment.lecture.course.course_units
                 }
                 activity[termYear]["courses"].append(course_info)
-                activity[termYear]["UnitsEnrolled"] += 3 # Assuming each course is 3 units
+                activity[termYear]["UnitsEnrolled"] += enrollment.lecture.course.course_units # Assuming each course is 3 units
 
         for term, info in activity.items():
             term_gpa, term_letter_grade = self.calculate_term_gpa_and_letter_grade(info['courses'])
@@ -199,7 +221,8 @@ class StudentGradeView(APIView, GradeMixins):
         response = {
             "overallGPA": overallGPA,
             "letterGrade": self.gpa_to_letter_grade(overallGPA),
-            "activity": activity
+            "activity": activity,
+            "currentStudentInfo": currentStudentInfo,
         }
         return Response(response)
     

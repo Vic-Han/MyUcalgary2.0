@@ -87,7 +87,7 @@
           </div>
           <div class="p-5 h-128 box-content border-x border-grey-200 border-b rounded-b-xl " v-else-if="selected === 'grad'">
             <div class="overflow-x-auto bg-white-200 shadow-inner p-1 flex flex-row h-full rounded-xl">
-              <div v-if="gradApps.length == 0" class="text-4xl text-center w-full text-grey-200 p-18 leading-loose">
+              <div v-if="gradApps.length == 0" class="text-4xl text-center w-full text-grey-200 p-20 leading-loose">
                 No applications for graduate programs. You can start an application below.
               </div>
               <div v-for="(app,index) in gradApps" :key="index" class="bg-white-100 shadow-xl rounded-xl p-5 h-fit w-fit ml-8 mb-2 mt-8" :class="{'mr-8': index == gradApps.length -1}">

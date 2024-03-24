@@ -722,7 +722,7 @@
     "fields": {
       "transaction_name": "Tuition Payment",
       "transaction_posted_date": "2023-09-01",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -5000.00,
       "student": 1,
       "term": "Fal2023"
@@ -734,7 +734,7 @@
     "fields": {
       "transaction_name": "Scholarship Award",
       "transaction_posted_date": "2023-09-15",
-      "transaction_type": "award",
+      "transaction_type": "scholarship",
       "transaction_amount": 2000.00,
       "student": 2,
       "term": "Fal2023"
@@ -746,7 +746,7 @@
     "fields": {
       "transaction_name": "Textbook Purchase",
       "transaction_posted_date": "2023-09-20",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -250.00,
       "student": 3,
       "term": "Fal2023"
@@ -758,7 +758,7 @@
     "fields": {
       "transaction_name": "Lab Fee",
       "transaction_posted_date": "2024-01-15",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -100.00,
       "student": 4,
       "term": "Win2024"
@@ -770,7 +770,7 @@
     "fields": {
       "transaction_name": "Housing Rent",
       "transaction_posted_date": "2024-01-20",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -800.00,
       "student": 5,
       "term": "Win2024"
@@ -783,7 +783,7 @@
     "fields": {
       "transaction_name": "Scholarship Disbursement",
       "transaction_posted_date": "2023-09-30",
-      "transaction_type": "credit",
+      "transaction_type": "scholarship",
       "transaction_amount": 1500.00,
       "student": 1,
       "term": "Fal2023"
@@ -795,7 +795,7 @@
     "fields": {
       "transaction_name": "Research Stipend",
       "transaction_posted_date": "2023-10-10",
-      "transaction_type": "credit",
+      "transaction_type": "award",
       "transaction_amount": 800.00,
       "student": 2,
       "term": "Fal2023"
@@ -807,7 +807,7 @@
     "fields": {
       "transaction_name": "Part-Time Job Salary",
       "transaction_posted_date": "2023-11-05",
-      "transaction_type": "credit",
+      "transaction_type": "payment",
       "transaction_amount": 1000.00,
       "student": 3,
       "term": "Fal2023"
@@ -819,7 +819,7 @@
     "fields": {
       "transaction_name": "Textbook Refund",
       "transaction_posted_date": "2023-09-25",
-      "transaction_type": "credit",
+      "transaction_type": "payment",
       "transaction_amount": 100.00,
       "student": 4,
       "term": "Fal2023"
@@ -831,7 +831,7 @@
     "fields": {
       "transaction_name": "Lab Equipment Purchase",
       "transaction_posted_date": "2024-02-15",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -500.00,
       "student": 5,
       "term": "Win2024"
@@ -843,7 +843,7 @@
     "fields": {
       "transaction_name": "Honorarium for Guest Lecture",
       "transaction_posted_date": "2024-03-10",
-      "transaction_type": "credit",
+      "transaction_type": "award",
       "transaction_amount": 300.00,
       "student": null,
       "term": "Spr2024"
@@ -855,7 +855,7 @@
     "fields": {
       "transaction_name": "Summer Internship Stipend",
       "transaction_posted_date": "2024-07-15",
-      "transaction_type": "credit",
+      "transaction_type": "scholarship",
       "transaction_amount": 1500.00,
       "student": 1,
       "term": "Sum2024"
@@ -867,7 +867,7 @@
     "fields": {
       "transaction_name": "Library Fine",
       "transaction_posted_date": "2024-03-01",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -20.00,
       "student": 2,
       "term": "Spr2024"
@@ -879,7 +879,7 @@
     "fields": {
       "transaction_name": "Course Registration Fee",
       "transaction_posted_date": "2024-03-05",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -100.00,
       "student": 3,
       "term": "Spr2024"
@@ -891,7 +891,7 @@
     "fields": {
       "transaction_name": "Bookstore Purchase",
       "transaction_posted_date": "2024-07-20",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -150.00,
       "student": 5,
       "term": "Sum2024"

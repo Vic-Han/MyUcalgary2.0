@@ -172,7 +172,7 @@ class Grade(models.Model):
 class Transaction(models.Model):
     transaction_name = models.CharField(max_length=50) # e.g. Bank of Montreal
     transaction_posted_date = models.DateField()
-    transaction_type = models.CharField(max_length=10) # e.g. credit, debit, award
+    transaction_type = models.CharField(max_length=11) # e.g. payment, fee, award, scholarship
     transaction_amount = models.FloatField()
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)

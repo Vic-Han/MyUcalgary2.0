@@ -9,9 +9,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from .models import Student, Requirement, Tutorial, Lab, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications, Term
+from .models import Student, Requirement, Tutorial, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications, Term
 from .serializers import StudentSerializer, RequirementSerializer, UserSerializer, FacultySerializer, DepartmentSerializer, ProgramSerializer, AddressSerializer
-from .serializers import CourseSerializer, TutorialSerializer, LabSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer, StudentApplicationsSerializer
+from .serializers import CourseSerializer, TutorialSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer, StudentApplicationsSerializer
 
 
 # Create your views here.
@@ -80,12 +80,6 @@ class LectureViewSet(viewsets.ModelViewSet):
 class TutorialViewSet(viewsets.ModelViewSet):
     queryset = Tutorial.objects.all()
     serializer_class = TutorialSerializer
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes = (IsAuthenticated,)
-
-class LabViewSet(viewsets.ModelViewSet):
-    queryset = Lab.objects.all()
-    serializer_class = LabSerializer
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
 
@@ -388,18 +382,15 @@ class StudentRequirementsView(APIView):
 
 
 class ScheduleBuilderView(APIView):    
-    authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
-    permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication  
+    #authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    #permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication  
+
     def get_queryset(self):
         term = self.request.query_params.get('term')
-    
-
-
-    
-
 
     def get(self, request):
-        student = get_object_or_404(Student, user=request.user)
+        student = Student.objects.first()
+        #student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)
         schedule_builder_data = {
@@ -429,8 +420,7 @@ class ScheduleBuilderView(APIView):
                 "prereq": course.course_prerequisites,
                 "combinations": [],
                 "lectures": [],
-                "tutorials": [],
-                #"labs": []
+                "tutorials": []
             }
 
             lectures = Lecture.objects.filter(course=course)
@@ -462,19 +452,6 @@ class ScheduleBuilderView(APIView):
                     "roomno": tutorial.tutorial_roomnumber
                 })
 
-            # labs = Lab.objects.filter(course=course)
-            # for lab in labs:
-            #     course_data["labs"].append({
-            #         "name": lab.lab_id,
-            #         "days": lab.lab_days,
-            #         "start": lab.lab_starttime,
-            #         "end": lab.lab_endtime,
-            #         "totalSeats": 100, # hardcoded
-            #         "seatsFilled": 50, # hardcoded
-            #         "totalWaitlist": 10, # hardcoded
-            #         "waitlistFilled": 0, # hardcoded
-            #         "roomno": lab.lab_roomnumber
-            #     })
             for lecture in lectures:
                 if(len(tutorials)) > 0:
                     for tutorial in tutorials:
@@ -497,8 +474,7 @@ class ScheduleBuilderView(APIView):
             for grade in grades:
                 schedule_builder_data["current schedule"][enrollment.lecture.course.course_code] = {
                     "Lecture": enrollment.lecture.lecture_id,
-                    "Tutorial": "T01 (HARDCODED)",
-                    "Lab": "B01 (HARDCODED)"
+                    "Tutorial": "T01 (HARDCODED)"
                 }
 
         # academic requirements retrieval

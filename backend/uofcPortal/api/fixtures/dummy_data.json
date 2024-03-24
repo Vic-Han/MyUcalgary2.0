@@ -699,49 +699,6 @@
       "instructor": "003"
     }
   },
-
-  {
-    "model": "api.Lab",
-    "pk": "01",
-    "fields": {
-      "lab_id": "B01",
-      "term": "Fal2023",
-      "lab_days": "T",
-      "lab_starttime": 9.00,
-      "lab_endtime": 11.50,
-      "lab_roomnumber": "G000",
-      "course": "SENG401",
-      "instructor": "001"
-    }
-  },
-  {
-    "model": "api.Lab",
-    "pk": "02",
-    "fields": {
-      "lab_id": "B01",
-      "term": "Win2024",
-      "lab_days": "F",
-      "lab_starttime": 11.00,
-      "lab_endtime": 13.50,
-      "lab_roomnumber": "H111",
-      "course": "PHYS303",
-      "instructor": "002"
-    }
-  },
-  {
-    "model": "api.Lab",
-    "pk": "03",
-    "fields": {
-      "lab_id": "B01",
-      "term": "Fal2023",
-      "lab_days": "R",
-      "lab_starttime": 8.00,
-      "lab_endtime": 10.50,
-      "lab_roomnumber": "I222",
-      "course": "ENGL201",
-      "instructor": "003"
-    }
-  },
   
   {
     "model": "api.Enrollment",

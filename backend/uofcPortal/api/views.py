@@ -211,9 +211,9 @@ class StudentFinancesView(APIView):
     def get(self, request):
         student = get_object_or_404(Student, user=request.user)
 
-        # student = Student.objects.first()  # Replace with authentication later
-        # if not student:
-        #     return Response({"error": "No student found"}, status=404)
+        #student = Student.objects.first()  # Replace with authentication later
+        #if not student:
+        #    return Response({"error": "No student found"}, status=404)
 
         transactions = Transaction.objects.filter(student=student).order_by('term__term_year', 'term__term_name')
         
@@ -293,12 +293,19 @@ class DashboardView(APIView, GradeMixins):
             term_name = f"{transaction.term.term_name} {transaction.term.term_year}"
             if term_name not in dashboard_data["finances"]:
                 dashboard_data["finances"][term_name] = {
-                    "balance": 0,
-                    "due": "To Be Determined"  # To be adjust as needed
+                    "credits": 0,
+                    "debits": 0,
+                    "net_balance": 0,
+                    "due": transaction.term.due_date  # To be adjust as needed
                 }
 
             # Assuming negative amount is due and positive is paid/credit
-            dashboard_data["finances"][term_name]["balance"] += transaction.transaction_amount
+            current_amount = transaction.transaction_amount
+            if current_amount < 0:
+                dashboard_data["finances"][term_name]["debits"] += current_amount
+            else:
+                dashboard_data["finances"][term_name]["credits"] += current_amount
+            dashboard_data["finances"][term_name]["net_balance"] += current_amount
 
         return Response(dashboard_data)
     

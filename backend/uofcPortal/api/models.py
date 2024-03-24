@@ -45,6 +45,7 @@ class Term(models.Model):
     term_year = models.IntegerField()
     start_date = models.DateField()
     end_date = models.DateField()
+    due_date = models.DateField()
 
     def __str__(self):
         return self.term_key

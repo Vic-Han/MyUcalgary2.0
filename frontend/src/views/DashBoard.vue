@@ -100,9 +100,41 @@ import Data from './SampleSched.json'
                 
             }
         },
+        methods: {
+            fetchData(){
+                const serverpath = this.$store.state.serverPath
+                const apiPath = '/api/dashboard'
+               
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization' :`Token ${this.$cookies.get("auth-token")}`
+                }
+
+                this.$http.get(`${serverpath}${apiPath}`,{headers}).then(response => {
+                    const data = response.data
+                    console.log(data)
+                    for(const [key,value] of Object.entries(data.grades)){
+                        this.GradePreview.term = key
+                        this.GradePreview.TermGPA = value.TermGPA
+                        this.GradePreview.TermLetterGrade = value.TermLetterGrade
+                        this.GradePreview.courses = value.courses
+                    }
+                    for(const [key,value] of Object.entries(data.finances)){
+                        this.FinancePreview.term = key
+                        this.FinancePreview.amount = value.net_balance
+                        this.FinancePreview.status = value.debits > 0 ? "Unpaid" : "Paid"
+                        this.FinancePreview.due = value.due
+                    }
+
+                }).catch(error => {
+                    console.log(error)
+                } )
+            }
+        },
         created(){
             this.$emit('show-navbar')
             this.$emit('toggle-selected', 'dashboard')
-        }
+            this.fetchData()
     }
+}
 </script>

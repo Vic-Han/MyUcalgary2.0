@@ -30,7 +30,7 @@
               <img src="../assets/UndergradApplication.png" alt="graduation cap" class="h-80 w-144 square rounded-xl mt-5"/>
 
               <div class='relative'>
-                <div class="absolute opacity-80 -translate-y-full -bottom-4 right-4 bg-white-100 text-black-100 text-xl w-80 py-4 px-4 text-left rounded-xl">
+                <div class="absolute opacity-80 -translate-y-full -bottom-4 right-4 bg-white-100 text-black-100 text-xl w-auto py-4 px-4 text-left rounded-xl">
                   <div class="mb-1">Faculty: {{app.faculty}}</div>
                   <div class="my-1">Major: {{app.major}}</div>
                   <div class="my-1">Minor: {{app.minor}}</div>
@@ -56,7 +56,7 @@
               <img src="../assets/AwardApplication.png" alt="graduation cap" class="h-80 w-144 square rounded-xl mt-5"/>
               
               <div class='relative'>
-                <div class="absolute opacity-80 bottom-4 left-4  bg-white-100 text-black-100 text-xl w-30 p-4 text-left rounded-xl">
+                <div class="absolute opacity-80 bottom-4 left-4  bg-white-100 text-black-100 text-xl w-auto p-4 text-left rounded-xl">
                   <div class="my-1"> Value: ${{award.amount}}</div>
                 </div>
               </div>
@@ -78,7 +78,7 @@
               <div class="my-1 text-sm font-semibold rounded-xl w-fit h-fit px-2 py-1" :class="statusColor(scholarship.status)">{{scholarship.status}}</div>
               <img src="../assets/ScholarshipApplication.png" alt="graduation cap" class="h-80 w-144 square rounded-xl mt-5"/>
               <div class='relative'>
-                <div class="absolute opacity-80 bottom-4  right-4 bg-white-100 text-black-100 text-xl w-30 p-4 text-left rounded-xl">
+                <div class="absolute opacity-80 bottom-4  right-4 bg-white-100 text-black-100 text-xl w-auto p-4 text-left rounded-xl">
                   <div class="my-1"> Value: ${{scholarship.amount}}</div>
                 </div>
               </div>
@@ -101,7 +101,7 @@
               <img src="../assets/GraduateApplication.png" alt="graduation cap" class="h-80 w-144 square rounded-xl mt-5"/>
               
               <div class='relative'>
-                <div class="absolute opacity-80 left-4 bottom-4 bg-white-100 text-black-100 text-xl w-80 p-4 text-left rounded-xl">
+                <div class="absolute opacity-80 left-4 bottom-4 bg-white-100 text-black-100 text-xl w-auto p-4 text-left rounded-xl">
                   <div class="mb-1">Faculty: {{app.faculty}}</div>
                   <div class="my-1">Major: {{app.major}}</div>
                   <div class="my-1">Type: {{app.type}}</div>
@@ -156,11 +156,30 @@ export default {
     deleteApplication(appID) {
       // send a delete request to the backend
       return appID
+    },
+    fetchData(){
+      const serverpath = this.$store.state.serverPath
+      const apiPath = "/api/student-applications/"
+      const headers = {
+          'Content-Type': 'application/json',
+          'Authorization' :`Token ${this.$cookies.get("auth-token")}`
+      }
+
+      this.$http.get(`${serverpath}${apiPath}`,{headers}).then(response => {
+          console.log(response.data)
+          this.ugradApps = response.data["Undergrad applications"]
+          this.scholarships = response.data["Scholarships"]
+          this.gradApps = response.data["Graduate applications"]
+          this.awards = response.data["Awards"]
+      }).catch(error => {
+          console.log(error)
+      })
     }
   },
   created() {
     this.$emit('show-navbar');
     this.$emit('toggle-selected', 'application');
+    this.fetchData()
     const backend = {
     "Undergrad applications": [{
         "the primary key" : "we will use this to withdraw the application in a delete request",

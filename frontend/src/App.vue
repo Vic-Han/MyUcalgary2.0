@@ -4,7 +4,7 @@
     <div class="w-full">
       <div v-if="navbarVisible" class="flex items-center justify-start py-4 px-4 bg-gray-200">
         <div class="flex items-center space-x-2 bg-white-100 rounded-lg shadow-md p-2 w-2/5 ml-5 h-11">
-          <input type="text" class="flex-grow outline-none rounded-l-full px-4 py-2" placeholder="Search" v-model="searchTerm" />
+          <input type="text" class="flex-grow outline-none rounded-l-full px-4 py-2" @keydown="showSearchResults" placeholder="Search" v-model="searchTerm" />
           <button class="bg-transparent p-2 rounded-full text-gray-100 hover:text-gray-700 focus:outline-none" @click="showSearchResults">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-grey-200" viewBox="0 0 50 50">
             <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"></path>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import Fuse from 'fuse.js';
 import AppNavbar from './components/AppNavbar'
 import ProfilePreview from './components/ProfilePreview.vue'
 import LogoutOverlay from './components/LogoutOverlay.vue'
@@ -40,6 +41,8 @@ export default {
 },
   data: () => {
     return{
+      componentFuse: null,
+      linkFuse: null,
       navbarVisible : false,
       selected: "",
       logoutPossible: true,
@@ -346,21 +349,13 @@ export default {
       },
       showSearchResults(){
         console.log("Searching for " + this.searchTerm)
+        this.filteredComponents = this.componentFuse.search(this.searchTerm)
+        this.filteredLinks = this.linkFuse.search(this.searchTerm)
+        console.log(this.filteredComponents)
+        console.log(this.filteredLinks)
       },
       toggleSelected(selected){
         this.selected = selected
-        // if(selected === "grades"){
-        //   this.selected = 'dashboard'
-        // }
-        // else if(selected === "finances"){
-        //   this.selected = 'dashboard'
-        // }
-        // else if(selected === "profile"){
-        //   this.selected = 'dashboard'
-        // }
-        // else{
-        //   this.selected = selected
-        // }
       },
       resetAuth(){
         const token = this.$cookies.get('auth-token')
@@ -379,11 +374,11 @@ export default {
         else{
           this.noCookie = false
         }
-        //console.log(this.noCookie && this.logoutPossible)
       }
   },
   created(){
-    
+    this.componentFuse = new Fuse(this.components, {keys:['terms']})
+    this.linkFuse = new Fuse(this.links, {keys:['name', 'section']})
   },
   mounted(){
     document.addEventListener('click', this.eventHandler)
@@ -395,7 +390,6 @@ export default {
     document.removeEventListener('keydown', this.eventHandler)
     document.removeEventListener('mousemove', this.eventHandler)
   }
-  
 }
 </script>
 

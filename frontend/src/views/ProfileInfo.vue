@@ -454,57 +454,127 @@ const emailValid = (email) =>{
                 editingID: null,
                 dropdownVisible: null,
                 User: {
-                    First: "John",
-                    Last: "Doe",
-                    UCID: "31234567",
-                    DOB: "2000-01-01",
+                    First: "",
+                    Last: "",
+                    UCID: "",
+                    DOB: "",
                     Citizenship: {
-                        Country: "Canada",
-                        Status: "Permanent Resident",
+                        Country: "",
+                        Status: "",
                         Residency: null,
                         Expiry: null
                     }
                 },
                 Address: {
-                    Street: "2500 University Dr NW",
-                    City: "Calgary",
-                    Province: "Alberta",
-                    Country: "Canada",
-                    Postal: "T2N 1N4",
+                    Street: "",
+                    City: "",
+                    Province: "",
+                    Country: "",
+                    Postal: "",
                     Apt: null
                 },
                 Email: {
-                    School: "noreply@ucalgary.ca",
-                    Personal: "noreply@gmail.com",
-                    Preferred: "School"
+                    School: "",
+                    Personal: "",
+                    Preferred: ""
                 },
                 Phone: {
-                    Home: "(403)-220-5110",
-                    Mobile: "(403)-220-5738",
+                    Home: "",
+                    Mobile: "",
                     Number: null,
-                    Preferred: "Mobile"
+                    Preferred: ""
                 },
                 EmergencyContacts: [
                     {
-                        Name: "Jane Doe",
-                        Relationship: "Mother",
-                        Phone: "(403)-220-8600",
+                        Name: "",
+                        Relationship: "",
+                        Phone: "",
                         Primary: true
                     },
                     {
-                        Name: "Josh Doe",
-                        Relationship: "Father",
-                        Phone: "(403)-220-8601",
+                        Name: "",
+                        Relationship: "",
+                        Phone: "",
                         Primary: false
                     }
                 ]
             }
         },
         created(){
+            this.fetchData();
             this.$emit('show-navbar')
             this.$emit('toggle-selected', 'profile')
         }, 
         methods:{
+            async fetchData() {
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${this.$cookies.get("auth-token")}`
+                };
+
+                try {
+                    const response = await fetch('http://127.0.0.1:8000/api/personal-info/', { headers });
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const data = await response.json();
+
+                    this.User = {
+                        First: data.personal_info.firstname,
+                        Last: data.personal_info.lastname,
+                        UCID: data.personal_info.UCID,
+                        DOB: data.personal_info["date of birth"],
+                        Citizenship: {
+                            Country: data.citizenship.country,
+                            Status: data.citizenship.status
+                        }
+                    };
+
+                    this.Address = {
+                        Street: data.address["street address"],
+                        City: data.address.city,
+                        Province: data.address["province/state"],
+                        Country: data.address.country,
+                        Postal: data.address["postal code"]
+                    };
+
+                    this.Phone = {
+                        Home: data.phone_numbers.home,
+                        Mobile: data.phone_numbers.mobile,
+                        Other: data.phone_numbers.other,
+                        Preferred: data.phone_numbers.preferred
+                    };
+
+                    this.Email = {
+                        School: data.email.school,
+                        Personal: data.email.personal,
+                        Preferred: data.email.preferred
+                    };
+
+                    this.EmergencyContacts = [
+                        {
+                            Name: data.emergency_contact.name1,
+                            Relationship: data.emergency_contact.relation1,
+                            Phone: data.emergency_contact.phone1,
+                            Primary: data.emergency_contact.preferred === "1"
+                        },
+                        {
+                            Name: data.emergency_contact.name2,
+                            Relationship: data.emergency_contact.relation2,
+                            Phone: data.emergency_contact.phone2,
+                            Primary: data.emergency_contact.preferred === "2"
+                        },
+                        {
+                            Name: data.emergency_contact.name3,
+                            Relationship: data.emergency_contact.relation3,
+                            Phone: data.emergency_contact.phone3,
+                            Primary: data.emergency_contact.preferred === "3"
+                        }
+                    ];
+                } catch (error) {
+                    console.error('There was a problem with the fetch operation:', error);
+                }
+            },
             async editInfo(){
                 
                 // call back end and return false if there was an error

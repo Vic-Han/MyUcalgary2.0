@@ -9,9 +9,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from .models import Student, Requirement, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications
-from .serializers import StudentSerializer, RequirementSerializer, UserSerializer, FacultySerializer, DepartmentSerializer, ProgramSerializer, AddressSerializer
-from .serializers import CourseSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer, StudentApplicationsSerializer
+from .models import *
+from .serializers import *
 
 
 # Create your views here.
@@ -34,12 +33,6 @@ class StudentViewSet(viewsets.ModelViewSet):
     # def get_queryset(self):
     #     # Assuming the user is linked to the student via a ForeignKey
     #     return Student.objects.filter(user=self.request.user)
-
-class PersonalInfoViewSet(viewsets.ModelViewSet):
-    queryset = Student.objects.all()
-    serializer_class = PersonalInfoSerializer
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes = (IsAuthenticated,)
 
 class FacultyViewSet(viewsets.ModelViewSet):
     queryset = Faculty.objects.all()
@@ -95,7 +88,70 @@ class TransactionViewSet(viewsets.ModelViewSet):
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
 
-# To be modifed
+
+class PersonalInfoView(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        student = get_object_or_404(Student, user=request.user)
+        # student = Student.objects.first()
+        personal_info = {
+            "firstname": student.student_first_name,
+            "lastname": student.student_last_name,
+            "UCID": student.student_id,
+            "date of birth": student.date_of_birth.strftime('%Y-%m-%d') if student.date_of_birth else None
+        }
+
+        citizenship = {
+            "country": student.address.address_country if student.address else None,
+            "status": student.citizenship_status
+        }
+
+        address = {
+            "street address": student.address.address_street_address if student.address else None,
+            "postal code": student.address.address_postal_code if student.address else None,
+            "city": student.address.address_city if student.address else None,
+            "province/state": student.address.address_province if student.address else None
+        }
+
+        phone_numbers = {
+            "home": student.home_phone_number,
+            "mobile": student.mobile_phone_number,
+            "other": student.other_phone_number,
+            "preferred": student.preferred_phone
+        }
+
+        email = {
+            "personal": student.personal_email,
+            "school": student.school_email,
+            "preferred": student.preferred_email
+        }
+
+        emergency_contact = {
+            "name1": student.emergency_contact1.emergency_contact_name if student.emergency_contact1 else None,
+            "phone1": student.emergency_contact1.emergency_contact_phone if student.emergency_contact1 else None,
+            "relation1": student.emergency_contact1.emergency_contact_relationship if student.emergency_contact1 else None,
+            "name2": student.emergency_contact2.emergency_contact_name if student.emergency_contact2 else None,
+            "phone2": student.emergency_contact2.emergency_contact_phone if student.emergency_contact2 else None,
+            "relation2": student.emergency_contact2.emergency_contact_relationship if student.emergency_contact2 else None,
+            "name3": student.emergency_contact3.emergency_contact_name if student.emergency_contact3 else None,
+            "phone3": student.emergency_contact3.emergency_contact_phone if student.emergency_contact3 else None,
+            "relation3": student.emergency_contact3.emergency_contact_relationship if student.emergency_contact3 else None,
+            "preferred": student.preferred_emergency_contact
+        }
+
+        response_data = {
+            "personal_info": personal_info,
+            "citizenship": citizenship,
+            "address": address,
+            "phone_numbers": phone_numbers,
+            "email": email,
+            "emergency_contact": emergency_contact
+        }
+
+        return Response(response_data)
+
 class StudentApplicationsViewSet(APIView):
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)

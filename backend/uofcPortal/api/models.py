@@ -147,11 +147,11 @@ class Tutorial(models.Model):
     tutorial_roomnumber = models.CharField(max_length=10)
 
     term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
-    lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f"{self.lecture.course} - {self.lecture.lecture_id} - {self.tutorial_id}"
+        return f"{self.course} - {self.tutorial_id}"
     
 class Lab(models.Model):
     lab_id = models.CharField(max_length=10) # e.g. B01
@@ -162,11 +162,11 @@ class Lab(models.Model):
     lab_roomnumber = models.CharField(max_length=10)
 
     term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
-    lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f"{self.lecture.course} - {self.lecture.lecture_id} - {self.lab_id}"
+        return f"{self.course} - {self.lab_id}"
     
 # Float values for lecture, tutorial, and lab start and endtimes are as follow:
 # 12:00am =  0.00

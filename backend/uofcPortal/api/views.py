@@ -404,8 +404,76 @@ class ScheduleBuilderView(APIView):
         # offered course retrieval
         courses = Course.objects.all()
         for course in courses:
-            lectures = Lecture.objects.filter(course=course.course_code)
             course_data = {
-
+                "name": course.course_code,
+                "title": course.course_title,
+                "desc" : course.course_description,
+                "prereq": course.course_prerequisites,
+                "combinations": [],
+                "lectures": [],
+                "tutorials": [],
+                "labs": []
             }
+
+            lectures = Lecture.objects.filter(course=course)
+            for lecture in lectures:
+                course_data["lectures"].append({
+                    "name": lecture.lecture_id,
+                    "days": lecture.lecture_days,
+                    "start": lecture.lecture_starttime,
+                    "end": lecture.lecture_endtime,
+                    "Prof": lecture.instructor.instructor_last_name + ", " + lecture.instructor.instructor_first_name,
+                    "totalSeats": "100 (HARDCODED)",
+                    "seatsFilled": "50 (HARDCODED)",
+                    "totalWaitlist": "10 (HARDCODED)",
+                    "waitlistFilled": "0 (HARDCODED)",
+                    "roomno": lecture.lecture_roomnumber
+                })
+            
+            tutorials = Tutorial.objects.filter(course=course)
+            for tutorial in tutorials:
+                course_data["tutorials"].append({
+                    "name": tutorial.tutorial_id,
+                    "days": tutorial.tutorial_days,
+                    "start": tutorial.tutorial_starttime,
+                    "end": tutorial.tutorial_endtime,
+                    "TA": "Sal from Khan Academy",
+                    "totalSeats": "100 (HARDCODED)",
+                    "seatsFilled": "50 (HARDCODED)",
+                    "totalWaitlist": "10 (HARDCODED)",
+                    "waitlistFilled": "0 (HARDCODED)",
+                    "roomno": tutorial.tutorial_roomnumber
+                })
+
+            labs = Lab.objects.filter(course=course)
+            for lab in labs:
+                course_data["labs"].append({
+                    "name": lab.lab_id,
+                    "days": lab.lab_days,
+                    "start": lab.lab_starttime,
+                    "end": lab.lab_endtime,
+                    "TA": "Sal from Khan Academy",
+                    "totalSeats": "100 (HARDCODED)",
+                    "seatsFilled": "50 (HARDCODED)",
+                    "totalWaitlist": "10 (HARDCODED)",
+                    "waitlistFilled": "0 (HARDCODED)",
+                    "roomno": lab.lab_roomnumber
+                })
+            course_data["combinations"].append({"L01, T01, B01 (HARDCODED)"})
+            
+            schedule_builder_data["all courses that are offered"].append(course_data)
+        
+        # current schedule retrieval
+        enrollments = Enrollment.objects.filter(student=student)
+        for enrollment in enrollments:
+            term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
+            grades = Grade.objects.filter(enrollment=enrollment)
+
+            for grade in grades:
+                schedule_builder_data["current schedule"][enrollment.lecture.course.course_code] = {
+                    "Lecture": enrollment.lecture.lecture_id,
+                    "Tutorial": "T01 (HARDCODED)",
+                    "Lab": "B01 (HARDCODED)"
+                }
+
         return Response(schedule_builder_data)

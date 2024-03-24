@@ -667,7 +667,7 @@
       "tutorial_starttime": 16.00,
       "tutorial_endtime": 16.50,
       "tutorial_roomnumber": "X777",
-      "lecture": "01",
+      "course": "SENG401",
       "instructor": "001"
     }
   },
@@ -681,7 +681,7 @@
       "tutorial_starttime": 12.00,
       "tutorial_endtime": 12.50,
       "tutorial_roomnumber": "Y888",
-      "lecture": "02",
+      "course": "PHYS303",
       "instructor": "002"
     }
   },
@@ -695,7 +695,7 @@
       "tutorial_starttime": 8.00,
       "tutorial_endtime": 8.50,
       "tutorial_roomnumber": "Z999",
-      "lecture": "03",
+      "course": "ENGL201",
       "instructor": "003"
     }
   },
@@ -710,7 +710,7 @@
       "lab_starttime": 9.00,
       "lab_endtime": 11.50,
       "lab_roomnumber": "G000",
-      "lecture": "01",
+      "course": "SENG401",
       "instructor": "001"
     }
   },
@@ -724,7 +724,7 @@
       "lab_starttime": 11.00,
       "lab_endtime": 13.50,
       "lab_roomnumber": "H111",
-      "lecture": "02",
+      "course": "PHYS303",
       "instructor": "002"
     }
   },
@@ -738,7 +738,7 @@
       "lab_starttime": 8.00,
       "lab_endtime": 10.50,
       "lab_roomnumber": "I222",
-      "lecture": "03",
+      "course": "ENGL201",
       "instructor": "003"
     }
   },

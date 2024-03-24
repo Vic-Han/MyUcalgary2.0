@@ -125,7 +125,7 @@ const classColor= {
                 // Hi Callum I was so closeee to figuring this out but whatever. Comment out the 3 lines below
                 style += ' hover:after:bg-white-100 hover:after:text-black-100 hover:after:rounded-lg hover:after:shadow-lg' 
                 + ' hover:after:p-4 hover:after:absolute hover:after:translate-x-5 hover:after:-translate-y-6 '
-                style += ` after:content-['{roomno}'] after:hidden hover:after:block`
+                style += ` after:content-['${roomno}'] after:hidden hover:after:block`
                 console.log(style)
                 return style;
             },

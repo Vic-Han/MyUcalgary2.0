@@ -541,7 +541,7 @@ const createLecInfo = (course, index) =>{
                         const lectureInfo = createLecInfo(course, i)
                         if(lectureInfo.lecture.start > filters.startTime && lectureInfo.lecture.end < filters.endTime){
                             if(lectureInfo.lecture.days.every((day) => filters.days[daytoIndex[day]])){
-                                if(section.length > 1){
+                                if(lectureInfo.tutorial.end){
                                     if(lectureInfo.tutorial.start > filters.startTime && lectureInfo.tutorial.end < filters.endTime){
                                         if(lectureInfo.tutorial.days.every((day) => filters.days[daytoIndex[day]])){
                                             return true

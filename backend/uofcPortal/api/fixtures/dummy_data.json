@@ -610,9 +610,6 @@
       "department": "English"
     }
   },
-  
-
-
 
   {
     "model": "api.Lecture",
@@ -624,6 +621,10 @@
       "lecture_starttime": 9.00,
       "lecture_endtime": 10.50,
       "lecture_roomnumber": "B100",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "1",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
       "course": "SENG401",
       "instructor": "001"
     }
@@ -638,6 +639,10 @@
       "lecture_starttime": 11.00,
       "lecture_endtime": 12.50,
       "lecture_roomnumber": "C200",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "2",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
       "course": "PHYS303",
       "instructor": "002"
     }
@@ -652,6 +657,10 @@
       "lecture_starttime": 14.00,
       "lecture_endtime": 15.50,
       "lecture_roomnumber": "D300",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "1",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
       "course": "ENGL201",
       "instructor": "003"
     }
@@ -667,6 +676,10 @@
       "tutorial_starttime": 16.00,
       "tutorial_endtime": 16.50,
       "tutorial_roomnumber": "X777",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "1",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
       "course": "SENG401",
       "instructor": "001"
     }
@@ -681,6 +694,10 @@
       "tutorial_starttime": 12.00,
       "tutorial_endtime": 12.50,
       "tutorial_roomnumber": "Y888",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "2",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
       "course": "PHYS303",
       "instructor": "002"
     }
@@ -695,8 +712,48 @@
       "tutorial_starttime": 8.00,
       "tutorial_endtime": 8.50,
       "tutorial_roomnumber": "Z999",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "1",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
       "course": "ENGL201",
       "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "04",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Fal2023",
+      "tutorial_days": "F",
+      "tutorial_starttime": 13.00,
+      "tutorial_endtime": 13.50,
+      "tutorial_roomnumber": "Z999",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "0",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENGL201",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "05",
+    "fields": {
+      "tutorial_id": "T03",
+      "term": "Fal2023",
+      "tutorial_days": "F",
+      "tutorial_starttime": 14.00,
+      "tutorial_endtime": 14.50,
+      "tutorial_roomnumber": "Z999",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "1",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENGL201",
+      "instructor": "002"
     }
   },
   
@@ -704,28 +761,32 @@
     "model": "api.Enrollment",
     "fields": {
       "student": 1,
-      "lecture": "1"
+      "lecture": "1",
+      "tutorial": "1"
     }
   },
   {
     "model": "api.Enrollment",
     "fields": {
       "student": 2,
-      "lecture": "2"
+      "lecture": "2",
+      "tutorial": "2"
     }
   },
   {
     "model": "api.Enrollment",
     "fields": {
       "student": 3,
-      "lecture": "3"
+      "lecture": "3",
+      "tutorial": "3"
     }
   },
   {
     "model": "api.Enrollment",
     "fields": {
       "student": 1,
-      "lecture": "2"
+      "lecture": "2",
+      "tutorial": "2"
     }
   },
 

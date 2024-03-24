@@ -455,7 +455,11 @@ class ScheduleBuilderView(APIView):
             for lecture in lectures:
                 if(len(tutorials)) > 0:
                     for tutorial in tutorials:
-                        course_data["combinations"].append([lecture.lecture_id, tutorial.tutorial_id])
+                        for c in tutorial.tutorial_days:
+                            if lecture.lecture_days.find(c) == -1:
+                                course_data["combinations"].append([lecture.lecture_id, tutorial.tutorial_id])
+                            elif lecture.lecture_starttime > tutorial.tutorial_endtime or lecture.lecture_endtime < tutorial.tutorial_starttime:
+                                course_data["combinations"].append([lecture.lecture_id, tutorial.tutorial_id])
                 else:
                     course_data["combinations"].append([lecture.lecture_id])
 

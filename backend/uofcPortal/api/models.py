@@ -129,6 +129,11 @@ class Lecture(models.Model):
     lecture_starttime = models.FloatField(validators=[MaxValueValidator(23.00)])
     lecture_endtime = models.FloatField(validators=[MaxValueValidator(23.83)])
 
+    lecture_totalseats = models.IntegerField(default=100)
+    lecture_filledseats = models.IntegerField(validators=[MaxValueValidator(100)], default=0)
+    lecture_totalwaitlist = models.IntegerField(default=10)
+    lecture_filledwaitlist = models.IntegerField(validators=[MaxValueValidator(10)], default=0)
+
     lecture_roomnumber = models.CharField(max_length=10)
 
     term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
@@ -143,6 +148,10 @@ class Tutorial(models.Model):
     tutorial_days = models.CharField(max_length=10)
     tutorial_starttime = models.FloatField(validators=[MaxValueValidator(23.00)])
     tutorial_endtime = models.FloatField(validators=[MaxValueValidator(23.83)])
+    tutorial_totalseats = models.IntegerField(default=100)
+    tutorial_filledseats = models.IntegerField(validators=[MaxValueValidator(100)], default=0)
+    tutorial_totalwaitlist = models.IntegerField(default=10)
+    tutorial_filledwaitlist = models.IntegerField(validators=[MaxValueValidator(10)], default=0)
 
     tutorial_roomnumber = models.CharField(max_length=10)
 
@@ -168,8 +177,11 @@ class Tutorial(models.Model):
 # 11:55pm = 23.92 
 
 class Enrollment(models.Model):
+    enrollment_waitlist = models.BooleanField(default=False)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)
+    tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE)
+    
     # tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE, null=True)
     class Meta:
         unique_together = ('student', 'lecture')  # Avoid duplicate enrollments

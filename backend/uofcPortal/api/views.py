@@ -97,53 +97,90 @@ class TransactionViewSet(viewsets.ModelViewSet):
 
 # To be modifed
 class StudentApplicationsViewSet(APIView):
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    # def post(self, request):
+    #     student = get_object_or_404(Student, user=request.user)
+    #     if not student:
+    #         return Response({"error": "No student found"}, status=404)
+
+    #     data = request.data
+    #     data["student"] = student.pk
+    #     serializer = StudentApplicationsSerializer(data=data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data, status=201)
+    #     return Response(serializer.errors, status=400)
+
+
+    def delete(self, request):
+        student = get_object_or_404(Student, user=request.user)
+        if not student:
+            return Response({"error": "No student found"}, status=404)
+
+        data = request.data
+        application = get_object_or_404(StudentApplications, pk=data["application_id"])
+        application.delete()
+        return Response({"message": "Application deleted successfully"}, status=200)
 
     def get(self, request):
-        student = Student.objects.first()  # Replace with authentication later
+        student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)
         applications = StudentApplications.objects.filter(student=student)
 
         undergrad_applications = [
             {
-                "primary key": application.pk,
-                "faculty": application.major_program.department.faculty.faculty_name,
-                "program": application.major_program.program_name,
-                "major": application.major_program.program_name,
-                "minor": application.minor_program.program_name if application.minor_program else "None",
-                "concentration": application.concentration, 
-                "status": application.application_status
+                "key": application.pk,
+                "faculty": application.program.department.faculty.faculty_name,
+                "program": application.program.program_name,
+                "major": application.major,
+                "status": application.application_status,
+                "minor": application.minor,
+                "concentration": application.concentration if application.concentration else "none",    
             }
-            for application in applications.filter(major_program__program_degree_level="Bachelor")
+            for application in applications.filter(app_type="undergrad")
         ]       
 
         graduate_applications = [
             {
-                "primary key": application.pk,
-                "faculty": application.major_program.department.faculty.faculty_name,
-                "program": application.major_program.program_name,
-                "major": application.major_program.program_name,
-                "type": "Research (What is Type??)",
-                "Advisor": "Ronnie the software architecture goat", 
+                "key": application.pk,
+                "faculty": application.program.department.faculty.faculty_name,
+                "program": application.program.program_name,
+                "major": application.major,
+                "Advisor": application.advisor, 
                 "status": application.application_status
             }
-            for application in applications.filter(major_program__program_degree_level__in=["Master", "PhD"])
+            for application in applications.filter(app_type="grad")
         ]
 
         # Mockup for scholarships
         scholarships = [
             {
-                "not implemented": "yet",
+                "key" : application.pk,
+                "name": application.scholarship_name,
+                "amount": application.payment_amount,
+              
+                "status": application.application_status
             }
+            for application in applications.filter(app_type="scholarship")
         ]
-
+        awards = [
+            {
+                "key" : application.pk,
+                "name": application.scholarship_name,
+                "amount": application.payment_amount,
+                "status": application.application_status
+            }
+            for application in applications.filter(app_type="award")
+        ]
         # Construct the final response
         response_data = {
             "Undergrad applications": undergrad_applications,
             "Graduate applications": graduate_applications,
             "Scholarships": scholarships,
+            "Awards" : awards
         }
 
         return Response(response_data)
@@ -194,9 +231,9 @@ class StudentGradeView(APIView, GradeMixins):
             if termYear not in activity:
                 activity[termYear] = {
                     "UnitsEnrolled": 0,
-                    "Program": applications.major_program.program_name,
-                    "Level": student_year_term,
-                    "Plan": f"{applications.major_program.program_degree_level}, {applications.major_program.program_name}",
+                    "Program": applications.program.program_name,
+                    "Level": student_year,
+                    "Plan": f"{applications.program.program_degree_level}, {applications.program.program_name}",
                     "TermGPA": 0,
                     "TermLetterGrade": "",
                     "courses": []

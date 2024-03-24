@@ -907,10 +907,14 @@
     "fields": {
       "application_status": "Submitted",
       "student": 1,
-      "major_program": "1",
-      "minor_program": "2",
-      "concentration": true,
-      "honors_program": false
+      "program":"1",
+      "major": "Software Engineering",
+      "minor": "None",
+      "concentration": "none",
+      "advisor": null,
+      "app_type": "undergrad",
+      "scholarship_name": null,
+      "scholarship_amount": null
     }
   },
   {
@@ -918,10 +922,14 @@
     "fields": {
       "application_status": "Under Review",
       "student": 2,
-      "major_program": "2",
-      "minor_program": null,
-      "concentration": false,
-      "honors_program": true
+      "program": "2",
+      "major": "Software Engineering",
+      "minor": "None",
+      "concentration": "none",
+      "advisor": null,
+      "app_type": "undergrad",
+      "scholarship_name": null,
+      "scholarship_amount": null
     }
   },
   {
@@ -929,10 +937,14 @@
     "fields": {
       "application_status": "Accepted",
       "student": 3,
-      "major_program": "3",
-      "minor_program": "2",
-      "concentration": true,
-      "honors_program": false
+      "program": null,
+      "major": "Software Engineering",
+      "minor": "None",
+      "concentration": "none",
+      "advisor": null,
+      "app_type": "award",
+      "scholarship_name": "alexrutherford",
+      "scholarship_amount": 2500
     }
   },
   {
@@ -940,10 +952,14 @@
     "fields": {
       "application_status": "Rejected",
       "student": 4,
-      "major_program": "4",
-      "minor_program": null,
-      "concentration": false,
-      "honors_program": true
+      "program": null,
+      "major": "Software Engineering",
+      "minor": "None",
+      "concentration": "none",
+      "advisor": null,
+      "app_type": "award",
+      "scholarship_name": "alexrutherford",
+      "scholarship_amount": 2500
     }
   },
   {
@@ -951,10 +967,14 @@
     "fields": {
       "application_status": "Accepted",
       "student": 5,
-      "major_program": "5",
-      "minor_program": "4",
-      "concentration": true,
-      "honors_program": false
+      "program": "5",
+      "major": "English Literature",
+      "minor": "None",
+      "concentration": "none",
+      "advisor": null,
+      "app_type": "award",
+      "scholarship_name": null,
+      "scholarship_amount": null
     }
   },
  

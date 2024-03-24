@@ -247,7 +247,8 @@
       "term_name": "Fall",
       "term_year": 2023,
       "start_date": "2023-09-01",
-      "end_date": "2023-12-15"
+      "end_date": "2023-12-15",
+      "due_date": "2024-10-01"
     }
   },
   {
@@ -258,7 +259,8 @@
       "term_name": "Winter",
       "term_year": 2024,
       "start_date": "2024-01-05",
-      "end_date": "2024-04-20"
+      "end_date": "2024-04-20",
+      "due_date": "2024-02-05"
     }
   },
   {
@@ -269,7 +271,8 @@
       "term_name": "Spring",
       "term_year": 2024,
       "start_date": "2024-05-01",
-      "end_date": "2024-08-15"
+      "end_date": "2024-08-15",
+      "due_date": "2024-06-01"
     }
   },
   {
@@ -280,7 +283,8 @@
       "term_name": "Summer",
       "term_year": 2024,
       "start_date": "2024-07-01",
-      "end_date": "2024-08-31"
+      "end_date": "2024-08-31",
+      "due_date": "2024-08-01"
     }
   },
 

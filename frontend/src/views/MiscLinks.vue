@@ -71,7 +71,7 @@
         <h2 class="relative w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Help & Support</h2>
         <div class="flex flex-col justify-between pt-4 pb-2 px-4 text-lg">
             <div class="flex flex-row pb-3">
-                <a href="http://localhost:8080/profile" class="w-fit pr-1 hover:underline">Account Management</a>
+                <router-link to="/profile" class="w-fit pr-1 hover:underline">Account Management</router-link>
             </div>
             <div class="flex flex-row pb-3">
                 <a href="http://workrooms.ucalgary.ca/" target="_blank" class="w-fit pr-1 hover:underline">Workroom Booking</a>

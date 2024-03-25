@@ -241,6 +241,28 @@
 
   {
     "model": "api.Term",
+    "pk": "Fal2022",
+    "fields": {
+      "term_key": "Fal2022",
+      "term_name": "Fall",
+      "term_year": 2022,
+      "start_date": "2022-09-01",
+      "end_date": "2022-12-15"
+    }
+  },
+  {
+    "model": "api.Term",
+    "pk": "Win2023",
+    "fields": {
+      "term_key": "Win2023",
+      "term_name": "Winter",
+      "term_year": 2023,
+      "start_date": "2023-01-05",
+      "end_date": "2023-04-20"
+    }
+  },
+  {
+    "model": "api.Term",
     "pk": "Fal2023",
     "fields": {
       "term_key": "Fal2023",
@@ -516,6 +538,27 @@
 
   {
     "model": "api.Course",
+    "fields": {
+      "course_code": "ENGL101",
+      "course_title": "English as a Second Language Part I",
+      "course_description": "No speak good.",
+      "course_units": 3,
+      "department": "English"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "course_code": "ENGL102",
+      "course_title": "English as a Second Language Part II",
+      "course_description": "Better speak but no super yet.",
+      "course_prerequisites": "ENGL101",
+      "course_units": 3,
+      "department": "English"
+    }
+  },
+  {
+    "model": "api.Course",
     "pk": "SENG401",
     "fields": {
       "course_title": "Software Architecture",
@@ -542,6 +585,7 @@
     "fields": {
       "course_title": "British Literature",
       "course_description": "Survey of British literature from the Anglo-Saxon period to the 18th century.",
+      "course_prerequisites": "ENGL101, ENGL102",
       "course_units": 3,
       "department": "English"
     }
@@ -662,6 +706,60 @@
       "lecture_totalwaitlist": "10",
       "lecture_filledwaitlist": "0",
       "course": "ENGL201",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Lecture",
+    "pk": "04",
+    "fields": {
+      "lecture_id": "L02",
+      "term": "Fal2023",
+      "lecture_days": "TR",
+      "lecture_starttime": 10.00,
+      "lecture_endtime": 11.25,
+      "lecture_roomnumber": "B001",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "0",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
+      "course": "ENGL201",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Lecture",
+    "pk": "05",
+    "fields": {
+      "lecture_id": "L01",
+      "term": "Fal2022",
+      "lecture_days": "F",
+      "lecture_starttime": 14.00,
+      "lecture_endtime": 15.50,
+      "lecture_roomnumber": "D300",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "0",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
+      "course": "ENGL101",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Lecture",
+    "pk": "06",
+    "fields": {
+      "lecture_id": "L01",
+      "term": "Win2023",
+      "lecture_days": "F",
+      "lecture_starttime": 14.00,
+      "lecture_endtime": 15.50,
+      "lecture_roomnumber": "D300",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "0",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
+      "course": "ENGL102",
       "instructor": "003"
     }
   },
@@ -789,6 +887,20 @@
       "tutorial": "2"
     }
   },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": 1,
+      "lecture": "5"
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": 1,
+      "lecture": "6"
+    }
+  },
 
 
   {
@@ -796,6 +908,20 @@
     "fields": {
       "grade": 92.5,
       "enrollment": 1
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "grade": 92.5,
+      "enrollment": 5
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "grade": 70.0,
+      "enrollment": 6
     }
   },
   {

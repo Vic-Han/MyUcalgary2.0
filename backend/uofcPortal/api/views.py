@@ -3,7 +3,7 @@ import math
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
-from .mixins import GradeMixins 
+from .mixins import GradeMixins
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -160,7 +160,7 @@ class StudentGradeView(APIView, GradeMixins):
 
     def get(self, request):
 
-        # student = Student.objects.first()  # Replace with authentication late
+        #student = Student.objects.first()  # Replace with authentication late
         student = get_object_or_404(Student, user=request.user)
         enrollments = Enrollment.objects.filter(student=student)
         applications = StudentApplications.objects.filter(student=student).first()
@@ -412,12 +412,29 @@ class ScheduleBuilderView(APIView):
 
             if not Lecture.objects.filter(course=course, term=term).exists():
                 continue
+            if course.course_prerequisites == None:
+                can_take = True
+            else:
+                can_take = False
+                prereq_codes = course.course_prerequisites.split(', ')
+                for prereq_code in prereq_codes:          
+                    prereqs = Course.objects.filter(course_code=prereq_code)
+                    for prereq in prereqs:
+                        lectures = Lecture.objects.filter(course=prereq)
+                        for lecture in lectures:
+                            enrollments = Enrollment.objects.filter(lecture=lecture, student=self)
+                            for enrollment in enrollments:
+                                grades = Grade.objects.filter(enrollment=enrollment)
+                                for grade in grades:
+                                    if grade.grade >= 70:
+                                        can_take = True
 
             course_data = {
                 "name": course.course_code,
                 "title": course.course_title,
                 "desc" : course.course_description,
-                "prereq": course.course_prerequisites,
+                "prereq": prereq_codes,
+                "prereqfilled": can_take,
                 "combinations": [],
                 "lectures": [],
                 "tutorials": []
@@ -462,24 +479,21 @@ class ScheduleBuilderView(APIView):
                                 course_data["combinations"].append([lecture.lecture_id, tutorial.tutorial_id])
                 else:
                     course_data["combinations"].append([lecture.lecture_id])
-
-
-
-            #course_data["combinations"].append({"L01, T01, B01 (HARDCODED)"})
             
             schedule_builder_data["allCourses"].append(course_data)
         
         # current schedule retrieval
         enrollments = Enrollment.objects.filter(student=student)
         for enrollment in enrollments:
-            term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
-            grades = Grade.objects.filter(enrollment=enrollment)
+            if enrollment.lecture.term == term:
+                term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
+                grades = Grade.objects.filter(enrollment=enrollment)
 
-            for grade in grades:
-                schedule_builder_data["current schedule"][enrollment.lecture.course.course_code] = {
-                    "Lecture": enrollment.lecture.lecture_id,
-                    "Tutorial": "T01 (HARDCODED)"
-                }
+                for grade in grades:
+                    schedule_builder_data["current schedule"][enrollment.lecture.course.course_code] = {
+                        "Lecture": enrollment.lecture.lecture_id,
+                        "Tutorial": "T01 (HARDCODED)"
+                    }
 
         # academic requirements retrieval
         requirement_data = {

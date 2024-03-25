@@ -180,7 +180,7 @@ class Enrollment(models.Model):
     enrollment_waitlist = models.BooleanField(default=False)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)
-    tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE)
+    tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE, null=True)
     
     # tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE, null=True)
     class Meta:

@@ -463,8 +463,8 @@ class ScheduleBuilderView(APIView):
             return Response({"error": "No student found"}, status=404)
         schedule_builder_data = {
             "allCourses": [],
-            "current schedule": {},
-            "academic requirements": {}
+            "currentSchedule": {},
+            "academicRequirements": {}
         }
         # hardcoded term
         term = None

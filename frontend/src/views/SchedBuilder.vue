@@ -229,6 +229,42 @@ const createLecInfo = (course, index) =>{
             this.$http.get(serverPath + apiPath, {headers: headers}).then(res =>{
                 allCourses = res.data.allCourses 
                 this.degreeRequirements = res.data.academicRequirements
+                console.log(res.data.currentSchedule)
+                const currentSchedule = res.data.currentSchedule
+                for(const [key, value] of Object.entries(currentSchedule)){
+                    console.log(key,value)
+                    for(let i = 0; i < allCourses.length; i++){
+                        if(allCourses[i].name == key){
+                            console.log("Hi")
+                            
+                            if(value.Tutorial){
+                                for(let j = 0; j < allCourses[i].combinations.length; j++){
+                                    if(allCourses[i].combinations[j][0] == value.Lecture && allCourses[i].combinations[j][1] == value.Tutorial){
+                                        allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
+                                        allCourses[i].selectedIndices[j] = true
+                                        allCourses[i].selected = j
+                                        break
+                                    }
+                                }
+                            }
+                            else{
+                                for(let j = 0; j < allCourses[i].combinations.length; j++){
+                                    if(allCourses[i].combinations[j][0] == value.Lecture){
+                                        allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
+                                        allCourses[i].selectedIndices[j] = true
+                                        allCourses[i].selected = j
+                                        break
+                                    }
+                                }
+                            }
+                            console.log(allCourses[i])
+                            const newSched = [...this.schedCourses, allCourses[i]]
+                            //newSched[newSched.length - 1].selectedIndices = [true]
+                            this.schedCourses = newSched
+                            break
+                        }
+                    }
+                }
             }).catch(err => {
                 console.log(err)
             })

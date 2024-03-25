@@ -116,7 +116,6 @@ import SelectedCourse from '@/components/SelectedCourse.vue'
 import AdvancedSearch from '@/components/AdvancedSearch.vue'
 import AcademicSchedulePopup from '@/components/AcademicSchedulePopup.vue'
 import data from './SB.json'
-import { all } from 'axios'
 let allCourses = []
 const courseCode = (course, filters) =>{
                     return course.name.includes(filters.major)
@@ -228,9 +227,8 @@ const createLecInfo = (course, index) =>{
             this.worker = new Worker('./ScheduleWorker.js')
 
             this.$http.get(serverPath + apiPath, {headers: headers}).then(res =>{
-                console.log(res.data)
                 allCourses = res.data.allCourses 
-                console.log(allCourses)
+                this.degreeRequirements = res.data.academicRequirements
             }).catch(err => {
                 console.log(err)
             })

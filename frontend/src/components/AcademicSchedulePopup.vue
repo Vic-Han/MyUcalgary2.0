@@ -9,14 +9,16 @@
             </div>
             <div class="text-2xl font-bold m-2 pt-8">Course Requirements</div>
             <div class="text-2xl font-bold m-2">Click on a course to add it to cart!</div>
-             <div v-for=" (value,key) in requirements" :key="key" class="my-1">
-                <div class="font-semibold text-lg">{{key}} :</div>
+             <div v-for=" (value,index) in requirements.requirements" :key="index" class="my-1">
+                <div class="font-semibold text-lg">{{value.description}} :</div>
                 <div class="flex flex-row flex-wrap">
-                    <div v-if="value.length == 0" class="p-2 m-2 bg-gray-200 rounded-lg">No courses available</div>
-                    <div v-else-if=" /^[a-zA-Z]$/.test(value[0])" class="cursor-pointer p-2 m-2 bg-gray-200 rounded-lg hover:bg-gray-300" @click="selectCourse(value)"> {{ value }}</div>
-                    <div v-else class="flex flex-row flex-wrap">
-                        <div v-for="course in value" :key="course" @click="selectCourse(course)" class="cursor-pointer p-2 m-2 bg-gray-200 rounded-lg hover:bg-gray-300">{{course}}</div>
+                    <div v-if="value.courses.length == 0" class="p-2 m-2 bg-gray-200 rounded-lg">No courses available</div>
+                    <div v-for="(course,num) in value.courses" :key="num">
+                        <div v-if="num < 3"  @click="selectCourse(course.name)" class="cursor-pointer p-2 m-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+                            {{course.name}}
+                        </div>
                     </div>
+                    
                 </div>
             </div>
          </div>
@@ -42,6 +44,9 @@
                 this.$emit('selectcourse',course)
             }
         },
+        created()   {
+            console.log(this.requirements)
+        }
         
     }
 </script>

@@ -559,8 +559,8 @@ class ScheduleBuilderView(APIView):
 
         applications = StudentApplications.objects.filter(student_id=student)
         application = applications[0]
-        maj_prog = application.major_program
-        min_prog = application.minor_program
+        maj_prog = application.program
+        #min_prog = application.minor
 
         enrollments = Enrollment.objects.filter(student_id=student)
         lecture_list = []

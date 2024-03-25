@@ -45,6 +45,7 @@ class Term(models.Model):
     term_year = models.IntegerField()
     start_date = models.DateField()
     end_date = models.DateField()
+    due_date = models.DateField()
 
     def __str__(self):
         return self.term_key
@@ -213,11 +214,18 @@ class StudentApplications(models.Model):
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
 
-    major_program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name="major_program")
-    minor_program = models.ForeignKey(Program, on_delete=models.CASCADE, blank=True, null=True, related_name="minor_program")
 
-    concentration = models.BooleanField()
-    honors_program = models.BooleanField()
+    major = models.CharField(max_length=30, null=True)
+    minor = models.CharField(max_length=30, null=True)
+    concentration = models.CharField(max_length=30, null=True)
+
+    
+
+    program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name="major_program", null=True)
+    advisor = models.CharField(max_length=30, null=True)
+    app_type = models.CharField(max_length=30, null=True)
+    scholarship_name = models.CharField(max_length=30, null=True)
+    scholarship_amount = models.IntegerField(null=True)
 
     def __str__(self):
         return f"{self.id} - StudentID:{self.student.student_id} ({self.student.student_first_name} {self.student.student_last_name})"

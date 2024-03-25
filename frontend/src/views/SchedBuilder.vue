@@ -263,8 +263,8 @@ const createLecInfo = (course, index) =>{
                     return item.name == courseName
                 })
                 const course = this.searchedCourses[index]
-                course.included = 'sched';
-                course.selected = 0;
+                course.included = 'sched'
+                course.selected = 0
                 course.selectedIndices =  Array(course.combinations.length).fill(true)
                 const newSched = [...this.schedCourses, course]
                 this.schedCourses = newSched
@@ -356,7 +356,6 @@ const createLecInfo = (course, index) =>{
                 this.worker.postMessage({
                     courses: courses
                 })
-                
                
                 this.schedsLoading = true
     

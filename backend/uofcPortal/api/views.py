@@ -103,53 +103,90 @@ class TransactionViewSet(viewsets.ModelViewSet):
 
 # To be modifed
 class StudentApplicationsViewSet(APIView):
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    # def post(self, request):
+    #     student = get_object_or_404(Student, user=request.user)
+    #     if not student:
+    #         return Response({"error": "No student found"}, status=404)
+
+    #     data = request.data
+    #     data["student"] = student.pk
+    #     serializer = StudentApplicationsSerializer(data=data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data, status=201)
+    #     return Response(serializer.errors, status=400)
+
+
+    def delete(self, request):
+        student = get_object_or_404(Student, user=request.user)
+        if not student:
+            return Response({"error": "No student found"}, status=404)
+
+        data = request.data
+        application = get_object_or_404(StudentApplications, pk=data["application_id"])
+        application.delete()
+        return Response({"message": "Application deleted successfully"}, status=200)
 
     def get(self, request):
-        student = Student.objects.first()  # Replace with authentication later
+        student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)
         applications = StudentApplications.objects.filter(student=student)
 
         undergrad_applications = [
             {
-                "primary key": application.pk,
-                "faculty": application.major_program.department.faculty.faculty_name,
-                "program": application.major_program.program_name,
-                "major": application.major_program.program_name,
-                "minor": application.minor_program.program_name if application.minor_program else "None",
-                "concentration": application.concentration, 
-                "status": application.application_status
+                "key": application.pk,
+                "faculty": application.program.department.faculty.faculty_name,
+                "program": application.program.program_name,
+                "major": application.major,
+                "status": application.application_status,
+                "minor": application.minor,
+                "concentration": application.concentration if application.concentration else "none",    
             }
-            for application in applications.filter(major_program__program_degree_level="Bachelor")
+            for application in applications.filter(app_type="undergrad")
         ]       
 
         graduate_applications = [
             {
-                "primary key": application.pk,
-                "faculty": application.major_program.department.faculty.faculty_name,
-                "program": application.major_program.program_name,
-                "major": application.major_program.program_name,
-                "type": "Research (What is Type??)",
-                "Advisor": "Ronnie the software architecture goat", 
+                "key": application.pk,
+                "faculty": application.program.department.faculty.faculty_name,
+                "program": application.program.program_name,
+                "major": application.major,
+                "Advisor": application.advisor, 
                 "status": application.application_status
             }
-            for application in applications.filter(major_program__program_degree_level__in=["Master", "PhD"])
+            for application in applications.filter(app_type="grad")
         ]
 
         # Mockup for scholarships
         scholarships = [
             {
-                "not implemented": "yet",
+                "key" : application.pk,
+                "name": application.scholarship_name,
+                "amount": application.payment_amount,
+              
+                "status": application.application_status
             }
+            for application in applications.filter(app_type="scholarship")
         ]
-
+        awards = [
+            {
+                "key" : application.pk,
+                "name": application.scholarship_name,
+                "amount": application.payment_amount,
+                "status": application.application_status
+            }
+            for application in applications.filter(app_type="award")
+        ]
         # Construct the final response
         response_data = {
             "Undergrad applications": undergrad_applications,
             "Graduate applications": graduate_applications,
             "Scholarships": scholarships,
+            "Awards" : awards
         }
 
         return Response(response_data)
@@ -167,20 +204,42 @@ class StudentGradeView(APIView, GradeMixins):
 
 
         # Calculate the student's year
-        total_courses = len(enrollments)
+        total_courses = 0
+
+        for enrollment in enrollments:
+            total_courses += enrollment.lecture.course.course_units
+
         student_year = min(4, math.ceil(total_courses / 10)) # Assuming 10 courses per year, calculate the student's year
-        
+
+        currentStudentInfo = {
+            "program": applications.major_program.program_name,
+            "level": student_year,
+            "plan": f"{applications.major_program.program_degree_level}, {applications.major_program.program_name}"
+        }
+
         activity = {}
         for enrollment in enrollments:
-            term = enrollment.lecture.term.term_name
+            term = enrollment.lecture.term
+            term_name = enrollment.lecture.term.term_name
             grades = Grade.objects.filter(enrollment=enrollment)
-            termYear = f"{term} {enrollment.lecture.term.term_year}"
+            if not grades:
+                continue
+            
+            total_units_term = 0
+            for enrollment in enrollments:
+                if enrollment.lecture.term.start_date <= term.start_date:
+                    total_courses += enrollment.lecture.course.course_units
+            
+            student_year_term = min(4, math.ceil(total_courses / 10))
+
+            termYear = f"{term_name} {enrollment.lecture.term.term_year}"
+
             if termYear not in activity:
                 activity[termYear] = {
                     "UnitsEnrolled": 0,
-                    "Program": applications.major_program.program_name,
+                    "Program": applications.program.program_name,
                     "Level": student_year,
-                    "Plan": f"{applications.major_program.program_degree_level}, {applications.major_program.program_name}",
+                    "Plan": f"{applications.program.program_degree_level}, {applications.program.program_name}",
                     "TermGPA": 0,
                     "TermLetterGrade": "",
                     "courses": []
@@ -194,7 +253,7 @@ class StudentGradeView(APIView, GradeMixins):
                     "units": enrollment.lecture.course.course_units
                 }
                 activity[termYear]["courses"].append(course_info)
-                activity[termYear]["UnitsEnrolled"] += 3 # Assuming each course is 3 units
+                activity[termYear]["UnitsEnrolled"] += enrollment.lecture.course.course_units # Assuming each course is 3 units
 
         for term, info in activity.items():
             term_gpa, term_letter_grade = self.calculate_term_gpa_and_letter_grade(info['courses'])
@@ -205,7 +264,8 @@ class StudentGradeView(APIView, GradeMixins):
         response = {
             "overallGPA": overallGPA,
             "letterGrade": self.gpa_to_letter_grade(overallGPA),
-            "activity": activity
+            "activity": activity,
+            "currentStudentInfo": currentStudentInfo,
         }
         return Response(response)
     
@@ -217,9 +277,9 @@ class StudentFinancesView(APIView):
     def get(self, request):
         student = get_object_or_404(Student, user=request.user)
 
-        # student = Student.objects.first()  # Replace with authentication later
-        # if not student:
-        #     return Response({"error": "No student found"}, status=404)
+        #student = Student.objects.first()  # Replace with authentication later
+        #if not student:
+        #    return Response({"error": "No student found"}, status=404)
 
         transactions = Transaction.objects.filter(student=student).order_by('term__term_year', 'term__term_name')
         
@@ -255,9 +315,10 @@ class StudentFinancesView(APIView):
     
 
 class DashboardView(APIView, GradeMixins):
-
+    authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
     def get(self, request):
-        student = Student.objects.first()
+        student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)
         
@@ -299,12 +360,19 @@ class DashboardView(APIView, GradeMixins):
             term_name = f"{transaction.term.term_name} {transaction.term.term_year}"
             if term_name not in dashboard_data["finances"]:
                 dashboard_data["finances"][term_name] = {
-                    "balance": 0,
-                    "due": "To Be Determined"  # To be adjust as needed
+                    "credits": 0,
+                    "debits": 0,
+                    "net_balance": 0,
+                    "due": transaction.term.due_date  # To be adjust as needed
                 }
 
             # Assuming negative amount is due and positive is paid/credit
-            dashboard_data["finances"][term_name]["balance"] += transaction.transaction_amount
+            current_amount = transaction.transaction_amount
+            if current_amount < 0:
+                dashboard_data["finances"][term_name]["debits"] += current_amount
+            else:
+                dashboard_data["finances"][term_name]["credits"] += current_amount
+            dashboard_data["finances"][term_name]["net_balance"] += current_amount
 
         return Response(dashboard_data)
     

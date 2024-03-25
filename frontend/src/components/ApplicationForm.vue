@@ -335,7 +335,8 @@
 
             <option v-for="option in faculties[selectedFaculty][selectedProgram]" :value="option" :key="option">{{option}}</option>
           </select>
-
+          <div v-if="selectedConcentration !== '' &&  selectedType === 'undergrad'"> Submit </div>
+          <div v-if="selectedProgram !== '' &&  selectedType === 'grad'"> Submit </div>
 
       </div>
       <div v-else-if="selectedType === 'award'">
@@ -365,6 +366,7 @@
 
 
 <script>
+
 export default {
   name: 'ApplicationForm',
   data() {
@@ -422,8 +424,27 @@ export default {
     }
     
   },
-  watch(){
-   
+  watch:{
+   selectedType:{
+      handler(){
+        this.selectedFaculty = ''
+        this.selectedProgram = ''
+        this.selectedConcentration = ''
+        this.selectedScholarship = ''
+        this.selectedAward = ''
+      }
+   },
+    selectedFaculty:{
+      handler(){
+        this.selectedProgram = ''
+        this.selectedConcentration = ''
+      }
+    },
+    selectedProgram:{
+      handler(){
+        this.selectedConcentration = ''
+      }
+    },
 
   },
   methods: {

@@ -441,7 +441,7 @@ class ScheduleBuilderView(APIView):
                     "totalSeats": lecture.lecture_totalseats, # hardcoded
                     "seatsFilled": lecture.lecture_filledseats, # hardcoded
                     "totalWaitlist": lecture.lecture_totalwaitlist, # hardcoded
-                    "waitlistFilled": lecture_filledwaitlist, # hardcoded
+                    "waitlistFilled": lecture.lecture_filledwaitlist, # hardcoded
                     "roomno": lecture.lecture_roomnumber
                 })
             

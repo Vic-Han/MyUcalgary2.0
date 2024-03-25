@@ -24,7 +24,7 @@
             <div class="mx-1"> {{ convertLectureTime()}} </div>
             <div class="mx-1">{{lecture.roomno}}</div>
        </div>
-        <div class="flex flex-row pl-2">
+        <div class="flex flex-row pl-2" v-if="tut">
             <div class="mx-1">{{tut.name}}</div>
             <div class="mx-1"> {{convertTutorialTime()  }}</div>
             <div class="mx-1"> {{ tut.roomno }}</div>
@@ -46,14 +46,13 @@
                 <div class="flex flex-row pl-1">
                     <input type="checkbox" v-if="course.selectedIndices[index]" class="accent-red-100" @click="removeSection(index)" checked>
                     <input type="checkbox" v-else @click="addSection(index)">
-                    <div class="pl-1">{{section[0] + " - " + section[1]}}</div>
+                    <div class="pl-1">{{section[0] + (tut ? " - " + section[1] : '')}}</div>
                 </div>
             </div>
         </div>
         <div class="flex flex-col pl-2">
             <div class="flex flex-row">
                 <div class="mx-1"> {{lecture.name}}</div>
-                <div class="mx-1"> Lecture ID</div>
                 <div class="mx-1"> University of Calgary</div>
             </div>
             <div class="flex flex-row">
@@ -65,10 +64,9 @@
                 <div class="mx-1"> {{lecture.waitlistFilled + '/' + lecture.totalWaitlist}} Waitlist</div>
             </div>
         </div>
-        <div class="flex flex-col pl-2">
+        <div v-if="tut" class="flex flex-col pl-2">
             <div class="flex flex-row">
                 <div class="mx-1"> {{tut.name}}</div>
-                <div class="mx-1"> Lab ID</div>
                 <div class="mx-1"> University of Calgary</div>
             </div>
             <div class="flex flex-row">
@@ -129,6 +127,10 @@ const animationTime = 300;
                     }
                 }
             }
+            else
+            {
+                this.tut = null
+            }
         },
         watch:{
             course:{
@@ -148,6 +150,9 @@ const animationTime = 300;
                                 break
                             }
                         }
+                    }
+                    else{
+                        this.tut = null
                     }
                 },
                 deep: true

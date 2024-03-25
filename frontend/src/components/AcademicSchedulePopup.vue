@@ -1,6 +1,6 @@
 <template>
     <div class="bg-black-100 fixed opacity-50 w-screen h-screen z-30"></div>
-    <div class="fixed w-1/3 h-auto max-h-3/4 overflow-y-auto px-4 pb-4 bg-white-100 rounded-xl left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 shadow-lg z-40">
+    <div class="fixed w-1/3 h-auto max-h-3/4 overflow-y-auto px-4 pb-4 bg-white-100 rounded-xl left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 shadow-lg z-50">
          <div class="flex flex-col">
             <div @click="closePopup" class="absolute right-0 p-2 cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">

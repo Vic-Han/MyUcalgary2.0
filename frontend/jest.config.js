@@ -8,7 +8,7 @@ module.exports = {
     moduleFileExtensions: ["vue", "js"],
     moduleNameMapper: {
         "^@/(.*)$": "<rootDir>/src/$1",
-        '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/__mocks__/fileMock.js', // Static asset mocks
+        "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/__mocks__/fileMock.js"
     },
     coveragePathIgnorePatterns: ["/node_modules/", "/tests/"],
     coverageReporters: ["text", "json-summary"],

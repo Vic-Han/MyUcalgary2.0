@@ -546,7 +546,7 @@ class ScheduleBuilderView(APIView):
             if enrollment.lecture.term == term:
                 term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
                 
-                schedule_builder_data["current schedule"][enrollment.lecture.course.course_code] = {
+                schedule_builder_data["currentSchedule"][enrollment.lecture.course.course_code] = {
                     "Lecture": enrollment.lecture.lecture_id,
                     "Tutorial": enrollment.tutorial.tutorial_id if enrollment.tutorial else "None"
                 }
@@ -604,6 +604,6 @@ class ScheduleBuilderView(APIView):
                     "status": req_status,
                     "courses": course_data
                 })
-        schedule_builder_data["academic requirements"] = requirement_data
+        schedule_builder_data["academicRequirements"] = requirement_data
 
         return Response(schedule_builder_data)

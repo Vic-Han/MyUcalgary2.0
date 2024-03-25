@@ -247,7 +247,8 @@
       "term_name": "Fall",
       "term_year": 2022,
       "start_date": "2022-09-01",
-      "end_date": "2022-12-15"
+      "end_date": "2022-12-15",
+      "due_date": "2022-10-01"
     }
   },
   {
@@ -258,7 +259,8 @@
       "term_name": "Winter",
       "term_year": 2023,
       "start_date": "2023-01-05",
-      "end_date": "2023-04-20"
+      "end_date": "2023-04-20",
+      "due_date": "2023-02-05"
     }
   },
   {

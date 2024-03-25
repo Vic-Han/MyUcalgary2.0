@@ -3,13 +3,36 @@
     <AppNavbar v-if="navbarVisible" :selected="selected" />
     <div class="w-full">
       <div v-if="navbarVisible" class="flex items-center justify-start py-4 px-4 bg-gray-200">
-        <div class="flex items-center space-x-2 bg-white-100 rounded-lg shadow-md p-2 w-2/5 ml-5 h-11">
-          <input type="text" class="flex-grow outline-none rounded-l-full px-4 py-2" @keydown="showSearchResults" placeholder="Search" v-model="searchTerm" />
-          <button class="bg-transparent p-2 rounded-full text-gray-100 hover:text-gray-700 focus:outline-none" @click="showSearchResults">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-grey-200" viewBox="0 0 50 50">
-            <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"></path>
-          </svg>
-          </button>
+        <div class="flex flex-col w-2/5">
+          <div class="flex items-center space-x-2 bg-white-100 rounded-lg shadow-md p-2 w-full ml-5 h-11">
+            <input type="text" class="flex-grow outline-none rounded-l-full px-4 py-2" @input="showSearchResults" placeholder="Search" v-model="searchTerm" />
+            <div v-if="filteredComponents.length || filteredLinks.length">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-grey-200 hover:fill-red-100" v viewBox="0 -960 960 960">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+              </svg>
+            </div>
+            <div v-else>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-grey-200" viewBox="0 0 50 50">
+                <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="relative w-full">
+            <div class="absolute h-fit z-50 left-4 -bottom-4 translate-y-full bg-white-100 w-full shadow-xl rounded-lg">
+              <div v-if="filteredComponents.length">
+                <div class="font-semibold text-left text-xl p-4">Components</div>
+                <div v-for="(component,index) in filteredComponents" :key="index">
+                  <router-link :to="component.item.target" class="border-y-2 border-grey-100" v-if="index < 5">{{ component.item.name }}</router-link>
+                </div>
+              </div>
+              <div v-if="filteredLinks.length">
+                <div class="font-semibold text-left text-xl pl-4">Links</div>
+                <div v-for="(link,index) in filteredLinks" :key="index">
+                  <a :href="link.item.target" target="_blank" class="border-y-2 border-grey-100" v-if="index < 5">{{ link.item.name }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <ProfilePreview class="ml-auto mr-5" />
       </div>
@@ -348,7 +371,6 @@ export default {
         this.searchTerm = ""
       },
       showSearchResults(){
-        console.log("Searching for " + this.searchTerm)
         this.filteredComponents = this.componentFuse.search(this.searchTerm)
         this.filteredLinks = this.linkFuse.search(this.searchTerm)
         console.log(this.filteredComponents)

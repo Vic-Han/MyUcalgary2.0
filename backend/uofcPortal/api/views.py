@@ -112,6 +112,7 @@ class StudentApplicationsViewSet(APIView):
         new_data = {}
         new_data['student'] = student.pk
         new_data['application_status'] = 'pending'
+        new_data['app_type'] = data['type']
         if data['type'] == 'undergrad':
             new_data['program'] = Program.objects.get(pk=data['program'])
             new_data['minor'] = data['minor']
@@ -122,10 +123,10 @@ class StudentApplicationsViewSet(APIView):
 
         if data['type'] == 'scholarship':
             new_data['scholarship_name'] = data['scholarship']
-            new_data['payment_amount'] = 1000
+            new_data['scholarship_amount'] = 1000
         if data['type'] == 'award':
             new_data['scholarship_name'] = data['award']
-            new_data['payment_amount'] = 1000
+            new_data['scholarship_amount'] = 1000
 
 
         serializer = StudentApplicationsSerializer(data=new_data)
@@ -142,10 +143,10 @@ class StudentApplicationsViewSet(APIView):
     def delete(self, request):
         student = get_object_or_404(Student, user=request.user)
         if not student:
-            return Response({"error": "No student found"}, status=404)
+            return Response({"error": "No student found"}, status=200)
 
         data = request.data
-        application = get_object_or_404(StudentApplications, pk=data["application_id"])
+        application = StudentApplications.objects.get(pk=data['appID'])
         application.delete()
         return Response({"message": "Application deleted successfully"}, status=200)
 
@@ -185,7 +186,7 @@ class StudentApplicationsViewSet(APIView):
             {
                 "key" : application.pk,
                 "name": application.scholarship_name,
-                "amount": application.payment_amount,
+                "amount": application.scholarship_amount,
               
                 "status": application.application_status
             }
@@ -195,7 +196,7 @@ class StudentApplicationsViewSet(APIView):
             {
                 "key" : application.pk,
                 "name": application.scholarship_name,
-                "amount": application.payment_amount,
+                "amount": application.scholarship_amount,
                 "status": application.application_status
             }
             for application in applications.filter(app_type="award")

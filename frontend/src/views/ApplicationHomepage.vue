@@ -154,7 +154,24 @@ export default {
       }
     },
     deleteApplication(appID) {
-      // send a delete request to the backend
+      const serverpath = this.$store.state.serverPath
+      const apiPath = "/api/student-applications/"
+      const headers = {
+          'Content-Type': 'application/json',
+          'Authorization' :`Token ${this.$cookies.get("auth-token")}`
+      }
+      const body = new FormData()
+      body.append("appID", appID)
+      console.log(headers)
+      this.$http.delete(`${serverpath}${apiPath}`, body, {headers}).then(response => {
+          console.log(response.data)
+          this.ugradApps = this.ugradApps.filter(app => app.ID !== appID)
+          this.gradApps = this.gradApps.filter(app => app.ID !== appID)
+          this.scholarships = this.scholarships.filter(app => app.ID !== appID)
+          this.awards = this.awards.filter(app => app.ID !== appID)
+      }).catch(error => {
+          console.log(error)
+      })
       return appID
     },
     fetchData(){
@@ -164,7 +181,7 @@ export default {
           'Content-Type': 'application/json',
           'Authorization' :`Token ${this.$cookies.get("auth-token")}`
       }
-
+      console.log(headers)
       this.$http.get(`${serverpath}${apiPath}`,{headers}).then(response => {
           console.log(response.data)
           this.ugradApps = response.data["Undergrad applications"]

@@ -313,6 +313,7 @@
 
   </div> -->
   <div class="bg-white-100 w-full ">
+    <div @click="close"> Close </div>
     <select v-model="selectedType" class="h-40 w-96">
       <option value=""></option>
       <option v-for="option in applicationTypes" :value="option" :key="option">{{option}}</option>
@@ -448,22 +449,11 @@ export default {
 
   },
   methods: {
-    goToNextStep() {
-      if (this.currentStep < 4) {
-        this.currentStep++;
-      }
-      else{
-        // call back end
-        this.$emit('submit')
-      }
+    close() {
+      this.$emit('cancel')
     },
-    goToPreviousStep() {
-      if (this.currentStep > 1) {
-        this.currentStep--;
-      }
-      else{
-        this.$emit('cancel')
-      }
+    submit() {
+      
     },
   },
 

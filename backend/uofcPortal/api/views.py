@@ -414,20 +414,10 @@ class ScheduleBuilderView(APIView):
                 continue
             if course.course_prerequisites == None:
                 can_take = True
+                prereq_codes = "none"
             else:
-                can_take = False
+                can_take = True
                 prereq_codes = course.course_prerequisites.split(', ')
-                for prereq_code in prereq_codes:          
-                    prereqs = Course.objects.filter(course_code=prereq_code)
-                    for prereq in prereqs:
-                        lectures = Lecture.objects.filter(course=prereq)
-                        for lecture in lectures:
-                            enrollments = Enrollment.objects.filter(lecture=lecture, student=self)
-                            for enrollment in enrollments:
-                                grades = Grade.objects.filter(enrollment=enrollment)
-                                for grade in grades:
-                                    if grade.grade >= 70:
-                                        can_take = True
 
             course_data = {
                 "name": course.course_code,

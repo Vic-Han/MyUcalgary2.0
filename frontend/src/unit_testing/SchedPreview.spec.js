@@ -31,7 +31,7 @@ describe('SchedPreview.vue', () => {
   });
 
   it('renders a schedule grid', () => {
-    expect(wrapper.findAll('.flex-row').length).toBeGreaterThan(0); // 检查是否渲染了时间表格行
+    expect(wrapper.findAll('.flex-row').length).toBeGreaterThan(0); 
   });
 
   it('displays days of the week', () => {
@@ -49,12 +49,12 @@ describe('SchedPreview.vue', () => {
   });
 
   it('renders course blocks for each scheduled class', () => {
-    expect(wrapper.findAll('.absolute.w-sched').length).toBe(propsData.schedule.length); // 检查是否为每个课程渲染了块
+    expect(wrapper.findAll('.absolute.w-sched').length).toBe(propsData.schedule.length); 
   });
 
 
   it('applies correct color styles for different classes', () => {
     const courseBlocks = wrapper.findAll('.absolute.w-sched div');
-    expect(courseBlocks.at(0).attributes('class')).toContain('bg-course-100'); // 假设课程颜色类是按顺序应用的
+    expect(courseBlocks.at(0).attributes('class')).toContain('bg-course-100'); 
   });
 });

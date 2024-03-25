@@ -767,7 +767,7 @@
     "model": "api.Lecture",
     "pk": "07",
     "fields": {
-      "lecture_id": "L01",
+      "lecture_id": "L02",
       "term": "Fal2023",
       "lecture_days": "F",
       "lecture_starttime": 14.00,

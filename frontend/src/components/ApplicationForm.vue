@@ -336,8 +336,13 @@
 
             <option v-for="option in faculties[selectedFaculty][selectedProgram]" :value="option" :key="option">{{option}}</option>
           </select>
-          <div v-if="selectedConcentration !== '' &&  selectedType === 'undergrad'"> Submit </div>
-          <div v-if="selectedProgram !== '' &&  selectedType === 'grad'"> Submit </div>
+          <select v-if="selectedType === 'undergrad' && selectedProgram != ''" v-model="selectedMinor">
+            <option value=""></option>
+
+            <option v-for="option in Object.keys(faculties[selectedFaculty]).filter(i => i !== selectedProgram)" :value="option" :key="option">{{option}}</option>
+          </select>
+          <div v-if="selectedConcentration !== '' &&  selectedType === 'undergrad'" @click="submit"> Submit </div>
+          <div v-if="selectedProgram !== '' &&  selectedType === 'grad'" @click="submit"> Submit </div>
 
       </div>
       <div v-else-if="selectedType === 'award'">
@@ -348,7 +353,7 @@
 
             <option v-for="option in awardOptions" :value="option" :key="option">{{option}}</option>
           </select>
-          <div v-if="selectedAward !== ''"> Submit </div>
+          <div v-if="selectedAward !== ''" @click="submit"> Submit </div>
 
       </div>
       <div v-else-if="selectedType === 'scholarship'">
@@ -357,7 +362,7 @@
 
               <option v-for="option in scholarShipOptions" :value="option" :key="option">{{option}}</option>
           </select>
-          <div v-if="selectedScholarship !== ''"> Submit </div>
+          <div v-if="selectedScholarship !== ''" @click="submit"> Submit </div>
       </div>
     </div>
   </div>
@@ -395,6 +400,10 @@ export default {
           'comp sci' : [
               'concentration1',
               'concentration2'
+            ],
+            'bio' : [
+              'concentration1',
+              'concentration2'
             ]
           },
           "arts":{
@@ -406,7 +415,7 @@ export default {
         },
 
 
-
+      selectedMinor: '',
       selectedScholarship: '',
       selectedAward: '',
       scholarShipOptions: [
@@ -453,7 +462,39 @@ export default {
       this.$emit('cancel')
     },
     submit() {
-      
+      const serverPath = this.$store.state.serverPath
+      const apiPath = "/api/student-applications/"
+      const headers ={
+        'Authorization' :`Token ${this.$cookies.get("auth-token")}`
+      }
+      const body = new FormData()
+      if(this.selectedType === 'undergrad'){
+        body.append('type', 'undergrad')
+        body.append('major', this.selectedProgram)
+        body.append('minor', this.selectedConcentration)
+        body.append('concentration', this.selectedConcentration)
+      }
+      else if(this.selectedType === 'grad'){
+        body.append('type', 'grad')
+        body.append('program', this.selectedProgram)
+      }
+      else if(this.selectedType === 'award'){
+        body.append('type', 'award')
+        body.append('award', this.selectedAward)
+      }
+      else if(this.selectedType === 'scholarship'){
+        body.append('type', 'scholarship')
+        body.append('scholarship', this.selectedScholarship)
+      }
+
+
+      this.$http.post(`${serverPath}${apiPath}`, body, {headers}).then(response => {
+        console.log(response.data)
+        this.$emit('submit')
+      }).catch(error => {
+        console.log(error)
+      })
+      this.$emit('submit')
     },
   },
 

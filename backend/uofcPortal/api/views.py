@@ -100,18 +100,43 @@ class StudentApplicationsViewSet(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
-    # def post(self, request):
-    #     student = get_object_or_404(Student, user=request.user)
-    #     if not student:
-    #         return Response({"error": "No student found"}, status=404)
+    def post(self, request):
+        student = get_object_or_404(Student, user=request.user)
+        if not student:
+            return Response({"error": "No student found"}, status=404)
 
-    #     data = request.data
-    #     data["student"] = student.pk
-    #     serializer = StudentApplicationsSerializer(data=data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data, status=201)
-    #     return Response(serializer.errors, status=400)
+        
+
+        data = request.data
+        
+        new_data = {}
+        new_data['student'] = student.pk
+        new_data['application_status'] = 'pending'
+        if data['type'] == 'undergrad':
+            new_data['program'] = Program.objects.get(pk=data['program'])
+            new_data['minor'] = data['minor']
+            new_data['concentration'] = data['concentration']
+
+        if data['type'] == 'grad':
+            new_data['program'] = Program.objects.get(pk=data['program'])
+
+        if data['type'] == 'scholarship':
+            new_data['scholarship_name'] = data['scholarship']
+            new_data['payment_amount'] = 1000
+        if data['type'] == 'award':
+            new_data['scholarship_name'] = data['award']
+            new_data['payment_amount'] = 1000
+
+
+        serializer = StudentApplicationsSerializer(data=new_data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        
+        
+        print(new_data)
+
+        return Response(serializer.errors, status=400)
 
 
     def delete(self, request):

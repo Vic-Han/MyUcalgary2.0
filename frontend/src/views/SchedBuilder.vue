@@ -116,6 +116,7 @@ import SelectedCourse from '@/components/SelectedCourse.vue'
 import AdvancedSearch from '@/components/AdvancedSearch.vue'
 import AcademicSchedulePopup from '@/components/AcademicSchedulePopup.vue'
 import data from './SB.json'
+import { all } from 'axios'
 let allCourses = []
 const courseCode = (course, filters) =>{
                     return course.name.includes(filters.major)
@@ -213,21 +214,26 @@ const createLecInfo = (course, index) =>{
                 'Authorization': `Token ${this.$cookies.get('auth-token')}`
             }
 
-            this.$http.get(serverPath + apiPath, {headers: headers}).then(res =>{
-                console.log(res.data)
-            })
+         
 
 
             const backendPayload = data
             this.allInfo = backendPayload
-            allCourses = this.allInfo.allCourses
+            //allCourses = this.allInfo.allCourses
             this.degreeRequirements = this.allInfo.academicRequirements
             this.schedCourses.forEach((item) => {
                 item.included = 'sched';
                 item.selected = 0;
             })
             this.worker = new Worker('./ScheduleWorker.js')
-           
+
+            this.$http.get(serverPath + apiPath, {headers: headers}).then(res =>{
+                console.log(res.data)
+                allCourses = res.data.allCourses 
+                console.log(allCourses)
+            }).catch(err => {
+                console.log(err)
+            })
         },
         methods:{
             searchResults(){

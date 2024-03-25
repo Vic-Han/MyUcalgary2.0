@@ -382,8 +382,8 @@ class StudentRequirementsView(APIView):
 
 
 class ScheduleBuilderView(APIView):    
-    #authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
-    #permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication  
+    # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    # permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication  
 
     def get_queryset(self):
         term = self.request.query_params.get('term')
@@ -438,10 +438,10 @@ class ScheduleBuilderView(APIView):
                     "start": lecture.lecture_starttime,
                     "end": lecture.lecture_endtime,
                     "Prof": lecture.instructor.instructor_last_name + ", " + lecture.instructor.instructor_first_name,
-                    "totalSeats": 100, # hardcoded
-                    "seatsFilled": 50, # hardcoded
-                    "totalWaitlist": 10, # hardcoded
-                    "waitlistFilled": 0, # hardcoded
+                    "totalSeats": lecture.lecture_totalseats, # hardcoded
+                    "seatsFilled": lecture.lecture_filledseats, # hardcoded
+                    "totalWaitlist": lecture.lecture_totalwaitlist, # hardcoded
+                    "waitlistFilled": lecture_filledwaitlist, # hardcoded
                     "roomno": lecture.lecture_roomnumber
                 })
             
@@ -452,10 +452,10 @@ class ScheduleBuilderView(APIView):
                     "days": tutorial.tutorial_days,
                     "start": tutorial.tutorial_starttime,
                     "end": tutorial.tutorial_endtime,
-                    "totalSeats": "100 (HARDCODED)",
-                    "seatsFilled": "50 (HARDCODED)",
-                    "totalWaitlist": "10 (HARDCODED)",
-                    "waitlistFilled": "0 (HARDCODED)",
+                    "totalSeats": tutorial.tutorial_totalseats,
+                    "seatsFilled": tutorial.tutorial_filledseats,
+                    "totalWaitlist": tutorial.tutorial_totalwaitlist,
+                    "waitlistFilled": tutorial.tutorial_filledwaitlist,
                     "roomno": tutorial.tutorial_roomnumber
                 })
 
@@ -477,13 +477,11 @@ class ScheduleBuilderView(APIView):
         for enrollment in enrollments:
             if enrollment.lecture.term == term:
                 term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
-                grades = Grade.objects.filter(enrollment=enrollment)
-
-                for grade in grades:
-                    schedule_builder_data["current schedule"][enrollment.lecture.course.course_code] = {
-                        "Lecture": enrollment.lecture.lecture_id,
-                        "Tutorial": "T01 (HARDCODED)"
-                    }
+                
+                schedule_builder_data["current schedule"][enrollment.lecture.course.course_code] = {
+                    "Lecture": enrollment.lecture.lecture_id,
+                    "Tutorial": enrollment.tutorial.tutorial_id if enrollment.tutorial else "None"
+                }
 
         # academic requirements retrieval
         requirement_data = {

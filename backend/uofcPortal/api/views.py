@@ -176,17 +176,6 @@ class StudentApplicationsViewSet(APIView):
             
         return Response(serializer.errors, status=400)
 
-
-    # def delete(self, request):
-    #     student = get_object_or_404(Student, user=request.user)
-    #     if not student:
-    #         return Response({"error": "No student found"}, status=200)
-
-    #     data = request.data
-    #     application = StudentApplications.objects.get(pk=data['appID'])
-    #     application.delete()
-    #     return Response({"message": "Application deleted successfully"}, status=200)
-
     def get(self, request):
         student = get_object_or_404(Student, user=request.user)
         if not student:
@@ -247,6 +236,23 @@ class StudentApplicationsViewSet(APIView):
         }
 
         return Response(response_data)
+    
+    def delete(self, request):
+        student = get_object_or_404(Student, user=request.user)
+
+        # Extract the application ID from the request body
+        application_id = request.data.get('application_id')
+        if not application_id:
+            return Response({"error": "Application ID is required for deletion"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            application = StudentApplications.objects.get(pk=application_id, student=student)
+        except StudentApplications.DoesNotExist:
+            return Response({"error": f"Application with ID {application_id} not found for this student"}, status=status.HTTP_404_NOT_FOUND)
+
+        application.delete()
+        return Response({"message": "Application deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
 
 class StudentGradeView(APIView, GradeMixins):
     authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication

@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
+from rest_framework import status
 from .models import *
 from .serializers import *
 
@@ -21,18 +22,28 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class AddressViewSet(viewsets.ModelViewSet):
-    queryset = Address.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = AddressSerializer
 
-class StudentViewSet(viewsets.ModelViewSet):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes = (IsAuthenticated,)
+    def get_queryset(self):
+        # Filter the addresses to only those belonging to the currently authenticated user
+        return Address.objects.filter(student__user=self.request.user)
 
-    # def get_queryset(self):
-    #     # Assuming the user is linked to the student via a ForeignKey
-    #     return Student.objects.filter(user=self.request.user)
+class EmergencyContactViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    queryset = EmergencyContact.objects.all()
+    serializer_class = EmergencyContactSerializer
+
+class StudentViewSet(viewsets.ModelViewSet):
+    serializer_class = StudentSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return Address.objects.filter(student__user=self.request.user)
+
 
 class FacultyViewSet(viewsets.ModelViewSet):
     queryset = Faculty.objects.all()
@@ -90,12 +101,12 @@ class TransactionViewSet(viewsets.ModelViewSet):
 
 
 class PersonalInfoView(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    # authentication_classes = (TokenAuthentication,)
+    # permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        student = get_object_or_404(Student, user=request.user)
-        # student = Student.objects.first()
+        # student = get_object_or_404(Student, user=request.user)
+        student = Student.objects.first()
         personal_info = {
             "firstname": student.student_first_name,
             "lastname": student.student_last_name,
@@ -109,6 +120,7 @@ class PersonalInfoView(APIView):
         }
 
         address = {
+            "id": student.address.pk if student.address else None,
             "street address": student.address.address_street_address if student.address else None,
             "postal code": student.address.address_postal_code if student.address else None,
             "city": student.address.address_city if student.address else None,
@@ -151,6 +163,7 @@ class PersonalInfoView(APIView):
         }
 
         return Response(response_data)
+    
 
 class StudentApplicationsViewSet(APIView):
     # authentication_classes = (TokenAuthentication,)

@@ -466,6 +466,7 @@ const emailValid = (email) =>{
                     }
                 },
                 Address: {
+                    ID: null,
                     Street: "",
                     City: "",
                     Province: "",
@@ -529,12 +530,12 @@ const emailValid = (email) =>{
                             Status: data.citizenship.status
                         }
                     };
-
                     this.Address = {
+                        id: data.address.id,
                         Street: data.address["street address"],
                         City: data.address.city,
                         Province: data.address["province/state"],
-                        Country: data.address.country,
+                        Country: data.citizenship.country,
                         Postal: data.address["postal code"]
                     };
 
@@ -576,10 +577,84 @@ const emailValid = (email) =>{
                 }
             },
             async editInfo(){
-                
-                // call back end and return false if there was an error
-                
-                return true
+                // Prepare the data for each endpoint
+                const studentData = {
+                    student_id: this.User.UCID, // Assuming UCID is the student ID
+                    student_first_name: this.User.First,
+                    student_last_name: this.User.Last,
+                    date_of_birth: this.User.DOB,
+                    citizenship_status: this.User.Citizenship.Status,
+                    home_phone_number: this.Phone.Home,
+                    mobile_phone_number: this.Phone.Mobile,
+                    other_phone_number: this.Phone.Other,
+                    preferred_phone: this.Phone.Preferred,
+                    personal_email: this.Email.Personal,
+                    school_email: this.Email.School,
+                    preferred_email: this.Email.Preferred,
+                    preferred_emergency_contact: this.EmergencyContacts.find(contact => contact.Primary)?.Name,
+                    user: null // Set appropriately based on your application's requirements
+                };
+
+                console.log("Student Data:", studentData);
+
+                const addressData = {
+                    id: this.Address.id,
+                    address_street_address: this.Address.Street,
+                    address_postal_code: this.Address.Postal,
+                    address_city: this.Address.City,
+                    address_province: this.Address.Province,
+                    address_country: this.Address.Country
+                };
+
+                console.log("Address Data:", addressData);
+
+                const emergencyContactsData = this.EmergencyContacts.map(contact => ({
+                    emergency_contact_name: contact.Name,
+                    emergency_contact_phone: contact.Phone,
+                    emergency_contact_relationship: contact.Relationship
+                }));
+
+                console.log("Emergency Contacts Data:", emergencyContactsData);
+
+
+                try {
+                    // POST request to update student info
+                    await fetch('http://127.0.0.1:8000/api/students/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Token ${this.$cookies.get("auth-token")}`
+                        },
+                        body: JSON.stringify(studentData)
+                    });
+
+                    // POST request to update address info
+                    await fetch('http://127.0.0.1:8000/api/addresses/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Token ${this.$cookies.get("auth-token")}`
+                        },
+                        body: JSON.stringify(addressData)
+                    });
+
+                    // POST request for each emergency contact
+                    for (const contactData of emergencyContactsData) {
+                        await fetch('http://127.0.0.1:8000/api/emergency-contacts/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Token ${this.$cookies.get("auth-token")}`
+                            },
+                            body: JSON.stringify(contactData)
+                        });
+                    }
+
+                    return true;
+                } catch (error) {
+                    console.error('There was a problem with the POST request:', error);
+                    return false;
+                }
             },
             setEditing(element) {
                 this.editingID = element;

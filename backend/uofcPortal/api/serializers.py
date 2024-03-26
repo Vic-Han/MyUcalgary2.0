@@ -20,6 +20,11 @@ class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
         fields = '__all__'
+
+class EmergencyContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmergencyContact
+        fields = '__all__'
 class StudentSerializer(serializers.ModelSerializer):
     address = serializers.SerializerMethodField()
     emergency_contact1 = serializers.SerializerMethodField()

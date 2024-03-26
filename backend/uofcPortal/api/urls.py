@@ -14,6 +14,8 @@ router.register('lectures', LectureViewSet, basename='lecture')
 router.register('grades', GradeViewSet, basename='grade')
 router.register('enrollments', EnrollmentViewSet, basename='enrollment')
 router.register('transactions', TransactionViewSet, basename='transaction')
+router.register('addresses', AddressViewSet, basename='address')
+router.register('emergency-contacts', EmergencyContactViewSet, basename='emergency-contact')
 
 urlpatterns = [
     path('api/', include(router.urls)),

@@ -162,7 +162,7 @@ export default {
           'Authorization' :`Token ${this.$cookies.get("auth-token")}`
       }
       const body = new FormData()
-      body.append("appID", appID)
+      body.append("application_id", appID)
       console.log(headers)
       this.$http.delete(`${serverpath}${apiPath}`, body, {headers}).then(response => {
           console.log(response.data)

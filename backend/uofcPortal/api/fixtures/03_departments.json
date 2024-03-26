@@ -46,7 +46,7 @@
     "model": "api.Department",
     "pk": "Chemical and Petroleum Engineering",
     "fields": {
-        "faculty": "Faculty of Science"
+        "faculty": "Schulich School of Engineering"
     }
     },
     {
@@ -61,6 +61,27 @@
     "pk": "Economics",
     "fields": {
         "faculty": "Haskayne School of Business"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "Software Engineering",
+    "fields": {
+    "faculty": "Schulich School of Engineering"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "Electrical Engineering",
+    "fields": {
+    "faculty": "Schulich School of Engineering"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "Computer Engineering",
+    "fields": {
+        "faculty": "Schulich School of Engineering"
     }
     }
 ]

@@ -3,20 +3,19 @@
         "model": "api.Course",
         "pk": "CPSC231",
         "fields": {
-          "course_title": "English as a Second Language Part II",
-          "course_description": "Better speak but no super yet.",
-          "course_prerequisites": "ENGL101",
+          "course_title": "Introduction to Computer Science for Computer Science Majors I",
+          "course_description": "Introduction to problem solving, the analysis and design of small-scale computational systems, and implementation using a procedural programming language. For computer science majors.",
           "course_units": 3,
-          "department": "English"
+          "department": "Computer Science"
         }
       },
       {
         "model": "api.Course",
         "pk": "CPSC233",
         "fields": {
-          "course_title": "Software Architecture",
-          "course_description": "An in-depth study of high-level software structures. Covers architectural styles, design patterns, and evaluation techniques.",
-          "course_prerequisites": "SENG300, CPSC233",
+          "course_title": "Introduction to Computer Science for Computer Science Majors II",
+          "course_description": "Continuation of Introduction to Computer Science for Computer Science Majors I. Emphasis on object-oriented analysis and design of small-scale computational systems and implementation using an object oriented language. Issues of design, modularization, and programming style will be emphasized.",
+          "course_prerequisites": "CPSC231",
           "course_units": 3,
           "department": "Computer Science"
         }
@@ -25,22 +24,22 @@
         "model": "api.Course",
         "pk": "CPSC251",
         "fields": {
-          "course_title": "Quantum Mechanics",
-          "course_description": "Introduction to the principles of quantum mechanics with applications to atomic, molecular, and solid-state physics.",
-          "course_prerequisites": "PHYS211, MATH211",
+          "course_title": "Theoretical Foundations of Computer Science I",
+          "course_description": "Proof techniques. Recursion and iteration. Specification of algorithmic problems, proofs of correctness, and bounds on their computational complexity. Discrete structures such as graphs, trees, strings, functions, and their computer representation. Counting, permutations, discrete probability spaces, random events. Applications in Computer Science.",
+          "course_prerequisites": "CPSC 231",
           "course_units": 3,
-          "department": "Physics and Astronomy"
+          "department": "Computer Science"
         }
       },
       {
         "model": "api.Course",
         "pk": "CPSC319",
         "fields": {
-          "course_title": "British Literature",
-          "course_description": "Survey of British literature from the Anglo-Saxon period to the 18th century.",
-          "course_prerequisites": "ENGL101, ENGL102",
+          "course_title": "Data Structures, Algorithms, and Their Applications",
+          "course_description": "Fundamental data structures, including arrays, lists, stacks, queues, trees, hash tables, and graphs. Algorithms for searching and sorting. Introduction to analysis of algorithms. Applications of these data structures and algorithms. For students wishing to combine studies in computer science with studies in other disciplines.",
+          "course_prerequisites": "??",
           "course_units": 3,
-          "department": "English"
+          "department": "Computer Science"
         }
       },
     
@@ -50,7 +49,6 @@
         "fields": {
           "course_title": "Software Process and Product Management",
           "course_description": "Covers concepts, methods, and tools for managing software development processes and products.",
-          "course_prerequisites": "SENG300",
           "course_units": 3,
           "department": "Computer Science"
         }
@@ -63,7 +61,7 @@
           "course_description": "Fundamentals of electric and magnetic fields and their applications.",
           "course_prerequisites": "PHYS211",
           "course_units": 3,
-          "department": "Physics and Astronomy"
+          "department": "Computer Science"
         }
       },
       {
@@ -73,7 +71,7 @@
           "course_title": "Modern American Literature",
           "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
           "course_units": 3,
-          "department": "English"
+          "department": "Computer Science"
         }
       },
       {
@@ -84,7 +82,7 @@
           "course_description": "Better speak but no super yet.",
           "course_prerequisites": "ENGL101",
           "course_units": 3,
-          "department": "English"
+          "department": "Computer Science"
         }
       },
       {
@@ -106,7 +104,7 @@
           "course_description": "Introduction to the principles of quantum mechanics with applications to atomic, molecular, and solid-state physics.",
           "course_prerequisites": "PHYS211, MATH211",
           "course_units": 3,
-          "department": "Physics and Astronomy"
+          "department": "Computer Science"
         }
       },
       {
@@ -117,7 +115,7 @@
           "course_description": "Survey of British literature from the Anglo-Saxon period to the 18th century.",
           "course_prerequisites": "ENGL101, ENGL102",
           "course_units": 3,
-          "department": "English"
+          "department": "Computer Science"
         }
       },
     
@@ -139,7 +137,7 @@
           "course_title": "Modern American Literature",
           "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
           "course_units": 3,
-          "department": "English"
+          "department": "Computer Science"
         }
       },
       {
@@ -150,7 +148,7 @@
           "course_description": "Better speak but no super yet.",
           "course_prerequisites": "ENGL101",
           "course_units": 3,
-          "department": "English"
+          "department": "Computer Science"
         }
       },
       {
@@ -172,7 +170,7 @@
           "course_description": "Introduction to the principles of quantum mechanics with applications to atomic, molecular, and solid-state physics.",
           "course_prerequisites": "PHYS211, MATH211",
           "course_units": 3,
-          "department": "Physics and Astronomy"
+          "department": "Computer Science"
         }
       },
       {
@@ -183,7 +181,7 @@
           "course_description": "Survey of British literature from the Anglo-Saxon period to the 18th century.",
           "course_prerequisites": "ENGL101, ENGL102",
           "course_units": 3,
-          "department": "English"
+          "department": "Computer Science"
         }
       },
     
@@ -196,6 +194,17 @@
           "course_prerequisites": "SENG300",
           "course_units": 3,
           "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PHIL314",
+        "fields": {
+          "course_title": "Electromagnetism",
+          "course_description": "Fundamentals of electric and magnetic fields and their applications.",
+          "course_prerequisites": "PHYS211",
+          "course_units": 3,
+          "department": "Physics and Astronomy"
         }
       },
       {

@@ -141,15 +141,15 @@ class StudentApplicationsViewSet(APIView):
         return Response(serializer.errors, status=400)
 
 
-    def delete(self, request):
-        student = get_object_or_404(Student, user=request.user)
-        if not student:
-            return Response({"error": "No student found"}, status=200)
+    # def delete(self, request):
+    #     student = get_object_or_404(Student, user=request.user)
+    #     if not student:
+    #         return Response({"error": "No student found"}, status=200)
 
-        data = request.data
-        application = StudentApplications.objects.get(pk=data['appID'])
-        application.delete()
-        return Response({"message": "Application deleted successfully"}, status=200)
+    #     data = request.data
+    #     application = StudentApplications.objects.get(pk=data['appID'])
+    #     application.delete()
+    #     return Response({"message": "Application deleted successfully"}, status=200)
 
     def get(self, request):
         student = get_object_or_404(Student, user=request.user)

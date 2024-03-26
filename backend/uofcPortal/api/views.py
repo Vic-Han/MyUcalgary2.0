@@ -105,21 +105,19 @@ class StudentApplicationsViewSet(APIView):
         if not student:
             return Response({"error": "No student found"}, status=404)
 
-        
-
         data = request.data
         
         new_data = {}
         new_data['student'] = student.pk
-        new_data['application_status'] = 'pending'
+        new_data['application_status'] = 'Under Review'
         new_data['app_type'] = data['type']
         if data['type'] == 'undergrad':
-            new_data['program'] = Program.objects.get(pk=data['program'])
+            new_data['program'] = Program.objects.get(program_name=data['program']).pk
             new_data['minor'] = data['minor']
             new_data['concentration'] = data['concentration']
 
         if data['type'] == 'grad':
-            new_data['program'] = Program.objects.get(pk=data['program'])
+            new_data['program'] = Program.objects.get(program_name=data['program']).pk
 
         if data['type'] == 'scholarship':
             new_data['scholarship_name'] = data['scholarship']
@@ -133,10 +131,7 @@ class StudentApplicationsViewSet(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
-        
-        
-        print(new_data)
-
+            
         return Response(serializer.errors, status=400)
 
 

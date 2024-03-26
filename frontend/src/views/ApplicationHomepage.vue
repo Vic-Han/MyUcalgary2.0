@@ -141,6 +141,7 @@ export default {
     },
     closeApplicationForm() {
       this.applicationForm = false
+      this.fetchData()
     },
     statusColor(status) {
       if(status === "Under Review") {
@@ -172,7 +173,6 @@ export default {
       }).catch(error => {
           console.log(error)
       })
-      return appID
     },
     fetchData(){
       const serverpath = this.$store.state.serverPath

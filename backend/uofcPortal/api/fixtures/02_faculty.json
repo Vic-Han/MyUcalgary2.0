@@ -1,0 +1,77 @@
+[
+  {
+    "model": "api.Faculty",
+    "pk": "Schulich School of Engineering",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Science",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Arts",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Haskayne School of Business",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Werklund School of Education",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Law",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Veterinary Medicine",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Nursing",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Kinesiology",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "School of Public Policy",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Social Work",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Cumming School of Medicine",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "School of Architecture, Planning and Landscape",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Graduate Studies",
+    "fields": {}
+  },
+  {
+    "model": "api.Faculty",
+    "pk": "Faculty of Nursing",
+    "fields": {}
+  }
+]

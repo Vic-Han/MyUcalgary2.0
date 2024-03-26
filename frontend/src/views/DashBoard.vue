@@ -49,23 +49,28 @@ import Data from './SampleSched.json'
                       courses : [
                           {
                               "name" : "SENG 550",
-                              "letter": "A"
+                              "letter": "A",
+                              "grade": 92
                           },
                           {
                               "name" : "SENG 513",
-                              "letter" : "A"
+                              "letter" : "A",
+                              "grade": 94
                           },
                           {
                               "name" : "CPSC 481",
-                              "letter": "A-"
+                              "letter": "A-",
+                              "grade": 87
                           },
                           {
                               "name" : "CPSC 411",
-                              "letter": "B"
+                              "letter": "B",
+                              "grade": 78
                           },
                           {
                               "name" : "ECON 341",
-                              "letter": "B+"
+                              "letter": "B+",
+                              "grade": 83
                           },
                       ]
                 },

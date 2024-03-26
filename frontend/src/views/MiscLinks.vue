@@ -114,6 +114,54 @@
             </div>
         </div>
       </div>
+
+      <div class="row-span-12 col-span-3 bg-white-100 w-full  h-100 rounded-lg shadow-xl">
+        <h2 class="relative w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">New to UCalgary?</h2>
+        <div class="flex flex-col justify-between pt-4 pb-2 px-4 text-lg">
+            <div class="flex flex-row pb-3">
+                <a href="http://www.ucalgary.ca/mse" target="_blank" class="w-fit pr-1 hover:underline">Book a Space</a>
+            </div>
+            <div class="flex flex-row pb-3">
+                <a href="https://choose.ucalgary.ca/events/campusVisitRequest.do" target="_blank" class="w-fit pr-1 hover:underline">Campus Tours</a>
+            </div>
+            <div class="flex flex-row pb-3">
+                <a href="https://shop.ucalgary.ca/" target="_blank" class="w-fit pr-1 hover:underline">eBookstore</a>
+            </div>
+            <div class="flex flex-row pb-3">
+                <a href="https://www.visitcalgary.com/" target="_blank" class="w-fit pr-1 hover:underline">Discover Calgary</a>
+            </div>
+            <div class="flex flex-row pb-3">
+                <a href="https://www.travelalberta.com/" target="_blank" class="w-fit pr-1 hover:underline">Discover Alberta</a>
+            </div>
+        </div>
+      </div>
+
+      <div class="row-span-12 col-span-4 bg-white-100 w-full  h-100 rounded-lg shadow-xl">
+        <h2 class="relative w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Stay Safe</h2>
+        <div class="flex flex-col justify-between pt-4 pb-2 px-4 text-lg">
+            <div class="flex flex-row pb-3">
+                <a href="https://www.ucalgary.ca/risk/campus-security" target="_blank" class="w-fit pr-1 hover:underline">Campus Security</a>
+            </div>
+            <div class="flex flex-row pb-3">
+                <a href="https://live-risk.ucalgary.ca/risk/environment-health-safety/programs-standards-cops/working-alone" target="_blank" class="w-fit pr-1 hover:underline">Working Alone Standard</a>
+            </div>
+            <div class="flex flex-row pb-3">
+                <a href="https://www.ucalgary.ca/risk/campus-security/your-safety/safewalk" target="_blank" class="w-fit pr-1 hover:underline">Safewalk</a>
+            </div>
+            <div class="flex flex-row pb-3">
+                <a href="https://www.ucalgary.ca/risk/environment-health-safety/environment-health-safety" target="_blank" class="w-fit pr-1 hover:underline">Environment, Health and Safety</a>
+            </div>
+            <div class="flex flex-row pb-3">
+                <a href="https://ucalgary.chematix.com/Chematix/" target="_blank" class="w-fit pr-1 hover:underline">CHEMATIX: Chemical Safety Information</a>
+            </div>
+            <div class="flex flex-row pb-3">
+                <a href="https://ucalgary.chematix.com/Oars/" target="_blank" class="w-fit pr-1 hover:underline">OARS: Online Accident Reporting System</a>
+            </div>
+            <div class="flex flex-row pb-3">
+                <a href="https://www.ucalgary.ca/risk/emergency-management/emergency-communication/safetyapp" target="_blank" class="w-fit pr-1 hover:underline">UCSafety App</a>
+            </div>
+        </div>
+      </div>
       
     </div>
   </div>

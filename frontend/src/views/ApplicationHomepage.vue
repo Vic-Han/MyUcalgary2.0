@@ -48,7 +48,7 @@
             <div v-for="(award,index) in awards" :key="index" class="bg-white-100 shadow-xl rounded-xl p-5 h-fit w-fit ml-8 mb-2 mt-8" :class="{'mr-8': index == awards.length -1}">
               <div class="flex flex-row p-2 justify-between w-144">
                 <div class="text-3xl text-left"> {{ award.name }}</div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(award.ID)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(award.key)">
                   <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
                 </svg>
               </div>
@@ -71,7 +71,7 @@
             <div v-for="(scholarship,index) in scholarships" :key="index" class="bg-white-100 shadow-xl rounded-xl p-5 h-fit w-fit ml-8 mb-2 mt-8" :class="{'mr-8': index == scholarships.length -1}">
               <div class="flex flex-row p-2 justify-between w-144">
                 <div class="text-3xl text-left"> {{ scholarship.name }}</div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(scholarship.ID)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(scholarship.key)">
                   <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
                 </svg>
               </div>

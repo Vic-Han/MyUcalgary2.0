@@ -1,25 +1,10 @@
+import json
 from django.test import TestCase
 from rest_framework.test import APITestCase
 from rest_framework import status
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .models import (
-    Student,
-    Faculty,
-    Department,
-    Program,
-    Term,
-    EmergencyContact,
-    Address,
-    Course,
-    Instructor,
-    Lecture,
-    Enrollment,
-    Grade,
-    Transaction,
-    StudentApplications,
-    Requirement
-)
+from .models import (Student,Faculty,Department,Program,Term,EmergencyContact,Address,Course,Instructor,Lecture,Enrollment,Grade,Transaction,StudentApplications,Requirement)
 from rest_framework.authtoken.models import Token
 # Create your tests here.
 
@@ -37,6 +22,7 @@ class BackendTesting(APITestCase):
         self.faculty_art_design = Faculty.objects.create(faculty_name="Art and Design")
         self.department_design = Department.objects.create(department_name="Design", faculty=self.faculty_art_design)
         self.program_graphic_design = Program.objects.create(program_name="GD", department=self.department_design, program_degree_level="Bachelor", program_honor=False)
+        self.minor_program = Program.objects.create(program_name="None",department=self.department_design,program_degree_level="Bachelor",program_honor=False)
         self.term_2024_spring = Term.objects.create(term_key="Spr2024", term_name="Spring", term_year=2024, start_date='2024-03-01', end_date='2024-06-30', due_date='2024-07-01')
         
         self.course_design_basics = Course.objects.create(course_code="DES101", course_title="Design Basics", department=self.department_design, course_units=3)
@@ -49,7 +35,17 @@ class BackendTesting(APITestCase):
         self.enrollment_tom_design = Enrollment.objects.create(student=self.student_tom, lecture=self.lecture_design)
         self.grade_tom_design = Grade.objects.create(grade=88.0, enrollment=self.enrollment_tom_design)
         
-        self.student_application_tom = StudentApplications.objects.create(application_status="Accepted",student=self.student_tom,major_program=self.program_graphic_design,concentration=False,honors_program=False)
+        self.student_application_tom = StudentApplications.objects.create(application_status="Accepted",student=self.student_tom,major_program=self.program_graphic_design,minor_program = self.minor_program,concentration=False,honors_program=False)
+        
+        self.transaction_spring = Transaction.objects.create(transaction_name="Spring Transaction",transaction_posted_date="2024-03-01",transaction_type="debit",  transaction_amount=-5000.00,student=self.student_tom, term=self.term_2024_spring)
+
+        self.requirement_core = Requirement.objects.create(description="Complementary Studies",required_units=3,program=self.program_graphic_design)
+        
+        self.course_seng350 = Course.objects.create(course_code="SENG350",course_title="Intermediate Software Engineering",department=self.department_design,course_units=3)
+        
+        self.enrollment_seng350 = Enrollment.objects.create(student=self.student_tom,lecture=Lecture.objects.create(lecture_id="L01",term=self.term_2024_spring,course=self.course_seng350,instructor=self.instructor_jane,lecture_days="MW",lecture_starttime=12.00,lecture_endtime=13.30,lecture_roomnumber="AD101"))
+        
+        
     def test_root_endpoint(self):
         url = "/api/"
         response = self.client.get(url)
@@ -57,13 +53,15 @@ class BackendTesting(APITestCase):
     
     def test_student_grades(self):
     
-        url = reverse('student-grade')  # Use Django's reverse to get URL from the name
+        url = reverse('student-grade')  
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response['Content-Type'], 'application/json')
         response_json = response.json()
         
-        # print("Response Json", response_json)
+        #this part of printing could be commented out
+        # formatted_new_json = json.dumps(response_json, indent=4)
+        # print(formatted_new_json)
         
         self.assertEqual(response_json['overallGPA'], 3.3)
         self.assertEqual(response_json['letterGrade'], 'A-')
@@ -73,27 +71,92 @@ class BackendTesting(APITestCase):
         self.assertNotEqual(spring_2024_activity, {}, "Spring 2024 data is missing in the response.")
 
         self.assertEqual(spring_2024_activity.get('UnitsEnrolled'), 3)
-        self.assertEqual(spring_2024_activity.get('Program'), "GD")  # Adjusted to reflect your setup
-        self.assertEqual(spring_2024_activity.get('Level'), 1)  # Assuming Level 1 for simplicity
-        self.assertEqual(spring_2024_activity.get('Plan'), "Bachelor, GD")  # Adjusted to reflect your setup
+        self.assertEqual(spring_2024_activity.get('Program'), "GD")  
+        self.assertEqual(spring_2024_activity.get('Level'), 1)  
+        self.assertEqual(spring_2024_activity.get('Plan'), "Bachelor, GD")  
         self.assertEqual(spring_2024_activity.get('TermGPA'), 3.3)
         self.assertEqual(spring_2024_activity.get('TermLetterGrade'), "A-")
 
         # Check the course under "Spring 2024"
-        self.assertEqual(len(spring_2024_activity['courses']), 1)  # Assuming one course for simplicity
+        self.assertEqual(len(spring_2024_activity['courses']), 1)  
         spring_2024_course = spring_2024_activity['courses'][0]
         self.assertEqual(spring_2024_course['name'], "DES101")
         self.assertEqual(spring_2024_course['grade'], 88.0)
-        self.assertEqual(spring_2024_course['letter'], "B+")  # Assuming this is the correct mapping for a grade of 88
+        self.assertEqual(spring_2024_course['letter'], "B+")  
         self.assertEqual(spring_2024_course['units'], 3)
         
         
-    # def test_student_finances(self):
-    #     url = reverse('student-finances')  # Use Django's reverse to get URL from the name
-    #     response = self.client.get(url)
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
-    #     self.assertEqual(response['Content-Type'], 'application/json')
-    #     response_json = response.json()   
-                
-     
+    def test_student_finances(self):
+        # Fetching the student-finances endpoint
+        url = reverse('student-finances')  # Ensure you have named your URL route as 'student-finances'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response['Content-Type'], 'application/json')
+        response_json = response.json()
+        
+        #this part of printing could be commented out
+        # formatted_new_json = json.dumps(response_json, indent=4)
+        # print(formatted_new_json)
+        
+        self.assertAlmostEqual(response_json["paid"],0.0, places=2, msg="Paid amount does not match expected value.")
+        self.assertAlmostEqual(response_json["awards"], 0.0, places=2, msg="Awards amount does not match expected value.")
+        self.assertAlmostEqual(response_json["due"], 5000.0, places=2, msg="Due amount does not match expected value.")
+        self.assertEqual(response_json["selectedTerm"], "Spring 2024", msg="Selected term does not match expected value.")
+
+        # Check for the expected transaction within "Spring 2024"   
+        expected_spring_2024_activities = [{
+            "name": "Spring Transaction",  # Name as per setup
+            "date": "2024-03-01",  # Date as per setup
+            "amount": 5000.0,  # Amount as per setup
+            "type": "debit"  # Type as per setup
+        }]
+        self.assertIn("Spring 2024", response_json["activity"], "Spring 2024 data is missing in the response.")
+        self.assertEqual(len(response_json["activity"]["Spring 2024"]), 1, "Expected number of transactions in Spring 2024 does not match.")
+        self.assertDictEqual(response_json["activity"]["Spring 2024"][0], expected_spring_2024_activities[0], "Spring 2024 activity does not match expected data.")
+        
+    
+    def test_course_requirements(self):
+        url = reverse('course-requirements')  # Adjust if your URL name is different
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response_json = response.json()
+        print(response_json)
+        # Now expecting "None" for minor, as per your update
+        expected_program_info = {
+                "degree": "Bachelor",
+                "major": "GD",
+                "minor": "None",  
+                "concentration": "none",
+                "year": "3", 
+                "academicLoad": "full-time"
+        }
+        self.assertDictEqual(response_json["programInfo"], expected_program_info)
+
+            # Adjusting expected requirements based on setup and view logic
+        expected_requirements = [
+                {
+                    "description": "Complementary Studies",
+                    "requiredUnits": 3,
+                    "status": "in-progress",  # or "complete" based on the grades you've set up
+                    "courses": [
+                        {
+                            "name": "DES101",
+                            "units": 3,
+                            "status": "complete"  # Assuming a passing grade in setup
+                        }
+                        # Add other courses as per your setup if necessary
+                    ]
+                }
+                # Add other expected requirements based on your setup
+        ]
+
+        self.assertEqual(len(response_json["requirements"]), len(expected_requirements))
+        for expected, actual in zip(expected_requirements, response_json["requirements"]):
+            self.assertEqual(expected["description"], actual["description"])
+            self.assertEqual(expected["requiredUnits"], actual["requiredUnits"])
+            self.assertEqual(expected["status"], actual["status"])
+            for expected_course, actual_course in zip(expected["courses"], actual["courses"]):
+                self.assertDictEqual(expected_course, actual_course)
+
+        # You may need to adjust other parts of the test as necessary based on actual setup and expectations.
 

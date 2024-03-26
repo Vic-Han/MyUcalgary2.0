@@ -1,5 +1,5 @@
 [
-    {
+      {
         "model": "api.Course",
         "pk": "CPSC231",
         "fields": {
@@ -9,17 +9,7 @@
           "department": "Computer Science"
         }
       },
-      {
-        "model": "api.Course",
-        "pk": "CPSC233",
-        "fields": {
-          "course_title": "Introduction to Computer Science for Computer Science Majors II",
-          "course_description": "Continuation of Introduction to Computer Science for Computer Science Majors I. Emphasis on object-oriented analysis and design of small-scale computational systems and implementation using an object oriented language. Issues of design, modularization, and programming style will be emphasized.",
-          "course_prerequisites": "CPSC231",
-          "course_units": 3,
-          "department": "Computer Science"
-        }
-      },
+   
       {
         "model": "api.Course",
         "pk": "CPSC251",
@@ -174,29 +164,6 @@
           "department": "Computer Science"
         }
       },
-    
-      {
-        "model": "api.Course",
-        "pk": "CPSC599",
-        "fields": {
-          "course_title": "Special Topics in Computer Science",
-          "course_description": "Exploration of various areas in Computer Science. Topics will vary from year-to-year. It will be offered as required to provide the opportunity for students to engage in additional areas in Computer Science. Before registration, consult the Department of Computer Science for topics offered.",
-          "course_prerequisites": "CPSC457",
-          "course_units": 3,
-          "department": "Computer Science"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "PHIL314",
-        "fields": {
-          "course_title": "Electromagnetism",
-          "course_description": "Fundamentals of electric and magnetic fields and their applications.",
-          "course_prerequisites": "PHYS211",
-          "course_units": 3,
-          "department": "Physics and Astronomy"
-        }
-      },
       {
         "model": "api.Course",
         "pk": "PHIL314",
@@ -204,7 +171,7 @@
           "course_title": "Information Technology Ethics",
           "course_description": "A critical and analytical examination of ethical and legal problems arising in and about information technology. May include hacking, online privacy, intellectual property rights, artificial intelligence, globalization and regulation issues, cheating in online games, and others.",
           "course_units": 3,
-          "department": "Philosophy"
+          "department": "Computer Science"
         }
       },
       {
@@ -217,89 +184,6 @@
           "department": "Engineering"
         }
       },
-      
-      {
-        "model": "api.Course",
-        "pk": "SENG401",
-        "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "SENG438",
-        "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
-      
-      {
-        "model": "api.Course",
-        "pk": "SENG471",
-        "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "SENG511",
-        "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "SENG513",
-        "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "SENG533",
-        "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "SENG550",
-        "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "CPSC231",
-        "fields": {
-          "course_title": "English as a Second Language Part II",
-          "course_description": "Better speak but no super yet.",
-          "course_prerequisites": "ENGL101",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
       {
         "model": "api.Course",
         "pk": "CPSC233",
@@ -310,183 +194,38 @@
           "course_units": 3,
           "department": "Computer Science"
         }
-      },
-      {
-        "model": "api.Course",
-        "pk": "CPSC251",
-        "fields": {
-          "course_title": "Quantum Mechanics",
-          "course_description": "Introduction to the principles of quantum mechanics with applications to atomic, molecular, and solid-state physics.",
-          "course_prerequisites": "PHYS211, MATH211",
-          "course_units": 3,
-          "department": "Physics and Astronomy"
-        }
-      },
+      },  
       {
         "model": "api.Course",
         "pk": "CPSC319",
         "fields": {
-          "course_title": "British Literature",
-          "course_description": "Survey of British literature from the Anglo-Saxon period to the 18th century.",
-          "course_prerequisites": "ENGL101, ENGL102",
+          "course_title": "Data Structures, Algorithms, and Their Applications",
+          "course_description": "Fundamental data structures, including arrays, lists, stacks, queues, trees, hash tables, and graphs. Algorithms for searching and sorting. Introduction to analysis of algorithms. Applications of these data structures and algorithms. For students wishing to combine studies in computer science with studies in other disciplines.",
+          "course_prerequisites": "??",
           "course_units": 3,
-          "department": "English"
+          "department": "Computer Science"
         }
       },
+
+      
+
+
+
+     
     
-      {
-        "model": "api.Course",
-        "pk": "CPSC329",
-        "fields": {
-          "course_title": "Software Process and Product Management",
-          "course_description": "Covers concepts, methods, and tools for managing software development processes and products.",
-          "course_prerequisites": "SENG300",
-          "course_units": 3,
-          "department": "Computer Science"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "CPSC331",
-        "fields": {
-          "course_title": "Electromagnetism",
-          "course_description": "Fundamentals of electric and magnetic fields and their applications.",
-          "course_prerequisites": "PHYS211",
-          "course_units": 3,
-          "department": "Physics and Astronomy"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "CPSC351",
-        "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "CPSC355",
-        "fields": {
-          "course_title": "English as a Second Language Part II",
-          "course_description": "Better speak but no super yet.",
-          "course_prerequisites": "ENGL101",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "CPSC359",
-        "fields": {
-          "course_title": "Software Architecture",
-          "course_description": "An in-depth study of high-level software structures. Covers architectural styles, design patterns, and evaluation techniques.",
-          "course_prerequisites": "SENG300, CPSC233",
-          "course_units": 3,
-          "department": "Computer Science"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "CPSC411",
-        "fields": {
-          "course_title": "Quantum Mechanics",
-          "course_description": "Introduction to the principles of quantum mechanics with applications to atomic, molecular, and solid-state physics.",
-          "course_prerequisites": "PHYS211, MATH211",
-          "course_units": 3,
-          "department": "Physics and Astronomy"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "CPSC413",
-        "fields": {
-          "course_title": "British Literature",
-          "course_description": "Survey of British literature from the Anglo-Saxon period to the 18th century.",
-          "course_prerequisites": "ENGL101, ENGL102",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
+     
+     
+     
+      
+  
     
-      {
-        "model": "api.Course",
-        "pk": "CPSC441",
-        "fields": {
-          "course_title": "Software Process and Product Management",
-          "course_description": "Covers concepts, methods, and tools for managing software development processes and products.",
-          "course_prerequisites": "SENG300",
-          "course_units": 3,
-          "department": "Computer Science"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "CPSC449",
-        "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "CPSC481",
-        "fields": {
-          "course_title": "Quantum Mechanics",
-          "course_description": "Introduction to the principles of quantum mechanics with applications to atomic, molecular, and solid-state physics.",
-          "course_prerequisites": "PHYS211, MATH211",
-          "course_units": 3,
-          "department": "Physics and Astronomy"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "CPSC559",
-        "fields": {
-          "course_title": "British Literature",
-          "course_description": "Survey of British literature from the Anglo-Saxon period to the 18th century.",
-          "course_prerequisites": "ENGL101, ENGL102",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
-    
-      {
-        "model": "api.Course",
-        "pk": "CSPC599",
-        "fields": {
-          "course_title": "Software Process and Product Management",
-          "course_description": "Covers concepts, methods, and tools for managing software development processes and products.",
-          "course_prerequisites": "SENG300",
-          "course_units": 3,
-          "department": "Computer Science"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "PHIL314",
-        "fields": {
-          "course_title": "Electromagnetism",
-          "course_description": "Fundamentals of electric and magnetic fields and their applications.",
-          "course_prerequisites": "PHYS211",
-          "course_units": 3,
-          "department": "Physics and Astronomy"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "SENG300",
-        "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
-          "course_units": 3,
-          "department": "English"
-        }
-      },
+  
+
+
+
+
+
+
       {
         "model": "api.Course",
         "pk": "ENGG200",
@@ -912,17 +651,7 @@
           "department": "Software Engineering"
         }
       },
-      {
-        "model": "api.Course",
-        "pk": "SENG550",
-        "fields": {
-          "course_title": "Scalable Data Analytics",
-          "course_description": "Sources and characteristics of large scale data, i.e., \"big data\", large scale data analysis, benefits of large scale data analysis to various industry domains, programming paradigms and middleware technologies for scalable data analysis, algorithms that enable large scale data processing, application of large scale data algorithms in selected application domains, e.g., web user behaviour analysis and text processing, analytics frameworks.",
-          "course_units": 3,
-          "course_prerequisites": "ENSF480, CPSC319",
-          "department": "Software Engineering"
-        }
-      },
+    
       {
         "model": "api.Course",
         "pk": "SENG550",

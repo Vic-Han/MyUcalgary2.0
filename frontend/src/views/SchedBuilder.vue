@@ -2,6 +2,15 @@
 <template>
     <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false" @applyadvancedsearch="applyAdvancedFilters"></AdvancedSearch>
     <AcademicSchedulePopup v-if="academicRequirementsPopup" :requirements="degreeRequirements" @close="academicRequirementsPopup = false" @selectcourse="addCourseFromRequirements"></AcademicSchedulePopup>
+    <div v-if="dropCoursePopup">
+        <div class="bg-black-100 fixed opacity-50 w-screen h-screen z-40"></div>
+        <div class="fixed w-1/3 h-auto max-h-3/4 overflow-y-auto px-4 pb-4 bg-white-100 rounded-xl left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 shadow-lg z-50">
+            <div @click="dropCoursePopup = false"> Cancle</div>
+            <div> Are you sure you want to drop this course?</div>
+            <div> {{ selectedDroppedCourse }}</div>
+            <div @click="dropCourse"> Yes </div>    
+        </div>
+    </div>
     <div class="flex flex-row">
         <div class=" px-2 flex flex-col h-screen box-content bg-white-100 shadow-xl">
             <a href="https://www.ucalgary.ca/" target="_blank">
@@ -201,7 +210,9 @@ const createLecInfo = (course, index) =>{
                 schedsLoading: false,
                 advancedFilters: {
                 },
-                academicRequirementsPopup: false
+                academicRequirementsPopup: false,
+                selectedDroppedCourse : '',
+                dropCoursePopup: false
             }
         },
         created(){
@@ -243,7 +254,8 @@ const createLecInfo = (course, index) =>{
                                         allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
                                         allCourses[i].selectedIndices[j] = true
                                         allCourses[i].selected = j
-                                        allCourses[i].included='sched'
+                                        allCourses[i].included= 'sched'
+                                        allCourses[i].enrolled = value
                                         break
                                     }
                                 }
@@ -255,6 +267,7 @@ const createLecInfo = (course, index) =>{
                                         allCourses[i].selectedIndices[j] = true
                                         allCourses[i].selected = j
                                         allCourses[i].included = 'sched'
+                                        allCourses[i].enrolled = value
                                         break
                                     }
                                 }
@@ -332,6 +345,15 @@ const createLecInfo = (course, index) =>{
                 }
             },
             removeCourseFromSched(courseName){    
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    if(this.schedCourses[i].name == courseName && this.schedCourses[i].enrolled){
+                        this.dropCoursePopup = true
+                        this.selectedDroppedCourse = courseName
+                        return
+                    }
+                }
+
+
                 const newSched = this.schedCourses.filter((item) => {
                     return item.name != courseName
                 })
@@ -579,6 +601,25 @@ const createLecInfo = (course, index) =>{
                     }
                 }
             },
+            dropCourse(){
+                const serverPath = this.$store.state.serverPath
+                const apiPath = 'api/schedule-builder/'
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization' : `Token ${this.$cookies.get("auth-token")}`
+                }
+                const body = new FormData()
+                body.append('course', this.selectedDroppedCourse)
+                body.append('term' , this.selectedTerm)
+                this.$http.delete(`${serverPath}${apiPath}`, body, {headers: headers}).then(res => {
+                    console.log(res.data)
+                    this.dropCoursePopup = false
+                    this.selectedDroppedCourse = ''
+                    this.removeCourseFromSchedule(this.selectedDroppedCourse)
+                }).catch(err => {
+                    console.log(err)
+                })
+            },
             applyAdvancedFilters(filters){
                 this.advancedSearchOpen = false
                 
@@ -617,7 +658,27 @@ const createLecInfo = (course, index) =>{
                 })
             },
             getSchedule(){
-                console.log('getting schedule')
+                const serverPath  = this.$store.state.serverPath
+                const apiPath = 'api/schedule-builder/'
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization' : `Token ${this.$cookies.get("auth-token")}`
+                }
+                const body = new FormData()
+                body.append('term', this.selectedTerm)
+                const courses = []
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    courses.push({
+                        course: this.schedCourses[i].name,
+                        section: this.schedCourses[i].combinations[this.schedCourses[i].selected]
+                    })
+                }
+                body.append('courses', courses)
+                this.$http.post(`${serverPath}${apiPath}`, body, {headers: headers}).then(res => {
+                    console.log(res.data)
+                }).catch(err => {
+                    console.log(err)
+                })
             }
 
         },

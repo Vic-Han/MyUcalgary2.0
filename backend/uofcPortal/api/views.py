@@ -206,9 +206,9 @@ class StudentGradeView(APIView, GradeMixins):
         student_year = min(4, math.ceil(total_courses / 10)) # Assuming 10 courses per year, calculate the student's year
 
         currentStudentInfo = {
-            "program": applications.major_program.program_name,
+            "program": applications.program.program_name,
             "level": student_year,
-            "plan": f"{applications.major_program.program_degree_level}, {applications.major_program.program_name}"
+            "plan": f"{applications.program.program_degree_level}, {applications.program.program_name}"
         }
 
         activity = {}
@@ -391,12 +391,11 @@ class StudentRequirementsView(APIView):
 
         applications = StudentApplications.objects.filter(student_id=student)
         application = applications[0]
-        maj_prog = application.major_program
-        min_prog = application.minor_program
+        maj_prog = application.program
 
         requirement_data["programInfo"]["degree"] = maj_prog.program_degree_level
         requirement_data["programInfo"]["major"] = maj_prog.program_name
-        requirement_data["programInfo"]["minor"] = min_prog.program_name            
+        requirement_data["programInfo"]["minor"] = application.minor            
             
         enrollments = Enrollment.objects.filter(student_id=student)
         lecture_list = []

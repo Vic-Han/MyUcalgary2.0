@@ -202,29 +202,20 @@
         "model": "api.Course",
         "pk": "PHIL314",
         "fields": {
-          "course_title": "Electromagnetism",
-          "course_description": "Fundamentals of electric and magnetic fields and their applications.",
-          "course_prerequisites": "PHYS211",
-          "course_units": 3,
-          "department": "Physics and Astronomy"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "PHIL314",
-        "fields": {
           "course_title": "Information Technology Ethics",
-          "course_description": "A critical and analytical examination of ethical and legal problems arising in and about information technology. May include hacking, online privacy, intellectual property rights, artificial intelligence, globalization and regulation issues, cheating in online games, and others.",
+          "course_description": "A critical and analytical examination of ethical and legal problems arising in and about information technology. May include hacking, online privacy, intellectual property rights, artificial intelligence, globalization and regulation issues, cheating in online games, and others",
           "course_units": 3,
-          "department": "Philosophy"
+          "department": "Computer Science"
         }
       },
+      
       {
         "model": "api.Course",
         "pk": "SENG300",
         "fields": {
           "course_title": "Introduction to Software Engineering",
           "course_description": "Introduction to the development and evolution of software. Covers key conceptual foundations as well as key methods and techniques used in the different phases of the software lifecycle. Emphasis on both technical and soft skills needed for high quality software and software-based products developed in teams.",
+          "course_prerequisites": "??",
           "course_units": 3,
           "department": "Engineering"
         }
@@ -234,20 +225,20 @@
         "model": "api.Course",
         "pk": "SENG401",
         "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_title": "Software Architecture",
+          "course_description": "Software architectures and design for non-functional software properties. Introduction to program comprehension skills including analysis of existing architectures.",
           "course_units": 3,
-          "department": "English"
+          "department": "Engineering"
         }
       },
       {
         "model": "api.Course",
         "pk": "SENG438",
         "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_title": "Software Testing, Reliability, and Quality",
+          "course_description": "Concepts, methods, techniques, processes, and tools for software testing. The principles, processes, and applications of software reliability and software quality assurance.",
           "course_units": 3,
-          "department": "English"
+          "department": "Engineering"
         }
       },
       
@@ -255,52 +246,56 @@
         "model": "api.Course",
         "pk": "SENG471",
         "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_title": "Software Requirements Engineering",
+          "course_description": "Introduction to elicitation, modelling, expression and validation of the requirements. Techniques and methodologies for requirements engineering. Applications of requirements engineering to the management of the software development lifecycle.",
           "course_units": 3,
-          "department": "English"
+          "department": "Engineering"
         }
       },
       {
         "model": "api.Course",
         "pk": "SENG511",
         "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_title": "Software Process and Project Management",
+          "course_description": "Analysis of methods, tools, and techniques for software process improvement and software project management as an effort to achieve quality software products.",
           "course_units": 3,
-          "department": "English"
+          "department": "Engineering"
         }
       },
       {
         "model": "api.Course",
         "pk": "SENG513",
         "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_title": "Web-Based Systems",
+          "course_description": "An overview of software engineering methods and technologies for developing web-based software systems.",
           "course_units": 3,
-          "department": "English"
+          "department": "Engineering"
         }
       },
       {
         "model": "api.Course",
         "pk": "SENG533",
         "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_title": "Software Performance Evaluation",
+          "course_description": "Analyzing quality requirements of large-scale software. Performance analysis, testing, and tuning techniques. Evaluating software scalability. Capacity planning methodologies. Issues related to safety, security, and availability of software.",
           "course_units": 3,
-          "department": "English"
+          "department": "Engineering"
         }
       },
       {
         "model": "api.Course",
         "pk": "SENG550",
         "fields": {
-          "course_title": "Modern American Literature",
-          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_title": "Engineering Large Scale Analytics Systems",
+          "course_description": "Sources and characteristics of large scale data, i.e., big data, large scale data analysis, benefits of large scale data analysis to various industry domains, programming paradigms and middleware technologies for scalable data analysis, algorithms that enable large scale data processing, application of large scale data algorithms in selected application domains, e.g., Web user behaviour analysis and text processing, analytics frameworks.",
           "course_units": 3,
-          "department": "English"
+          "department": "Engineering"
         }
       },
+
+
+
+      
       {
         "model": "api.Course",
         "pk": "CPSC231",

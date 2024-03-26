@@ -24,7 +24,7 @@
             <div class="mx-1"> {{ lecture.name }} </div>
             <div class="mx-1"> {{ convertLectureTime()}} </div>
             <div class="mx-1">{{lecture.roomno}}</div>
-            <div class="h-5 w-5 bg-black-100" v-if="course.enrolled"></div>
+            <div class="ml-2 h-5 w-16 border-2 border-white-100 text-xs text-white-100 bg-blue-500 rounded-xl drop-shadow-lg" v-if="course.enrolled">Enrolled</div>
        </div>
         <div class="flex flex-row pl-2" v-if="tut">
             <div class="mx-1">{{tut.name}}</div>

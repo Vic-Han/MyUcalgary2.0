@@ -121,7 +121,6 @@
                               <div v-if="course.status == 'complete'" class="text-left"><strong>Grade:</strong> {{ course.grade }}</div>
                           </div>
                         </div>
-
                     </div>
                   </div>
                 </div>

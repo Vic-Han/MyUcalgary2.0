@@ -5,10 +5,12 @@
     <div v-if="dropCoursePopup">
         <div class="bg-black-100 fixed opacity-50 w-screen h-screen z-40"></div>
         <div class="fixed w-1/3 h-auto max-h-3/4 overflow-y-auto px-4 pb-4 bg-white-100 rounded-xl left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 shadow-lg z-50">
-            <div @click="dropCoursePopup = false"> Cancle</div>
-            <div> Are you sure you want to drop this course?</div>
-            <div> {{ selectedDroppedCourse }}</div>
-            <div @click="dropCourse"> Yes </div>    
+            <div class="italic font-semibold text-xl py-10">Are you sure you want to drop {{ selectedDroppedCourse }}?</div>
+            <div class="flex flex-row px-36 pb-5">
+                <div class="border-2 cursor-pointer font-semibold w-20 pt-1.5 h-10 mx-14 border-red-100 text-red-100 rounded-lg hover:bg-red-100 hover:text-white-100" @click="dropCourse">Yes</div>
+                <div class="border-2 cursor-pointer font-semibold w-20 pt-1.5 h-10 mx-14 border-red-100 text-red-100 rounded-lg hover:bg-red-100 hover:text-white-100" @click="dropCoursePopup = false">Cancel</div>
+            </div>
+                
         </div>
     </div>
     <div class="flex flex-row">
@@ -82,7 +84,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-11 h-200">
-                <div class="col-span-4 flex flex-col px-10 h-full bg-white-100 rounded-xl shadow-xl mb-4 mx-4 p-4">
+                <div class="col-span-4 flex flex-col px-10 h-full max-h-full overflow-y-auto bg-white-100 rounded-xl shadow-xl mb-4 mx-4 p-4">
                     <div v-if="schedCourses.length+cartCourses.length == 0" class="text-grey-200 text-2xl font-semibold pt-20"> Add Courses to Your Schedule by Searching for a Course </div>
                     <div v-for="(course,index) in schedCourses" :key="index">
                         <SelectedCourse 

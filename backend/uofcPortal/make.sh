@@ -2,7 +2,7 @@
 
 # Delete the SQLite database file
 rm -f db.sqlite3
-rm -rf uofcPortal/migrations/001_*
+rm -f migrations/0001_initial.py
 
 # Make migrations
 python3 manage.py makemigrations

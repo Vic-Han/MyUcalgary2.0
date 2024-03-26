@@ -177,3 +177,9 @@ class TermSerializer(serializers.ModelSerializer):
     class Meta:
         model = Term
         fields = '__all__'
+
+class EmergencyContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmergencyContact
+        fields = '__all__'
+

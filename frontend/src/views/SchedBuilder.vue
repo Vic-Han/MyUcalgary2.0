@@ -7,8 +7,8 @@
         <div class="fixed w-1/3 h-auto max-h-3/4 overflow-y-auto px-4 pb-4 bg-white-100 rounded-xl left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 shadow-lg z-50">
             <div class="italic font-semibold text-xl py-10">Are you sure you want to drop {{ selectedDroppedCourse }}?</div>
             <div class="flex flex-row px-36 pb-5">
-                <div class="border-2 cursor-pointer font-semibold w-20 pt-1.5 h-10 mx-14 border-red-100 text-red-100 rounded-lg hover:bg-red-100 hover:text-white-100" @click="dropCourse">Yes</div>
-                <div class="border-2 cursor-pointer font-semibold w-20 pt-1.5 h-10 mx-14 border-red-100 text-red-100 rounded-lg hover:bg-red-100 hover:text-white-100" @click="dropCoursePopup = false">Cancel</div>
+                <div class="border-2 cursor-pointer font-semibold w-20 pt-1.5 h-10 mx-auto border-red-100 text-red-100 rounded-lg hover:bg-red-100 hover:text-white-100" @click="dropCourse">Yes</div>
+                <div class="border-2 cursor-pointer font-semibold w-20 pt-1.5 h-10 mx-auto border-red-100 text-red-100 rounded-lg hover:bg-red-100 hover:text-white-100" @click="dropCoursePopup = false">Cancel</div>
             </div>
                 
         </div>

@@ -1,5 +1,5 @@
 <template> 
-  <div class="bg-white-100 w-full rounded-xl drop-shadow-xl h-full m-b-4">
+  <div class="bg-white-100 w-full rounded-xl drop-shadow-xl h-200 m-b-4">
     <div class="relative flex flex-row">
       <div class="p-4 font-semibold text-3xl">New Application</div>
       <div class="absolute m-4 h-10 w-10 right-0 fill-grey-200 hover:fill-red-100 cursor-pointer" @click="close">
@@ -51,7 +51,6 @@
           <div v-if="selectedConcentration !== '' &&  selectedType === 'Undergrad'" @click="submit"> Submit </div>
           <div v-if="selectedProgram !== '' &&  selectedType === 'Graduate'" @click="submit"> Submit </div>
       </div>
-      <div class="h-24">space</div>
       <div v-if="selectedType === 'Award'">
         <select v-model="selectedAward">
           <option value=""></option>

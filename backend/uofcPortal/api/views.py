@@ -513,7 +513,9 @@ class StudentRequirementsView(APIView):
             requirement_data["requirements"].append({
                 "description": requirement.description,
                 "requiredUnits": requirement.required_units,
+                "remainingUnits": requirement.required_units - units_completed,
                 "status": req_status,
+                "optional": requirement.optional,
                 "courses": course_data
             })
 

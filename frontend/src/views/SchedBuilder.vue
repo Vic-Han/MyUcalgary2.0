@@ -16,7 +16,7 @@
                 <div class="font-semibold text-grey-200 text-2xl" v-bind:class="{'text-red-100' : backHover}">Back to Home</div>
             </router-link>
             <div class="flex flex-row items-center w-full relative left-5">
-                <input type="text" placeholder="search" @keydown="searchResults" v-model="courseSearchTerm" class="w-2/3 text-xl pl-2 h-9 border border-black-100 rounded-md outline-red-100 ">
+                <input type="text" placeholder="search" @input="searchResults" v-model="courseSearchTerm" class="w-2/3 text-xl pl-2 h-9 border border-black-100 rounded-md outline-red-100 ">
                 <div class="text-lg w-fit px-3 cursor-pointer text-left text-grey-200 hover:text-red-100" @click="advancedSearchOpen = true"> Advanced Search</div>
             </div>
             <div class="h-4/6 overflow-y-auto w-96">
@@ -243,6 +243,7 @@ const createLecInfo = (course, index) =>{
                                         allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
                                         allCourses[i].selectedIndices[j] = true
                                         allCourses[i].selected = j
+                                        allCourses[i].included='sched'
                                         break
                                     }
                                 }
@@ -253,6 +254,7 @@ const createLecInfo = (course, index) =>{
                                         allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
                                         allCourses[i].selectedIndices[j] = true
                                         allCourses[i].selected = j
+                                        allCourses[i].included = 'sched'
                                         break
                                     }
                                 }

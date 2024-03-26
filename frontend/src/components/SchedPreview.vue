@@ -40,12 +40,12 @@
         
         <div class = "absolute w-sched" v-for="(section,index) in schedule" :key="index">
             <div v-for="(day,dayNo) in section.Lecture.days" 
-            :key="dayNo" :class="classStyles(day,section.Lecture.start,section.Lecture.end,index, section.Lecture.roomno)">
+            :key="dayNo" :class="classStyles(day,section.Lecture.start,section.Lecture.end,index)">
             {{ section.courseCode + ' ' + section.Lecture.LectureNO }}
             </div>
             <div class = "absolute w-sched" v-if="section.Tutorial">
                 <div v-for="(day,dayNo) in section.Tutorial.days" :key ="dayNo" 
-                :class="classStyles(day,section.Tutorial.start,section.Tutorial.end,index, section.Tutorial.roomno)" >
+                :class="classStyles(day,section.Tutorial.start,section.Tutorial.end,index)" >
                     {{ section.courseCode + ' ' + section.Tutorial.TutorialNO }}
                 </div>
             </div>
@@ -114,18 +114,18 @@ const classColor= {
             //console.log(this.schedule)
         },
         methods: {
-            classStyles(day,starttime,endtime,classno,roomno){
+            classStyles(day,starttime,endtime,classno){
                 let style = 'absolute ';
                 style += leftPos[day] + ' ';
-                style += 'w-36 box-content p-2 rounded-sm opacity-80 z-40 ';
+                style += 'w-36 box-content p-2 rounded-sm opacity-80 z-30 ';
                 style += topPos[starttime] + ' '
                 const time = endtime-starttime;
                 style += height[Number(time.toFixed(2))] + ' ';
                 style += classColor[classno] + ' ';
-                // Hi Callum I was so closeee to figuring this out but whatever. Comment out the 3 lines below
-                style += ' hover:after:bg-white-100 hover:after:text-black-100 hover:after:rounded-lg hover:after:shadow-lg' 
-                + ' hover:after:p-4 hover:after:absolute hover:after:translate-x-5 hover:after:-translate-y-6 '
-                style += ` after:content-['${roomno}'] after:hidden hover:after:block`
+                // // Hi Callum I was so closeee to figuring this out but whatever. Comment out the 3 lines below
+                // style += ' hover:after:bg-white-100 hover:after:text-black-100 hover:after:rounded-lg hover:after:shadow-lg' 
+                // + ' hover:after:p-4 hover:after:absolute hover:after:translate-x-5 hover:after:-translate-y-6 '
+                // style += ` after:content-['${roomno}'] after:hidden hover:after:block`
                 return style;
             },
         },

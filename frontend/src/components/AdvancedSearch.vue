@@ -1,6 +1,6 @@
 <template>
-    <div class="fixed w-screen h-screen z-30 opacity-50 bg-black-100"></div>
-    <div class="fixed w-fit h-96 z-40 bg-white-100 rounded-xl left-1/2 -translate-x-1/2 top-1/3 -translate-y-1/2">
+    <div class="fixed w-screen h-screen z-40 opacity-50 bg-black-100"></div>
+    <div class="fixed w-fit h-96 z-50 bg-white-100 rounded-xl left-1/2 -translate-x-1/2 top-1/3 -translate-y-1/2">
         <div @click="closeAdvancedSearch" class="absolute p-2 right-0">
             <svg xmlns="http://www.w3.org/2000/svg" class=" h-10 w-10 fill-grey-200 cursor-pointer hover:fill-red-100" viewBox="0 -960 960 960">
                 <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>

@@ -503,7 +503,9 @@ export default {
       },
       showSearchResults(){
         document.removeEventListener("click",this.eventLister)
-        document.addEventListener("click",this.eventLister)
+        if(this.searchTerm.length) {
+          document.addEventListener("click",this.eventLister)
+        }
         this.filteredComponents = this.componentFuse.search(this.searchTerm)
         this.filteredLinks = this.linkFuse.search(this.searchTerm)
       },

@@ -545,8 +545,14 @@ export default {
       }
   },
   created(){
-    this.componentFuse = new Fuse(this.components, {keys:['terms']})
-    this.linkFuse = new Fuse(this.links, {keys:['name', 'section']})
+    this.componentFuse = new Fuse(this.components, {
+      keys:['terms'],
+      threshold: 0.3
+    })
+    this.linkFuse = new Fuse(this.links, {
+      keys:['name', 'section'],
+      threshold: 0.3
+    })
   },
   mounted(){
     document.addEventListener('click', this.eventHandler)

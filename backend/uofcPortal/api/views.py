@@ -2,16 +2,16 @@
 import math
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets
+from django.http import Http404
+from rest_framework import viewsets, status
 from .mixins import GradeMixins
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from .models import Student, Requirement, Tutorial, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications, Term
-from .serializers import StudentSerializer, RequirementSerializer, UserSerializer, FacultySerializer, DepartmentSerializer, ProgramSerializer, AddressSerializer
-from .serializers import CourseSerializer, TutorialSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer, StudentApplicationsSerializer
+from .models import *
+from .serializers import *
 
 
 # Create your views here.
@@ -90,10 +90,46 @@ class GradeViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated,)
 
 class EnrollmentViewSet(viewsets.ModelViewSet):
-    queryset = Enrollment.objects.all()
     serializer_class = EnrollmentSerializer
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    # queryset = Enrollment.objects.all()
+    def get_queryset(self):
+        token = self.request.auth  
+        student = get_object_or_404(Student, user=token.user)
+        return Enrollment.objects.filter(student=student)
+    
+    def delete(self, request, *args, **kwargs):
+        try:
+            student = get_object_or_404(Student, user=request.user)
+        except Http404:
+            return Response({"error": "Student not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        term_data = request.data.get('term')
+        course_data = request.data.get('course')
+
+        if not term_data or not course_data:
+            return Response({"error": "Term and course data are required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            term = get_object_or_404(Term, term_key=term_data)
+        except Http404:
+            return Response({"error": "Term not found with the provided term data!!!"}, status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            course = get_object_or_404(Course, course_code=course_data)
+        except Http404:
+            return Response({"error": "Course not found with the provided course data."}, status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            enrollment = get_object_or_404(Enrollment, student=student, lecture__term=term, lecture__course=course)
+        except Http404:
+            return Response({"error": "Enrollment record not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        enrollment.delete()
+        return Response({"message": "Unenrolled successfully."}, status=status.HTTP_204_NO_CONTENT)
+
+
 
 class TransactionViewSet(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
@@ -106,29 +142,50 @@ class StudentApplicationsViewSet(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
-    # def post(self, request):
-    #     student = get_object_or_404(Student, user=request.user)
-    #     if not student:
-    #         return Response({"error": "No student found"}, status=404)
-
-    #     data = request.data
-    #     data["student"] = student.pk
-    #     serializer = StudentApplicationsSerializer(data=data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data, status=201)
-    #     return Response(serializer.errors, status=400)
-
-
-    def delete(self, request):
+    def post(self, request):
         student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)
 
         data = request.data
-        application = get_object_or_404(StudentApplications, pk=data["application_id"])
-        application.delete()
-        return Response({"message": "Application deleted successfully"}, status=200)
+        
+        new_data = {}
+        new_data['student'] = student.pk
+        new_data['application_status'] = 'Under Review'
+        new_data['app_type'] = data['type']
+        if data['type'] == 'undergrad':
+            new_data['program'] = Program.objects.get(program_name=data['program']).pk
+            new_data['minor'] = data['minor']
+            new_data['concentration'] = data['concentration']
+
+        if data['type'] == 'grad':
+            new_data['program'] = Program.objects.get(program_name=data['program']).pk
+
+        if data['type'] == 'scholarship':
+            new_data['scholarship_name'] = data['scholarship']
+            new_data['scholarship_amount'] = 1000
+        if data['type'] == 'award':
+            new_data['scholarship_name'] = data['award']
+            new_data['scholarship_amount'] = 1000
+
+
+        serializer = StudentApplicationsSerializer(data=new_data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+            
+        return Response(serializer.errors, status=400)
+
+
+    # def delete(self, request):
+    #     student = get_object_or_404(Student, user=request.user)
+    #     if not student:
+    #         return Response({"error": "No student found"}, status=200)
+
+    #     data = request.data
+    #     application = StudentApplications.objects.get(pk=data['appID'])
+    #     application.delete()
+    #     return Response({"message": "Application deleted successfully"}, status=200)
 
     def get(self, request):
         student = get_object_or_404(Student, user=request.user)
@@ -166,7 +223,7 @@ class StudentApplicationsViewSet(APIView):
             {
                 "key" : application.pk,
                 "name": application.scholarship_name,
-                "amount": application.payment_amount,
+                "amount": application.scholarship_amount,
               
                 "status": application.application_status
             }
@@ -176,7 +233,7 @@ class StudentApplicationsViewSet(APIView):
             {
                 "key" : application.pk,
                 "name": application.scholarship_name,
-                "amount": application.payment_amount,
+                "amount": application.scholarship_amount,
                 "status": application.application_status
             }
             for application in applications.filter(app_type="award")

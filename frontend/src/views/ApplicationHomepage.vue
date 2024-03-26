@@ -1,20 +1,20 @@
 <template> 
   <div>
-      <ApplicationForm v-if="applicationForm" @cancel="closeApplicationForm" @submit="closeApplicationForm"/>
+      <ApplicationForm v-if="applicationForm" :default="selected" @cancel="closeApplicationForm" @submit="closeApplicationForm"/>
       <div v-else class="bg-white-100 w-full rounded-xl shadow-xl">
         <div class="text-left p-5 text-3xl font-semibold"> My Applications </div>
-        <div class = "flex flex-row px-20">
+        <div class="flex flex-row px-20">
           <div class="border border-grey-200 rounded-tl-lg w-1/4 py-3 cursor-pointer bg-gray-300" 
-          @click="selected='ugrad'" v-bind:class="{'bg-white-100 border-b-0' : selected==='ugrad'}"> Undergrad </div>
+          @click="selected='Undergrad'" v-bind:class="{'bg-white-100 border-b-0' : selected==='Undergrad'}"> Undergrad </div>
           <div class="border border-grey-200 w-1/4 py-3 cursor-pointer bg-gray-300" 
-          @click="selected='award'" v-bind:class="{'bg-white-100 border-b-0' : selected==='award'}"> Awards </div>
+          @click="selected='Award'" v-bind:class="{'bg-white-100 border-b-0' : selected==='Award'}"> Awards </div>
           <div class="border border-grey-200 w-1/4 py-3 cursor-pointer bg-gray-300" 
-          @click="selected='scholarship'" v-bind:class="{'bg-white-100 border-b-0' : selected==='scholarship'}"> Scholarships </div>
+          @click="selected='Scholarship'" v-bind:class="{'bg-white-100 border-b-0' : selected==='Scholarship'}"> Scholarships </div>
           <div class="border border-grey-200 rounded-tr-lg w-1/4 py-3 cursor-pointer bg-gray-300" 
-          @click="selected='grad'" v-bind:class="{'bg-white-100 border-b-0' : selected==='grad'}"> Grad</div>
+          @click="selected='Graduate'" v-bind:class="{'bg-white-100 border-b-0' : selected==='Graduate'}"> Graduate</div>
         </div>
-        <div class = "px-20"> 
-          <div class="p-5 h-128 box-content border-x border-grey-200 border-b rounded-b-xl flex-wrap" v-if="selected === 'ugrad'">
+        <div class="px-20"> 
+          <div class="p-5 h-128 box-content border-x border-grey-200 border-b rounded-b-xl flex-wrap" v-if="selected === 'Undergrad'">
             <div class="flex flex-row overflow-x-auto bg-white-200 shadow-inner p-1 h-full rounded-xl">
             <div v-if="ugradApps.length == 0" class="text-4xl text-center w-full text-grey-200 p-16 leading-loose">
               No applications for undergrad programs. You can start an application below.
@@ -40,7 +40,7 @@
             </div>
             </div>
           </div>
-          <div class="p-5 h-128 box-content border-x border-grey-200 border-b rounded-b-xl flex-wrap" v-else-if="selected === 'award'">
+          <div class="p-5 h-128 box-content border-x border-grey-200 border-b rounded-b-xl flex-wrap" v-else-if="selected === 'Award'">
             <div class="flex flex-row overflow-x-auto bg-white-200 shadow-inner p-1 h-full rounded-xl">
             <div v-if="awards.length == 0" class="text-4xl text-center w-full text-grey-200 p-20 leading-loose">
               No applications for awards. You can start an application below.
@@ -63,7 +63,7 @@
             </div>
             </div>
           </div>
-          <div class=" p-5 h-128 box-content border-x border-grey-200 border-b rounded-b-xl" v-else-if="selected === 'scholarship'">
+          <div class=" p-5 h-128 box-content border-x border-grey-200 border-b rounded-b-xl" v-else-if="selected === 'Scholarship'">
             <div class="overflow-x-auto bg-white-200 shadow-inner p-1 flex flex-row h-full rounded-xl">
               <div v-if="scholarships.length === 0" class="text-4xl text-center w-full text-grey-200 p-20 leading-loose">
                 No applications for scholarships. You can start an application below.
@@ -85,7 +85,7 @@
             </div>
             </div>
           </div>
-          <div class="p-5 h-128 box-content border-x border-grey-200 border-b rounded-b-xl " v-else-if="selected === 'grad'">
+          <div class="p-5 h-128 box-content border-x border-grey-200 border-b rounded-b-xl " v-else-if="selected === 'Graduate'">
             <div class="overflow-x-auto bg-white-200 shadow-inner p-1 flex flex-row h-full rounded-xl">
               <div v-if="gradApps.length == 0" class="text-4xl text-center w-full text-grey-200 p-20 leading-loose">
                 No applications for graduate programs. You can start an application below.
@@ -132,7 +132,7 @@ export default {
       scholarships: [],
       gradApps: [],
       awards: [],
-      selected: "ugrad"
+      selected: "Undergrad"
     }
   },
   methods: {
@@ -141,6 +141,7 @@ export default {
     },
     closeApplicationForm() {
       this.applicationForm = false
+      this.fetchData()
     },
     statusColor(status) {
       if(status === "Under Review") {
@@ -154,8 +155,24 @@ export default {
       }
     },
     deleteApplication(appID) {
-      // send a delete request to the backend
-      return appID
+      const serverpath = this.$store.state.serverPath
+      const apiPath = "/api/student-applications/"
+      const headers = {
+          'Content-Type': 'application/json',
+          'Authorization' :`Token ${this.$cookies.get("auth-token")}`
+      }
+      const body = new FormData()
+      body.append("appID", appID)
+      console.log(headers)
+      this.$http.delete(`${serverpath}${apiPath}`, body, {headers}).then(response => {
+          console.log(response.data)
+          this.ugradApps = this.ugradApps.filter(app => app.ID !== appID)
+          this.gradApps = this.gradApps.filter(app => app.ID !== appID)
+          this.scholarships = this.scholarships.filter(app => app.ID !== appID)
+          this.awards = this.awards.filter(app => app.ID !== appID)
+      }).catch(error => {
+          console.log(error)
+      })
     },
     fetchData(){
       const serverpath = this.$store.state.serverPath
@@ -164,7 +181,7 @@ export default {
           'Content-Type': 'application/json',
           'Authorization' :`Token ${this.$cookies.get("auth-token")}`
       }
-
+      console.log(headers)
       this.$http.get(`${serverpath}${apiPath}`,{headers}).then(response => {
           console.log(response.data)
           this.ugradApps = response.data["Undergrad applications"]

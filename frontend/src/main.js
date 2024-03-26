@@ -9,6 +9,8 @@ import axios from 'axios'
 // import the global css file and tailwind utilities
 import './index.css'
 import './tailwind.css'
+//import fuze for fuzzy searching
+import Fuse from 'fuse.js'
 
 const app = createApp(App)
 //app.use(VueWorker)
@@ -16,4 +18,5 @@ app.use(VueCookies, { expires: '1800s'})
 app.use(router)
 app.use(store)
 app.config.globalProperties.$http = axios
+app.config.globalProperties.$fuse = Fuse
 app.mount('#app')

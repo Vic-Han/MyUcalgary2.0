@@ -386,6 +386,10 @@ class StudentFinancesView(APIView):
 class DashboardView(APIView, GradeMixins):
     authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
     permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
+
+    def get_queryset(self):
+        term = self.request.query_params.get('term')
+
     def get(self, request):
         student = get_object_or_404(Student, user=request.user)
         if not student:
@@ -394,7 +398,8 @@ class DashboardView(APIView, GradeMixins):
         # Dashboard data structure
         dashboard_data = {
             "grades": {},
-            "finances": {}
+            "finances": {},
+            "schedule": {}
         }
 
         # Grades
@@ -442,6 +447,24 @@ class DashboardView(APIView, GradeMixins):
             else:
                 dashboard_data["finances"][term_name]["credits"] += current_amount
             dashboard_data["finances"][term_name]["net_balance"] += current_amount
+
+
+        # hardcoded term
+        term = None
+        try:
+            term = Term.objects.get(term_key="Win2024")
+        except Term.DoesNotExist:
+            return Response({"error": "Term not found"}, status=404)
+        # current schedule retrieval
+        enrollments = Enrollment.objects.filter(student=student)
+        for enrollment in enrollments:
+            if enrollment.lecture.term == term:
+                term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
+                
+                dashboard_data["schedule"][enrollment.lecture.course.course_code] = {
+                    "Lecture": enrollment.lecture.lecture_id,
+                    "Tutorial": enrollment.tutorial.tutorial_id if enrollment.tutorial else "None"
+                }
 
         return Response(dashboard_data)
     

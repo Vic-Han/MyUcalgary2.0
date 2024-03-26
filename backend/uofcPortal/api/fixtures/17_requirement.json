@@ -1,0 +1,31 @@
+[
+    {
+        "model": "api.Requirement",
+        "fields": {
+          "description": "Required Courses",
+          "required_units": 27,
+          "program": 1,
+          "courses": ["CPSC231", "CPSC233", "CPSC251", "CPSC331", "CPSC351", "CPSC355", "CPSC413", "CPSC449", "CPSC457", "MATH211", "MATH265", "PHIL279", "PHIL314"]
+        }
+      },
+      {
+        "model": "api.Requirement",
+        "fields": {
+          "description": "Technical Electives",
+          "required_units": 3,
+          "program": 1,
+          "courses": ["PHYS303", "PHYS207"]
+        }
+      },
+      {
+        "model": "api.Requirement",
+        "fields": {
+          "description": "Complementary Studies",
+          "required_units": 3,
+          "program": 1,
+          "courses": ["ENGL201", "ENGL305"]
+        }
+        }
+
+
+]

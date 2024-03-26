@@ -553,6 +553,50 @@ class ScheduleBuilderView(APIView):
     def get_queryset(self):
         term = self.request.query_params.get('term')
 
+    def post(self, request):
+        student = get_object_or_404(Student, user=request.user)
+        if not student:
+            return Response({"error": "No student found"}, status=404)
+
+        data = request.data
+
+        new_data = {}
+        new_data['student'] = student.pk
+        term = data['term']
+
+        course = Course.objects.get(course=data['course']).pk
+        term = Term.objects.get(term=data['term']).pk
+        lecture = Lecture.objects.get(course=course, lecture_id=data['lecture']).pk
+        tutorial = None
+        if not data['tutorial'] == None:
+            tutorial = Tutorial.objects.get(course=course, tutorial_id=data['tutorial']).pk
+        new_data['lecture'] = lecture
+        new_data['tutorial'] = tutorial
+
+
+        enrollments = Enrollment.objects.filter(student=student)
+        for enrollment in enrollments:
+            #check enrollment exists
+            if enrollment.lecture == lecture and enrollment.tutorial == tutorial and enrollment.lecture.term == term:
+                return Response({"error": "Already enrolled in section"}, status=status.HTTP_400_BAD_REQUEST)
+            
+            #check enrollment in same course exists
+            if enrollment.lecture.course == course and enrollment.lecture.term ==term:
+                serializer = EnrollmentSerializer(enrollment, data=new_data)
+                if serializer.is_valid():
+                    serializer.save()
+                    serializer_dict = serializer.data
+                    serializer_dict["message"] = "Enrollment section changed successfully."
+                    return Response(serializer_dict, status=status.HTTP_200_OK)
+
+        #enroll in course
+        serializer = EnrollmentSerializer(new_data)
+        if serializer.is_valid():
+            serializer.save()
+            serializer_dict = serializer.data
+            serializer_dict["message"] = "Enrolled in new course successfully."
+            return Response(serializer_dict, status=status.HTTP_200_OK)
+
     def get(self, request):
         student = Student.objects.first()
         #student = get_object_or_404(Student, user=request.user)

@@ -1,0 +1,54 @@
+[
+    {
+        "model": "api.Student",
+        "pk": 1,
+        "fields": {
+          "user": 1,
+    
+          "student_first_name": "Hictor",
+          "student_last_name": "Van",
+          "date_of_birth": "2002-07-04",
+          "citizenship_status": "Permanent Resident",
+    
+          "address": 1,
+    
+          "home_phone_number": "+14034093456",
+          "mobile_phone_number": "+14034094567",
+          "preferred_phone": "mobile",
+          "personal_email": "hictor.van@gmail.com",
+          "school_email": "hictor.van@ucalgary.ca",
+          "preferred_email": "school",
+    
+          "emergency_contact1":1,
+          "emergency_contact2":null,
+          "emergency_contact3":null
+        }
+      },
+    
+      {
+        "model": "api.Student",
+        "pk": 2,
+        "fields": {
+          "user": 2,
+          
+          "student_first_name": "Mallum",
+          "student_last_name": "Catheson",
+          "date_of_birth": "2000-06-13",
+          "citizenship_status": "Canadian Citizen",
+    
+          "address": 2,
+          
+          "home_phone_number": "+15875018989",
+          "mobile_phone_number": "+15872345678",
+          "other_phone_number": "+15874567890",
+          "preferred_phone": "home",
+          "personal_email": "mallum.catheson@hotmail.com",
+          "school_email": "mallum.catheson@ucalgary.ca",
+          "preferred_email": "personal",
+          
+          "emergency_contact1":2,
+          "emergency_contact2":null,
+          "emergency_contact3":null
+        }
+      }
+]

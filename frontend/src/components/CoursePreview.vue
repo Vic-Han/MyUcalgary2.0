@@ -1,12 +1,10 @@
 <template>
-    <div class = "bg-white-100 w-96 rounded-t-xl mt-5 flex flex-row py-4 border border-white-200" :class="roundedBottom()" @click="toggleDropdown">
-        <div class = "flex flex-col w-24 h-16 px-3 py-2 text-base rounded-r-sm" v-bind:class="courseColor()"> {{ course.name }}</div>
-        <div class = "flex flex-col w-64 h-16 align-middle text-lg text-left px-2">
-            <div class="font-semibold">{{ course.title }}</div>
-            <div> {{  }} </div> 
-            
+    <div class="bg-white-100 w-96 rounded-t-xl mt-5 flex flex-row py-4 border border-white-200" :class="roundedBottom()" @click="toggleDropdown">
+        <div class="flex flex-col w-24 h-16 px-3 py-2 text-base rounded-r-sm font-semibold" v-bind:class="courseColor()"> {{ course.name }}</div>
+        <div class="flex flex-col w-64 h-16 align-middle text-lg text-left px-2">
+            <div class="font-semibold">{{ course.title }}</div>            
         </div>
-        <div class = "flex flex-col w-8">
+        <div class="flex flex-col w-8">
             <svg v-if="course.included" @click="removeCourseFromCart" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-6 w-6 fill-grey-200 hover:fill-red-100">
                 <path d="M200-440v-80h560v80H200Z"/>
             </svg>
@@ -15,11 +13,11 @@
             </svg>        
         </div>
     </div>
-    <div class = "bg-white-200 w-96 rounded-b-lg px-2 shadow-md border-t-0 border border-white-200" v-if="dropDownVisible" :class="animation()">
+    <div class="bg-white-200 w-96 rounded-b-lg px-2 shadow-md border-t-0 border border-white-200" v-if="dropDownVisible" :class="animation()">
         <div class="text-base text-left" > Description: {{ course.desc }} </div>
-        <div class = "text-base text-left" > Prerequisites: {{ course.prereq }}</div>
-        <div class = "text-base text-left"> AntiRequisites: {{ course.antireq }}</div>
-        <div class = "text-base text-left"> Course attributes: {{ course.attributes }}</div>
+        <div class="text-base text-left" > Prerequisites: {{ course.prereq }}</div>
+        <div class="text-base text-left"> AntiRequisites: {{ course.antireq }}</div>
+        <div class="text-base text-left"> Course attributes: {{ course.attributes }}</div>
     </div>
 
 </template>  

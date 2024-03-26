@@ -6,7 +6,7 @@
     <input type = "password" placeholder = "Password" v-on:keyup.enter="loginAttempt" ref="password" class = "w-8/12 h-7 p-2 mb-2 border border-grey-200 rounded-md relative -translate-x-2/4 left-1/2 outline-red shadow-md" v-model="password"/>
     <div class = "w-8/12 relative -translate-x-2/4 left-1/2 mb-6 mt-4">
       <div class="w-32 border-2 border-red-100 rounded-md text-red-100 
-      relative left-full -translate-x-full transition hover:bg-red-100 hover hover:text-white-100 drop-shadow-sm" @click="loginAttempt()">
+      relative left-full -translate-x-full transition hover:bg-red-100 hover cursor-pointer hover:text-white-100 drop-shadow-sm" @click="loginAttempt()">
         Login
       </div>
       <div v-if="error"> Incorrect username or password</div>

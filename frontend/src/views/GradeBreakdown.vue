@@ -12,10 +12,10 @@
        
       </div>
       <div class="flex flex-col rounded-xl shadow-xl py-12 px-8 text-center bg-white-100 m-5">
-        <div class="font-bold my-4 text-base leading-relaxed">Expected Graduation Date: 2024</div>
-        <div class="text-base text-grey-200 leading-normal my-3 ">Confirmation of Enrollment</div>
-        <div class="text-grey-200 my-3"> Request Official Transcript </div>
-        <div class="text-grey-200 my-3"> View Unofficial Transcript </div>
+        <div class="font-bold my-4 text-base leading-relaxed">Level: {{currentStudentInfo.level}}</div>
+        <div class="text-base text-grey-200 leading-normal my-3 ">Plan: {{ currentStudentInfo.plan }}</div>
+        <div class="text-grey-200 my-3"> Program: {{ currentStudentInfo.program }} </div>
+        <div class="text-grey-200 my-3"> Keep This here until you find a way to make the height identical </div>
       </div>
     </div>
     <div class="bg-white-100 rounded-xl shadow-2xl h-fit mx-1 my-5 px-4 py-1 flex flex-col">
@@ -48,6 +48,9 @@ import GradePreview from '@/components/GradePreview.vue';
             overallLetterGrade: '',
             selectedOption: '',
             termViews: {
+
+            },
+            currentStudentInfo:{
 
             }
         };
@@ -117,144 +120,7 @@ import GradePreview from '@/components/GradePreview.vue';
     created(){
       this.$emit('show-navbar')
       this.$emit('toggle-selected', 'grades');
-      //   const backendPayload = {
-      //     "overallGPA": 3.71,
-      //     "letterGrade": "A-",
-      //     "activity": {
-      //       "Fall 2023" : {
-      //             "UnitsEnrolled": 15,
-      //             "Program": "Schulich Sch of EN Bachelor",
-      //             "Level": 4,
-      //             "Plan": "Bachelor of Science, Internship Program, Software Engineering",
-      //             "TermGPA": 3.6,
-      //             "TermLetterGrade": "A-",
-      //             "courses" : [
-      //                 {
-      //                     "name" : "SENG 550",
-      //                     "letter": "A"
-      //                 },
-      //                 {
-      //                     "name" : "SENG 513",
-      //                     "letter" : "A"
-      //                 },
-      //                 {
-      //                     "name" : "CPSC 481",
-      //                     "letter": "A-"
-      //                 },
-      //                 {
-      //                     "name" : "CPSC 411",
-      //                     "letter" : "B"
-      //                 },
-      //                 {
-      //                     "name" : "ECON 341",
-      //                     "letter": "B+"
-      //                 },
-      //                 {
-      //                     "name" : "VICT 301",
-      //                     "letter": "A+"
-      //                 }
-      //             ]
-      //         },
-      //         "Winter 2024" : {
-      //             "UnitsEnrolled": 15,
-      //             "Program": "Schulich Sch of EN Bachelor",
-      //             "Level": 4,
-      //             "Plan": "Bachelor of Science, Internship Program, Software Engineering",
-      //             "TermGPA": 3.6,
-      //             "TermLetterGrade": "A-",
-      //             "courses" : [
-      //                 {
-      //                     "name" : "SENG 550",
-      //                     "letter": "A"
-      //                 },
-      //                 {
-      //                     "name" : "SENG 513",
-      //                     "letter" : "A"
-      //                 },
-      //                 {
-      //                     "name" : "ECON 341",
-      //                     "letter": "B+"
-      //                 },
-      //                 {
-      //                     "name" : "CPSC 411",
-      //                     "letter" : "B"
-      //                 },
-      //                 {
-      //                     "name" : "ECON 341",
-      //                     "letter": "B+"
-      //                 }
-      //             ]
-      //         },
-      //         "Summer 2023":{
-      //           "UnitsEnrolled": 15,
-      //             "Program": "Schulich Sch of EN Bachelor",
-      //             "Level": 4,
-      //             "Plan": "Bachelor of Science, Internship Program, Software Engineering",
-      //             "TermGPA": 3.6,
-      //             "TermLetterGrade": "A-",
-      //             "courses" : [
-      //                 {
-      //                     "name" : "SENG 550",
-      //                     "letter": "A"
-      //                 },
-      //                 {
-      //                     "name" : "SENG 513",
-      //                     "letter" : "A"
-      //                 },
-      //                 {
-      //                     "name" : "ECON 341",
-      //                     "letter": "B+"
-      //                 },
-      //                 {
-      //                     "name" : "CPSC 411",
-      //                     "letter" : "B"
-      //                 },
-      //                 {
-      //                     "name" : "ECON 341",
-      //                     "letter": "B+"
-      //                 }
-      //             ]
-      //         },
-      //         "Winter 2023" : {
-      //             "Units Enrolled": 12,
-      //             "Program": "Schulich Sch of EN Bachelor",
-      //             "Level": 3,
-      //             "Plan": "Bachelor of Science, Internship Program, Software Engineering",
-      //             "TermGPA": 3.15,
-      //             "TermLetterGrade": "A-",
-      //             "courses" : [
-      //                 {
-      //                     "name" : "CPSC 441",
-      //                     "letter": "C-"
-      //                 },
-      //                 {
-      //                     "name" : "CPSC 599",
-      //                     "letter" : "A"
-      //                 },
-      //                 {
-      //                     "name" : "CPSC 457",
-      //                     "letter": "A"
-      //                 },
-      //                 {
-      //                     "name" : "SENG 300",
-      //                     "letter" : "B"
-      //                 }
-
-      //             ]
-      //         }
-      //     }
-      // }
-      // console.log(backendPayload)
-      // this.overallGPA = backendPayload.overallGPA
-      // this.overallLetterGrade = backendPayload.letterGrade
-      // for(const [key, value] of Object.entries(backendPayload.activity)){
-      //   if (!this.termViews[this.termToYear(key)]) {
-      //     this.termViews[this.termToYear(key)] = {};
-      //   }
-      //   this.termViews[this.termToYear(key)][key] = value
-      // }
-      // this.selectedOption = Object.keys(this.termViews)[0]
-      // console.log(this.termViews)
+     
       
       const serverpath = this.$store.state.serverPath
       const apiPath = "/api/student-grades"
@@ -276,7 +142,7 @@ import GradePreview from '@/components/GradePreview.vue';
           this.termViews[this.termToYear(key)][key] = value
         }
         this.selectedOption = Object.keys(this.termViews)[0]
-        console.log(this.termViews)
+        this.currentStudentInfo = data.currentStudentInfo
 
 
       }).catch(error => {

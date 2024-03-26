@@ -1,0 +1,20 @@
+[
+    {
+    "model": "api.EmergencyContact",
+    "pk": 1,
+    "fields": {
+      "emergency_contact_name": "Ronnie de Souza Santos",
+      "emergency_contact_phone": "+123456789",
+      "emergency_contact_relationship": "Father"
+    }
+  },
+  {
+    "model": "api.EmergencyContact",
+    "pk": 2,
+    "fields": {
+      "emergency_contact_name": "Burt Reynolds",
+      "emergency_contact_phone": "+111222333",
+      "emergency_contact_relationship": "Father"
+    }
+  }
+]

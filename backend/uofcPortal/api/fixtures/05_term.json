@@ -1,0 +1,338 @@
+[
+    {
+    "model": "api.Term",
+    "pk": "Fal2018",
+    "fields": {
+        "term_key": "Fal2018",
+        "term_name": "Fall",
+        "term_year": 2018,
+        "start_date": "2018-09-01",
+        "end_date": "2018-12-15",
+        "due_date": "2018-10-01"
+    }
+    },
+    {
+    "model": "api.Term",
+    "pk": "Win2019",
+    "fields": {
+        "term_key": "Win2019",
+        "term_name": "Winter",
+        "term_year": 2019,
+        "start_date": "2019-01-05",
+        "end_date": "2019-04-20",
+        "due_date": "2019-02-05"
+    }
+    },
+    {
+    "model": "api.Term",
+    "pk": "Spr2019",
+    "fields": {
+        "term_key": "Spr2019",
+        "term_name": "Spring",
+        "term_year": 2019,
+        "start_date": "2019-05-01",
+        "end_date": "2019-08-15",
+        "due_date": "2019-06-01"
+    }
+    },
+    {
+    "model": "api.Term",
+    "pk": "Sum2019",
+    "fields": {
+        "term_key": "Sum2019",
+        "term_name": "Summer",
+        "term_year": 2019,
+        "start_date": "2019-07-01",
+        "end_date": "2019-08-31",
+        "due_date": "2019-08-01"
+    }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Fal2019",
+        "fields": {
+            "term_key": "Fal2019",
+            "term_name": "Fall",
+            "term_year": 2019,
+            "start_date": "2019-09-01",
+            "end_date": "2019-12-15",
+            "due_date": "2019-10-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Win2020",
+        "fields": {
+            "term_key": "Win2020",
+            "term_name": "Winter",
+            "term_year": 2020,
+            "start_date": "2020-01-05",
+            "end_date": "2020-04-20",
+            "due_date": "2020-02-05"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Spr2020",
+        "fields": {
+            "term_key": "Spr2020",
+            "term_name": "Spring",
+            "term_year": 2020,
+            "start_date": "2020-05-01",
+            "end_date": "2020-08-15",
+            "due_date": "2020-06-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Sum2020",
+        "fields": {
+            "term_key": "Sum2020",
+            "term_name": "Summer",
+            "term_year": 2020,
+            "start_date": "2020-07-01",
+            "end_date": "2020-08-31",
+            "due_date": "2020-08-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Fal2020",
+        "fields": {
+            "term_key": "Fal2020",
+            "term_name": "Fall",
+            "term_year": 2020,
+            "start_date": "2020-09-01",
+            "end_date": "2020-12-15",
+            "due_date": "2020-10-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Win2021",
+        "fields": {
+            "term_key": "Win2021",
+            "term_name": "Winter",
+            "term_year": 2021,
+            "start_date": "2021-01-05",
+            "end_date": "2021-04-20",
+            "due_date": "2021-02-05"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Spr2021",
+        "fields": {
+            "term_key": "Spr2021",
+            "term_name": "Spring",
+            "term_year": 2021,
+            "start_date": "2021-05-01",
+            "end_date": "2021-08-15",
+            "due_date": "2021-06-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Sum2021",
+        "fields": {
+            "term_key": "Sum2021",
+            "term_name": "Summer",
+            "term_year": 2021,
+            "start_date": "2021-07-01",
+            "end_date": "2021-08-31",
+            "due_date": "2021-08-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Fal2021",
+        "fields": {
+            "term_key": "Fal2021",
+            "term_name": "Fall",
+            "term_year": 2021,
+            "start_date": "2021-09-01",
+            "end_date": "2021-12-15",
+            "due_date": "2021-10-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Win2022",
+        "fields": {
+            "term_key": "Win2022",
+            "term_name": "Winter",
+            "term_year": 2022,
+            "start_date": "2022-01-05",
+            "end_date": "2022-04-20",
+            "due_date": "2022-02-05"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Spr2022",
+        "fields": {
+            "term_key": "Spr2022",
+            "term_name": "Spring",
+            "term_year": 2022,
+            "start_date": "2022-05-01",
+            "end_date": "2022-08-15",
+            "due_date": "2022-06-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Sum2022",
+        "fields": {
+            "term_key": "Sum2022",
+            "term_name": "Summer",
+            "term_year": 2022,
+            "start_date": "2022-07-01",
+            "end_date": "2022-08-31",
+            "due_date": "2022-08-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Fal2022",
+        "fields": {
+            "term_key": "Fal2022",
+            "term_name": "Fall",
+            "term_year": 2022,
+            "start_date": "2022-09-01",
+            "end_date": "2022-12-15",
+            "due_date": "2022-10-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Win2023",
+        "fields": {
+            "term_key": "Win2023",
+            "term_name": "Winter",
+            "term_year": 2023,
+            "start_date": "2023-01-05",
+            "end_date": "2023-04-20",
+            "due_date": "2023-02-05"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Spr2023",
+        "fields": {
+            "term_key": "Spr2023",
+            "term_name": "Spring",
+            "term_year": 2023,
+            "start_date": "2023-05-01",
+            "end_date": "2023-08-15",
+            "due_date": "2023-06-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Sum2023",
+        "fields": {
+            "term_key": "Sum2023",
+            "term_name": "Summer",
+            "term_year": 2023,
+            "start_date": "2023-07-01",
+            "end_date": "2023-08-31",
+            "due_date": "2023-08-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Fal2023",
+        "fields": {
+            "term_key": "Fal2023",
+            "term_name": "Fall",
+            "term_year": 2023,
+            "start_date": "2023-09-01",
+            "end_date": "2023-12-15",
+            "due_date": "2023-10-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Win2024",
+        "fields": {
+            "term_key": "Win2024",
+            "term_name": "Winter",
+            "term_year": 2024,
+            "start_date": "2024-01-05",
+            "end_date": "2024-04-20",
+            "due_date": "2024-02-05"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Spr2024",
+        "fields": {
+            "term_key": "Spr2024",
+            "term_name": "Spring",
+            "term_year": 2024,
+            "start_date": "2024-05-01",
+            "end_date": "2024-08-15",
+            "due_date": "2024-06-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Sum2024",
+        "fields": {
+            "term_key": "Sum2024",
+            "term_name": "Summer",
+            "term_year": 2024,
+            "start_date": "2024-07-01",
+            "end_date": "2024-08-31",
+            "due_date": "2024-08-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Fal2024",
+        "fields": {
+            "term_key": "Fal2024",
+            "term_name": "Fall",
+            "term_year": 2024,
+            "start_date": "2024-09-01",
+            "end_date": "2024-12-15",
+            "due_date": "2024-10-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Win2025",
+        "fields": {
+            "term_key": "Win2025",
+            "term_name": "Winter",
+            "term_year": 2025,
+            "start_date": "2025-01-05",
+            "end_date": "2025-04-20",
+            "due_date": "2025-02-05"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Spr2025",
+        "fields": {
+            "term_key": "Spr2025",
+            "term_name": "Spring",
+            "term_year": 2025,
+            "start_date": "2025-05-01",
+            "end_date": "2025-08-15",
+            "due_date": "2025-06-01"
+        }
+    },
+    {
+        "model": "api.Term",
+        "pk": "Sum2025",
+        "fields": {
+            "term_key": "Sum2025",
+            "term_name": "Summer",
+            "term_year": 2025,
+            "start_date": "2025-07-01",
+            "end_date": "2025-08-31",
+            "due_date": "2025-08-01"
+        }
+    }
+]

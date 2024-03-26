@@ -135,6 +135,9 @@
   
   
 <script>
+function filterSemester(course, predicate) {
+        return course.semester == predicate
+}
   export default {
     name: 'AcademicReport',
     emits: ['show-navbar', 'set-title'],
@@ -244,6 +247,101 @@
         toggleExpandedReport() {
             this.expandedReport = !this.expandedReport;
         },
+        fetchData(){
+            const serverPath = this.$store.state.serverPath
+            const apiPath = '/api/course-requirements/'
+            const headers = {
+              'Content-Type': 'application/json',
+              'Authorization': `Token ${this.$cookies.get("auth-token")}`
+            };
+            this.$http.get(`${serverPath}${apiPath}`, { headers}).then(res=>{
+              console.log(res.data)
+              const backendData = res.data
+              let totalUnits = 0
+              let takenUnits = 0
+              let pendingUnits = 0
+              this.requiredCourses.push({
+                description: backendData.requirements[0].description,
+                requiredUnits: backendData.requirements[0].requiredUnits,
+                status: backendData.requirements[0].status,
+                expanded: true,
+                courses: [
+                  {
+                    year: "First Year",
+                    fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F1")),
+                    winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W1"))
+                  },
+                  {
+                    year: "Second Year",
+                    fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F2")),
+                    winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W2"))
+                  },
+                  {
+                    year: "Third Year",
+                    fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F3")),
+                    winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W3"))
+                  },
+                  {
+                    year: "Fourth Year",
+                    fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F4")),
+                    winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W4"))
+                  }
+                ]
+              })
+              for(let i = 0; i<backendData.requirements[0].courses.length; i++){
+                if(backendData.requirements[0].courses[i].status == 'complete') {
+                  takenUnits += backendData.requirements[0].courses[i].units 
+                }
+                if(backendData.requirements[0].courses[i].status == 'in-progress') {
+                  pendingUnits += backendData.requirements[0].courses[i].units 
+                }
+              }
+              totalUnits += backendData.requirements[0].requiredUnits
+              for(let i = 1; i < backendData.requirements.length; i++) {
+                totalUnits += backendData.requirements[i].requiredUnits
+                const requiredCourseNos = backendData.requirements[i].requiredUnits / 3
+                if(backendData.requirements[i].status == 'complete') {
+                  this.requiredCourses.push({
+                  description: backendData.requirements[i].description,
+                  requiredUnits: backendData.requirements[i].requiredUnits,
+                  status: backendData.requirements[i].status,
+                  expanded: false,
+                  courses: []
+                })
+                } else {
+                  this.requiredCourses.push({
+                  description: backendData.requirements[i].description,
+                  requiredUnits: backendData.requirements[i].requiredUnits,
+                  status: backendData.requirements[i].status,
+                  expanded: true,
+                  courses: []
+                })
+                }
+                for(let j = 0; j < requiredCourseNos; j++) {
+                  if(backendData.requirements[i].courses[j].status == 'complete') {
+                    takenUnits += backendData.requirements[i].courses[j].units
+                    this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
+                  }
+                  if(backendData.requirements[i].courses[j].status == 'in-progress') {
+                    pendingUnits += backendData.requirements[i].courses[j].units
+                    this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
+                  }
+                  if(backendData.requirements[i].courses[j].status == 'incomplete') {
+                    this.requiredCourses[i].courses.push({
+                      name: "Option",
+                      units: 3,
+                      status: "incomplete",
+                      grade: null
+                    })
+                  }
+                }
+              }
+              this.completedProgress = Math.round((takenUnits/totalUnits)*100)
+              this.pendingProgress = Math.round((pendingUnits/totalUnits)*100)
+            }).catch(err=>{
+                      console.log(err)
+            })
+        },
         // toggleReportDetails(index) {
         //     const program = this.academicReport.programs[index];
         //     // Ensure program exists and has courseCategory defined
@@ -289,480 +387,398 @@
       this.$emit('show-navbar')
       this.$emit('toggle-selected','academics')
 
-      function filterSemester(course, predicate) {
-        return course.semester == predicate
-      }
-
-      const backendData = {
-        "requirements":
-        [
-            {
-                "description": "Required Courses",
-                "requiredUnits": 96,
-                "status": "in-progress",
-                "courses":
-                [
-                    {
-                        "name": "CHEM209",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F1",
-                        "grade": "C",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENGG233",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F1",
-                        "grade": "A",
-                        "hovered": false
-                    },
-                    {
-                        "name": "MATH275",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F1",
-                        "grade": "B",
-                        "hovered": false
-                    },
-                    {
-                        "name": "MATH211",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F1",
-                        "grade": "D",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENGG225",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F1",
-                        "grade": "C",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENGG201",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W1",
-                        "grade": "A",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENGG202",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W1",
-                        "grade": "B",
-                        "hovered": false
-                    },
-                    {
-                        "name": "MATH277",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W1",
-                        "grade": "D",
-                        "hovered": false
-                    },
-                    {
-                        "name": "PHYS259",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W1",
-                        "grade": "C",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENGG200",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W1",
-                        "grade": "B",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENGG319",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F2",
-                        "grade": "A",
-                        "hovered": false
-                    },
-                    {
-                        "name": "PHYS365",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F2",
-                        "grade": "D",
-                        "hovered": false
-                    },
-                    {
-                        "name": "MATH375",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F2",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENSF337",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F2",
-                        "grade": "C",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENEL353",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F2",
-                        "grade": "B",
-                        "hovered": false
-                    },
-                    {
-                        "name": "MATH271",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W2",
-                        "grade": "A",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENEL327",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W2",
-                        "grade": "C",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENSF409",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W2",
-                        "grade": "B",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENCM369",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W2",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "CPSC319",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W2",
-                        "grade": "D",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENSF480",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F3",
-                        "grade": "C",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENCM511",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F3",
-                        "grade": "B",
-                        "hovered": false
-                    },
-                    {
-                        "name": "CPSC457",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F3",
-                        "grade": "A",
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG401",
-                        "units": 3,
-                        "status": "in-progress",
-                        "semester": "W3",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG438",
-                        "units": 3,
-                        "status": "in-progress",
-                        "semester": "W3",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG471",
-                        "units": 3,
-                        "status": "in-progress",
-                        "semester": "W3",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "CPSC441",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W3",
-                        "grade": "B",
-                        "hovered": false
-                    },
-                    {
-                        "name": "CPSC471",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "W3",
-                        "grade": "A",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENEL500A",
-                        "units": 3,
-                        "status": "incomplete",
-                        "semester": "F4",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG511",
-                        "units": 3,
-                        "status": "complete",
-                        "semester": "F4",
-                        "grade": "A",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENEL500B",
-                        "units": 3,
-                        "status": "incomplete",
-                        "semester": "W4",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG533",
-                        "units": 3,
-                        "status": "in-progress",
-                        "semester": "W4",
-                        "grade": null,
-                        "hovered": false
-                    }
-                ]
-            },
-            {
-                "description": "Technical Electives",
-                "requiredUnits": 15,
-                "status": "in-progress",
-                "courses": [
-                    {
-                        "name": "SENG550",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "B",
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG567",
-                        "units": 3,
-                        "status": "incomplete",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG512",
-                        "units": 3,
-                        "status": "incomplete",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG570",
-                        "units": 3,
-                        "status": "incomplete",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG580",
-                        "units": 3,
-                        "status": "incomplete",
-                        "grade": null,
-                        "hovered": false
-                    }
-                ]
-            },
-            {
-                "description": "Complementary Studies",
-                "requiredUnits": 18,
-                "status": "in-progress",
-                "courses": [
-                    {
-                        "name": "ECON201",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "B",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ECON203",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "C",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENGG209",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "A",
-                        "hovered": false
-                    },
-                    {
-                        "name": "COMS363",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "A",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENGG481",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "D",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENGG513",
-                        "units": 3,
-                        "status": "incomplete",
-                        "grade": null,
-                        "hovered": false
-                    }
-                ]
-            },
-            {
-                "description": "Internship Designation",
-                "requiredUnits": 9,
-                "status": "complete",
-                "courses":
-                [
-                    {
-                        "name": "INTE513.1",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "Pass",
-                        "hovered": false
-                    },
-                    {
-                        "name": "INTE513.2",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "Pass",
-                        "hovered": false
-                    },
-                    {
-                        "name": "INTE513.3",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "Pass",
-                        "hovered": false
-                    }
-                ]
-            }
-        ]
-      } 
-      let totalUnits = 0
-      let takenUnits = 0
-      let pendingUnits = 0
-      this.requiredCourses.push({
-        description: backendData.requirements[0].description,
-        requiredUnits: backendData.requirements[0].requiredUnits,
-        status: backendData.requirements[0].status,
-        expanded: true,
-        courses: [
-          {
-            year: "First Year",
-            fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F1")),
-            winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W1"))
-          },
-          {
-            year: "Second Year",
-            fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F2")),
-            winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W2"))
-          },
-          {
-            year: "Third Year",
-            fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F3")),
-            winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W3"))
-          },
-          {
-            year: "Fourth Year",
-            fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F4")),
-            winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W4"))
-          }
-        ]
-      })
-      for(let i = 0; i<backendData.requirements[0].courses.length; i++){
-        if(backendData.requirements[0].courses[i].status == 'complete') {
-          takenUnits += backendData.requirements[0].courses[i].units 
-        }
-        if(backendData.requirements[0].courses[i].status == 'in-progress') {
-          pendingUnits += backendData.requirements[0].courses[i].units 
-        }
-      }
-      totalUnits += backendData.requirements[0].requiredUnits
-      for(let i = 1; i < backendData.requirements.length; i++) {
-        totalUnits += backendData.requirements[i].requiredUnits
-        const requiredCourseNos = backendData.requirements[i].requiredUnits / 3
-        if(backendData.requirements[i].status == 'complete') {
-          this.requiredCourses.push({
-          description: backendData.requirements[i].description,
-          requiredUnits: backendData.requirements[i].requiredUnits,
-          status: backendData.requirements[i].status,
-          expanded: false,
-          courses: []
-         })
-        } else {
-          this.requiredCourses.push({
-          description: backendData.requirements[i].description,
-          requiredUnits: backendData.requirements[i].requiredUnits,
-          status: backendData.requirements[i].status,
-          expanded: true,
-          courses: []
-         })
-        }
-        for(let j = 0; j < requiredCourseNos; j++) {
-          if(backendData.requirements[i].courses[j].status == 'complete') {
-            takenUnits += backendData.requirements[i].courses[j].units
-            this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
-          }
-          if(backendData.requirements[i].courses[j].status == 'in-progress') {
-            pendingUnits += backendData.requirements[i].courses[j].units
-            this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
-          }
-          if(backendData.requirements[i].courses[j].status == 'incomplete') {
-            this.requiredCourses[i].courses.push({
-              name: "Option",
-              units: 3,
-              status: "incomplete",
-              grade: null
-            })
-          }
-        }
-      }
-      this.completedProgress = Math.round((takenUnits/totalUnits)*100)
-      this.pendingProgress = Math.round((pendingUnits/totalUnits)*100)
+      
+      this.fetchData()
+      // const backendData = {
+      //   "requirements":
+      //   [
+      //       {
+      //           "description": "Required Courses",
+      //           "requiredUnits": 96,
+      //           "status": "in-progress",
+      //           "courses":
+      //           [
+      //               {
+      //                   "name": "CHEM209",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F1",
+      //                   "grade": "C",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENGG233",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F1",
+      //                   "grade": "A",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "MATH275",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F1",
+      //                   "grade": "B",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "MATH211",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F1",
+      //                   "grade": "D",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENGG225",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F1",
+      //                   "grade": "C",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENGG201",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "W1",
+      //                   "grade": "A",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENGG202",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "W1",
+      //                   "grade": "B",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "MATH277",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "W1",
+      //                   "grade": "D",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "PHYS259",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "W1",
+      //                   "grade": "C",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENGG200",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "W1",
+      //                   "grade": "B",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENGG319",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F2",
+      //                   "grade": "A",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "PHYS365",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F2",
+      //                   "grade": "D",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "MATH375",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F2",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENSF337",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F2",
+      //                   "grade": "C",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENEL353",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F2",
+      //                   "grade": "B",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "MATH271",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "W2",
+      //                   "grade": "A",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENEL327",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "W2",
+      //                   "grade": "C",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENSF409",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "W2",
+      //                   "grade": "B",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENCM369",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "W2",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "CPSC319",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "W2",
+      //                   "grade": "D",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENSF480",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F3",
+      //                   "grade": "C",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENCM511",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F3",
+      //                   "grade": "B",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "CPSC457",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F3",
+      //                   "grade": "A",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG401",
+      //                   "units": 3,
+      //                   "status": "in-progress",
+      //                   "semester": "W3",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG438",
+      //                   "units": 3,
+      //                   "status": "in-progress",
+      //                   "semester": "W3",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG471",
+      //                   "units": 3,
+      //                   "status": "in-progress",
+      //                   "semester": "W3",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "CPSC441",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "W3",
+      //                   "grade": "B",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "CPSC471",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "W3",
+      //                   "grade": "A",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENEL500A",
+      //                   "units": 3,
+      //                   "status": "incomplete",
+      //                   "semester": "F4",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG511",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "semester": "F4",
+      //                   "grade": "A",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENEL500B",
+      //                   "units": 3,
+      //                   "status": "incomplete",
+      //                   "semester": "W4",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG533",
+      //                   "units": 3,
+      //                   "status": "in-progress",
+      //                   "semester": "W4",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               }
+      //           ]
+      //       },
+      //       {
+      //           "description": "Technical Electives",
+      //           "requiredUnits": 15,
+      //           "status": "in-progress",
+      //           "courses": [
+      //               {
+      //                   "name": "SENG550",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "B",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG567",
+      //                   "units": 3,
+      //                   "status": "incomplete",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG512",
+      //                   "units": 3,
+      //                   "status": "incomplete",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG570",
+      //                   "units": 3,
+      //                   "status": "incomplete",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG580",
+      //                   "units": 3,
+      //                   "status": "incomplete",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               }
+      //           ]
+      //       },
+      //       {
+      //           "description": "Complementary Studies",
+      //           "requiredUnits": 18,
+      //           "status": "in-progress",
+      //           "courses": [
+      //               {
+      //                   "name": "ECON201",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "B",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ECON203",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "C",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENGG209",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "A",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "COMS363",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "A",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENGG481",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "D",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENGG513",
+      //                   "units": 3,
+      //                   "status": "incomplete",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               }
+      //           ]
+      //       },
+      //       {
+      //           "description": "Internship Designation",
+      //           "requiredUnits": 9,
+      //           "status": "complete",
+      //           "courses":
+      //           [
+      //               {
+      //                   "name": "INTE513.1",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "Pass",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "INTE513.2",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "Pass",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "INTE513.3",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "Pass",
+      //                   "hovered": false
+      //               }
+      //           ]
+      //       }
+      //   ]
+      // } 
+     
       // Preset data should not be modified here, it should be set in data() or computed
     }
   }

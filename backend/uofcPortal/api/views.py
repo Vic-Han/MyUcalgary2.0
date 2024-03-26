@@ -371,8 +371,11 @@ class DashboardView(APIView, GradeMixins):
         return Response(dashboard_data)
     
 class StudentRequirementsView(APIView):
+    authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
+
     def get(self, request):
-        student = Student.objects.first()
+        student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)
         
@@ -422,7 +425,8 @@ class StudentRequirementsView(APIView):
                 course_data.append({
                     "name": course.course_code,
                     "units": course.course_units,
-                    "status": status
+                    "status": status,
+                    "semester": "F1"
                 })
             req_status = ""
             if units_completed == requirement.required_units:

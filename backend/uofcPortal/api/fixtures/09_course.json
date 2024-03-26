@@ -134,17 +134,6 @@
       },
       {
         "model": "api.Course",
-        "pk": "CPSC331",
-        "fields": {
-          "course_title": "Electromagnetism",
-          "course_description": "Fundamentals of electric and magnetic fields and their applications.",
-          "course_prerequisites": "PHYS211",
-          "course_units": 3,
-          "department": "Physics and Astronomy"
-        }
-      },
-      {
-        "model": "api.Course",
         "pk": "CPSC449",
         "fields": {
           "course_title": "Modern American Literature",
@@ -229,5 +218,79 @@
           "course_units": 3,
           "department": "English"
         }
+      },
+      
+      {
+        "model": "api.Course",
+        "pk": "SENG401",
+        "fields": {
+          "course_title": "Modern American Literature",
+          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_units": 3,
+          "department": "English"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SENG438",
+        "fields": {
+          "course_title": "Modern American Literature",
+          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_units": 3,
+          "department": "English"
+        }
+      },
+      
+      {
+        "model": "api.Course",
+        "pk": "SENG471",
+        "fields": {
+          "course_title": "Modern American Literature",
+          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_units": 3,
+          "department": "English"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SENG511",
+        "fields": {
+          "course_title": "Modern American Literature",
+          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_units": 3,
+          "department": "English"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SENG513",
+        "fields": {
+          "course_title": "Modern American Literature",
+          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_units": 3,
+          "department": "English"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SENG533",
+        "fields": {
+          "course_title": "Modern American Literature",
+          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_units": 3,
+          "department": "English"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SENG550",
+        "fields": {
+          "course_title": "Modern American Literature",
+          "course_description": "Exploration of American literature from the 20th and 21st centuries, focusing on key texts and movements.",
+          "course_units": 3,
+          "department": "English"
+        }
       }
+
+
 ]

@@ -10,8 +10,8 @@
         <div class="flex flex-col mx-2 justify-between">
             <div v-for="course in courses" :key="course.name"  class="flex flex-row py-1 justify-between">
                 <div class="mx-3 text-lg w-28 text-left"> {{ course.name }}</div>
-                <div class="w-96 mx-0">
-                    <div class="h-8 rounded-lg" :class="[barColor(course.letter),barWidth(course.letter)]"></div>
+                <div class="w-96 mx-0 h-8 rounded-lg bg-grey-100">
+                    <div class="relative h-8 rounded-lg pt-0.5 font-semibold text-lg" :class="[barColor(course.letter),percentText(course.letter)]" :style="{ width: course.grade + '%' }">{{ course.grade }}%</div>
                 </div>
                 
 
@@ -162,18 +162,25 @@
                 }
             },
             gpaText(letterGrade) {
-            if(letterGrade[0] == 'A') {
-                return "text-grade-A"
-            }
-            if(letterGrade[0] == 'B') {
-                return "text-grade-B"
-            }
-            if(letterGrade[0] == 'C') {
-                return "text-grade-C"
-            }
-            else {
-                return "text-grade-D"
-            }
+                if(letterGrade[0] == 'A') {
+                    return "text-grade-A"
+                }
+                if(letterGrade[0] == 'B') {
+                    return "text-grade-B"
+                }
+                if(letterGrade[0] == 'C') {
+                    return "text-grade-C"
+                }
+                else {
+                    return "text-grade-D"
+                }
+            },
+            percentText(letterGrade) {
+               if(letterGrade[0] == 'B') {
+                return "text-grey-200"
+               } else {
+                return "text-white-100"
+               }
             }
         },
         created(){

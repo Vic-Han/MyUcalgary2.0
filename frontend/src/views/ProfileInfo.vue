@@ -1,7 +1,7 @@
 <!-- This is the Profile Info component that toggles when the route is set to profile -->
 <template>
     <div class="bg-grey-100 shadow-inner h-fit">
-        <div class="grid grid-rows-10 grid-cols-12  w-full gap-4 pt-5 pb-4 px-4">
+        <div class="grid grid-rows-10 grid-cols-12  w-full gap-4 pt-2 pb-2 px-2">
             <div class="row-span-3 col-span-5 bg-white-100 w-full  h-56 rounded-lg shadow-xl">
                 <h2 class="relative w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Personal Info</h2>
                 <div class="pt-4 pb-2 px-4 text-lg">

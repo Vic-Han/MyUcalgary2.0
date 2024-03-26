@@ -5,14 +5,14 @@
         "Lecture" : {
             "days" : "MWF",
             "start" : 12,
-            "end" : 13,
+            "end" : 12.83,
             "roomno": "ICT 121",
             "LectureNO" : "LEC 2"
         },
         "Tutorial":{
             "days" : "MW",
             "start" : 9,
-            "end" : 10,
+            "end" : 9.83,
             "roomno": "ENA 201",
             "TutorialNO" : "TUT 5"
         }
@@ -31,7 +31,7 @@
         "Tutorial":{
             "days" : "R",
             "start" : 16,
-            "end" : 18,
+            "end" : 17.83,
             "roomno": "ENA 305",
             "TutorialNO" : "LAB 3"
         }
@@ -49,7 +49,7 @@
         "Tutorial":{
             "days" : "T",
             "start" : 14,
-            "end" : 16,
+            "end" : 15.83,
             "roomno": "ENA 203",
             "TutorialNO" : "LAB 2"
         }
@@ -67,7 +67,7 @@
         "Tutorial":{
             "days" : "TR",
             "start" : 10,
-            "end" : 11,
+            "end" : 10.83,
             "roomno": "ST 59",
             "TutorialNO" : "TUT 4"
         }

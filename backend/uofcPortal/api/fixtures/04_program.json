@@ -1,0 +1,62 @@
+[
+    {
+    "model": "api.Program",
+    "pk": "1",
+    "fields": {
+        "program_name": "Software Engineering",
+        "department": "Engineering",
+        "program_degree_level": "Bachelor",
+        "program_honor": false
+    }
+    },
+    {
+    "model": "api.Program",
+    "pk": "6",
+    "fields": {
+        "program_name": "Engineering First Year Common Core",
+        "department": "Engineering",
+        "program_degree_level": "Bachelor",
+        "program_honor": false
+    }
+    },
+    {
+    "model": "api.Program",
+    "pk": "2",
+    "fields": {
+        "program_name": "Computer Science",
+        "department": "Computer Science",
+        "program_degree_level": "Bachelor",
+        "program_honor": true
+    }
+    },
+    {
+    "model": "api.Program",
+    "pk": "3",
+    "fields": {
+        "program_name": "Astrophysics",
+        "department": "Physics and Astronomy",
+        "program_degree_level": "Master",
+        "program_honor": false
+    }
+    },
+    {
+    "model": "api.Program",
+    "pk": "4",
+    "fields": {
+        "program_name": "English Literature",
+        "department": "English",
+        "program_degree_level": "Bachelor",
+        "program_honor": true
+    }
+    },
+    {
+    "model": "api.Program",
+    "pk": "5",
+    "fields": {
+        "program_name": "Educational Psychology",
+        "department": "Educational Psychology",
+        "program_degree_level": "PhD",
+        "program_honor": false
+    }
+    }
+]

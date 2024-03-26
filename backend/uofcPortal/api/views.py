@@ -42,7 +42,7 @@ class StudentViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        return Address.objects.filter(student__user=self.request.user)
+        return Student.objects.filter(user=self.request.user)
 
 
 class FacultyViewSet(viewsets.ModelViewSet):
@@ -141,12 +141,15 @@ class PersonalInfoView(APIView):
         }
 
         emergency_contact = {
+            "id1": student.emergency_contact1.pk if student.emergency_contact1 else None,
             "name1": student.emergency_contact1.emergency_contact_name if student.emergency_contact1 else None,
             "phone1": student.emergency_contact1.emergency_contact_phone if student.emergency_contact1 else None,
             "relation1": student.emergency_contact1.emergency_contact_relationship if student.emergency_contact1 else None,
+            "id2": student.emergency_contact2.pk if student.emergency_contact2 else None,
             "name2": student.emergency_contact2.emergency_contact_name if student.emergency_contact2 else None,
             "phone2": student.emergency_contact2.emergency_contact_phone if student.emergency_contact2 else None,
             "relation2": student.emergency_contact2.emergency_contact_relationship if student.emergency_contact2 else None,
+            "id3": student.emergency_contact3.pk if student.emergency_contact3 else None,
             "name3": student.emergency_contact3.emergency_contact_name if student.emergency_contact3 else None,
             "phone3": student.emergency_contact3.emergency_contact_phone if student.emergency_contact3 else None,
             "relation3": student.emergency_contact3.emergency_contact_relationship if student.emergency_contact3 else None,

@@ -407,26 +407,29 @@ const postalValid = (postal) =>{
 }
 // (403)-220-5738
 const phoneValid = (phone) =>{
-    if(phone.length != 14){
+    // if(phone.length != 14){
+    //     return false
+    // }
+    // if(phone[0] != '(' || phone[4] != ')' || phone[5] != '-' || phone[9] != '-'){
+    //     return false
+    // }
+    // for(let i = 1; i < 4; i++){
+    //     if(isNaN(phone[i])){
+    //         return false
+    //     }
+    // }
+    // for(let i = 6; i < 9; i++){
+    //     if(isNaN(phone[i])){
+    //         return false
+    //     }
+    // }
+    // for(let i = 10; i < 14; i++){
+    //     if(isNaN(phone[i])){
+    //         return false
+    //     }
+    // }
+    if(phone.length < 10){
         return false
-    }
-    if(phone[0] != '(' || phone[4] != ')' || phone[5] != '-' || phone[9] != '-'){
-        return false
-    }
-    for(let i = 1; i < 4; i++){
-        if(isNaN(phone[i])){
-            return false
-        }
-    }
-    for(let i = 6; i < 9; i++){
-        if(isNaN(phone[i])){
-            return false
-        }
-    }
-    for(let i = 10; i < 14; i++){
-        if(isNaN(phone[i])){
-            return false
-        }
     }
     return true
 }
@@ -554,18 +557,21 @@ const emailValid = (email) =>{
 
                     this.EmergencyContacts = [
                         {
+                            id: data.emergency_contact.id1,
                             Name: data.emergency_contact.name1,
                             Relationship: data.emergency_contact.relation1,
                             Phone: data.emergency_contact.phone1,
                             Primary: data.emergency_contact.preferred === "1"
                         },
                         {
+                            id: data.emergency_contact.id2,
                             Name: data.emergency_contact.name2,
                             Relationship: data.emergency_contact.relation2,
                             Phone: data.emergency_contact.phone2,
                             Primary: data.emergency_contact.preferred === "2"
                         },
                         {
+                            id: data.emergency_contact.id3,
                             Name: data.emergency_contact.name3,
                             Relationship: data.emergency_contact.relation3,
                             Phone: data.emergency_contact.phone3,
@@ -577,9 +583,9 @@ const emailValid = (email) =>{
                 }
             },
             async editInfo(){
-                // Prepare the data for each endpoint
+
                 const studentData = {
-                    student_id: this.User.UCID, // Assuming UCID is the student ID
+                    student_id: this.User.UCID,
                     student_first_name: this.User.First,
                     student_last_name: this.User.Last,
                     date_of_birth: this.User.DOB,
@@ -590,37 +596,13 @@ const emailValid = (email) =>{
                     preferred_phone: this.Phone.Preferred,
                     personal_email: this.Email.Personal,
                     school_email: this.Email.School,
-                    preferred_email: this.Email.Preferred,
-                    preferred_emergency_contact: this.EmergencyContacts.find(contact => contact.Primary)?.Name,
-                    user: null // Set appropriately based on your application's requirements
+                    preferred_email: this.Email.Preferred
                 };
-
-                console.log("Student Data:", studentData);
-
-                const addressData = {
-                    id: this.Address.id,
-                    address_street_address: this.Address.Street,
-                    address_postal_code: this.Address.Postal,
-                    address_city: this.Address.City,
-                    address_province: this.Address.Province,
-                    address_country: this.Address.Country
-                };
-
-                console.log("Address Data:", addressData);
-
-                const emergencyContactsData = this.EmergencyContacts.map(contact => ({
-                    emergency_contact_name: contact.Name,
-                    emergency_contact_phone: contact.Phone,
-                    emergency_contact_relationship: contact.Relationship
-                }));
-
-                console.log("Emergency Contacts Data:", emergencyContactsData);
-
 
                 try {
-                    // POST request to update student info
-                    await fetch('http://127.0.0.1:8000/api/students/', {
-                        method: 'POST',
+                    // Update student info
+                    let response = await fetch(`http://127.0.0.1:8000/api/students/${this.User.UCID}/`, {
+                        method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `Token ${this.$cookies.get("auth-token")}`
@@ -628,9 +610,20 @@ const emailValid = (email) =>{
                         body: JSON.stringify(studentData)
                     });
 
-                    // POST request to update address info
-                    await fetch('http://127.0.0.1:8000/api/addresses/', {
-                        method: 'POST',
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    // Update address info
+                    const addressData = {
+                        address_street_address: this.Address.Street,
+                        address_city: this.Address.City,
+                        address_province: this.Address.Province,
+                        address_country: this.Address.Country,
+                        address_postal_code: this.Address.Postal
+                    };
+                    response = await fetch(`http://127.0.0.1:8000/api/addresses/${this.Address.id}/`, {
+                        method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `Token ${this.$cookies.get("auth-token")}`
@@ -638,24 +631,43 @@ const emailValid = (email) =>{
                         body: JSON.stringify(addressData)
                     });
 
-                    // POST request for each emergency contact
-                    for (const contactData of emergencyContactsData) {
-                        await fetch('http://127.0.0.1:8000/api/emergency-contacts/', {
-                            method: 'POST',
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    // Update emergency contacts
+                    for (const contact of this.EmergencyContacts) {
+                        const contactData = {
+                            emergency_contact_name: contact.Name,
+                            emergency_contact_phone: contact.Phone,
+                            emergency_contact_relationship: contact.Relationship
+                        };
+
+                        response = await fetch(`http://127.0.0.1:8000/api/emergency-contacts/${contact.id}/`, {
+                            method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
                                 'Authorization': `Token ${this.$cookies.get("auth-token")}`
                             },
                             body: JSON.stringify(contactData)
                         });
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                    }
+
+                    if(response.ok) {
+                        console.log("Everything updated successfully");
                     }
 
                     return true;
                 } catch (error) {
-                    console.error('There was a problem with the POST request:', error);
+                    console.error('There was a problem with the PUT request:', error);
                     return false;
                 }
             },
+
             setEditing(element) {
                 this.editingID = element;
                 if(element == 'Address') {
@@ -702,7 +714,6 @@ const emailValid = (email) =>{
                 }
             },
             setView() {
-                console.log(initialValue)
                 if(this.editingID !== initialValue) {
                     if(this.editingID == 'Address') {
                        if(!streetValid(this.Address.Street) || !cityValid(this.Address.City)  

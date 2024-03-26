@@ -2,12 +2,11 @@
   <div class="bg-white-100 w-full ">
     <div @click="close"> Close </div>
     <select v-model="selectedType" class="h-40 w-96">
-      <option value=""></option>
-      <option v-for="option in applicationTypes" :value="option" :key="option">{{option}}</option>
+      <option v-for="option in applicationTypes" :selected="option == selectedType" :value="option" :key="option">{{option}}</option>
     </select>
     <div v-if="selectedType !== ''">
       Hi
-      <div v-if="selectedType === 'undergrad' || selectedType === 'grad'" class = "flex flex-col">
+      <div v-if="selectedType === 'undergrad' || selectedType === 'grad'" class="flex flex-col">
           <select v-model="selectedFaculty">
             <option value=""></option>
 
@@ -62,17 +61,22 @@
 
 export default {
   name: 'ApplicationForm',
+  props : {
+    default :{
+        type: String,
+        required: true
+    }
+  },
   data() {
     return {
       currentStep: 1,
       
       selectedType: '',
       applicationTypes: [
-          '',
-          'undergrad',
-          'grad',
-          'award',
-          'scholarship'
+          'Undergrad',
+          'Graduate',
+          'Award',
+          'Scholarship'
       ],
       selectedProgram: '',
       selectedFaculty: '',
@@ -120,6 +124,9 @@ export default {
 
     }
     
+  },
+  created() {
+    this.selectedType = this.default
   },
   watch:{
    selectedType:{

@@ -16,6 +16,9 @@ router.register('enrollments', EnrollmentViewSet, basename='enrollment')
 router.register('transactions', TransactionViewSet, basename='transaction')
 router.register('addresses', AddressViewSet, basename='address')
 router.register('emergency-contacts', EmergencyContactViewSet, basename='emergency-contact')
+router.register('tutorials', TutorialViewSet, basename='tutorial')
+router.register('terms', TermViewSet, basename='term')
+
 
 urlpatterns = [
     path('api/', include(router.urls)),
@@ -25,5 +28,5 @@ urlpatterns = [
     path('api/student-applications/', StudentApplicationsViewSet.as_view(), name='student-applications'),
     path('api/course-requirements/', StudentRequirementsView.as_view(), name='course-requirements'),
     path('api/personal-info/', PersonalInfoView.as_view(), name='personal-info')
-]
+    path('api/schedule-builder/', ScheduleBuilderView.as_view(), name='schedule-builder')
 

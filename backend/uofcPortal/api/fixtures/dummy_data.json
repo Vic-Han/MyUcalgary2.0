@@ -241,6 +241,30 @@
 
   {
     "model": "api.Term",
+    "pk": "Fal2022",
+    "fields": {
+      "term_key": "Fal2022",
+      "term_name": "Fall",
+      "term_year": 2022,
+      "start_date": "2022-09-01",
+      "end_date": "2022-12-15",
+      "due_date": "2022-10-01"
+    }
+  },
+  {
+    "model": "api.Term",
+    "pk": "Win2023",
+    "fields": {
+      "term_key": "Win2023",
+      "term_name": "Winter",
+      "term_year": 2023,
+      "start_date": "2023-01-05",
+      "end_date": "2023-04-20",
+      "due_date": "2023-02-05"
+    }
+  },
+  {
+    "model": "api.Term",
     "pk": "Fal2023",
     "fields": {
       "term_key": "Fal2023",
@@ -520,6 +544,27 @@
 
   {
     "model": "api.Course",
+    "fields": {
+      "course_code": "ENGL101",
+      "course_title": "English as a Second Language Part I",
+      "course_description": "No speak good.",
+      "course_units": 3,
+      "department": "English"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "course_code": "ENGL102",
+      "course_title": "English as a Second Language Part II",
+      "course_description": "Better speak but no super yet.",
+      "course_prerequisites": "ENGL101",
+      "course_units": 3,
+      "department": "English"
+    }
+  },
+  {
+    "model": "api.Course",
     "pk": "SENG401",
     "fields": {
       "course_title": "Software Architecture",
@@ -546,6 +591,7 @@
     "fields": {
       "course_title": "British Literature",
       "course_description": "Survey of British literature from the Anglo-Saxon period to the 18th century.",
+      "course_prerequisites": "ENGL101, ENGL102",
       "course_units": 3,
       "department": "English"
     }
@@ -614,9 +660,6 @@
       "department": "English"
     }
   },
-  
-
-
 
   {
     "model": "api.Lecture",
@@ -628,6 +671,10 @@
       "lecture_starttime": 9.00,
       "lecture_endtime": 10.50,
       "lecture_roomnumber": "B100",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "1",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
       "course": "SENG401",
       "instructor": "001"
     }
@@ -642,6 +689,10 @@
       "lecture_starttime": 11.00,
       "lecture_endtime": 12.50,
       "lecture_roomnumber": "C200",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "2",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
       "course": "PHYS303",
       "instructor": "002"
     }
@@ -656,8 +707,175 @@
       "lecture_starttime": 14.00,
       "lecture_endtime": 15.50,
       "lecture_roomnumber": "D300",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "1",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
       "course": "ENGL201",
       "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Lecture",
+    "pk": "04",
+    "fields": {
+      "lecture_id": "L02",
+      "term": "Fal2023",
+      "lecture_days": "TR",
+      "lecture_starttime": 10.00,
+      "lecture_endtime": 11.25,
+      "lecture_roomnumber": "B001",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "0",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
+      "course": "ENGL201",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Lecture",
+    "pk": "05",
+    "fields": {
+      "lecture_id": "L01",
+      "term": "Fal2022",
+      "lecture_days": "F",
+      "lecture_starttime": 14.00,
+      "lecture_endtime": 15.50,
+      "lecture_roomnumber": "D300",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "0",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
+      "course": "ENGL101",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Lecture",
+    "pk": "06",
+    "fields": {
+      "lecture_id": "L01",
+      "term": "Win2023",
+      "lecture_days": "F",
+      "lecture_starttime": 14.00,
+      "lecture_endtime": 15.50,
+      "lecture_roomnumber": "D300",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "0",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
+      "course": "ENGL102",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Lecture",
+    "pk": "07",
+    "fields": {
+      "lecture_id": "L02",
+      "term": "Fal2023",
+      "lecture_days": "F",
+      "lecture_starttime": 14.00,
+      "lecture_endtime": 15.50,
+      "lecture_roomnumber": "D300",
+      "lecture_totalseats": "100",
+      "lecture_filledseats": "0",
+      "lecture_totalwaitlist": "10",
+      "lecture_filledwaitlist": "0",
+      "course": "ENGL101",
+      "instructor": "003"
+    }
+  },
+
+  {
+    "model": "api.Tutorial",
+    "pk": "01",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2023",
+      "tutorial_days": "F",
+      "tutorial_starttime": 16.00,
+      "tutorial_endtime": 16.50,
+      "tutorial_roomnumber": "X777",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "1",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG401",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "02",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2024",
+      "tutorial_days": "W",
+      "tutorial_starttime": 12.00,
+      "tutorial_endtime": 12.50,
+      "tutorial_roomnumber": "Y888",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "2",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PHYS303",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "03",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2023",
+      "tutorial_days": "M",
+      "tutorial_starttime": 8.00,
+      "tutorial_endtime": 8.50,
+      "tutorial_roomnumber": "Z999",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "1",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENGL201",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "04",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Fal2023",
+      "tutorial_days": "F",
+      "tutorial_starttime": 13.00,
+      "tutorial_endtime": 13.50,
+      "tutorial_roomnumber": "Z999",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "0",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENGL201",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "05",
+    "fields": {
+      "tutorial_id": "T03",
+      "term": "Fal2023",
+      "tutorial_days": "F",
+      "tutorial_starttime": 14.00,
+      "tutorial_endtime": 14.50,
+      "tutorial_roomnumber": "Z999",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "1",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENGL201",
+      "instructor": "002"
     }
   },
   
@@ -665,28 +883,46 @@
     "model": "api.Enrollment",
     "fields": {
       "student": 1,
-      "lecture": "1"
+      "lecture": "1",
+      "tutorial": "1"
     }
   },
   {
     "model": "api.Enrollment",
     "fields": {
       "student": 2,
-      "lecture": "2"
+      "lecture": "2",
+      "tutorial": "2"
     }
   },
   {
     "model": "api.Enrollment",
     "fields": {
       "student": 3,
-      "lecture": "3"
+      "lecture": "3",
+      "tutorial": "3"
     }
   },
   {
     "model": "api.Enrollment",
     "fields": {
       "student": 1,
-      "lecture": "2"
+      "lecture": "2",
+      "tutorial": "2"
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": 1,
+      "lecture": "5"
+    }
+  },
+  {
+    "model": "api.Enrollment",
+    "fields": {
+      "student": 1,
+      "lecture": "6"
     }
   },
 
@@ -696,6 +932,20 @@
     "fields": {
       "grade": 92.5,
       "enrollment": 1
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "grade": 92.5,
+      "enrollment": 5
+    }
+  },
+  {
+    "model": "api.Grade",
+    "fields": {
+      "grade": 70.0,
+      "enrollment": 6
     }
   },
   {
@@ -726,7 +976,7 @@
     "fields": {
       "transaction_name": "Tuition Payment",
       "transaction_posted_date": "2023-09-01",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -5000.00,
       "student": 1,
       "term": "Fal2023"
@@ -738,7 +988,7 @@
     "fields": {
       "transaction_name": "Scholarship Award",
       "transaction_posted_date": "2023-09-15",
-      "transaction_type": "award",
+      "transaction_type": "scholarship",
       "transaction_amount": 2000.00,
       "student": 2,
       "term": "Fal2023"
@@ -750,7 +1000,7 @@
     "fields": {
       "transaction_name": "Textbook Purchase",
       "transaction_posted_date": "2023-09-20",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -250.00,
       "student": 3,
       "term": "Fal2023"
@@ -762,7 +1012,7 @@
     "fields": {
       "transaction_name": "Lab Fee",
       "transaction_posted_date": "2024-01-15",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -100.00,
       "student": 4,
       "term": "Win2024"
@@ -774,7 +1024,7 @@
     "fields": {
       "transaction_name": "Housing Rent",
       "transaction_posted_date": "2024-01-20",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -800.00,
       "student": 5,
       "term": "Win2024"
@@ -787,7 +1037,7 @@
     "fields": {
       "transaction_name": "Scholarship Disbursement",
       "transaction_posted_date": "2023-09-30",
-      "transaction_type": "credit",
+      "transaction_type": "scholarship",
       "transaction_amount": 1500.00,
       "student": 1,
       "term": "Fal2023"
@@ -799,7 +1049,7 @@
     "fields": {
       "transaction_name": "Research Stipend",
       "transaction_posted_date": "2023-10-10",
-      "transaction_type": "credit",
+      "transaction_type": "award",
       "transaction_amount": 800.00,
       "student": 2,
       "term": "Fal2023"
@@ -811,7 +1061,7 @@
     "fields": {
       "transaction_name": "Part-Time Job Salary",
       "transaction_posted_date": "2023-11-05",
-      "transaction_type": "credit",
+      "transaction_type": "payment",
       "transaction_amount": 1000.00,
       "student": 3,
       "term": "Fal2023"
@@ -823,7 +1073,7 @@
     "fields": {
       "transaction_name": "Textbook Refund",
       "transaction_posted_date": "2023-09-25",
-      "transaction_type": "credit",
+      "transaction_type": "payment",
       "transaction_amount": 100.00,
       "student": 4,
       "term": "Fal2023"
@@ -835,7 +1085,7 @@
     "fields": {
       "transaction_name": "Lab Equipment Purchase",
       "transaction_posted_date": "2024-02-15",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -500.00,
       "student": 5,
       "term": "Win2024"
@@ -847,7 +1097,7 @@
     "fields": {
       "transaction_name": "Honorarium for Guest Lecture",
       "transaction_posted_date": "2024-03-10",
-      "transaction_type": "credit",
+      "transaction_type": "award",
       "transaction_amount": 300.00,
       "student": null,
       "term": "Spr2024"
@@ -859,7 +1109,7 @@
     "fields": {
       "transaction_name": "Summer Internship Stipend",
       "transaction_posted_date": "2024-07-15",
-      "transaction_type": "credit",
+      "transaction_type": "scholarship",
       "transaction_amount": 1500.00,
       "student": 1,
       "term": "Sum2024"
@@ -871,7 +1121,7 @@
     "fields": {
       "transaction_name": "Library Fine",
       "transaction_posted_date": "2024-03-01",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -20.00,
       "student": 2,
       "term": "Spr2024"
@@ -883,7 +1133,7 @@
     "fields": {
       "transaction_name": "Course Registration Fee",
       "transaction_posted_date": "2024-03-05",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -100.00,
       "student": 3,
       "term": "Spr2024"
@@ -895,7 +1145,7 @@
     "fields": {
       "transaction_name": "Bookstore Purchase",
       "transaction_posted_date": "2024-07-20",
-      "transaction_type": "debit",
+      "transaction_type": "fee",
       "transaction_amount": -150.00,
       "student": 5,
       "term": "Sum2024"
@@ -907,10 +1157,14 @@
     "fields": {
       "application_status": "Submitted",
       "student": 1,
-      "major_program": "1",
-      "minor_program": "2",
-      "concentration": true,
-      "honors_program": false
+      "program":"1",
+      "major": "Software Engineering",
+      "minor": "None",
+      "concentration": "none",
+      "advisor": null,
+      "app_type": "undergrad",
+      "scholarship_name": null,
+      "scholarship_amount": null
     }
   },
   {
@@ -918,10 +1172,14 @@
     "fields": {
       "application_status": "Under Review",
       "student": 2,
-      "major_program": "2",
-      "minor_program": null,
-      "concentration": false,
-      "honors_program": true
+      "program": "2",
+      "major": "Software Engineering",
+      "minor": "None",
+      "concentration": "none",
+      "advisor": null,
+      "app_type": "undergrad",
+      "scholarship_name": null,
+      "scholarship_amount": null
     }
   },
   {
@@ -929,10 +1187,14 @@
     "fields": {
       "application_status": "Accepted",
       "student": 3,
-      "major_program": "3",
-      "minor_program": "2",
-      "concentration": true,
-      "honors_program": false
+      "program": null,
+      "major": "Software Engineering",
+      "minor": "None",
+      "concentration": "none",
+      "advisor": null,
+      "app_type": "award",
+      "scholarship_name": "alexrutherford",
+      "scholarship_amount": 2500
     }
   },
   {
@@ -940,10 +1202,14 @@
     "fields": {
       "application_status": "Rejected",
       "student": 4,
-      "major_program": "4",
-      "minor_program": null,
-      "concentration": false,
-      "honors_program": true
+      "program": null,
+      "major": "Software Engineering",
+      "minor": "None",
+      "concentration": "none",
+      "advisor": null,
+      "app_type": "award",
+      "scholarship_name": "alexrutherford",
+      "scholarship_amount": 2500
     }
   },
   {
@@ -951,10 +1217,14 @@
     "fields": {
       "application_status": "Accepted",
       "student": 5,
-      "major_program": "5",
-      "minor_program": "4",
-      "concentration": true,
-      "honors_program": false
+      "program": "5",
+      "major": "English Literature",
+      "minor": "None",
+      "concentration": "none",
+      "advisor": null,
+      "app_type": "award",
+      "scholarship_name": null,
+      "scholarship_amount": null
     }
   },
  
@@ -964,6 +1234,7 @@
       "description": "First Year Common Core",
       "required_units": 6,
       "program": 1,
+      "optional": false,
       "courses": ["SENG401", "SENG350"]
     }
   },
@@ -973,6 +1244,7 @@
       "description": "Technical Electives",
       "required_units": 3,
       "program": 1,
+      "optional": true,
       "courses": ["PHYS303", "PHYS207"]
     }
   },
@@ -982,6 +1254,7 @@
       "description": "Complementary Studies",
       "required_units": 3,
       "program": 1,
+      "optional": true,
       "courses": ["ENGL201", "ENGL305"]
     }
   }

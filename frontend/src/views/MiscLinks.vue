@@ -10,7 +10,7 @@
 <template>
   <div class="bg-grey-100 shadow-inner h-fit">
     <div class="grid grid-rows-24 grid-cols-12 w-full gap-4 pt-5 pb-4 px-4">
-      <div class="row-span-12 col-span-4 bg-white-100 w-full  h-100 rounded-lg shadow-xl">
+      <div class="row-span-12 col-span-5 bg-white-100 w-full  h-100 rounded-lg shadow-xl">
         <h2 class="relative w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Get Involved</h2>
         <div class="pt-4 pb-2 px-4 text-lg">
             <div class="flex flex-row pb-3">
@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <div class="row-span-12 col-span-3 bg-white-100 w-full  h-100 rounded-lg shadow-xl">
+      <div class="row-span-12 col-span-4 bg-white-100 w-full  h-100 rounded-lg shadow-xl">
         <h2 class="relative w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Help & Support</h2>
         <div class="flex flex-col justify-between pt-4 pb-2 px-4 text-lg">
             <div class="flex flex-row pb-3">
@@ -115,7 +115,7 @@
         </div>
       </div>
 
-      <div class="row-span-12 col-span-3 bg-white-100 w-full  h-100 rounded-lg shadow-xl">
+      <div class="row-span-12 col-span-4 bg-white-100 w-full  h-100 rounded-lg shadow-xl">
         <h2 class="relative w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">New to UCalgary?</h2>
         <div class="flex flex-col justify-between pt-4 pb-2 px-4 text-lg">
             <div class="flex flex-row pb-3">
@@ -136,7 +136,7 @@
         </div>
       </div>
 
-      <div class="row-span-12 col-span-4 bg-white-100 w-full  h-100 rounded-lg shadow-xl">
+      <div class="row-span-12 col-span-5 bg-white-100 w-full  h-100 rounded-lg shadow-xl">
         <h2 class="relative w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Stay Safe</h2>
         <div class="flex flex-col justify-between pt-4 pb-2 px-4 text-lg">
             <div class="flex flex-row pb-3">

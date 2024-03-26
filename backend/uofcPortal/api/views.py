@@ -90,10 +90,15 @@ class GradeViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated,)
 
 class EnrollmentViewSet(viewsets.ModelViewSet):
-    queryset = Enrollment.objects.all()
     serializer_class = EnrollmentSerializer
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        token = self.request.auth  
+        student = get_object_or_404(Student, user=token.user)
+        return Enrollment.objects.filter(student=student)
+
 
 class TransactionViewSet(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()

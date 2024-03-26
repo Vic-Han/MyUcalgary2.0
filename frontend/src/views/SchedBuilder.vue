@@ -195,7 +195,7 @@ const createLecInfo = (course, index) =>{
                 backHover: false,
                 allInfo: {
                 },
-                selectedTerm: '',
+                selectedTerm: 'Fal2023',
                 courseSearchTerm: '',
                 searchedCourses: [],
                 
@@ -217,12 +217,7 @@ const createLecInfo = (course, index) =>{
         },
         created(){
             this.$emit('hide-navbar')
-            const serverPath   = this.$store.state.serverPath
-            const apiPath = '/api/schedule-builder/'
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${this.$cookies.get('auth-token')}`
-            }
+            
 
          
 
@@ -236,55 +231,79 @@ const createLecInfo = (course, index) =>{
                 item.selected = 0;
             })
             this.worker = new Worker('./ScheduleWorker.js')
-
-            this.$http.get(serverPath + apiPath, {headers: headers}).then(res =>{
-                allCourses = res.data.allCourses 
-                this.degreeRequirements = res.data.academicRequirements
-                console.log(res.data.currentSchedule)
-                const currentSchedule = res.data.currentSchedule
-                for(const [key, value] of Object.entries(currentSchedule)){
-                    console.log(key,value)
-                    for(let i = 0; i < allCourses.length; i++){
-                        if(allCourses[i].name == key){
-                            console.log("Hi")
-                            
-                            if(value.Tutorial){
-                                for(let j = 0; j < allCourses[i].combinations.length; j++){
-                                    if(allCourses[i].combinations[j][0] == value.Lecture && allCourses[i].combinations[j][1] == value.Tutorial){
-                                        allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
-                                        allCourses[i].selectedIndices[j] = true
-                                        allCourses[i].selected = j
-                                        allCourses[i].included= 'sched'
-                                        allCourses[i].enrolled = value
-                                        break
-                                    }
-                                }
-                            }
-                            else{
-                                for(let j = 0; j < allCourses[i].combinations.length; j++){
-                                    if(allCourses[i].combinations[j][0] == value.Lecture){
-                                        allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
-                                        allCourses[i].selectedIndices[j] = true
-                                        allCourses[i].selected = j
-                                        allCourses[i].included = 'sched'
-                                        allCourses[i].enrolled = value
-                                        break
-                                    }
-                                }
-                            }
-                            console.log(allCourses[i])
-                            const newSched = [...this.schedCourses, allCourses[i]]
-                            //newSched[newSched.length - 1].selectedIndices = [true]
-                            this.schedCourses = newSched
-                            break
-                        }
-                    }
-                }
-            }).catch(err => {
-                console.log(err)
-            })
+            this.getTermInfo()
         },
         methods:{
+            async getTerms(){
+                const serverPath = this.$store.state.serverPath
+                const apiPath = 'api/terms/'
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization' : `Token ${this.$cookies.get("auth-token")}`
+                }
+                try{
+                    const res = await this.$http.get(`${serverPath}${apiPath}`, {headers: headers})
+                    this.terms = res.data.terms
+                    this.selectedTerm = this.terms[0]
+                }
+                catch(err){
+                    console.log(err)
+                }
+            },
+            async getTermInfo(){
+                const serverPath   = this.$store.state.serverPath
+                const apiPath = '/api/schedule-builder/'
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${this.$cookies.get('auth-token')}`
+                }
+                this.$http.get(serverPath + apiPath, {headers: headers}).then(res =>{
+                    allCourses = res.data.allCourses 
+                    this.degreeRequirements = res.data.academicRequirements
+                    console.log(res.data.currentSchedule)
+                    const currentSchedule = res.data.currentSchedule
+                    for(const [key, value] of Object.entries(currentSchedule)){
+                        console.log(key,value)
+                        for(let i = 0; i < allCourses.length; i++){
+                            if(allCourses[i].name == key){
+                                console.log("Hi")
+                                
+                                if(value.Tutorial){
+                                    for(let j = 0; j < allCourses[i].combinations.length; j++){
+                                        if(allCourses[i].combinations[j][0] == value.Lecture && allCourses[i].combinations[j][1] == value.Tutorial){
+                                            allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
+                                            allCourses[i].selectedIndices[j] = true
+                                            allCourses[i].selected = j
+                                            allCourses[i].included= 'sched'
+                                            allCourses[i].enrolled = value
+                                            break
+                                        }
+                                    }
+                                }
+                                else{
+                                    for(let j = 0; j < allCourses[i].combinations.length; j++){
+                                        if(allCourses[i].combinations[j][0] == value.Lecture){
+                                            allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
+                                            allCourses[i].selectedIndices[j] = true
+                                            allCourses[i].selected = j
+                                            allCourses[i].included = 'sched'
+                                            allCourses[i].enrolled = value
+                                            break
+                                        }
+                                    }
+                                }
+                                console.log(allCourses[i])
+                                const newSched = [...this.schedCourses, allCourses[i]]
+                                //newSched[newSched.length - 1].selectedIndices = [true]
+                                this.schedCourses = newSched
+                                break
+                            }
+                        }
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+            },
             searchResults(){
                 this.searchedCourses = []
                 const term = this.courseSearchTerm.toLowerCase()
@@ -603,7 +622,7 @@ const createLecInfo = (course, index) =>{
             },
             dropCourse(){
                 const serverPath = this.$store.state.serverPath
-                const apiPath = 'api/schedule-builder/'
+                const apiPath = 'api/enrollments/'
                 const headers = {
                     'Content-Type': 'application/json',
                     'Authorization' : `Token ${this.$cookies.get("auth-token")}`

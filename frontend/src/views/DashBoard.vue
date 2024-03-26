@@ -1,7 +1,7 @@
 <!-- This is the primary dashboard component that is active when the route is dashboard -->
 <template>
     <div class="px-4 py-4 w-full h-fit gap-4 bg-grey-100 grid grid-cols-3 grid-rows-5 shadow-inner">
-        <router-link to="schedule" class=" flex items-center justify-items-center col-span-2 px-14 py-4 row-span-3 bg-white-100 rounded-xl shadow-lg"> 
+        <router-link to="schedule" class=" flex items-center justify-items-center col-span-2 px-2 py-4 row-span-3 bg-white-100 rounded-xl shadow-lg"> 
             <SchedPreview :schedule="Schedule"/> 
         </router-link>
         <div class="col-start-3 row-span-3 bg-white-100 rounded-xl shadow-lg"><CalendarPreview/></div>
@@ -15,28 +15,6 @@
             </GradePreview>
         </router-link>
     </div>
-<!-- 
-    <div class="flex flex-wrap gap-4 mt-3 mx-3">
-        <div class="flex-1 w-1-3 bg-gray-100 rounded-lg shadow-md p-4">
-            <FinancePieChart />
-        </div>
-        <div class="flex-3 w-2/3 bg-gray-100 rounded-lg shadow-md p-4 overflow-auto">
-            <div class="flex w-full">
-            <router-link to="grades" class="block">
-                <GradePreview
-                :term="GradePreview.term"
-                :average="GradePreview.TermGPA"
-                :letter="GradePreview.TermLetterGrade"
-                :courses="GradePreview.courses"
-                :year="GradePreview.Level"
-                :unitsEnrolled="GradePreview.UnitsEnrolled"
-                :plan="GradePreview.Plan"
-                :program="GradePreview.Program"
-                />
-            </router-link>
-            </div>
-        </div>
-    </div> -->
 
 </template>
   

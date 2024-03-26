@@ -4,8 +4,10 @@ let schedules = []
 self.onmessage = function(event) {
     schedules = []
     const courses = event.data.courses;
-    const emptysched = new Schedule()
-    depthFirstSearch(courses, emptysched)
+    
+    console.log(courses)
+    depthFirstSearch(courses)
+    console.log(schedules)
     self.postMessage({
         schedules: schedules
     });
@@ -126,7 +128,8 @@ class Schedule {
         
 //         return true
 //     }
-function validEntry(currentSchedule, newLecture){
+const currentSchedule = new Schedule()
+function validEntry(newLecture){
     const lecStart = newLecture.lecture.start;
     const lecEnd = newLecture.lecture.end;
     
@@ -160,9 +163,14 @@ function validEntry(currentSchedule, newLecture){
         
         return true
     }
-function depthFirstSearch(remainingCourses, currentSchedule){
+function depthFirstSearch(remainingCourses){
     if(remainingCourses.length == 0){
-        schedules.push(currentSchedule.selectedOptions.slice())
+        const sched = [...currentSchedule.selectedOptions]
+        const newSched = []
+        for(let i = sched.length-1; i >= 0; i--){
+            newSched.push(sched[i])
+        }  
+        schedules.push(newSched)
         return
     }
     const course = remainingCourses[remainingCourses.length - 1]
@@ -206,7 +214,7 @@ function depthFirstSearch(remainingCourses, currentSchedule){
         if(lectureInfo.tutorial.start === 16 && currentSchedule.selectedOptions.length == 1){
             console.log(lectureInfo, currentSchedule)
         }
-        if(validEntry(currentSchedule, lectureInfo)){
+        if(validEntry(lectureInfo)){
             currentSchedule.selectedOptions.push(index)
             for(let i = 0; i < lectureInfo.lecture.days.length; i++){
                 const day = lectureInfo.lecture.days[i]
@@ -223,7 +231,7 @@ function depthFirstSearch(remainingCourses, currentSchedule){
             }
             
 
-                depthFirstSearch(newRemainingCourses, currentSchedule)
+                depthFirstSearch(newRemainingCourses)
                 currentSchedule.selectedOptions.pop()
                 for(let i = 0; i < lectureInfo.lecture.days.length; i++){
                     const day = lectureInfo.lecture.days[i]

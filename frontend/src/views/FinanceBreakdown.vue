@@ -467,9 +467,10 @@ export default {
     }
   },
   created(){
-    this.fetchFinancialData();
+    
     this.$emit('show-navbar')
     this.$emit('toggle-selected', 'finances');
+    this.fetchFinancialData();
   }
 };
 

@@ -1,7 +1,7 @@
 <!-- This is the SchedBuilder component that toggles when the route is set to schedule -->
 <template>
-    <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false"></AdvancedSearch>
-    <AcademicSchedulePopup v-if="academicRequirementsPopup" :requirements="degreeRequirements" @close="academicRequirementsPopup = false"></AcademicSchedulePopup>
+    <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false" @applyadvancedsearch="applyAdvancedFilters"></AdvancedSearch>
+    <AcademicSchedulePopup v-if="academicRequirementsPopup" :requirements="degreeRequirements" @close="academicRequirementsPopup = false" @selectcourse="addCourseFromRequirements"></AcademicSchedulePopup>
     <div class="flex flex-row">
         <div class=" px-2 flex flex-col h-screen box-content bg-white-100 shadow-xl">
             <a href="https://www.ucalgary.ca/" target="_blank">
@@ -16,7 +16,7 @@
                 <div class="font-semibold text-grey-200 text-2xl" v-bind:class="{'text-red-100' : backHover}">Back to Home</div>
             </router-link>
             <div class="flex flex-row items-center w-full relative left-5">
-                <input type="text" placeholder="search" @keydown="searchResults" v-model="courseSearchTerm" class="w-2/3 text-xl pl-2 h-9 border border-black-100 rounded-md outline-red-100 ">
+                <input type="text" placeholder="search" @input="searchResults" v-model="courseSearchTerm" class="w-2/3 text-xl pl-2 h-9 border border-black-100 rounded-md outline-red-100 ">
                 <div class="text-lg w-fit px-3 cursor-pointer text-left text-grey-200 hover:text-red-100" @click="advancedSearchOpen = true"> Advanced Search</div>
             </div>
             <div class="h-4/6 overflow-y-auto w-96">
@@ -82,6 +82,8 @@
                         @removecourse="removeCourseFromSched"
                         @addsection="addSection"
                         @removesection="removeSection"
+                        @selectall="reselectall"
+                        @selectset="updateset"
                         ></SelectedCourse>
                     </div>
                     <div v-for="(course,index) in cartCourses" :key="index">
@@ -91,13 +93,16 @@
                         @removecourse="removeCourseFromCart"
                         @addsection="addSection"
                         @removesection="removeSection"
+                        @selectall="reselectall"
+                        @selectset="updateset"
                         ></SelectedCourse>
                     </div>
                 </div>
                 <div class="flex flex-col items-center col-span-7 h-full bg-white-100 rounded-xl shadow-xl mb-4 mr-4 p-4">
                     <!-- <SchedPreview :sched="schedules.length > 0 ? schedules[selectedSched] : null"> </SchedPreview> -->
                     <SchedPreview :schedule="courseListToSched()"></SchedPreview>
-                    <div class="border-4 font-semibold border-red-100 mt-4 w-fit relative left-1/3 translate-x-2 p-3 text-xl rounded-xl text-red-100 hover:bg-red-100 hover:text-white-100">Get Schedule</div>
+                    <div class="border-4 font-semibold border-red-100 mt-4 w-fit relative left-1/3 translate-x-2 p-3 text-xl rounded-xl text-red-100 hover:bg-red-100 hover:text-white-100"
+                    @click="getSchedule">Get Schedule</div>
                 </div>
             </div>
         </div>
@@ -112,6 +117,59 @@ import AdvancedSearch from '@/components/AdvancedSearch.vue'
 import AcademicSchedulePopup from '@/components/AcademicSchedulePopup.vue'
 import data from './SB.json'
 let allCourses = []
+const courseCode = (course, filters) =>{
+                    return course.name.includes(filters.major)
+                }
+                const getcourseNumber = (courseName) =>{
+                    
+                    return parseInt(courseName[courseName.length - 3] + courseName[courseName.length - 2] + courseName[courseName.length - 1])
+                }
+                const courseNumber = (course, filters) =>{
+                    switch(filters.eq){
+                        case '=':
+                            return getcourseNumber(course.name) == filters.courseNumber
+                        case '>':
+                            return getcourseNumber(course.name) > filters.courseNumber
+                        case '<':
+                            return getcourseNumber(course.name) < filters.courseNumber
+                        case '>=':
+                            return getcourseNumber(course.name) >= filters.courseNumber
+                        case '<=':
+                            return getcourseNumber(course.name) <= filters.courseNumber
+                    }
+                }
+const createLecInfo = (course, index) =>{
+                        const section = course.combinations[index]
+    const lectureInfo = {
+                            lecture: {
+                                start: null,
+                                end: null,
+                                days: null,
+                            },
+                            tutorial: {
+                                start: null,
+                                end: null,
+                                days: null,
+                            },
+                            
+                        }
+                        for(let i = 0; i < course.lectures.length; i++){
+                            if(course.lectures[i].name == section[0]){
+                                lectureInfo.lecture.start = course.lectures[i].start
+                                lectureInfo.lecture.end = course.lectures[i].end
+                                lectureInfo.lecture.days = course.lectures[i].days
+                            }
+                        }
+                        if(section.length > 1){
+                            for(let i = 0; i < course.tutorials.length; i++){
+                                if(course.tutorials[i].name == section[1]){
+                                    lectureInfo.tutorial.start = course.tutorials[i].start
+                                    lectureInfo.tutorial.end = course.tutorials[i].end
+                                    lectureInfo.tutorial.days = course.tutorials[i].days
+                                }
+                            }
+                        }
+}
 //const worker = new Worker('./ScheduleWorker.js')
     export default{
         name : 'SchedBuilder',
@@ -148,16 +206,70 @@ let allCourses = []
         },
         created(){
             this.$emit('hide-navbar')
+            const serverPath   = this.$store.state.serverPath
+            const apiPath = '/api/schedule-builder/'
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${this.$cookies.get('auth-token')}`
+            }
+
+         
+
+
             const backendPayload = data
             this.allInfo = backendPayload
-            allCourses = this.allInfo['allCourses']
-            this.degreeRequirements = this.allInfo['academic Requirements']
+            //allCourses = this.allInfo.allCourses
+            this.degreeRequirements = this.allInfo.academicRequirements
             this.schedCourses.forEach((item) => {
                 item.included = 'sched';
                 item.selected = 0;
             })
             this.worker = new Worker('./ScheduleWorker.js')
-           
+
+            this.$http.get(serverPath + apiPath, {headers: headers}).then(res =>{
+                allCourses = res.data.allCourses 
+                this.degreeRequirements = res.data.academicRequirements
+                console.log(res.data.currentSchedule)
+                const currentSchedule = res.data.currentSchedule
+                for(const [key, value] of Object.entries(currentSchedule)){
+                    console.log(key,value)
+                    for(let i = 0; i < allCourses.length; i++){
+                        if(allCourses[i].name == key){
+                            console.log("Hi")
+                            
+                            if(value.Tutorial){
+                                for(let j = 0; j < allCourses[i].combinations.length; j++){
+                                    if(allCourses[i].combinations[j][0] == value.Lecture && allCourses[i].combinations[j][1] == value.Tutorial){
+                                        allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
+                                        allCourses[i].selectedIndices[j] = true
+                                        allCourses[i].selected = j
+                                        allCourses[i].included='sched'
+                                        break
+                                    }
+                                }
+                            }
+                            else{
+                                for(let j = 0; j < allCourses[i].combinations.length; j++){
+                                    if(allCourses[i].combinations[j][0] == value.Lecture){
+                                        allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
+                                        allCourses[i].selectedIndices[j] = true
+                                        allCourses[i].selected = j
+                                        allCourses[i].included = 'sched'
+                                        break
+                                    }
+                                }
+                            }
+                            console.log(allCourses[i])
+                            const newSched = [...this.schedCourses, allCourses[i]]
+                            //newSched[newSched.length - 1].selectedIndices = [true]
+                            this.schedCourses = newSched
+                            break
+                        }
+                    }
+                }
+            }).catch(err => {
+                console.log(err)
+            })
         },
         methods:{
             searchResults(){
@@ -240,6 +352,30 @@ let allCourses = []
                 else if(this.courseInSched(coursename)){
                     this.removeCourseFromSched(coursename)
                 }
+            },
+            addCourseFromRequirements(course){
+                this.searchedCourses = []
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    if(this.schedCourses[i].name == course){
+                        return
+                    }
+                }
+                for(let i = 0; i < this.cartCourses.length; i++){
+                    if(this.cartCourses[i].name == course){
+                        return
+                    }
+                }
+                for(let i = 0; i < allCourses.length; i++){
+                    if(allCourses[i].name == course){
+                        allCourses[i].included = 'sched';
+                        allCourses[i].selected = 0;
+                        allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(true)
+                        const newSched = [...this.schedCourses, allCourses[i]]
+                        this.schedCourses = newSched
+                        break;
+                    }
+                }
+                this.academicRequirementsPopup = false
             },
             computeSchedules(){
            
@@ -406,6 +542,82 @@ let allCourses = []
                         return
                     }
                 }
+            },
+            reselectall(courseName){
+                console.log('reselecting all')
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    if(this.schedCourses[i].name === courseName){
+                        const newSched = [...this.schedCourses]
+                        newSched[i].selectedIndices = Array(newSched[i].combinations.length).fill(true)
+                        this.schedCourses = newSched
+                        this.computeSchedules()
+                        return
+                    }
+                }
+                for(let i = 0; i < this.cartCourses.length; i++){
+                    if(this.cartCourses[i].name === courseName){
+                        this.cartCourses[i].selectedIndices = Array(this.cartCourses[i].combinations.length).fill(true)
+                        return
+                    } 
+                }
+            },
+            updateset(courseName, newList){
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    if(this.schedCourses[i].name === courseName){
+                        const newSched = [...this.schedCourses]
+                        newSched[i].selectedIndices = [...newList]
+                        this.schedCourses = newSched
+                        this.computeSchedules()
+
+                        return
+                    }
+                }
+                for(let i = 0; i < this.cartCourses.length; i++){
+                    if(this.cartCourses[i].name === courseName){
+                        this.cartCourses[i].selectedIndices = [...newList]
+                        return
+                    }
+                }
+            },
+            applyAdvancedFilters(filters){
+                this.advancedSearchOpen = false
+                
+                const courseDaysandTime = (course) =>{
+                    const daytoIndex = {
+                        'M': 0,
+                        'T': 1,
+                        'W': 2,
+                        'R': 3,
+                        'F': 4
+                    }
+                    for(let i = 0; i < course.combinations.length; i++){
+                        const lectureInfo = createLecInfo(course, i)
+                        if(lectureInfo.lecture.start > filters.startTime && lectureInfo.lecture.end < filters.endTime){
+                            if(lectureInfo.lecture.days.every((day) => filters.days[daytoIndex[day]])){
+                                if(lectureInfo.tutorial.end){
+                                    if(lectureInfo.tutorial.start > filters.startTime && lectureInfo.tutorial.end < filters.endTime){
+                                        if(lectureInfo.tutorial.days.every((day) => filters.days[daytoIndex[day]])){
+                                            return true
+                                        }
+                                    }
+                                }
+                                else{
+                                    return true
+                                }
+                            }
+                        }
+                    }
+                    return false
+                }
+                const courseOnline = (course) =>{
+                    return (course.lectures[0].roomno == 'online') === filters.isOnline
+                }
+                this.searchedCourses = allCourses.filter((course) => {
+                    return courseCode(course, filters) && courseNumber(course, filters) && courseDaysandTime(course) && courseOnline(course)
+                })
+            },
+            getSchedule(){
+                console.log('getting schedule')
             }
 
         },

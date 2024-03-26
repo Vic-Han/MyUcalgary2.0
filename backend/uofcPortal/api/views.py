@@ -3,15 +3,15 @@ import math
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
-from .mixins import GradeMixins 
+from .mixins import GradeMixins
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from .models import Student, Requirement, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications
+from .models import Student, Requirement, Tutorial, Faculty, Department, Program, Course, Instructor, Lecture, Grade, Enrollment, Address, Transaction, StudentApplications, Term
 from .serializers import StudentSerializer, RequirementSerializer, UserSerializer, FacultySerializer, DepartmentSerializer, ProgramSerializer, AddressSerializer
-from .serializers import CourseSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer, StudentApplicationsSerializer
+from .serializers import CourseSerializer, TutorialSerializer, InstructorSerializer, LectureSerializer, GradeSerializer, EnrollmentSerializer, PersonalInfoSerializer, TransactionSerializer, StudentApplicationsSerializer
 
 
 # Create your views here.
@@ -74,6 +74,12 @@ class InstructorViewSet(viewsets.ModelViewSet):
 class LectureViewSet(viewsets.ModelViewSet):
     queryset = Lecture.objects.all()
     serializer_class = LectureSerializer
+    # authentication_classes = (TokenAuthentication,)
+    # permission_classes = (IsAuthenticated,)
+
+class TutorialViewSet(viewsets.ModelViewSet):
+    queryset = Tutorial.objects.all()
+    serializer_class = TutorialSerializer
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
 
@@ -191,7 +197,7 @@ class StudentGradeView(APIView, GradeMixins):
 
     def get(self, request):
 
-        # student = Student.objects.first()  # Replace with authentication late
+        #student = Student.objects.first()  # Replace with authentication late
         student = get_object_or_404(Student, user=request.user)
         enrollments = Enrollment.objects.filter(student=student)
         applications = StudentApplications.objects.filter(student=student).first()
@@ -446,3 +452,161 @@ class StudentRequirementsView(APIView):
         return Response(requirement_data)
 
 
+class ScheduleBuilderView(APIView):    
+    # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    # permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication  
+
+    def get_queryset(self):
+        term = self.request.query_params.get('term')
+
+    def get(self, request):
+        student = Student.objects.first()
+        #student = get_object_or_404(Student, user=request.user)
+        if not student:
+            return Response({"error": "No student found"}, status=404)
+        schedule_builder_data = {
+            "allCourses": [],
+            "currentSchedule": {},
+            "academicRequirements": {}
+        }
+        # hardcoded term
+        term = None
+        try:
+            term = Term.objects.get(term_key="Fal2023")
+        except Term.DoesNotExist:
+            return Response({"error": "Term not found"}, status=404)
+
+        
+        # offered course retrieval
+        courses = Course.objects.all()
+        for course in courses:
+
+            if not Lecture.objects.filter(course=course, term=term).exists():
+                continue
+            if course.course_prerequisites == None:
+                can_take = True
+                prereq_codes = "none"
+            else:
+                can_take = True
+                prereq_codes = course.course_prerequisites.split(', ')
+
+            course_data = {
+                "name": course.course_code,
+                "title": course.course_title,
+                "desc" : course.course_description,
+                "prereq": prereq_codes,
+                "prereqfilled": can_take,
+                "combinations": [],
+                "lectures": [],
+                "tutorials": []
+            }
+
+            lectures = Lecture.objects.filter(course=course)
+            for lecture in lectures:
+                course_data["lectures"].append({
+                    "name": lecture.lecture_id,
+                    "days": lecture.lecture_days,
+                    "start": lecture.lecture_starttime,
+                    "end": lecture.lecture_endtime,
+                    "Prof": lecture.instructor.instructor_last_name + ", " + lecture.instructor.instructor_first_name,
+                    "totalSeats": lecture.lecture_totalseats, # hardcoded
+                    "seatsFilled": lecture.lecture_filledseats, # hardcoded
+                    "totalWaitlist": lecture.lecture_totalwaitlist, # hardcoded
+                    "waitlistFilled": lecture.lecture_filledwaitlist, # hardcoded
+                    "roomno": lecture.lecture_roomnumber
+                })
+            
+            tutorials = Tutorial.objects.filter(course=course)
+            for tutorial in tutorials:
+                course_data["tutorials"].append({
+                    "name": tutorial.tutorial_id,
+                    "days": tutorial.tutorial_days,
+                    "start": tutorial.tutorial_starttime,
+                    "end": tutorial.tutorial_endtime,
+                    "totalSeats": tutorial.tutorial_totalseats,
+                    "seatsFilled": tutorial.tutorial_filledseats,
+                    "totalWaitlist": tutorial.tutorial_totalwaitlist,
+                    "waitlistFilled": tutorial.tutorial_filledwaitlist,
+                    "roomno": tutorial.tutorial_roomnumber
+                })
+
+            for lecture in lectures:
+                if(len(tutorials)) > 0:
+                    for tutorial in tutorials:
+                        for c in tutorial.tutorial_days:
+                            if lecture.lecture_days.find(c) == -1:
+                                course_data["combinations"].append([lecture.lecture_id, tutorial.tutorial_id])
+                            elif lecture.lecture_starttime > tutorial.tutorial_endtime or lecture.lecture_endtime < tutorial.tutorial_starttime:
+                                course_data["combinations"].append([lecture.lecture_id, tutorial.tutorial_id])
+                else:
+                    course_data["combinations"].append([lecture.lecture_id])
+            
+            schedule_builder_data["allCourses"].append(course_data)
+        
+        # current schedule retrieval
+        enrollments = Enrollment.objects.filter(student=student)
+        for enrollment in enrollments:
+            if enrollment.lecture.term == term:
+                term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
+                
+                schedule_builder_data["currentSchedule"][enrollment.lecture.course.course_code] = {
+                    "Lecture": enrollment.lecture.lecture_id,
+                    "Tutorial": enrollment.tutorial.tutorial_id if enrollment.tutorial else "None"
+                }
+
+        # academic requirements retrieval
+        requirement_data = {
+            "requirements": []
+        }
+
+
+        applications = StudentApplications.objects.filter(student_id=student)
+        application = applications[0]
+        maj_prog = application.program
+        #min_prog = application.minor
+
+        enrollments = Enrollment.objects.filter(student_id=student)
+        lecture_list = []
+        grade_list = []
+        for enrollment in enrollments:
+            lectures = Lecture.objects.filter(lecture_id=enrollment.lecture_id)
+            for lecture in lectures:
+                lecture_list.append(lecture)
+            grades = Grade.objects.filter(enrollment_id=enrollment)
+            for grade in grades:
+                grade_list.append(grade)
+
+        major_requirements = Requirement.objects.filter(program_id=maj_prog)
+        for requirement in major_requirements:                
+            courses = Course.objects.filter(course_code__in=requirement.courses.all())
+            course_data = []
+            units_completed = 0
+            for course in courses:
+                status = "incomplete"
+                for grade in grade_list:
+                    if grade.enrollment.lecture.course == course and grade.grade >= 50:
+                        status = "complete"
+                        units_completed += course.course_units
+                if status == "incomplete":
+                    course_data.append({
+                        "name": course.course_code,
+                        "units": course.course_units,
+                        "status": status
+                    })
+            req_status = ""
+            if units_completed == requirement.required_units:
+                req_status = "complete"
+            elif 0 < units_completed and units_completed < requirement.required_units:
+                req_status = "in-progress"
+            else:
+                req_status = "incomplete"
+            if req_status == "incomplete" or req_status == "in-progress":
+                requirement_data["requirements"].append({
+                    "description": requirement.description,
+                    "requiredUnits": requirement.required_units,
+                    "status": req_status,
+                    "courses": course_data
+                })
+        schedule_builder_data["academicRequirements"] = requirement_data
+
+        return Response(schedule_builder_data)

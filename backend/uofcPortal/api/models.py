@@ -129,20 +129,11 @@ class Lecture(models.Model):
     lecture_days = models.CharField(max_length=10)
     lecture_starttime = models.FloatField(validators=[MaxValueValidator(23.00)])
     lecture_endtime = models.FloatField(validators=[MaxValueValidator(23.83)])
-    
-    # Float values for lecture start and endtimes are as follow:
-    # 12:00am =  0.00
-    # 01:05am =  1.08
-    # 09:10am =  9.17
-    # 10:15am = 10.25
-    # 11:20am = 11.33
-    # 12:25pm = 12.42
-    # 01:30pm = 13.50
-    # 07:35pm = 19.58
-    # 08:40pm = 20.67
-    # 09:45pm = 21.75
-    # 10:50pm = 22.83
-    # 11:55pm = 23.92
+
+    lecture_totalseats = models.IntegerField(default=100)
+    lecture_filledseats = models.IntegerField(validators=[MaxValueValidator(100)], default=0)
+    lecture_totalwaitlist = models.IntegerField(default=10)
+    lecture_filledwaitlist = models.IntegerField(validators=[MaxValueValidator(10)], default=0)
 
     lecture_roomnumber = models.CharField(max_length=10)
 
@@ -151,12 +142,48 @@ class Lecture(models.Model):
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f"{self.course} - {self.lecture_id}"
+        return f"{self.course} - {self.lecture_id}"   
+
+class Tutorial(models.Model):
+    tutorial_id = models.CharField(max_length=10) # e.g. T01
+    tutorial_days = models.CharField(max_length=10)
+    tutorial_starttime = models.FloatField(validators=[MaxValueValidator(23.00)])
+    tutorial_endtime = models.FloatField(validators=[MaxValueValidator(23.83)])
+    tutorial_totalseats = models.IntegerField(default=100)
+    tutorial_filledseats = models.IntegerField(validators=[MaxValueValidator(100)], default=0)
+    tutorial_totalwaitlist = models.IntegerField(default=10)
+    tutorial_filledwaitlist = models.IntegerField(validators=[MaxValueValidator(10)], default=0)
+
+    tutorial_roomnumber = models.CharField(max_length=10)
+
+    term = models.ForeignKey(Term, on_delete=models.CASCADE, null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f"{self.course} - {self.tutorial_id}"
     
+# Float values for lecture, tutorial start and endtimes are as follow:
+# 12:00am =  0.00
+# 01:05am =  1.08
+# 09:10am =  9.17
+# 10:15am = 10.25
+# 11:20am = 11.33
+# 12:25pm = 12.42
+# 01:30pm = 13.50
+# 07:35pm = 19.58
+# 08:40pm = 20.67
+# 09:45pm = 21.75
+# 10:50pm = 22.83
+# 11:55pm = 23.92 
+
 class Enrollment(models.Model):
+    enrollment_waitlist = models.BooleanField(default=False)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)
+    tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE, null=True)
     
+    # tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE, null=True)
     class Meta:
         unique_together = ('student', 'lecture')  # Avoid duplicate enrollments
 
@@ -173,7 +200,7 @@ class Grade(models.Model):
 class Transaction(models.Model):
     transaction_name = models.CharField(max_length=50) # e.g. Bank of Montreal
     transaction_posted_date = models.DateField()
-    transaction_type = models.CharField(max_length=10) # e.g. credit, debit, award
+    transaction_type = models.CharField(max_length=11) # e.g. payment, fee, award, scholarship
     transaction_amount = models.FloatField()
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)

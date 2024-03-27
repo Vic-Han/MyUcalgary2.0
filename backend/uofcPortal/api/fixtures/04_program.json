@@ -11,16 +11,6 @@
     },
     {
     "model": "api.Program",
-    "pk": "6",
-    "fields": {
-        "program_name": "Engineering First Year Common Core",
-        "department": "Engineering",
-        "program_degree_level": "Bachelor",
-        "program_honor": false
-    }
-    },
-    {
-    "model": "api.Program",
     "pk": "2",
     "fields": {
         "program_name": "Computer Science",

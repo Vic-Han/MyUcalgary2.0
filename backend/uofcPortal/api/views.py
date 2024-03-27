@@ -566,6 +566,7 @@ class StudentRequirementsView(APIView):
 
     def get(self, request):
         student = get_object_or_404(Student, user=request.user)
+        student=Student.objects.first()
         if not student:
             return Response({"error": "No student found"}, status=404)
         
@@ -607,14 +608,20 @@ class StudentRequirementsView(APIView):
             course_data = []
             units_completed = 0
             for course in courses:
+                best_grade = None
                 status = "incomplete"
                 for grade in grade_list:
                     if grade.enrollment.lecture.course == course and grade.grade >= 50:
                         status = "complete"
                         units_completed += course.course_units
+                        if best_grade == None:
+                            best_grade = grade.grade
+                        elif grade.grade > best_grade:
+                            best_grade = grade.grade
                 course_data.append({
                     "name": course.course_code,
                     "units": course.course_units,
+                    "grade": best_grade,
                     "status": status,
                     "semester": "F1"
                 })

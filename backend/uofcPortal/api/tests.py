@@ -113,47 +113,21 @@ class BackendTesting(APITestCase):
         self.assertDictEqual(response_json["activity"]["Spring 2024"][0], expected_spring_2024_activities[0], "Spring 2024 activity does not match expected data.")
         
     
-    # def test_course_requirements(self):
-    #     # Fetching the course-requirements endpoint
-    #     url = reverse('course-requirements')  # Update this if your actual URL name differs
-    #     response = self.client.get(url)
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
-    #     response_json = response.json()
+def test_personal_info_endpoint(self):
+    url = reverse('personal-info')  # Ensure you have named your URL route as 'personal-info'
+    response = self.client.get(url)
+    self.assertEqual(response.status_code, status.HTTP_200_OK)
+    self.assertEqual(response['Content-Type'], 'application/json')
+    response_json = response.json()
 
-    #     # Print the response for debugging
-    #     print(json.dumps(response_json, indent=4))
+    # Check if the response contains all expected keys
+    expected_keys = ['personal_info', 'citizenship', 'address', 'phone_numbers', 'email', 'emergency_contact']
+    for key in expected_keys:
+        self.assertIn(key, response_json, msg=f"{key} is missing in the response")
 
-        # # Assert the program information
-        # expected_program_info = {
-        #     "degree": "Bachelor",
-        #     "major": "GD",  # Based on your setup for the graphic design program
-        #     "minor": "None",  # No minor is set in your setup
-        #     "concentration": "none",  # Assuming no concentration is set
-        #     "year": "1",  # Assuming first year based on enrolled courses
-        #     "academicLoad": "full-time"  # Assuming full-time academic load
-        # }
-        # self.assertDictEqual(response_json["programInfo"], expected_program_info, "Program info does not match expected data.")
+    # Verify some specific personal information details
+    self.assertEqual(response_json['personal_info']['firstname'], 'Tom')
+    self.assertEqual(response_json['personal_info']['lastname'], 'Baker')
+    self.assertEqual(response_json['personal_info']['UCID'], 'T100')
 
-        # # Assert the requirements and their courses
-        # expected_requirements = [
-        #     {
-        #         "description": "Complementary Studies",
-        #         "requiredUnits": 3,
-        #         "status": "complete",  # Assuming Tom's grade of 88 in DES101 marks this requirement as complete
-        #         "courses": [
-        #             {
-        #                 "name": "DES101",
-        #                 "units": 3,
-        #                 "status": "complete"  # DES101 with grade 88 should be marked as complete
-        #             }
-        #         ]
-        #     }
-        # ]
-
-        # self.assertEqual(len(response_json["requirements"]), len(expected_requirements), "Number of requirements does not match.")
-        # for expected_req, actual_req in zip(expected_requirements, response_json["requirements"]):
-        #     self.assertEqual(expected_req["description"], actual_req["description"], "Requirement description does not match.")
-        #     self.assertEqual(expected_req["requiredUnits"], actual_req["requiredUnits"], "Required units do not match.")
-        #     self.assertEqual(expected_req["status"], actual_req["status"], "Requirement status does not match.")
-        #     for expected_course, actual_course in zip(expected_req["courses"], actual_req["courses"]):
-        #         self.assertDictEqual(expected_course, actual_course, "Course details do not match.")
+  

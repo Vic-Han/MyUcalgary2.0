@@ -35,15 +35,11 @@ class BackendTesting(APITestCase):
         self.enrollment_tom_design = Enrollment.objects.create(student=self.student_tom, lecture=self.lecture_design)
         self.grade_tom_design = Grade.objects.create(grade=88.0, enrollment=self.enrollment_tom_design)
         
-        self.student_application_tom = StudentApplications.objects.create(application_status="Accepted",student=self.student_tom,major_program=self.program_graphic_design,minor_program = self.minor_program,concentration=False,honors_program=False)
+        self.student_application_tom = StudentApplications.objects.create(application_status="Accepted",student=self.student_tom,major=self.program_graphic_design.program_name,minor=self.minor_program.program_name,concentration=False,program=self.program_graphic_design)  # Directly linking to a Program instance
         
         self.transaction_spring = Transaction.objects.create(transaction_name="Spring Transaction",transaction_posted_date="2024-03-01",transaction_type="debit",  transaction_amount=-5000.00,student=self.student_tom, term=self.term_2024_spring)
 
         self.requirement_core = Requirement.objects.create(description="Complementary Studies",required_units=3,program=self.program_graphic_design)
-        
-        self.course_seng350 = Course.objects.create(course_code="SENG350",course_title="Intermediate Software Engineering",department=self.department_design,course_units=3)
-        
-        self.enrollment_seng350 = Enrollment.objects.create(student=self.student_tom,lecture=Lecture.objects.create(lecture_id="L01",term=self.term_2024_spring,course=self.course_seng350,instructor=self.instructor_jane,lecture_days="MW",lecture_starttime=12.00,lecture_endtime=13.30,lecture_roomnumber="AD101"))
         
         
     def test_root_endpoint(self):
@@ -60,8 +56,9 @@ class BackendTesting(APITestCase):
         response_json = response.json()
         
         #this part of printing could be commented out
-        # formatted_new_json = json.dumps(response_json, indent=4)
-        # print(formatted_new_json)
+        formatted_new_json = json.dumps(response_json, indent=4)
+        print(formatted_new_json)
+        print("-------------end of student grades endpoint check------------------")
         
         self.assertEqual(response_json['overallGPA'], 3.3)
         self.assertEqual(response_json['letterGrade'], 'A-')
@@ -95,8 +92,9 @@ class BackendTesting(APITestCase):
         response_json = response.json()
         
         #this part of printing could be commented out
-        # formatted_new_json = json.dumps(response_json, indent=4)
-        # print(formatted_new_json)
+        formatted_new_json = json.dumps(response_json, indent=4)
+        print(formatted_new_json)
+        print("-------------end of student finances endpoint check------------------")
         
         self.assertAlmostEqual(response_json["paid"],0.0, places=2, msg="Paid amount does not match expected value.")
         self.assertAlmostEqual(response_json["awards"], 0.0, places=2, msg="Awards amount does not match expected value.")

@@ -572,7 +572,7 @@ class StudentRequirementsView(APIView):
         requirement_data["programInfo"]["degree"] = maj_prog.program_degree_level
         requirement_data["programInfo"]["major"] = maj_prog.program_name
         requirement_data["programInfo"]["minor"] = application.minor            
-            
+        
         enrollments = Enrollment.objects.filter(student_id=student)
         lecture_list = []
         grade_list = []
@@ -841,11 +841,12 @@ class ScheduleBuilderView(APIView):
     def delete(self, request, term_key, course_key, format=None):
         student = get_object_or_404(Student, user=request.user)
         data = request.data
-        lecture = Lecture.objects.get(course=course_key, term=term_key).pk
       
-        enrollment = Enrollment.objects.filter(student=student, lecture=lecture).first()
-        print(enrollment)
-        if not enrollment:
-            return Response({"error": "Not enrolled in course"}, status=status.HTTP_400_BAD_REQUEST)
-        enrollment.delete()
-        return Response({"message": "Enrollment deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+        enrollments = Enrollment.objects.filter(student=student)
+        if not enrollments:
+            return Response({"error": "No enrollment found"}, status=404)
+        for enrollment in enrollments:
+            if enrollment.lecture.term.term_key == term_key and enrollment.lecture.course.course_code == course_key:
+                enrollment.delete()
+                return Response({"message": "Enrollment deleted successfully"}, status=204)
+        return Response({"error": "Enrollment not found"}, status=404)

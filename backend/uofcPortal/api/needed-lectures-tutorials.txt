@@ -1,4 +1,0 @@
-/*
-  need multiple:
-  f2024:    enel500 cpsc453 cpsc525 seng513 cpsc481
-  w2025:    enel501 engg513 enel525 encm509 cpsc559*/

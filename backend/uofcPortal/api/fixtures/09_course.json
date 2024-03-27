@@ -685,4 +685,18 @@
           "department": "Computer Science"
         }
       }
+
+
+
+
+      {
+        "model": "api.Course",
+        "pk": "SOCI201",
+        "fields": {
+          "course_title": "Introductory Sociology",
+          "course_description": "Sociology as a discipline examines how the society in which we live influences our thinking and behaviour. An introduction to sociology through the study of society, social institutions, group behaviour and social change.",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      }
 ]

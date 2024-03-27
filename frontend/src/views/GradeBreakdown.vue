@@ -11,11 +11,10 @@
         </div>
        
       </div>
-      <div class="flex flex-col rounded-xl shadow-xl py-12 px-8 text-center bg-white-100 m-5">
+      <div class="flex flex-col h-72 rounded-xl shadow-xl py-12 px-8 text-center bg-white-100 mx-5 mb-5 mt-8">
         <div class="font-bold my-4 text-base leading-relaxed">Level: {{currentStudentInfo.level}}</div>
         <div class="text-base text-grey-200 leading-normal my-3 ">Plan: {{ currentStudentInfo.plan }}</div>
         <div class="text-grey-200 my-3"> Program: {{ currentStudentInfo.program }} </div>
-        <div class="text-grey-200 my-3"> Keep This here until you find a way to make the height identical </div>
       </div>
     </div>
     <div class="bg-white-100 rounded-xl shadow-2xl h-fit mx-1 my-5 px-4 py-1 flex flex-col">

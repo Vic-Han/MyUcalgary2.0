@@ -181,9 +181,9 @@ export default {
       const body = new FormData()
       if(this.selectedType === 'Undergrad'){
         body.append('type', 'undergrad')
-        body.append('major', this.selectedProgram)
         body.append('minor', this.selectedConcentration)
         body.append('concentration', this.selectedConcentration)
+        body.append('program', this.selectedProgram)
       }
       else if(this.selectedType === 'Graduate'){
         body.append('type', 'grad')

@@ -162,7 +162,7 @@ class StudentApplicationsViewSet(APIView):
                 "key": application.pk,
                 "faculty": application.program.department.faculty.faculty_name,
                 "program": application.program.program_name,
-                "major": application.major,
+                "major": application.program.program_name,
                 "status": application.application_status,
                 "minor": application.minor,
                 "concentration": application.concentration if application.concentration else "none",    

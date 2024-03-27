@@ -103,6 +103,7 @@ import Data from './SampleSched.json'
                         this.FinancePreview.status = value.debits > 0 ? "Unpaid" : "Paid"
                         this.FinancePreview.due = value.due
                     }
+                    this.Schedule = data.schedule
 
                 }).catch(error => {
                     console.log(error)

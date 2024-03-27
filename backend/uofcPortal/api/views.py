@@ -493,7 +493,7 @@ class DashboardView(APIView, GradeMixins):
         dashboard_data = {
             "grades": {},
             "finances": {},
-            "schedule": {}
+            "schedule": []
         }
 
         # Grades
@@ -554,12 +554,35 @@ class DashboardView(APIView, GradeMixins):
         for enrollment in enrollments:
             if enrollment.lecture.term == term:
                 term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
-                
-                dashboard_data["schedule"][enrollment.lecture.course.course_code] = {
-                    "Lecture": enrollment.lecture.lecture_id,
-                    "Tutorial": enrollment.tutorial.tutorial_id if enrollment.tutorial else "None"
+                enrollment_data = {
+                    
                 }
+                lecture = Lecture.objects.get(lecture_id=enrollment.lecture.lecture_id , term=term)
+                tutorial = Tutorial.objects.get(tutorial_id=enrollment.tutorial.tutorial_id,  term=term)
+                lectureInfo = {
+                    "LectureNO": lecture.lecture_id,
+                    "days": lecture.lecture_days,
+                    "start": lecture.lecture_starttime,
+                    "end": lecture.lecture_endtime,
+                    "roomno": lecture.lecture_roomnumber,
 
+                }
+                enrollment_data["Lecture"] = lectureInfo
+                enrollment_data["courseCode"] = enrollment.lecture.course.course_code
+                enrollment_data["courseTitle"] = enrollment.lecture.course.course_title
+
+                if enrollment.tutorial:
+                    tutorialInfo = {
+                        "TutorialNO": tutorial.tutorial_id,
+                        "days": tutorial.tutorial_days,
+                        "start": tutorial.tutorial_starttime,
+                        "end": tutorial.tutorial_endtime,
+                        "roomno": tutorial.tutorial_roomnumber,
+                    }
+                    enrollment_data["Tutorial"] = tutorialInfo
+
+
+                dashboard_data["schedule"].append(enrollment_data)
         return Response(dashboard_data)
     
 class StudentRequirementsView(APIView):

@@ -236,22 +236,41 @@ class StudentApplicationsViewSet(APIView):
         }
 
         return Response(response_data)
-    
-    def delete(self, request):
-        student = get_object_or_404(Student, user=request.user)
 
-        # Extract the application ID from the request body
-        application_id = request.data.get('application_id')
-        if not application_id:
-            return Response({"error": "Application ID is required for deletion"}, status=status.HTTP_400_BAD_REQUEST)
-
+    def delete(self, request, pk, format=None):
+        # First, try to get the student object from the request.user
         try:
-            application = StudentApplications.objects.get(pk=application_id, student=student)
-        except StudentApplications.DoesNotExist:
-            return Response({"error": f"Application with ID {application_id} not found for this student"}, status=status.HTTP_404_NOT_FOUND)
+            student = request.user.student
+        except Student.DoesNotExist:
+            # If the student is not found, return a 404 error with a message
+            return Response({'error': 'Student not found.'}, status=404)
 
+        # Try to get the student application using the provided PK and ensure it belongs to the logged-in student
+        try:
+            application = StudentApplications.objects.get(pk=pk, student=student)
+        except StudentApplications.DoesNotExist:
+            # If the application is not found, return a 404 error with a message
+            return Response({'error': f'Application with ID {pk} not found for this student.'}, status=404)
+
+        # If the application is found, delete it
         application.delete()
-        return Response({"message": "Application deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+        return Response({'message': 'Application deleted successfully.'}, status=204)
+    
+    # def delete(self, request):
+    #     student = get_object_or_404(Student, user=request.user)
+
+    #     # Extract the application ID from the request body
+    #     application_id = request.data.get('application_id')
+    #     if not application_id:
+    #         return Response({"error": "Application ID is required for deletion"}, status=status.HTTP_400_BAD_REQUEST)
+
+    #     try:
+    #         application = StudentApplications.objects.get(pk=application_id, student=student)
+    #     except StudentApplications.DoesNotExist:
+    #         return Response({"error": f"Application with ID {application_id} not found for this student"}, status=status.HTTP_404_NOT_FOUND)
+
+    #     application.delete()
+    #     return Response({"message": "Application deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
 
 class StudentGradeView(APIView, GradeMixins):

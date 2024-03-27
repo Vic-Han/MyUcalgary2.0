@@ -22,7 +22,8 @@
             <div v-for="(app,index) in ugradApps" :key="index" class="bg-white-100 shadow-xl rounded-xl p-5 h-fit w-fit ml-8 mb-2 mt-8" :class="{'mr-8': index == ugradApps.length -1}">
               <div class="flex flex-row p-2 justify-between w-144">
                 <div class="text-3xl text-left"> {{ app.program }}</div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(app.ID)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" 
+                class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(app.key)" v-if="status == 'Under Review' || status == 'Rejected'">
                   <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
                 </svg>
               </div>
@@ -48,7 +49,8 @@
             <div v-for="(award,index) in awards" :key="index" class="bg-white-100 shadow-xl rounded-xl p-5 h-fit w-fit ml-8 mb-2 mt-8" :class="{'mr-8': index == awards.length -1}">
               <div class="flex flex-row p-2 justify-between w-144">
                 <div class="text-3xl text-left"> {{ award.name }}</div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(award.key)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" 
+                class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(award.key)" v-if="status == 'Under Review' || status == 'Rejected'">
                   <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
                 </svg>
               </div>
@@ -71,7 +73,8 @@
             <div v-for="(scholarship,index) in scholarships" :key="index" class="bg-white-100 shadow-xl rounded-xl p-5 h-fit w-fit ml-8 mb-2 mt-8" :class="{'mr-8': index == scholarships.length -1}">
               <div class="flex flex-row p-2 justify-between w-144">
                 <div class="text-3xl text-left"> {{ scholarship.name }}</div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(scholarship.key)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" 
+                class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(scholarship.key)" v-if="status == 'Under Review' || status == 'Rejected'">
                   <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
                 </svg>
               </div>
@@ -93,7 +96,8 @@
               <div v-for="(app,index) in gradApps" :key="index" class="bg-white-100 shadow-xl rounded-xl p-5 h-fit w-fit ml-8 mb-2 mt-8" :class="{'mr-8': index == gradApps.length -1}">
               <div class="flex flex-row p-2 justify-between w-144">
                 <div class="text-3xl text-left"> {{ app.program }}</div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(app.ID)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" 
+                class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(app.key)" v-if="status == 'Under Review' || status == 'Rejected'">
                   <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
                 </svg>
               </div>
@@ -161,15 +165,14 @@ export default {
           'Content-Type': 'application/json',
           'Authorization' :`Token ${this.$cookies.get("auth-token")}`
       }
-      const body = new FormData()
-      body.append("application_id", appID)
-      console.log(headers)
-      this.$http.delete(`${serverpath}${apiPath}`, body, {headers}).then(response => {
+      const path = `${serverpath}${apiPath}${encodeURIComponent(appID)}`
+    console.log(path,headers)
+      this.$http.delete(path, {headers}).then(response => {
           console.log(response.data)
-          this.ugradApps = this.ugradApps.filter(app => app.ID !== appID)
-          this.gradApps = this.gradApps.filter(app => app.ID !== appID)
-          this.scholarships = this.scholarships.filter(app => app.ID !== appID)
-          this.awards = this.awards.filter(app => app.ID !== appID)
+          this.ugradApps = this.ugradApps.filter(app => app.key !== appID)
+          this.gradApps = this.gradApps.filter(app => app.key !== appID)
+          this.scholarships = this.scholarships.filter(app => app.key !== appID)
+          this.awards = this.awards.filter(app => app.key !== appID)
       }).catch(error => {
           console.log(error)
       })

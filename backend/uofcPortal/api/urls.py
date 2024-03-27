@@ -23,6 +23,7 @@ urlpatterns = [
     path('api/student-finances/', StudentFinancesView.as_view(), name='student-finances'),
     path('api/dashboard/', DashboardView.as_view(), name='dashboard'),
     path('api/student-applications/', StudentApplicationsViewSet.as_view(), name='student-applications'),
+    path('api/student-applications/<int:pk>/', StudentApplicationsViewSet.as_view(), name='student-application-detail'),
     path('api/course-requirements/', StudentRequirementsView.as_view(), name='course-requirements'),
     path('api/schedule-builder/', ScheduleBuilderView.as_view(), name='schedule-builder')
 ]

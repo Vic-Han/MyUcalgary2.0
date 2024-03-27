@@ -381,19 +381,18 @@ class StudentGradeView(APIView, GradeMixins):
         activity = {}
         for enrollment in enrollments:
             term = enrollment.lecture.term
+            term_year = enrollment.lecture.term.term_year
             term_name = enrollment.lecture.term.term_name
-            grades = Grade.objects.filter(enrollment=enrollment)
-            if not grades:
+            termYear = term_name + ' ' + str(term_year)
+            grade = Grade.objects.filter(enrollment=enrollment).first()
+            if not grade:
                 continue
             
-            total_units_term = 0
-            for enrollment in enrollments:
-                if enrollment.lecture.term.start_date <= term.start_date:
-                    total_courses += enrollment.lecture.course.course_units
+            for enrollmentt in enrollments:
+                if enrollmentt.lecture.term.start_date <= term.start_date:
+                    total_courses += enrollmentt.lecture.course.course_units
             
             student_year_term = min(4, math.ceil(total_courses / 10))
-
-            termYear = f"{term_name} {enrollment.lecture.term.term_year}"
 
             if termYear not in activity:
                 activity[termYear] = {
@@ -406,15 +405,14 @@ class StudentGradeView(APIView, GradeMixins):
                     "courses": []
                 }
 
-            for grade in grades:
-                course_info = {
-                    "name": enrollment.lecture.course.course_code,
-                    "grade": grade.grade,
-                    "letter": self.grade_to_letter(grade.grade),
-                    "units": enrollment.lecture.course.course_units
-                }
-                activity[termYear]["courses"].append(course_info)
-                activity[termYear]["UnitsEnrolled"] += enrollment.lecture.course.course_units # Assuming each course is 3 units
+            course_info = {
+                "name": enrollment.lecture.course.course_code,
+                "grade": grade.grade,
+                "letter": self.grade_to_letter(grade.grade),
+                "units": enrollment.lecture.course.course_units
+            }
+            activity[termYear]["courses"].append(course_info)
+            activity[termYear]["UnitsEnrolled"] += enrollment.lecture.course.course_units # Assuming each course is 3 units
 
         for term, info in activity.items():
             term_gpa, term_letter_grade = self.calculate_term_gpa_and_letter_grade(info['courses'])

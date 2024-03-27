@@ -671,7 +671,7 @@ class ScheduleBuilderView(APIView):
             serializer_dict["message"] = "Enrolled in new course successfully."
             return Response(serializer_dict, status=status.HTTP_200_OK)
 
-    def get(self, request, term_key):
+    def get(self, request, term_key, format=None):
         #student = Student.objects.first()
         student = get_object_or_404(Student, user=request.user)
         if not student:
@@ -681,11 +681,8 @@ class ScheduleBuilderView(APIView):
             "currentSchedule": {},
             "academicRequirements": {}
         }
-
-        request_data = request.data
-        print(student)
         try:
-            term = Term.objects.get(term_key=request_data['term']).pk
+            term = Term.objects.get(term_key=term_key).pk
         except Term.DoesNotExist:
             return Response({"error": "Term not found"}, status=404)
 
@@ -763,10 +760,10 @@ class ScheduleBuilderView(APIView):
         
         # current schedule retrieval
         enrollments = Enrollment.objects.filter(student=student)
+        termobj = Term.objects.get(pk=term)
         for enrollment in enrollments:
-            if enrollment.lecture.term == term:
+            if enrollment.lecture.term == termobj:
                 term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
-                
                 schedule_builder_data["currentSchedule"][enrollment.lecture.course.course_code] = {
                     "Lecture": enrollment.lecture.lecture_id,
                     "Tutorial": enrollment.tutorial.tutorial_id if enrollment.tutorial else "None"

@@ -267,16 +267,12 @@ const createLecInfo = (course, index) =>{
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${this.$cookies.get('auth-token')}`
                 }
-                // const body = new FormData()
-                // body.append('term', this.selectedTerm)
-                const body = JSON.stringify({
-                    term: this.selectedTerm.term_key
-                })
-                console.log(`${serverPath}${apiPath}`, body, headers)
-                this.$http.get(serverPath + apiPath, body, {headers: headers}).then(res =>{
+                
+                console.log(`${serverPath}${apiPath}${encodeURIComponent(this.selectedTerm.term_key)}`, headers)
+                this.$http.get(`${serverPath}${apiPath}${encodeURIComponent(this.selectedTerm.term_key)}`, {headers: headers}).then(res =>{
                     allCourses = res.data.allCourses 
                     this.degreeRequirements = res.data.academicRequirements
-                    console.log(res.data.currentSchedule)
+                    console.log(res.data)
                     const currentSchedule = res.data.currentSchedule
                     for(const [key, value] of Object.entries(currentSchedule)){
                         console.log(key,value)
@@ -638,7 +634,7 @@ const createLecInfo = (course, index) =>{
             },
             dropCourse(){
                 const serverPath = this.$store.state.serverPath
-                const apiPath = 'api/enrollments/'
+                const apiPath = '/api/enrollments/'
                 const headers = {
                     'Content-Type': 'application/json',
                     'Authorization' : `Token ${this.$cookies.get("auth-token")}`

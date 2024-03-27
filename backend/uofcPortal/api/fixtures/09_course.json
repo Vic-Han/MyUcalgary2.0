@@ -212,9 +212,59 @@
         "fields": {
           "course_title": "Data Structures, Algorithms, and Their Applications",
           "course_description": "Fundamental data structures, including arrays, lists, stacks, queues, trees, hash tables, and graphs. Algorithms for searching and sorting. Introduction to analysis of algorithms. Applications of these data structures and algorithms. For students wishing to combine studies in computer science with studies in other disciplines.",
-          "course_prerequisites": "??",
+
           "course_units": 3,
           "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "MATH265",
+        "fields": {
+          "course_title": "University Calculus I",
+          "course_description": "An introduction to single variable calculus intended for students with credit in high school calculus. Limits, derivatives, and integrals of algebraic, exponential, logarithmic and trigonometric functions play a central role. Additional topics include applications of differentiation; the fundamental theorem of calculus, improper integrals and applications of integration. Differential calculus in several variables will also be introduced.",
+          "course_units": 3,
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PHIL279",
+        "fields": {
+          "course_title": "Logic I",
+          "course_description": "Sentential and first-order logic from both deductive and semantic points of view. Some elementary metatheorems.",
+          "course_units": 3,
+          "department": "Philosophy and Rationalization"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PHYS303",
+        "fields": {
+          "course_title": "Quantum Mysteries and Paradoxes",
+          "course_description": "Aims to explain basic quantum phenomena for students outside the physical sciences. Topics covered may include wave-particle duality, quantum interference, as well as the paradoxes of entanglement and quantum nonlocality. Applications such as quantum cryptography and quantum teleportation are discussed, as are the philosophical interpretations of the quantum picture of the world.",
+          "course_units": 3,
+          "department": "Physics and Astronomy"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PHYS207",
+        "fields": {
+          "course_title": "Wormholes and Stuff",
+          "course_description": "What are wormholes? Seriously, I dont know... I was hoping somebody here knew. We will most likely spend our time watch Neil DeGrasse Tyson videos all class, and end up talking about politics instead.",
+          "course_units": 3,
+          "department": "Physics and Astronomy"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENGL305",
+        "fields": {
+          "course_title": "Literature Before 1700",
+          "course_description": "A survey of representative works of literature in English from the Middle Ages through 1700.",
+          "course_units": 3,
+          "department": "English"
         }
       },
 

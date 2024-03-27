@@ -20,7 +20,13 @@
         "faculty": "Faculty of Arts"
     }
     },
-    
+    {
+        "model": "api.Department",
+        "pk": "Philosophy and Rationalization",
+        "fields": {
+            "faculty": "Faculty of Arts"
+        }
+        },
     {
     "model": "api.Department",
     "pk": "Educational Psychology",

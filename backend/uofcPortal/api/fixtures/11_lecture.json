@@ -23,9 +23,9 @@
       "fields": {
         "lecture_id": "L01",
         "term": "Fal2018",
-        "lecture_days": "TR",
-        "lecture_starttime": 13.0,
-        "lecture_endtime": 14.25,
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
         "lecture_roomnumber": "B564",
         "lecture_totalseats": "100",
         "lecture_filledseats": "65",
@@ -41,9 +41,9 @@
       "fields": {
         "lecture_id": "L01",
         "term": "Fal2018",
-        "lecture_days": "TR",
-        "lecture_starttime": 14.5,
-        "lecture_endtime": 15.75,
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
         "lecture_roomnumber": "G345",
         "lecture_totalseats": "100",
         "lecture_filledseats": "85",
@@ -54,12 +54,49 @@
       }
     },
     {
+      "model": "api.Lecture",
+      "pk": "04",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2018",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "H345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "85",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH211",
+        "instructor": "026"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "05",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2018",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH275",
+        "instructor": "027"
+      }
+    },
+    
+    {
         "model": "api.Lecture",
-        "pk": "04",
+        "pk": "06",
         "fields": {
           "lecture_id": "L01",
           "term": "Win2019",
-          "lecture_days": "MWF",
+          "lecture_days": "TR",
           "lecture_starttime": 14.5,
           "lecture_endtime": 15.33,
           "lecture_roomnumber": "L987",
@@ -73,7 +110,7 @@
     },
     {
         "model": "api.Lecture",
-        "pk": "05",
+        "pk": "07",
         "fields": {
           "lecture_id": "L01",
           "term": "Win2019",
@@ -91,13 +128,68 @@
     },
     {
       "model": "api.Lecture",
-      "pk": "06",
+      "pk": "08",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH277",
+        "instructor": "028"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "09",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "J345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "68",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CHEM209",
+        "instructor": "036"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "10",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "K345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "88",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PHYS259",
+        "instructor": "006"
+      }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "11",
       "fields": {
         "lecture_id": "L01",
         "term": "Fal2019",
         "lecture_days": "MWF",
-        "lecture_starttime": 12,
-        "lecture_endtime": 12.83,
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
         "lecture_roomnumber": "P789",
         "lecture_totalseats": "100",
         "lecture_filledseats": "67",
@@ -107,6 +199,79 @@
         "instructor": "021"
       }
     },
+    {
+      "model": "api.Lecture",
+      "pk": "12",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "Q789",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "87",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENEL353",
+        "instructor": "051"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "13",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "R789",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "99",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PHYS365",
+        "instructor": "007"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "14",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH375",
+        "instructor": "027"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "15",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "J345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "85",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH375",
+        "instructor": "027"
+      }
+    },
+
     {
       "model": "api.Lecture",
       "pk": "07",
@@ -146,8 +311,6 @@
   ]
   
 /*need one:
-  f2018:    math211 math275 
-  w2019:    math277 chem209 phys259
   f2019:    enel353 phys365 math375 ensf337
   w2020:    math271 enel327 ensf409 
   f2020:    ensf480 encm511 cpsc457 cpsc471

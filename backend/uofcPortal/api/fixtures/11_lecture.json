@@ -50,7 +50,7 @@
         "lecture_totalwaitlist": "10",
         "lecture_filledwaitlist": "0",
         "course": "ENGG225",
-        "instructor": "024"
+        "instructor": "023"
       }
     },
     {
@@ -68,7 +68,7 @@
           "lecture_totalwaitlist": "10",
           "lecture_filledwaitlist": "0",
           "course": "ENGG202",
-          "instructor": "023"
+          "instructor": "024"
         }
     },
     {
@@ -86,7 +86,7 @@
           "lecture_totalwaitlist": "10",
           "lecture_filledwaitlist": "0",
           "course": "ENGG233",
-          "instructor": "021"
+          "instructor": "025"
         }
     },
     {
@@ -104,7 +104,7 @@
         "lecture_totalwaitlist": "10",
         "lecture_filledwaitlist": "0",
         "course": "ENGG319",
-        "instructor": "025"
+        "instructor": "021"
       }
     },
     {

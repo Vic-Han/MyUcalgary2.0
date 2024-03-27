@@ -13,7 +13,8 @@
         "tutorial_filledseats": "15",
         "tutorial_totalwaitlist": "5",
         "tutorial_filledwaitlist": "0",
-        "course": "ENGG200"
+        "course": "ENGG200",
+        "instructor": "021"
       }
     },
     {
@@ -30,7 +31,8 @@
         "tutorial_filledseats": "20",
         "tutorial_totalwaitlist": "5",
         "tutorial_filledwaitlist": "0",
-        "course": "ENGG201"
+        "course": "ENGG201",
+        "instructor": "022"
       }
     },
     {
@@ -47,7 +49,8 @@
         "tutorial_filledseats": "25",
         "tutorial_totalwaitlist": "5",
         "tutorial_filledwaitlist": "0",
-        "course": "ENGG225"
+        "course": "ENGG225",
+        "instructor": "023"
       }
     },
     {
@@ -64,7 +67,8 @@
           "tutorial_filledseats": "10",
           "tutorial_totalwaitlist": "5",
           "tutorial_filledwaitlist": "0",
-          "course": "ENGG202"
+          "course": "ENGG202",
+          "instructor": "024"
         }
     },
     {
@@ -81,7 +85,8 @@
           "tutorial_filledseats": "15",
           "tutorial_totalwaitlist": "5",
           "tutorial_filledwaitlist": "0",
-          "course": "ENGG233"
+          "course": "ENGG233",
+          "instructor": "025"
         }
     },
     {
@@ -98,7 +103,8 @@
         "tutorial_filledseats": "20",
         "tutorial_totalwaitlist": "5",
         "tutorial_filledwaitlist": "0",
-        "course": "ENGG319"
+        "course": "ENGG319",
+        "instructor": "021"
       }
     },
     {
@@ -115,7 +121,8 @@
         "tutorial_filledseats": "20",
         "tutorial_totalwaitlist": "5",
         "tutorial_filledwaitlist": "0",
-        "course": "ENGG209"
+        "course": "ENGG209",
+        "instructor": "022"
       }
     },
     {
@@ -132,7 +139,8 @@
         "tutorial_filledseats": "25",
         "tutorial_totalwaitlist": "5",
         "tutorial_filledwaitlist": "0",
-        "course": "ENGG481"
+        "course": "ENGG481",
+        "instructor": "023"
       }
     }
   ]

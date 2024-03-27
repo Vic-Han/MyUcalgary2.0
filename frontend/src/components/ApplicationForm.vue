@@ -179,21 +179,21 @@ export default {
         'Authorization' :`Token ${this.$cookies.get("auth-token")}`
       }
       const body = new FormData()
-      if(this.selectedType === 'undergrad'){
+      if(this.selectedType === 'Undergrad'){
         body.append('type', 'undergrad')
         body.append('major', this.selectedProgram)
         body.append('minor', this.selectedConcentration)
         body.append('concentration', this.selectedConcentration)
       }
-      else if(this.selectedType === 'grad'){
+      else if(this.selectedType === 'Graduate'){
         body.append('type', 'grad')
         body.append('program', this.selectedProgram)
       }
-      else if(this.selectedType === 'award'){
+      else if(this.selectedType === 'Award'){
         body.append('type', 'award')
         body.append('award', this.selectedAward)
       }
-      else if(this.selectedType === 'scholarship'){
+      else if(this.selectedType === 'Scholarship'){
         body.append('type', 'scholarship')
         body.append('scholarship', this.selectedScholarship)
       }

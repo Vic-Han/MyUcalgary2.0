@@ -67,14 +67,14 @@
     "model": "api.Department",
     "pk": "Software Engineering",
     "fields": {
-    "faculty": "Schulich School of Engineering"
+        "faculty": "Schulich School of Engineering"
     }
     },
     {
     "model": "api.Department",
     "pk": "Electrical Engineering",
     "fields": {
-    "faculty": "Schulich School of Engineering"
+        "faculty": "Schulich School of Engineering"
     }
     },
     {

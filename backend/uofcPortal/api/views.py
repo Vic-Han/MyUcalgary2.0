@@ -222,6 +222,7 @@ class StudentApplicationsViewSet(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
+        student = Student.objects.first()
         student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)
@@ -620,11 +621,55 @@ class StudentRequirementsView(APIView):
 
 
 class ScheduleBuilderView(APIView):    
-    # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
-    # permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication  
+    authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication  
 
     def get_queryset(self):
         term = self.request.query_params.get('term')
+
+    def post(self, request):
+        student = get_object_or_404(Student, user=request.user)
+        if not student:
+            return Response({"error": "No student found"}, status=404)
+
+        data = request.data
+
+        new_data = {}
+        new_data['student'] = student.pk
+        term = data['term']
+
+        course = Course.objects.get(course=data['course']).pk
+        term = Term.objects.get(term=data['term']).pk
+        lecture = Lecture.objects.get(course=course, lecture_id=data['lecture']).pk
+        tutorial = None
+        if not data['tutorial'] == None:
+            tutorial = Tutorial.objects.get(course=course, tutorial_id=data['tutorial']).pk
+        new_data['lecture'] = lecture
+        new_data['tutorial'] = tutorial
+
+
+        enrollments = Enrollment.objects.filter(student=student)
+        for enrollment in enrollments:
+            #check enrollment exists
+            if enrollment.lecture == lecture and enrollment.tutorial == tutorial and enrollment.lecture.term == term:
+                return Response({"error": "Already enrolled in section"}, status=status.HTTP_400_BAD_REQUEST)
+            
+            #check enrollment in same course exists
+            if enrollment.lecture.course == course and enrollment.lecture.term ==term:
+                serializer = EnrollmentSerializer(enrollment, data=new_data)
+                if serializer.is_valid():
+                    serializer.save()
+                    serializer_dict = serializer.data
+                    serializer_dict["message"] = "Enrollment section changed successfully."
+                    return Response(serializer_dict, status=status.HTTP_200_OK)
+
+        #enroll in course
+        serializer = EnrollmentSerializer(new_data)
+        if serializer.is_valid():
+            serializer.save()
+            serializer_dict = serializer.data
+            serializer_dict["message"] = "Enrolled in new course successfully."
+            return Response(serializer_dict, status=status.HTTP_200_OK)
 
     def get(self, request):
         student = Student.objects.first()
@@ -636,13 +681,18 @@ class ScheduleBuilderView(APIView):
             "currentSchedule": {},
             "academicRequirements": {}
         }
-        # hardcoded term
-        term = None
+
+        request_data = request.data
         try:
-            term = Term.objects.get(term_key="Fal2023")
+            term = Term.objects.get(term_key=request_data['term']).pk
         except Term.DoesNotExist:
             return Response({"error": "Term not found"}, status=404)
 
+        # hardcoded term
+        # term = None
+        # try:
+        #     term = Term.objects.get(term_key="Fal2023")
+        
         
         # offered course retrieval
         courses = Course.objects.all()
@@ -777,3 +827,27 @@ class ScheduleBuilderView(APIView):
         schedule_builder_data["academicRequirements"] = requirement_data
 
         return Response(schedule_builder_data)
+
+    def delete(self, request):
+        student = get_object_or_404(Student, user=request.user)
+        data = request.data
+        course = Course.objects.get(course=data['course']).pk
+        term = Term.objects.get(term=data['term']).pk
+        lecture = Lecture.objects.get(course=course, lecture_id=data['lecture']).pk
+        tutorial = None
+        if not data['tutorial'] == None:
+            tutorial = Tutorial.objects.get(course=course, tutorial_id=data['tutorial']).pk
+        
+        enrollments = Enrollment.objects.filter(student=student)
+        enrollment_id = None
+        for enrollment in enrollments:
+            #check enrollment exists
+            if enrollment.lecture == lecture and enrollment.tutorial == tutorial and enrollment.lecture.term == term:
+                enrollment_id = enrollment.pk
+                break
+        if enrollment_id == None:
+            return Response({"error": "Not enrolled in section"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        enrollment = Enrollment.objects.get(pk=enrollment_id, student=student, lecture=lecture, tutorial=tutorial)
+        enrollment.delete
+        return Response({"message": "Enrollment deleted successfully"}, status=status.HTTP_204_NO_CONTENT)

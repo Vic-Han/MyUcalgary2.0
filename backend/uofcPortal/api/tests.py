@@ -229,5 +229,43 @@ class BackendTesting(APITestCase):
             self.assertIn('courses', requirement, "Required courses for requirement are missing.")
 
 
+def test_dashboard_view(self):
+    # Assuming the URL name for DashboardView is 'dashboard'
+    url = reverse('dashboard')
+    response = self.client.get(url)
+    self.assertEqual(response.status_code, status.HTTP_200_OK, msg="Dashboard endpoint response status code mismatch.")
+    response_data = response.json()
 
+    # Check for grades, finances, and schedule in the response
+    self.assertIn('grades', response_data, "Grades section is missing in the dashboard response.")
+    self.assertIn('finances', response_data, "Finances section is missing in the dashboard response.")
+    self.assertIn('schedule', response_data, "Schedule section is missing in the dashboard response.")
+
+    # Validate structure and content of grades
+    for term_name, term_data in response_data['grades'].items():
+        self.assertIn('TermGPA', term_data, f"TermGPA is missing for {term_name}.")
+        self.assertIn('TermLetterGrade', term_data, f"TermLetterGrade is missing for {term_name}.")
+        self.assertIn('courses', term_data, f"Courses are missing for {term_name}.")
+        for course in term_data['courses']:
+            self.assertIn('name', course, "Course name is missing.")
+            self.assertIn('letter', course, "Course letter grade is missing.")
+            self.assertIn('grade', course, "Course grade is missing.")
+
+    # Validate structure and content of finances
+    for term_name, term_data in response_data['finances'].items():
+        self.assertIn('credits', term_data, f"Credits info is missing for {term_name}.")
+        self.assertIn('debits', term_data, f"Debits info is missing for {term_name}.")
+        self.assertIn('net_balance', term_data, f"Net balance info is missing for {term_name}.")
+        self.assertIn('due', term_data, f"Due date info is missing for {term_name}.")
+
+    # Validate structure and content of schedule
+    # Note: Schedule structure might vary based on your actual implementation
+    for course_code, schedule_info in response_data['schedule'].items():
+        self.assertIn('Lecture', schedule_info, f"Lecture info is missing for {course_code}.")
+        # If tutorials are expected, validate them similarly
+        if 'Tutorial' in schedule_info:  # Depending on your data, this might not always be present
+            self.assertIsNotNone(schedule_info['Tutorial'], f"Tutorial info should be present or explicitly marked as None for {course_code}.")
+
+
+# dashboard test cases:
  

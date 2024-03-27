@@ -653,19 +653,23 @@ class ScheduleBuilderView(APIView):
             tutorial = None
 
             if tutorialkey != False:
+                #print(tutorialkey)
                 tutorial = Tutorial.objects.get(course=course, tutorial_id=tutorialkey, term=term_name).pk
+                #print(tutorial)
+                # print(Tutorial.objects.get(course=course, tutorial_id='T02', term=term_name).pk)
             new_data['lecture'] = lecture
             new_data['tutorial'] = tutorial
 
 
             enrollment = Enrollment.objects.filter(student=student.pk, lecture=lecture).first()
             if enrollment:
+                #print(enrollment.lecture.pk, lecture, courseCode, enrollment.tutorial.pk)
                 if enrollment.lecture.pk == lecture and  enrollment.lecture.term.pk == term_name and (not enrollment.tutorial or enrollment.tutorial.pk == tutorial):
                     results.append({courseCode: "Already enrolled in this section"})
                     continue
                 
                 #check enrollment in same course exists
-                if enrollment.lecture.course == courseCode and enrollment.lecture.term ==term_name:
+                if enrollment.lecture.course.pk == courseCode and enrollment.lecture.term.pk ==term_name:
                     serializer = EnrollmentSerializer(enrollment, data=new_data)
                     if serializer.is_valid():
                         serializer.save()

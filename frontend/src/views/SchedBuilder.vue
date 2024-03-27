@@ -2,6 +2,7 @@
 <template>
     <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false" @applyadvancedsearch="applyAdvancedFilters"></AdvancedSearch>
     <AcademicSchedulePopup v-if="academicRequirementsPopup" :requirements="degreeRequirements" @close="academicRequirementsPopup = false" @selectcourse="addCourseFromRequirements"></AcademicSchedulePopup>
+    <CourseEnrollmentPopup v-if="enrollPopup " :courses="schedCourses" :term="selectedTerm.term_key" @close="enrollPopup = false" @enroll="getTermInfo"></CourseEnrollmentPopup>
     <div v-if="dropCoursePopup">
         <div class="bg-black-100 fixed opacity-50 w-screen h-screen z-40"></div>
         <div class="fixed w-1/3 h-auto max-h-3/4 overflow-y-auto px-4 pb-4 bg-white-100 rounded-xl left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 shadow-lg z-50">
@@ -126,6 +127,7 @@ import CoursePreview from '@/components/CoursePreview.vue'
 import SelectedCourse from '@/components/SelectedCourse.vue'
 import AdvancedSearch from '@/components/AdvancedSearch.vue'
 import AcademicSchedulePopup from '@/components/AcademicSchedulePopup.vue'
+import CourseEnrollmentPopup from '@/components/CourseEnrollmentPopup.vue'
 import data from './SB.json'
 let allCourses = []
 const courseCode = (course, filters) =>{
@@ -181,7 +183,6 @@ const createLecInfo = (course, index) =>{
                             }
                         }
 }
-//const worker = new Worker('./ScheduleWorker.js')
     export default{
         name : 'SchedBuilder',
         emits: ['hide-navbar'],
@@ -190,7 +191,8 @@ const createLecInfo = (course, index) =>{
             CoursePreview,
             SelectedCourse,
             AdvancedSearch,
-            AcademicSchedulePopup
+            AcademicSchedulePopup,
+            CourseEnrollmentPopup
         },
         data : () => {
             return {
@@ -214,16 +216,12 @@ const createLecInfo = (course, index) =>{
                 },
                 academicRequirementsPopup: false,
                 selectedDroppedCourse : '',
-                dropCoursePopup: false
+                dropCoursePopup: false,
+                enrollPopup: false,
             }
         },
         created(){
             this.$emit('hide-navbar')
-            
-
-         
-
-
             const backendPayload = data
             this.allInfo = backendPayload
             //allCourses = this.allInfo.allCourses
@@ -270,7 +268,11 @@ const createLecInfo = (course, index) =>{
                 
                 console.log(`${serverPath}${apiPath}${encodeURIComponent(this.selectedTerm.term_key)}`, headers)
                 this.$http.get(`${serverPath}${apiPath}${encodeURIComponent(this.selectedTerm.term_key)}`, {headers: headers}).then(res =>{
-                    allCourses = res.data.allCourses 
+                    allCourses = res.data.allCourses
+                    this.courseSearchTerm = '' 
+                    this.searchedCourses = []
+                    this.schedCourses = []
+                    this.cartCourses = []
                     this.degreeRequirements = res.data.academicRequirements
                     console.log(res.data)
                     const currentSchedule = res.data.currentSchedule
@@ -306,7 +308,6 @@ const createLecInfo = (course, index) =>{
                                 }
                                 console.log(allCourses[i])
                                 const newSched = [...this.schedCourses, allCourses[i]]
-                                //newSched[newSched.length - 1].selectedIndices = [true]
                                 this.schedCourses = newSched
                                 break
                             }
@@ -376,14 +377,19 @@ const createLecInfo = (course, index) =>{
                 }
             },
             removeCourseFromSched(courseName){    
-                for(let i = 0; i < this.schedCourses.length; i++){
+                for(let i = 0; i < this.schedCourses.length && !this.dropCoursePopup; i++){
                     if(this.schedCourses[i].name == courseName && this.schedCourses[i].enrolled){
-                        this.dropCoursePopup = true
                         this.selectedDroppedCourse = courseName
+                        this.dropCoursePopup = true
                         return
                     }
                 }
-
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    if(this.schedCourses[i].name == courseName){
+                        delete this.schedCourses[i].enrolled
+                        break
+                    }
+                }
 
                 const newSched = this.schedCourses.filter((item) => {
                     return item.name != courseName
@@ -634,19 +640,19 @@ const createLecInfo = (course, index) =>{
             },
             dropCourse(){
                 const serverPath = this.$store.state.serverPath
-                const apiPath = '/api/enrollments/'
+                const apiPath = '/api/schedule-builder/'
                 const headers = {
                     'Content-Type': 'application/json',
                     'Authorization' : `Token ${this.$cookies.get("auth-token")}`
                 }
-                const body = new FormData()
-                body.append('course', this.selectedDroppedCourse)
-                body.append('term' , this.selectedTerm)
-                this.$http.delete(`${serverPath}${apiPath}`, body, {headers: headers}).then(res => {
-                    console.log(res.data)
+                this.$http.delete(`${serverPath}${apiPath}${encodeURIComponent(this.selectedTerm.term_key)}/${encodeURIComponent(this.selectedDroppedCourse)}`, {headers: headers}).then(res => {
+                    console.log("fucks" , res)
+
+                    this.removeCourseFromSched(this.selectedDroppedCourse)
                     this.dropCoursePopup = false
+
                     this.selectedDroppedCourse = ''
-                    this.removeCourseFromSchedule(this.selectedDroppedCourse)
+                    console.log(this.dropCoursePopup , this.schedCourses)
                 }).catch(err => {
                     console.log(err)
                 })
@@ -689,28 +695,9 @@ const createLecInfo = (course, index) =>{
                 })
             },
             getSchedule(){
-                const serverPath  = this.$store.state.serverPath
-                const apiPath = 'api/schedule-builder/'
-                const headers = {
-                    'Content-Type': 'application/json',
-                    'Authorization' : `Token ${this.$cookies.get("auth-token")}`
-                }
-                const body = new FormData()
-                body.append('term', this.selectedTerm)
-                const courses = []
-                for(let i = 0; i < this.schedCourses.length; i++){
-                    courses.push({
-                        course: this.schedCourses[i].name,
-                        section: this.schedCourses[i].combinations[this.schedCourses[i].selected]
-                    })
-                }
-                body.append('courses', courses)
-                this.$http.post(`${serverPath}${apiPath}`, body, {headers: headers}).then(res => {
-                    console.log(res.data)
-                }).catch(err => {
-                    console.log(err)
-                })
-            }
+                this.enrollPopup = true
+            },
+              
 
         },
         computed:{

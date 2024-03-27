@@ -608,13 +608,18 @@ class ScheduleBuilderView(APIView):
             "currentSchedule": {},
             "academicRequirements": {}
         }
-        # hardcoded term
-        term = None
+
+        request_data = request.data
         try:
-            term = Term.objects.get(term_key="Fal2023")
+            term = Term.objects.get(term_key=request_data['term']).pk
         except Term.DoesNotExist:
             return Response({"error": "Term not found"}, status=404)
 
+        # hardcoded term
+        # term = None
+        # try:
+        #     term = Term.objects.get(term_key="Fal2023")
+        
         
         # offered course retrieval
         courses = Course.objects.all()
@@ -749,3 +754,27 @@ class ScheduleBuilderView(APIView):
         schedule_builder_data["academicRequirements"] = requirement_data
 
         return Response(schedule_builder_data)
+
+    def delete(self, request):
+        student = get_object_or_404(Student, user=request.user)
+        data = request.data
+        course = Course.objects.get(course=data['course']).pk
+        term = Term.objects.get(term=data['term']).pk
+        lecture = Lecture.objects.get(course=course, lecture_id=data['lecture']).pk
+        tutorial = None
+        if not data['tutorial'] == None:
+            tutorial = Tutorial.objects.get(course=course, tutorial_id=data['tutorial']).pk
+        
+        enrollments = Enrollment.objects.filter(student=student)
+        enrollment_id = None
+        for enrollment in enrollments:
+            #check enrollment exists
+            if enrollment.lecture == lecture and enrollment.tutorial == tutorial and enrollment.lecture.term == term:
+                enrollment_id = enrollment.pk
+                break
+        if enrollment_id == None:
+            return Response({"error": "Not enrolled in section"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        enrollment = Enrollment.objects.get(pk=enrollment_id, student=student, lecture=lecture, tutorial=tutorial)
+        enrollment.delete
+        return Response({"message": "Enrollment deleted successfully"}, status=status.HTTP_204_NO_CONTENT)

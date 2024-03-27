@@ -1234,6 +1234,7 @@
       "description": "First Year Common Core",
       "required_units": 6,
       "program": 1,
+      "optional": false,
       "courses": ["SENG401", "SENG350"]
     }
   },
@@ -1243,6 +1244,7 @@
       "description": "Technical Electives",
       "required_units": 3,
       "program": 1,
+      "optional": true,
       "courses": ["PHYS303", "PHYS207"]
     }
   },
@@ -1252,6 +1254,7 @@
       "description": "Complementary Studies",
       "required_units": 3,
       "program": 1,
+      "optional": true,
       "courses": ["ENGL201", "ENGL305"]
     }
   }

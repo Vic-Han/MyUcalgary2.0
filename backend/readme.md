@@ -1,6 +1,51 @@
 # Backend - UofC Portal
 
 
+
+## Unenroll to a course
+
+Endpoint: `http://127.0.0.1:8000/api/enrollments/`
+
+Protocol: `DELETE`
+
+Body example:
+```
+{
+  "term": "Win2023",
+  "course": "ENGL102"
+}
+```
+
+Header example:
+```
+Key: Authorization
+Value: Token 500cc86847bbbc09aedd2ad17df492412bb5850d
+```
+
+
+## Delete an application
+
+Endpoint: http://127.0.0.1:8000/api/student-applications/
+
+Protocol: `DELETE`
+
+Body example:
+```
+{
+  "application_id": 1
+}
+```
+
+Header example:
+```
+Key: Authorization
+Value: Token 500cc86847bbbc09aedd2ad17df492412bb5850d
+```
+
+
+
+---
+
 ### Prerequisites
 
 What things you need to install the software and how to install them.

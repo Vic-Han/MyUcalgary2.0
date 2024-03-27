@@ -195,12 +195,39 @@ class BackendTesting(APITestCase):
     
     def test_schedule_builder(self):
         # Assuming the URL name for ScheduleBuilderView is 'schedule-builder'
-        print("start of schedule builder endpoint check")
-        url = reverse('schedule-builder')  
+        url = reverse('schedule-builder')
         response = self.client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        response_json = response.json()
-        formatted_new_json = json.dumps(response_json, indent=4)
-        print(formatted_new_json)
-        print("---------------end of schedule builder endpoint------------")
+        self.assertEqual(response.status_code, status.HTTP_200_OK, msg="Schedule Builder endpoint response status code mismatch.")
+        response_data = response.json()
+
+        # Check for allCourses, currentSchedule, and academicRequirements in the response
+        self.assertIn('allCourses', response_data, "allCourses is missing in the response.")
+        self.assertIn('currentSchedule', response_data, "currentSchedule is missing in the response.")
+        self.assertIn('academicRequirements', response_data, "academicRequirements is missing in the response.")
+
+        # Validate structure of a course in allCourses
+        if response_data['allCourses']:
+            course = response_data['allCourses'][0]
+            self.assertIn('name', course, "Course name is missing.")
+            self.assertIn('title', course, "Course title is missing.")
+            self.assertIn('desc', course, "Course description is missing.")
+            self.assertIn('prereq', course, "Course prerequisites are missing.")
+            self.assertIn('prereqfilled', course, "prereqfilled flag is missing.")
+            self.assertIn('lectures', course, "Course lectures are missing.")
+            self.assertIn('tutorials', course, "Course tutorials are missing.")
+
+        # Validate structure of currentSchedule
+        for course_code, schedule in response_data['currentSchedule'].items():
+            self.assertIn('Lecture', schedule, f"Lecture information is missing for {course_code}.")
+            self.assertIn('Tutorial', schedule, f"Tutorial information is missing for {course_code}.")
+
+        # Validate structure of academicRequirements
+        for requirement in response_data['academicRequirements']['requirements']:
+            self.assertIn('description', requirement, "Requirement description is missing.")
+            self.assertIn('requiredUnits', requirement, "Required units for requirement are missing.")
+            self.assertIn('status', requirement, "Requirement status is missing.")
+            self.assertIn('courses', requirement, "Required courses for requirement are missing.")
+
+
+
  

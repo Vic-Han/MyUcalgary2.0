@@ -203,101 +203,74 @@
         toggleExpandedReport() {
             this.expandedReport = !this.expandedReport;
         },
-        // fetchData(){
-        //     const serverPath = this.$store.state.serverPath
-        //     const apiPath = '/api/course-requirements/'
-        //     const headers = {
-        //       'Content-Type': 'application/json',
-        //       'Authorization': `Token ${this.$cookies.get("auth-token")}`
-        //     };
-        //     this.$http.get(`${serverPath}${apiPath}`, { headers}).then(res=>{
-        //       console.log(res.data)
-        //       const backendData = res.data
-        //       let totalUnits = 0
-        //       let takenUnits = 0
-        //       let pendingUnits = 0
-        //       this.requiredCourses.push({
-        //         description: backendData.requirements[0].description,
-        //         requiredUnits: backendData.requirements[0].requiredUnits,
-        //         status: backendData.requirements[0].status,
-        //         expanded: true,
-        //         courses: [
-        //           {
-        //             year: "First Year",
-        //             fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F1")),
-        //             winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W1"))
-        //           },
-        //           {
-        //             year: "Second Year",
-        //             fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F2")),
-        //             winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W2"))
-        //           },
-        //           {
-        //             year: "Third Year",
-        //             fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F3")),
-        //             winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W3"))
-        //           },
-        //           {
-        //             year: "Fourth Year",
-        //             fall: backendData.requirements[0].courses.filter(course=> filterSemester(course, "F4")),
-        //             winter: backendData.requirements[0].courses.filter(course=> filterSemester(course, "W4"))
-        //           }
-        //         ]
-        //       })
-        //       for(let i = 0; i<backendData.requirements[0].courses.length; i++){
-        //         if(backendData.requirements[0].courses[i].status == 'complete') {
-        //           takenUnits += backendData.requirements[0].courses[i].units 
-        //         }
-        //         if(backendData.requirements[0].courses[i].status == 'in-progress') {
-        //           pendingUnits += backendData.requirements[0].courses[i].units 
-        //         }
-        //       }
-        //       totalUnits += backendData.requirements[0].requiredUnits
-        //       for(let i = 1; i < backendData.requirements.length; i++) {
-        //         totalUnits += backendData.requirements[i].requiredUnits
-        //         const requiredCourseNos = backendData.requirements[i].requiredUnits / 3
-        //         if(backendData.requirements[i].status == 'complete') {
-        //           this.requiredCourses.push({
-        //           description: backendData.requirements[i].description,
-        //           requiredUnits: backendData.requirements[i].requiredUnits,
-        //           status: backendData.requirements[i].status,
-        //           expanded: false,
-        //           courses: []
-        //         })
-        //         } else {
-        //           this.requiredCourses.push({
-        //           description: backendData.requirements[i].description,
-        //           requiredUnits: backendData.requirements[i].requiredUnits,
-        //           status: backendData.requirements[i].status,
-        //           expanded: true,
-        //           courses: []
-        //         })
-        //         }
-        //         for(let j = 0; j < requiredCourseNos; j++) {
-        //           if(backendData.requirements[i].courses[j].status == 'complete') {
-        //             takenUnits += backendData.requirements[i].courses[j].units
-        //             this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
-        //           }
-        //           if(backendData.requirements[i].courses[j].status == 'in-progress') {
-        //             pendingUnits += backendData.requirements[i].courses[j].units
-        //             this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
-        //           }
-        //           if(backendData.requirements[i].courses[j].status == 'incomplete') {
-        //             this.requiredCourses[i].courses.push({
-        //               name: "Option",
-        //               units: 3,
-        //               status: "incomplete",
-        //               grade: null
-        //             })
-        //           }
-        //         }
-        //       }
-        //       this.completedProgress = Math.round((takenUnits/totalUnits)*100)
-        //       this.pendingProgress = Math.round((pendingUnits/totalUnits)*100)
-        //     }).catch(err=>{
-        //               console.log(err)
-        //     })
-        // },
+        fetchData(){
+            const serverPath = this.$store.state.serverPath
+            const apiPath = '/api/course-requirements/'
+            const headers = {
+              'Content-Type': 'application/json',
+              'Authorization': `Token ${this.$cookies.get("auth-token")}`
+            };
+            this.$http.get(`${serverPath}${apiPath}`, { headers}).then(res=>{
+              console.log(res.data)
+              const backendData = res.data
+              let totalUnits = 0
+              let takenUnits = 0
+              let pendingUnits = 0
+              //For each requirement
+              for(let i = 0; i < backendData.requirements.length; i++) {
+                totalUnits += backendData.requirements[i].requiredUnits
+                const requiredCourseNos = backendData.requirements[i].requiredUnits / 3
+                //if complete
+                if(backendData.requirements[i].status == 'complete') {
+                  this.requiredCourses.push({
+                  description: backendData.requirements[i].description,
+                  requiredUnits: backendData.requirements[i].requiredUnits,
+                  status: backendData.requirements[i].status,
+                  expanded: false,
+                  courses: []
+                })
+                //else
+                } else {
+                  this.requiredCourses.push({
+                  description: backendData.requirements[i].description,
+                  requiredUnits: backendData.requirements[i].requiredUnits,
+                  status: backendData.requirements[i].status,
+                  expanded: true,
+                  courses: []
+                })
+                }
+                //for each course in requirement
+                for(let j = 0; j < requiredCourseNos; j++) {
+                  //if complete
+                  if(backendData.requirements[i].courses[j].status == 'complete') {
+                    takenUnits += backendData.requirements[i].courses[j].units
+                    this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
+                  }
+                  //else if in progress
+                  else if(backendData.requirements[i].courses[j].status == 'in-progress') {
+                    pendingUnits += backendData.requirements[i].courses[j].units
+                    this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
+                  }
+                  //if requirement courses optional
+                  else if(backendData.requirements[i].optional) {
+                    this.requiredCourses[i].courses.push({
+                      name: "Option",
+                      units: 3,
+                      status: "incomplete",
+                      grade: null
+                    })
+                    //else
+                  } else {
+                    this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
+                  }
+                }
+              }
+              this.completedProgress = Math.round((takenUnits/totalUnits)*100)
+              this.pendingProgress = Math.round((pendingUnits/totalUnits)*100)
+            }).catch(err=>{
+                      console.log(err)
+            })
+        },
         // toggleReportDetails(index) {
         //     const program = this.academicReport.programs[index];
         //     // Ensure program exists and has courseCategory defined
@@ -344,10 +317,10 @@
       this.$emit('toggle-selected','academics')
 
       
-      //this.fetchData()
-      const backendData = {
-        "requirements":
-        [
+      this.fetchData()
+      // const backendData = {
+      //   "requirements":
+      //   [
             //{
             //     "description": "Required Courses",
             //     "requiredUnits": 96,
@@ -612,189 +585,189 @@
             //         }
             //     ]
             // },
-            {
-                "description": "Technical Electives",
-                "requiredUnits": 15,
-                "remainingUnits": 12,
-                "status": "in-progress",
-                "optional": false,
-                "courses": [
-                    {
-                        "name": "SENG550",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "B",
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG567",
-                        "units": 3,
-                        "status": "incomplete",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG512",
-                        "units": 3,
-                        "status": "incomplete",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG570",
-                        "units": 3,
-                        "status": "incomplete",
-                        "grade": null,
-                        "hovered": false
-                    },
-                    {
-                        "name": "SENG580",
-                        "units": 3,
-                        "status": "incomplete",
-                        "grade": null,
-                        "hovered": false
-                    }
-                ]
-            },
-            {
-                "description": "Complementary Studies",
-                "requiredUnits": 18,
-                "remainingUnits": 3,
-                "optional": true,
-                "status": "in-progress",
-                "courses": [
-                    {
-                        "name": "ECON201",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "B",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ECON203",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "C",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENGG209",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "A",
-                        "hovered": false
-                    },
-                    {
-                        "name": "COMS363",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "A",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENGG481",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "D",
-                        "hovered": false
-                    },
-                    {
-                        "name": "ENGG513",
-                        "units": 3,
-                        "status": "incomplete",
-                        "grade": null,
-                        "hovered": false
-                    }
-                ]
-            },
-            {
-                "description": "Internship Designation",
-                "requiredUnits": 9,
-                "remainingUnits":0,
-                "status": "complete",
-                "optional": false,
-                "courses":
-                [
-                    {
-                        "name": "INTE513.1",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "Pass",
-                        "hovered": false
-                    },
-                    {
-                        "name": "INTE513.2",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "Pass",
-                        "hovered": false
-                    },
-                    {
-                        "name": "INTE513.3",
-                        "units": 3,
-                        "status": "complete",
-                        "grade": "Pass",
-                        "hovered": false
-                    }
-                ]
-            }
-        ]
-      } 
-      let totalUnits = 0
-      let takenUnits = 0
-      let pendingUnits = 0
-      //For each requirement
-      for(let i = 0; i < backendData.requirements.length; i++) {
-        totalUnits += backendData.requirements[i].requiredUnits
-        const requiredCourseNos = backendData.requirements[i].requiredUnits / 3
-        //if complete
-        if(backendData.requirements[i].status == 'complete') {
-          this.requiredCourses.push({
-          description: backendData.requirements[i].description,
-          requiredUnits: backendData.requirements[i].requiredUnits,
-          status: backendData.requirements[i].status,
-          expanded: false,
-          courses: []
-        })
-        //else
-        } else {
-          this.requiredCourses.push({
-          description: backendData.requirements[i].description,
-          requiredUnits: backendData.requirements[i].requiredUnits,
-          status: backendData.requirements[i].status,
-          expanded: true,
-          courses: []
-        })
-        }
-        //for each course in requirement
-        for(let j = 0; j < requiredCourseNos; j++) {
-          //if complete
-          if(backendData.requirements[i].courses[j].status == 'complete') {
-            takenUnits += backendData.requirements[i].courses[j].units
-            this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
-          }
-          //else if in progress
-          else if(backendData.requirements[i].courses[j].status == 'in-progress') {
-            pendingUnits += backendData.requirements[i].courses[j].units
-            this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
-          }
-          //if requirement courses optional
-          else if(backendData.requirements[i].optional) {
-            this.requiredCourses[i].courses.push({
-              name: "Option",
-              units: 3,
-              status: "incomplete",
-              grade: null
-            })
-            //else
-          } else {
-            this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
-          }
-        }
-      }
-      this.completedProgress = Math.round((takenUnits/totalUnits)*100)
-      this.pendingProgress = Math.round((pendingUnits/totalUnits)*100)
-      // Preset data should not be modified here, it should be set in data() or computed
+      //       {
+      //           "description": "Technical Electives",
+      //           "requiredUnits": 15,
+      //           "remainingUnits": 12,
+      //           "status": "in-progress",
+      //           "optional": false,
+      //           "courses": [
+      //               {
+      //                   "name": "SENG550",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "B",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG567",
+      //                   "units": 3,
+      //                   "status": "incomplete",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG512",
+      //                   "units": 3,
+      //                   "status": "incomplete",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG570",
+      //                   "units": 3,
+      //                   "status": "incomplete",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "SENG580",
+      //                   "units": 3,
+      //                   "status": "incomplete",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               }
+      //           ]
+      //       },
+      //       {
+      //           "description": "Complementary Studies",
+      //           "requiredUnits": 18,
+      //           "remainingUnits": 3,
+      //           "optional": true,
+      //           "status": "in-progress",
+      //           "courses": [
+      //               {
+      //                   "name": "ECON201",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "B",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ECON203",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "C",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENGG209",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "A",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "COMS363",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "A",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENGG481",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "D",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "ENGG513",
+      //                   "units": 3,
+      //                   "status": "incomplete",
+      //                   "grade": null,
+      //                   "hovered": false
+      //               }
+      //           ]
+      //       },
+      //       {
+      //           "description": "Internship Designation",
+      //           "requiredUnits": 9,
+      //           "remainingUnits":0,
+      //           "status": "complete",
+      //           "optional": false,
+      //           "courses":
+      //           [
+      //               {
+      //                   "name": "INTE513.1",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "Pass",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "INTE513.2",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "Pass",
+      //                   "hovered": false
+      //               },
+      //               {
+      //                   "name": "INTE513.3",
+      //                   "units": 3,
+      //                   "status": "complete",
+      //                   "grade": "Pass",
+      //                   "hovered": false
+      //               }
+      //           ]
+      //       }
+      //   ]
+      // } 
+      // let totalUnits = 0
+      // let takenUnits = 0
+      // let pendingUnits = 0
+      // //For each requirement
+      // for(let i = 0; i < backendData.requirements.length; i++) {
+      //   totalUnits += backendData.requirements[i].requiredUnits
+      //   const requiredCourseNos = backendData.requirements[i].requiredUnits / 3
+      //   //if complete
+      //   if(backendData.requirements[i].status == 'complete') {
+      //     this.requiredCourses.push({
+      //     description: backendData.requirements[i].description,
+      //     requiredUnits: backendData.requirements[i].requiredUnits,
+      //     status: backendData.requirements[i].status,
+      //     expanded: false,
+      //     courses: []
+      //   })
+      //   //else
+      //   } else {
+      //     this.requiredCourses.push({
+      //     description: backendData.requirements[i].description,
+      //     requiredUnits: backendData.requirements[i].requiredUnits,
+      //     status: backendData.requirements[i].status,
+      //     expanded: true,
+      //     courses: []
+      //   })
+      //   }
+      //   //for each course in requirement
+      //   for(let j = 0; j < requiredCourseNos; j++) {
+      //     //if complete
+      //     if(backendData.requirements[i].courses[j].status == 'complete') {
+      //       takenUnits += backendData.requirements[i].courses[j].units
+      //       this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
+      //     }
+      //     //else if in progress
+      //     else if(backendData.requirements[i].courses[j].status == 'in-progress') {
+      //       pendingUnits += backendData.requirements[i].courses[j].units
+      //       this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
+      //     }
+      //     //if requirement courses optional
+      //     else if(backendData.requirements[i].optional) {
+      //       this.requiredCourses[i].courses.push({
+      //         name: "Option",
+      //         units: 3,
+      //         status: "incomplete",
+      //         grade: null
+      //       })
+      //       //else
+      //     } else {
+      //       this.requiredCourses[i].courses.push(backendData.requirements[i].courses[j])
+      //     }
+      //   }
+      // }
+      // this.completedProgress = Math.round((takenUnits/totalUnits)*100)
+      // this.pendingProgress = Math.round((pendingUnits/totalUnits)*100)
+      // // Preset data should not be modified here, it should be set in data() or computed
     }
   }
 </script>

@@ -41,6 +41,11 @@ class BackendTesting(APITestCase):
 
         self.requirement_core = Requirement.objects.create(description="Complementary Studies",required_units=3,program=self.program_graphic_design)
         
+ 
+        
+        
+
+        
         
     def test_root_endpoint(self):
         url = "/api/"
@@ -113,21 +118,80 @@ class BackendTesting(APITestCase):
         self.assertDictEqual(response_json["activity"]["Spring 2024"][0], expected_spring_2024_activities[0], "Spring 2024 activity does not match expected data.")
         
     
-def test_personal_info_endpoint(self):
-    url = reverse('personal-info')  # Ensure you have named your URL route as 'personal-info'
-    response = self.client.get(url)
-    self.assertEqual(response.status_code, status.HTTP_200_OK)
-    self.assertEqual(response['Content-Type'], 'application/json')
-    response_json = response.json()
+    def test_personal_info_endpoint(self):
+        url = reverse('personal-info')  # Ensure you have named your URL route as 'personal-info'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response['Content-Type'], 'application/json')
+        response_json = response.json()
 
-    # Check if the response contains all expected keys
-    expected_keys = ['personal_info', 'citizenship', 'address', 'phone_numbers', 'email', 'emergency_contact']
-    for key in expected_keys:
-        self.assertIn(key, response_json, msg=f"{key} is missing in the response")
+        # Check if the response contains all expected keys
+        expected_keys = ['personal_info', 'citizenship', 'address', 'phone_numbers', 'email', 'emergency_contact']
+        for key in expected_keys:
+            self.assertIn(key, response_json, msg=f"{key} is missing in the response")
 
-    # Verify some specific personal information details
-    self.assertEqual(response_json['personal_info']['firstname'], 'Tom')
-    self.assertEqual(response_json['personal_info']['lastname'], 'Baker')
-    self.assertEqual(response_json['personal_info']['UCID'], 'T100')
+        # Verify some specific personal information details
+        self.assertEqual(response_json['personal_info']['firstname'], 'Tom')
+        self.assertEqual(response_json['personal_info']['lastname'], 'Baker')
+        self.assertEqual(response_json['personal_info']['UCID'], 'T100')
+        
 
-  
+
+
+    def test_student_requirements_view(self):
+        url = reverse('course-requirements')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response['Content-Type'], 'application/json')
+        response_json = response.json()
+
+        # Check the presence of programInfo and requirements sections
+        self.assertIn('programInfo', response_json)
+        self.assertIn('requirements', response_json)
+
+        # Validate program information is as expected
+        expected_program_info = {
+            'degree': self.program_graphic_design.program_degree_level,
+            'major': self.program_graphic_design.program_name,
+            'minor': self.minor_program.program_name,
+            'concentration': 'none',
+            'year': '3',  # Assuming logic for calculating year
+            'academicLoad': 'full-time'
+        }
+        self.assertDictEqual(response_json['programInfo'], expected_program_info)
+
+        # Validate at least one requirement is listed with expected structure
+        self.assertGreater(len(response_json['requirements']), 0)
+        for requirement in response_json['requirements']:
+            self.assertIn('description', requirement)
+            self.assertIn('requiredUnits', requirement)
+            self.assertIn('remainingUnits', requirement)
+            self.assertIn('status', requirement)
+            self.assertIn('optional', requirement)
+            self.assertIn('courses', requirement)
+            
+
+    def test_retrieve_student_applications(self):
+        url = reverse('student-applications')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response_data = response.json()
+        self.assertTrue("Undergrad applications" in response_data)  # Check for keys or specific data as needed
+
+    def test_delete_student_application(self):
+        application_to_delete = StudentApplications.objects.create(
+            application_status="Pending",
+            student=self.student_tom,
+            major="Test Major",
+            minor="Test Minor",
+            concentration=False,
+            program=self.program_graphic_design
+        )
+        url = reverse('student-applications')
+        response = self.client.delete(url, {"application_id": application_to_delete.id}, format='json')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(StudentApplications.objects.count(), 1)  # Assuming one was created in setUp
+
+    
+
+ 

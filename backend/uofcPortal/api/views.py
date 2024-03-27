@@ -14,6 +14,7 @@ from rest_framework import status
 from .models import *
 from .serializers import *
 
+import json
 
 # Create your views here.
 
@@ -222,6 +223,7 @@ class StudentApplicationsViewSet(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
+        student = Student.objects.first()
         student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)
@@ -590,7 +592,7 @@ class StudentRequirementsView(APIView):
         requirement_data["programInfo"]["degree"] = maj_prog.program_degree_level
         requirement_data["programInfo"]["major"] = maj_prog.program_name
         requirement_data["programInfo"]["minor"] = application.minor            
-            
+        
         enrollments = Enrollment.objects.filter(student_id=student)
         lecture_list = []
         grade_list = []
@@ -646,15 +648,74 @@ class StudentRequirementsView(APIView):
 
 
 class ScheduleBuilderView(APIView):    
-    # authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
-    # permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication  
+    authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication  
 
     def get_queryset(self):
         term = self.request.query_params.get('term')
 
-    def get(self, request):
-        student = Student.objects.first()
-        #student = get_object_or_404(Student, user=request.user)
+    def post(self, request):
+        student = get_object_or_404(Student, user=request.user)
+        if not student:
+            return Response({"error": "No student found"}, status=404)
+
+        data = request.data
+        term_name = data['term']
+        term = Term.objects.get(term_key=term_name)
+        courses = json.loads(data['courses'])
+        results = []
+        for course in courses:
+            courseCode = course['course']
+            lecturekey = course['lecture']
+            tutorialkey = course['tutorial']
+
+            new_data = {}
+            new_data['student'] = student.pk
+            course = Course.objects.get(course_code=courseCode).pk
+            new_data['course'] = course
+            new_data['enrollment_waitlist'] = False
+
+            lecture = Lecture.objects.get(course=course, lecture_id=lecturekey, term=term).pk
+            tutorial = None
+
+            if tutorialkey != False:
+                #print(tutorialkey)
+                tutorial = Tutorial.objects.get(course=course, tutorial_id=tutorialkey, term=term_name).pk
+                #print(tutorial)
+                # print(Tutorial.objects.get(course=course, tutorial_id='T02', term=term_name).pk)
+            new_data['lecture'] = lecture
+            new_data['tutorial'] = tutorial
+
+
+            enrollment = Enrollment.objects.filter(student=student.pk, lecture=lecture).first()
+            if enrollment:
+                #print(enrollment.lecture.pk, lecture, courseCode, enrollment.tutorial.pk)
+                if enrollment.lecture.pk == lecture and  enrollment.lecture.term.pk == term_name and (not enrollment.tutorial or enrollment.tutorial.pk == tutorial):
+                    results.append({courseCode: "Already enrolled in this section"})
+                    continue
+                
+                #check enrollment in same course exists
+                if enrollment.lecture.course.pk == courseCode and enrollment.lecture.term.pk ==term_name:
+                    serializer = EnrollmentSerializer(enrollment, data=new_data)
+                    if serializer.is_valid():
+                        serializer.save()
+                        results.append({courseCode: "Enrollment section changed successfully."})
+                    else:
+                        results.append({courseCode: "Error changing enrollment section."})
+
+            else:
+                serializer = EnrollmentSerializer(data=new_data)
+                if serializer.is_valid():
+                    serializer.save()
+                    results.append({courseCode: "Enrolled in new course successfully"})
+                else:
+                    results.append({courseCode: "Error enrolling in new course"})
+            print(results)
+        return Response(results)
+
+    def get(self, request, term_key, format=None):
+        #student = Student.objects.first()
+        student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)
         schedule_builder_data = {
@@ -662,13 +723,16 @@ class ScheduleBuilderView(APIView):
             "currentSchedule": {},
             "academicRequirements": {}
         }
-        # hardcoded term
-        term = None
         try:
-            term = Term.objects.get(term_key="Fal2023")
+            term = Term.objects.get(term_key=term_key).pk
         except Term.DoesNotExist:
             return Response({"error": "Term not found"}, status=404)
 
+        # hardcoded term
+        # term = None
+        # try:
+        #     term = Term.objects.get(term_key="Fal2023")
+        
         
         # offered course retrieval
         courses = Course.objects.all()
@@ -694,7 +758,7 @@ class ScheduleBuilderView(APIView):
                 "tutorials": []
             }
 
-            lectures = Lecture.objects.filter(course=course)
+            lectures = Lecture.objects.filter(course=course, term=term)
             for lecture in lectures:
                 course_data["lectures"].append({
                     "name": lecture.lecture_id,
@@ -733,18 +797,18 @@ class ScheduleBuilderView(APIView):
                                 course_data["combinations"].append([lecture.lecture_id, tutorial.tutorial_id])
                 else:
                     course_data["combinations"].append([lecture.lecture_id])
-            
+                            
             schedule_builder_data["allCourses"].append(course_data)
         
         # current schedule retrieval
         enrollments = Enrollment.objects.filter(student=student)
+        termobj = Term.objects.get(pk=term)
         for enrollment in enrollments:
-            if enrollment.lecture.term == term:
+            if enrollment.lecture.term.pk == term:
                 term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
-                
                 schedule_builder_data["currentSchedule"][enrollment.lecture.course.course_code] = {
                     "Lecture": enrollment.lecture.lecture_id,
-                    "Tutorial": enrollment.tutorial.tutorial_id if enrollment.tutorial else "None"
+                    "Tutorial": enrollment.tutorial.tutorial_id if enrollment.tutorial else None
                 }
 
         # academic requirements retrieval
@@ -803,3 +867,16 @@ class ScheduleBuilderView(APIView):
         schedule_builder_data["academicRequirements"] = requirement_data
 
         return Response(schedule_builder_data)
+
+    def delete(self, request, term_key, course_key, format=None):
+        student = get_object_or_404(Student, user=request.user)
+        data = request.data
+      
+        enrollments = Enrollment.objects.filter(student=student)
+        if not enrollments:
+            return Response({"error": "No enrollment found"}, status=404)
+        for enrollment in enrollments:
+            if enrollment.lecture.term.term_key == term_key and enrollment.lecture.course.course_code == course_key:
+                enrollment.delete()
+                return Response({"message": "Enrollment deleted successfully"}, status=204)
+        return Response({"error": "Enrollment not found"}, status=404)

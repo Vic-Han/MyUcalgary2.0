@@ -188,6 +188,17 @@
       },
       {
         "model": "api.Course",
+        "pk": "CPSC599",
+        "fields": {
+          "course_title": "Introduction to Hacking",
+          "course_description": "Learn how to break into the mainframe so you can say 'I'm in' just like you always wanted.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
         "pk": "PHIL314",
         "fields": {
           "course_title": "Information Technology Ethics",
@@ -837,7 +848,7 @@
       },
       {
         "model": "api.Course",
-        "pk": "PYSC201",
+        "pk": "PSYC201",
         "fields": {
           "course_title": "Principles of Psychology II",
           "course_description": "A survey of topics associated with psychology’s role as a social science, including personality, motivation, health, social, developmental, industrial/organizational and clinical psychology.",
@@ -847,7 +858,7 @@
       },
       {
         "model": "api.Course",
-        "pk": "PYSC203",
+        "pk": "PSYC203",
         "fields": {
           "course_title": "Psychology for Everyday Life",
           "course_description": "Provides students with an understanding of the key theories, research methods, and discoveries in coping and resilience, identity development, interpersonal relationships, and mental health with an emphasis on developing the knowledge and skills necessary to be effective consumers of psychological theory and research. Through a focus on adjustment issues that arise in everyday life, this course will demonstrate some of the ways in which psychology can be used to benefit students’ wellbeing in their personal and professional lives.",

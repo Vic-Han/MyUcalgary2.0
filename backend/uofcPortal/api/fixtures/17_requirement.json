@@ -35,8 +35,8 @@
       "description": "Breadth Requirement",
       "required_units": 18,
       "program": 2,
-      "optional": true,
-      "courses": ["PHYS303", "PHYS207", "ENGL201", "ECON201", "ECON203", "EDUC309", "EDUC307", "SOCI201"]
+      "optional": false,
+      "courses": ["PHYS303", "PHYS207", "ENGL201", "EDUC309", "EDUC307", "SOCI201"]
     }
   },
   {
@@ -45,14 +45,14 @@
       "description": "Non Major Requirement",
       "required_units": 30,
       "program": 2,
-      "optional": true,
-      "courses": ["ECON201", "ECON203", "ECON349", "ECON341", "ECON373", "SOCI303", "DATA201", "PYSC201", "PYSC203", "STAT213"]
+      "optional": false,
+      "courses": ["ECON201", "ECON203", "ECON349", "ECON341", "ECON373", "SOCI303", "DATA201", "PSYC201", "PSYC203", "STAT213"]
     }
   },
   {
     "model": "api.Requirement",
     "fields": {
-      "description": "Major feild at 300+ level",
+      "description": "Major field at 300+ level",
       "required_units": 9,
       "program": 2,
       "optional": true,
@@ -62,7 +62,7 @@
   {
     "model": "api.Requirement",
     "fields": {
-      "description": "Major feild at 400+ level",
+      "description": "Major field at 400+ level",
       "required_units": 12,
       "program": 2,
       "optional": true,
@@ -72,7 +72,7 @@
   {
     "model": "api.Requirement",
     "fields": {
-      "description": "Major feild at 500+ level",
+      "description": "Major field at 500+ level",
       "required_units": 9,
       "program": 2,
       "optional": true,

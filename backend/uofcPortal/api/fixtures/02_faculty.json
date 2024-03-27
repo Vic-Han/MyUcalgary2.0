@@ -68,10 +68,5 @@
     "model": "api.Faculty",
     "pk": "Faculty of Graduate Studies",
     "fields": {}
-  },
-  {
-    "model": "api.Faculty",
-    "pk": "Faculty of Nursing",
-    "fields": {}
   }
 ]

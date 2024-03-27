@@ -454,14 +454,14 @@ class StudentFinancesView(APIView):
                 "name": transaction.transaction_name,
                 "date": transaction.transaction_posted_date.strftime('%Y-%m-%d'),
                 "amount": abs(transaction.transaction_amount),
-                "type": "credit" if transaction.transaction_amount > 0 else "debit",
+                "type": transaction.transaction_type,
             }
             
             activity[term_name].append(transaction_entry)
 
-        total_paid = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_amount > 0)
-        total_awards = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_type == "award")
-        total_due = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_amount < 0)
+        total_paid = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_type == 'payment')
+        total_awards = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_type == "award" or transaction.transaction_type == "scholarship")
+        total_due = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_type == 'fee')
 
         response_data = {
             "paid": total_paid,

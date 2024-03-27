@@ -233,9 +233,7 @@ const createLecInfo = (course, index) =>{
             this.worker = new Worker('./ScheduleWorker.js')
             //this.selectedTerm = 'Fal2023'
             //this.getTermInfo()
-            this.getTerms().then(() => {
-                this.getTermInfo()
-            })  
+            this.getTerms()
         },
         methods:{
             async getTerms(){
@@ -727,6 +725,12 @@ const createLecInfo = (course, index) =>{
                         this.schedCourses[i].selected = this.schedules[this.schedIndex][i]
                     }
                 }
+            },
+            selectedTerm:{
+                handler(){
+                    this.getTermInfo()
+                },
+                deep: true
             }
 
 

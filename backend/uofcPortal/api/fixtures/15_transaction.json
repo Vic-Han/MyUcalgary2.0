@@ -1,0 +1,14 @@
+[
+    {
+        "model": "api.Transaction",
+        "pk": 1,
+        "fields": {
+          "transaction_name": "Bookstore Purchase",
+          "transaction_posted_date": "2024-07-20",
+          "transaction_type": "fee",
+          "transaction_amount": -150.00,
+          "student": 2,
+          "term": "Sum2024"
+        }
+      }
+]

@@ -6,7 +6,7 @@
           Cumulative GPA
         </div>
         <div class="rounded-full w-80 h-80 flex items-center justify-center my-7 mx-8 flex-col relative border-8" :class="gpaColours(overallLetterGrade)" >
-          <span class="text-8xl font-bold my-4" :class="gpaText(overallLetterGrade)" >{{overallGPA}}</span>
+          <span class="text-8xl font-bold my-4" :class="gpaText(overallLetterGrade)" >{{overallGPA.toFixed(2)}}</span>
           <span class="text-5xl font-bold" :class="gpaText(overallLetterGrade)">{{overallLetterGrade}}</span>
         </div>
        
@@ -23,7 +23,7 @@
         <option class="selected:bg-red-100" v-for="(value, key) in termViews" :key="key">{{ key }}</option>
       </select>
       <div v-for="(value, key) in termViews[selectedOption]" :key="key" class="my-5">
-        <GradePreview :term="key" :average="value.TermGPA" :letter="value.TermLetterGrade"
+        <GradePreview :term="key" :average="value.TermGPA.toFixed(2)" :letter="value.TermLetterGrade"
           :courses="value.courses" :year="value.Level" :unitsEnrolled="value.UnitsEnrolled"
           :plan="value.Plan" :program="value.Program"></GradePreview>
       </div>

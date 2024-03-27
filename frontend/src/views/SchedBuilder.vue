@@ -49,7 +49,7 @@
                             <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
                         </svg>
                     </div> 
-                    <div class="text-5xl pt-4 mx-40 text-grey-200">{{selectedTerm.term_key}}</div>
+                    <div class="text-5xl pt-4 mx-40 text-grey-200">{{convertTerm(selectedTerm.term_key)}}</div>
                     <div class="text-5xl mx-5">
                         <svg @click="nextTerm" xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 -rotate-90 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
@@ -711,6 +711,17 @@ const createLecInfo = (course, index) =>{
             getSchedule(){
                 this.enrollPopup = true
             },
+            convertTerm(term){
+                const conv = {
+                    'Fal' : 'Fall ',
+                    'Win' : 'Winter ',
+                    'Spr' : 'Spring ',
+                    'Sum' : 'Summer '
+                }
+                console.log(term, conv)
+                return conv[term.substring(0,3)] + term.substring(3,7)
+                //return term
+            }
               
 
         },

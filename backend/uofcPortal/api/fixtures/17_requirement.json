@@ -66,7 +66,7 @@
       "required_units": 12,
       "program": 1,
       "optional": false,
-      "courses": ["ENEL500","ENEL501","SENG511","SENG533","SENG401"]
+      "courses": ["ENEL500","ENEL501","SENG511","SENG533"]
     }
   },
   {

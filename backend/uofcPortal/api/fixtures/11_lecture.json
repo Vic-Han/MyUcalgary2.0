@@ -1,0 +1,147 @@
+[
+    {
+      "model": "api.Lecture",
+      "pk": "01",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2018",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "K123",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "79",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG200",
+        "instructor": "021"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "02",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2018",
+        "lecture_days": "TR",
+        "lecture_starttime": 13.0,
+        "lecture_endtime": 14.25,
+        "lecture_roomnumber": "B564",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "65",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG201",
+        "instructor": "022"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "03",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2018",
+        "lecture_days": "TR",
+        "lecture_starttime": 14.5,
+        "lecture_endtime": 15.75,
+        "lecture_roomnumber": "G345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "85",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG225",
+        "instructor": "024"
+      }
+    },
+    {
+        "model": "api.Lecture",
+        "pk": "04",
+        "fields": {
+          "lecture_id": "L01",
+          "term": "Win2019",
+          "lecture_days": "MWF",
+          "lecture_starttime": 14.5,
+          "lecture_endtime": 15.33,
+          "lecture_roomnumber": "L987",
+          "lecture_totalseats": "100",
+          "lecture_filledseats": "72",
+          "lecture_totalwaitlist": "10",
+          "lecture_filledwaitlist": "0",
+          "course": "ENGG202",
+          "instructor": "023"
+        }
+    },
+    {
+        "model": "api.Lecture",
+        "pk": "05",
+        "fields": {
+          "lecture_id": "L01",
+          "term": "Win2019",
+          "lecture_days": "TR",
+          "lecture_starttime": 9,
+          "lecture_endtime": 10.25,
+          "lecture_roomnumber": "M123",
+          "lecture_totalseats": "100",
+          "lecture_filledseats": "73",
+          "lecture_totalwaitlist": "10",
+          "lecture_filledwaitlist": "0",
+          "course": "ENGG233",
+          "instructor": "021"
+        }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "06",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "P789",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "67",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG319",
+        "instructor": "025"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "07",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2020",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.5,
+        "lecture_endtime": 11.33,
+        "lecture_roomnumber": "N456",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "92",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG209",
+        "instructor": "022"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "08",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2020",
+        "lecture_days": "TR",
+        "lecture_starttime": 12.5,
+        "lecture_endtime": 13.75,
+        "lecture_roomnumber": "R234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG481",
+        "instructor": "023"
+      }
+    }
+  ]
+  

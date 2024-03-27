@@ -561,11 +561,11 @@ class DashboardView(APIView, GradeMixins):
         return Response(dashboard_data)
     
 class StudentRequirementsView(APIView):
-    #authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
-    #permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
+    authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
+    permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
 
     def get(self, request):
-        #student = get_object_or_404(Student, user=request.user)
+        student = get_object_or_404(Student, user=request.user)
         student=Student.objects.first()
         if not student:
             return Response({"error": "No student found"}, status=404)

@@ -75,7 +75,7 @@
                           <div v-if="course.hovered" class="tooltip absolute bottom-full mb-2 -translate-x-1/2 left-1/2 text-black p-2 border border-gray-500 bg-white-100 rounded shadow-lg whitespace-nowrap max-w-screen overflow-x-auto z-10">
                               <div class="text-left"><strong>Status:</strong> {{ course.status }}</div>
                               <div class="text-left"><strong>Units:</strong> {{ course.units }}</div>
-                              <div v-if="course.status == 'complete'" class="text-left"><strong>Grade:</strong> {{ course.grade }}</div>
+                              <div v-if="course.status == 'complete'" class="text-left"><strong>Grade:</strong> {{ course.grade+ '%'}}</div>
                           </div>
                         </div>
                     </div>

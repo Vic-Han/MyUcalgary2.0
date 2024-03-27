@@ -2,31 +2,81 @@
   {
     "model": "api.Requirement",
     "fields": {
-      "description": "Required Courses",
-      "required_units": 27,
+      "description": "First Year Required Courses",
+      "required_units": 18,
       "program": 2,
       "optional": false,
-      "courses": ["CPSC231", "CPSC233", "CPSC251", "CPSC331", "CPSC351", "CPSC355", "CPSC413", "CPSC449", "CPSC457", "MATH211", "MATH265", "PHIL279", "PHIL314"]
+      "courses": ["CPSC231", "CPSC233", "CPSC251", "MATH211", "MATH265", "PHIL279"]
     }
   },
   {
     "model": "api.Requirement",
     "fields": {
-      "description": "Technical Electives",
-      "required_units": 3,
+      "description": "Second Year Required Courses",
+      "required_units": 15,
       "program": 2,
-      "optional": true,
-      "courses": ["PHYS303", "PHYS207"]
+      "optional": false,
+      "courses": ["CPSC331", "CPSC351", "CPSC355", "PHIL314", "SENG300"]
     }
   },
   {
     "model": "api.Requirement",
     "fields": {
-      "description": "Complementary Studies",
-      "required_units": 3,
+      "description": "Third Year Required Courses",
+      "required_units": 9,
+      "program": 2,
+      "optional": false,
+      "courses": ["CPSC413", "CPSC449", "CPSC457"]
+    }
+  },
+  {
+    "model": "api.Requirement",
+    "fields": {
+      "description": "Breadth Requirement",
+      "required_units": 18,
       "program": 2,
       "optional": true,
-      "courses": ["ENGL201", "ENGL305"]
+      "courses": ["PHYS303", "PHYS207", "ENGL201", "ECON201", "ECON203", "EDUC309", "EDUC307", "SOCI201"]
+    }
+  },
+  {
+    "model": "api.Requirement",
+    "fields": {
+      "description": "Non Major Requirement",
+      "required_units": 30,
+      "program": 2,
+      "optional": true,
+      "courses": ["ECON201", "ECON203", "ECON349", "ECON341", "ECON373", "SOCI303", "DATA201", "PYSC201", "PYSC203", "STAT213"]
+    }
+  },
+  {
+    "model": "api.Requirement",
+    "fields": {
+      "description": "Major feild at 300+ level",
+      "required_units": 9,
+      "program": 2,
+      "optional": true,
+      "courses": ["CPSC 599", "CPSC 559", "SENG550", "SENG513", "SENG511", "CPSC411", "CPSC433", "CPSC441", "CPSC471", "CPSC481","SENG401", "CPSC329" , "CPSC359"]
+    }
+  },
+  {
+    "model": "api.Requirement",
+    "fields": {
+      "description": "Major feild at 400+ level",
+      "required_units": 12,
+      "program": 2,
+      "optional": true,
+      "courses": ["CPSC 599", "CPSC 559", "SENG550", "SENG513", "SENG511", "CPSC411", "CPSC433", "CPSC441", "CPSC471", "CPSC481","SENG401"]
+    }
+  },
+  {
+    "model": "api.Requirement",
+    "fields": {
+      "description": "Major feild at 500+ level",
+      "required_units": 9,
+      "program": 2,
+      "optional": true,
+      "courses": ["CPSC 599", "CPSC 559", "SENG550", "SENG513", "SENG511"]
     }
   },
   {

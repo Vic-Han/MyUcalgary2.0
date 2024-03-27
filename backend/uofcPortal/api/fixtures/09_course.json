@@ -108,6 +108,17 @@
           "department": "Computer Science"
         }
       },
+      {
+        "model": "api.Course",
+        "pk": "CPSC433",
+        "fields": {
+          "course_title": "Artificial Intelligence",
+          "course_description": "An examination of the objectives, key techniques and achievements of work on artificial intelligence in Computer Science.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
     
       {
         "model": "api.Course",
@@ -464,6 +475,40 @@
       },
       {
         "model": "api.Course",
+        "pk": "ECON341",
+        "fields": {
+          "course_title": " Money and Banking ",
+          "course_description": "Operation of financial markets and institutions: the principles of money creation, interest rate determination, and central banking.",
+          "course_units": 3,
+          "course_prerequisites": "ECON201 ECON203",
+
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ECON349",
+        "fields": {
+          "course_title": "The Economics of Social Problems",
+          "course_description": "Contribution that economic analysis can make to the understanding of selected current social issues such as poverty, aging, crime, drug abuse and discrimination.",
+          "course_prerequisites": "ECON201",
+          "course_units": 3,
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ECON373",
+        "fields": {
+          "course_title": " Game Theory and Strategic Thinking for the Social Sciences ",
+          "course_description": "Principles of game theory utilizing a non-mathematical and intuitive approach. Strategic reasoning and the use of game theory to explain social interaction. Game theory analysis is illustrated using applications and examples from economics and other social sciences.",
+          "course_prerequisites": "ECON201",
+          "course_units": 3,
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Course",
         "pk": "CHEM209",
         "fields": {
           "course_title": "General Chemistry For Engineers",
@@ -757,7 +802,77 @@
           "course_title": "Introductory Sociology",
           "course_description": "Sociology as a discipline examines how the society in which we live influences our thinking and behaviour. An introduction to sociology through the study of society, social institutions, group behaviour and social change.",
           "course_units": 3,
-          "department": "Computer Science"
+          "department": "Philosophy and Rationalization"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SOCI303",
+        "fields": {
+          "course_title": " Sociology of Gender",
+          "course_description": "A sociological exploration of the way genders are constructed and how they play-out at the level of individuals and institutions, and in diverse social contexts.",
+          "course_units": 3,
+          "department": "Philosophy and Rationalization"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "DATA201",
+        "fields": {
+          "course_title": " Thinking with Data",
+          "course_description": "An introduction to tools and techniques for managing, visualizing, and making sense of data. Includes an introduction to data cleaning, basic statistics, exploratory visualization, sensemaking, and data presentation.",
+          "course_units": 3,
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "STAT213",
+        "fields": {
+          "course_title": "Introduction to Statistics I",
+          "course_description": "Introduction to probability, including Bayes' law, expectations and distributions. Discrete and continuous random variables, including properties of the normal curve. Collection and visual display of single and multi-dimensional data. Introduction to statistical modeling and estimation. Parametric and simulation-based confidence interval estimation.",
+          "course_units": 3,
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PYSC201",
+        "fields": {
+          "course_title": "Principles of Psychology II",
+          "course_description": "A survey of topics associated with psychology’s role as a social science, including personality, motivation, health, social, developmental, industrial/organizational and clinical psychology.",
+          "course_units": 3,
+          "department": "Educational Psychology"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PYSC203",
+        "fields": {
+          "course_title": "Psychology for Everyday Life",
+          "course_description": "Provides students with an understanding of the key theories, research methods, and discoveries in coping and resilience, identity development, interpersonal relationships, and mental health with an emphasis on developing the knowledge and skills necessary to be effective consumers of psychological theory and research. Through a focus on adjustment issues that arise in everyday life, this course will demonstrate some of the ways in which psychology can be used to benefit students’ wellbeing in their personal and professional lives.",
+          "course_units": 3,
+          "department": "Educational Psychology"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "EDUC309",
+        "fields": {
+          "course_title": "Early Childhood Development",
+          "course_description": "An examination of the science of early childhood and early brain development that accounts for the physical, cognitive, emotional, and social development of young children from birth to age eight, and a consideration of the implications with respect to children’s healthy development and effective educational practices in the early school years.",
+          "course_units": 3,
+          "department": "Educational Psychology"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "EDUC307",
+        "fields": {
+          "course_title": " Integrating Arts Education ",
+          "course_description": "A preparation for artists and educators to design effective learning in, about, and through the arts. Discipline-specific knowledge and technique in and about art, dance, drama, and music will be acquired in a studio environment, and applied through an interdisciplinary, collaborative lab. Learner outcomes include interdisciplinary planning skills, aesthetic awareness, critical and analysis thinking, and inter-arts competencies.",
+          "course_units": 3,
+          "department": "Educational Psychology"
         }
       }
-]
+  ]

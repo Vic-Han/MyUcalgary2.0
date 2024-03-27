@@ -13,8 +13,8 @@
         <div class="bg-white-100 rounded-lg shadow-md px-6 mb-4 ml-4 w-3/5">
           <div class="text-left font-semibold text-xl pt-6">Degree Progress</div>
           <div class="w-full h-10 bg-grey-100 shadow-xl mt-10 rounded-lg">
-            <div class="relative h-10 bg-green-100 mt-10 rounded-lg" :style="{ width: completedProgress + '%' }">
-              <div v-if="completedProgress > 10" class="pt-1 text-2xl text-white-100 font-semibold">{{ completedProgress }}%</div>
+            <div class="relative h-10 bg-green-100 mt-10 rounded-lg" :style="{ width: percentage + '%' }">
+              <div v-if="percentage > 10" class="pt-1 text-2xl text-white-100 font-semibold">{{ percentage }}%</div>
             </div>
           </div>
           <div class="flex flex-row mt-2">
@@ -101,6 +101,7 @@
       return {
 
         expandedReport: false,
+        percentage: 0,
         completedProgress: 0,
         pendingProgress:0,
         programInfo: {
@@ -116,85 +117,6 @@
           
         ]
       }
-    },
-    computed: {
-        // incompleteMajorField() {
-        //     if (this.expandedReport) {
-        //         return this.requiredCourses.courses.filter(course => course.status === 'incomplete' || course.status === 'in-progress' || course.status === 'completed');
-                
-        //     } else {
-        //         return this.requiredCourses.courses.filter(course => course.status === 'incomplete');
-        //     }
-        // },
-
-        // incompleteOptions() {
-        //     if (this.expandedReport) {
-        //         return this.requiredOptions.map(option => ({...option,
-        //         courses: option.courses.filter(course => course.status === 'incomplete' || course.status === 'in-progress' || course.status === 'completed')}));
-        //     } else {
-        //         return this.requiredOptions.map(option => ({...option,
-        //         courses: option.courses.filter(course => course.status === 'incomplete')}));
-        //     }
-        // },
-    
-      // canApplyForGraduation() {
-      //   // Logic to determine if the student can apply for graduation
-      //   return this.academicReport.programs.some(program => {
-      //     return program.unitsNeeded === 0;
-      //   });
-      // },
-      // completedCoursesReport() {
-      //   return this.academicReport.programs.map(program => {
-      //   const updatedProgram = { ...program };
-      //   updatedProgram.courseCategory = program.courseCategory.map(category => {
-      //       const updatedCategory = { ...category };
-      //       updatedCategory.courseField = category.courseField.map(field => {
-      //       const updatedField = { ...field };
-      //       updatedField.courses = field.courses.filter(course => course.status === 'complete');
-      //       return updatedField;
-      //       });
-      //       return updatedCategory;
-      //   });
-      //   return updatedProgram;
-      //   });
-      // },
-    //   programUnits() {
-    //     // Check if `academicReport` and `programs` are defined and if they are arrays.
-    //     if (!this.academicReport || !Array.isArray(this.academicReport.programs)) {
-    //     return []; // Return an empty array if not defined or not an array
-    //     }
-
-    //     return this.academicReport.programs.map(program => {
-    //     // Start with zero units taken and then sum up based on course status
-    //     let unitsTaken = 0;
-
-    //     // Check if `courseCategory` exists and is an array before iterating over it
-    //     if (Array.isArray(program.courseCategory)) {
-    //         program.courseCategory.forEach(category => {
-    //         // Check if `courseField` exists and is an array before iterating over it
-    //         if (Array.isArray(category.courseField)) {
-    //             category.courseField.forEach(field => {
-    //             field.courses.forEach(course => {
-    //                 if (course.status === 'complete' || course.status === 'incomplete') {
-    //                 unitsTaken = unitsTaken + 3; // Assuming each course is worth one unit
-    //                 }
-    //             });
-    //             });
-    //         }
-    //         });
-    //     }
-
-    //     // Calculate units needed based on the units taken
-    //     const unitsNeeded = Math.max(program.unitsRequired - unitsTaken, 0); // Ensure it doesn't go below zero
-
-    //     // Return an object with the computed units information for the program
-    //     return {
-    //         ...program,
-    //         unitsTaken,
-    //         unitsNeeded
-    //     };
-    //     });
-    // }
     },
     methods: {
         getWidth() {
@@ -311,6 +233,19 @@
         //     });
 
         // }
+        incrementPCT() {
+          this.percentage++
+        },
+    },
+    watch: {
+      completedProgress: {
+        handler() {
+          this.percentage = 0
+          for(let i = 0; i < this.completedProgress; i++) {
+            setTimeout(this.incrementPCT, 10*i)
+          }
+        }
+      }
     },
     created() {
       this.$emit('show-navbar')

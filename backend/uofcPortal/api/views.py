@@ -671,9 +671,9 @@ class ScheduleBuilderView(APIView):
             serializer_dict["message"] = "Enrolled in new course successfully."
             return Response(serializer_dict, status=status.HTTP_200_OK)
 
-    def get(self, request):
-        student = Student.objects.first()
-        #student = get_object_or_404(Student, user=request.user)
+    def get(self, request, term_key):
+        #student = Student.objects.first()
+        student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)
         schedule_builder_data = {
@@ -683,6 +683,7 @@ class ScheduleBuilderView(APIView):
         }
 
         request_data = request.data
+        print(student)
         try:
             term = Term.objects.get(term_key=request_data['term']).pk
         except Term.DoesNotExist:

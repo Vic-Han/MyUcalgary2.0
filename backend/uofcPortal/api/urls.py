@@ -29,4 +29,6 @@ urlpatterns = [
     path('api/course-requirements/', StudentRequirementsView.as_view(), name='course-requirements'),
     path('api/personal-info/', PersonalInfoView.as_view(), name='personal-info'),
     path('api/schedule-builder/', ScheduleBuilderView.as_view(), name='schedule-builder')
+    path('api/schedule-builder/<:string:term_key>', ScheduleBuilderView.as_view(), name='schedule-builder')
+
 ]

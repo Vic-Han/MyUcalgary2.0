@@ -48,7 +48,7 @@
                             <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
                         </svg>
                     </div> 
-                    <div class="text-5xl pt-4 mx-40 text-grey-200">Fall 2024</div>
+                    <div class="text-5xl pt-4 mx-40 text-grey-200">{{selectedTerm.term_key}}</div>
                     <div class="text-5xl mx-5">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 -rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
                             <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
@@ -233,19 +233,27 @@ const createLecInfo = (course, index) =>{
                 item.selected = 0;
             })
             this.worker = new Worker('./ScheduleWorker.js')
-            this.getTermInfo()
+            //this.selectedTerm = 'Fal2023'
+            //this.getTermInfo()
+            this.getTerms().then(() => {
+                this.getTermInfo()
+            })  
         },
         methods:{
             async getTerms(){
                 const serverPath = this.$store.state.serverPath
-                const apiPath = 'api/terms/'
+                const apiPath = '/api/terms/'
                 const headers = {
                     'Content-Type': 'application/json',
                     'Authorization' : `Token ${this.$cookies.get("auth-token")}`
                 }
                 try{
                     const res = await this.$http.get(`${serverPath}${apiPath}`, {headers: headers})
-                    this.terms = res.data.terms
+                    console.log(res.data)
+                    const date = new Date('2023-09-01')
+                    this.terms = res.data.filter((term) => {
+                        return new Date(term.end_date) > date
+                    })
                     this.selectedTerm = this.terms[0]
                 }
                 catch(err){
@@ -259,7 +267,13 @@ const createLecInfo = (course, index) =>{
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${this.$cookies.get('auth-token')}`
                 }
-                this.$http.get(serverPath + apiPath, {headers: headers}).then(res =>{
+                // const body = new FormData()
+                // body.append('term', this.selectedTerm)
+                const body = JSON.stringify({
+                    term: this.selectedTerm.term_key
+                })
+                console.log(`${serverPath}${apiPath}`, body, headers)
+                this.$http.get(serverPath + apiPath, body, {headers: headers}).then(res =>{
                     allCourses = res.data.allCourses 
                     this.degreeRequirements = res.data.academicRequirements
                     console.log(res.data.currentSchedule)

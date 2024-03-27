@@ -195,9 +195,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-select{
-  margin: 10px;
-}
-</style>

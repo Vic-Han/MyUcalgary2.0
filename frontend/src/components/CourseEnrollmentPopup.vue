@@ -12,16 +12,16 @@
             </div>
          </div>
          <div class="max-h-3/4 overflow-y-auto ">
-            <div v-if="enrolled">
-                <div v-for=" (course,index) in enrolledInfo " :key="index">
+            <div v-if="enrolled" class="flex flex-col divide-y divide-grey-200 divide-dashed">
+                <div v-for=" (course,index) in enrolledInfo " :key="index" class="py-2">
                     <div v-for="[key,value] of Object.entries(course)" :key="key">
-                        <div>{{key}}</div>
-                        <div>{{value}}</div>
+                        <div class="text-left font-semibold text-lg pl-2 pb-1">{{key}}:</div>
+                        <div class="text-left pl-4">Action Status: {{value}}</div>
                     </div>
                 </div>
             </div>
             <div v-else class="flex flex-col divide-y divide-grey-200 divide-dashed">
-                <div v-for="(course,index) in schedCourses" :key="index" class="pb-2">
+                <div v-for="(course,index) in schedCourses" :key="index" class="py-2">
                     <div class="text-left font-semibold text-lg pl-2 pb-1">{{ course.name }}:</div>
                     <div v-for="(lec,i) in course.combinations[course.selected]" :key="i">
                         <div v-if="lec[0] == 'L'" class="text-left pl-4">Lecture: {{ lec }}</div>
@@ -33,7 +33,8 @@
             </div>
         </div>
         <div class="h-12"></div>
-        <div @click="enrollInCourses" class="absolute right-0 bottom-4 pt-0.5 px-2 bg-white-100 border-2 border-red-100 text-red-100 mx-10 h-10 text-2xl rounded-lg cursor-pointer hover:bg-red-100 hover:text-white-100">Enroll</div>
+        <div v-if="!enrolled" @click="enrollInCourses" class="absolute right-0 bottom-4 pt-0.5 px-2 bg-white-100 border-2 border-red-100 text-red-100 mx-10 h-10 text-2xl rounded-lg cursor-pointer hover:bg-red-100 hover:text-white-100">Enroll</div>
+        <div v-else @click="closePopup" class="absolute right-0 bottom-4 pt-0.5 px-2 bg-white-100 border-2 border-red-100 text-red-100 mx-10 h-10 text-2xl rounded-lg cursor-pointer hover:bg-red-100 hover:text-white-100">Close</div>
     </div>
  </template>
  

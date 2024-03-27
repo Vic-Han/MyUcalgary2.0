@@ -4,7 +4,8 @@
         "fields": {
           "description": "Required Courses",
           "required_units": 27,
-          "program": 1,
+          "program": 2,
+          "optional": false,
           "courses": ["CPSC231", "CPSC233", "CPSC251", "CPSC331", "CPSC351", "CPSC355", "CPSC413", "CPSC449", "CPSC457", "MATH211", "MATH265", "PHIL279", "PHIL314"]
         }
       },
@@ -13,7 +14,8 @@
         "fields": {
           "description": "Technical Electives",
           "required_units": 3,
-          "program": 1,
+          "program": 2,
+          "optional": true,
           "courses": ["PHYS303", "PHYS207"]
         }
       },
@@ -22,10 +24,70 @@
         "fields": {
           "description": "Complementary Studies",
           "required_units": 3,
-          "program": 1,
+          "program": 2,
+          "optional": true,
           "courses": ["ENGL201", "ENGL305"]
         }
+        },
+        {
+          "model": "api.Requirement",
+          "fields": {
+            "description": "First Year Required Courses",
+            "required_units": 30,
+            "program": 1,
+            "optional": false,
+            "courses": ["ENGG200","ENGG201","MATH211","MATH275","ENGG225","ENGG233","MATH277","CHEM209","ENGG202","PHYS259"]
         }
-
+      },
+      {
+        "model": "api.Requirement",
+        "fields": {
+          "description": "Second Year Required Courses",
+          "required_units": 30,
+          "program": 1,
+          "optional": false,
+          "courses": ["ENEL353","PHYS365","MATH375","ENGG319","ENSF337","MATH271","ENEL327","ENSF409","ENCM369","CPSC319"]
+      }
+    },
+    {
+      "model": "api.Requirement",
+      "fields": {
+        "description": "Third Year Required Courses",
+        "required_units": 24,
+        "program": 1,
+        "optional": false,
+        "courses": ["ENSF480","ENCM511","CPSC457","CPSC471","SENG401","SENG438","SENG471","CPSC441"]
+    }
+  },
+  {
+    "model": "api.Requirement",
+    "fields": {
+      "description": "Fourth Year Required Courses",
+      "required_units": 12,
+      "program": 1,
+      "optional": false,
+      "courses": ["ENEL500","ENEL501","SENG511","SENG533","SENG401"]
+  }
+},
+{
+  "model": "api.Requirement",
+  "fields": {
+    "description": "Complimentary Studies",
+    "required_units": 18,
+    "program": 1,
+    "optional": true,
+    "courses": ["ECON201","ECON203","ENGG209","COMS363","ENGG481","ENGG513", "ENGL201", "SOCI201"]
+}
+},
+{
+  "model": "api.Requirement",
+  "fields": {
+    "description": "ENSF Technical Electives",
+    "required_units": 15,
+    "program": 1,
+    "optional": true,
+    "courses": ["SENG550","CPSC525","ENEL525","SENG513","CPSC453","ENCM509", "CPSC559", "CPSC481"]
+}
+}
 
 ]

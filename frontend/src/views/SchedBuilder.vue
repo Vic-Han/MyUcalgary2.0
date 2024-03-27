@@ -712,14 +712,27 @@ const createLecInfo = (course, index) =>{
                 this.enrollPopup = true
             },
             convertTerm(term){
+                if(!term){
+                    return ''
+                }
                 const conv = {
                     'Fal' : 'Fall ',
                     'Win' : 'Winter ',
                     'Spr' : 'Spring ',
                     'Sum' : 'Summer '
                 }
-                console.log(term, conv)
-                return conv[term.substring(0,3)] + term.substring(3,7)
+                let first = ""
+                first += term[0]
+                first += term[1]
+
+                first += term[2]
+                let second = ''
+                second += term[3]
+                second += term[4]
+                second += term[5]
+                second += term[6]
+                
+                return conv[first] + second
                 //return term
             }
               

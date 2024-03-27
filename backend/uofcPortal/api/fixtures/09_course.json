@@ -9,6 +9,17 @@
           "department": "Computer Science"
         }
       },
+      {
+        "model": "api.Course",
+        "pk": "ENGL201",
+        "fields": {
+          "course_title": "British Literature",
+          "course_description": "Survey of British literature from the Anglo-Saxon period to the 18th century.",
+          "course_prerequisites": "ENGL101, ENGL102",
+          "course_units": 3,
+          "department": "English"
+        }
+      },
    
       {
         "model": "api.Course",

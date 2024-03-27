@@ -10,6 +10,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
+from rest_framework import status
 from .models import *
 from .serializers import *
 
@@ -22,24 +23,28 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class AddressViewSet(viewsets.ModelViewSet):
-    queryset = Address.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = AddressSerializer
 
+    def get_queryset(self):
+        # Filter the addresses to only those belonging to the currently authenticated user
+        return Address.objects.filter(student__user=self.request.user)
+
+class EmergencyContactViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    queryset = EmergencyContact.objects.all()
+    serializer_class = EmergencyContactSerializer
+
 class StudentViewSet(viewsets.ModelViewSet):
-    queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
-    # def get_queryset(self):
-    #     # Assuming the user is linked to the student via a ForeignKey
-    #     return Student.objects.filter(user=self.request.user)
+    def get_queryset(self):
+        return Student.objects.filter(user=self.request.user)
 
-class PersonalInfoViewSet(viewsets.ModelViewSet):
-    queryset = Student.objects.all()
-    serializer_class = PersonalInfoSerializer
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes = (IsAuthenticated,)
 
 class FacultyViewSet(viewsets.ModelViewSet):
     queryset = Faculty.objects.all()
@@ -86,6 +91,12 @@ class TutorialViewSet(viewsets.ModelViewSet):
 class GradeViewSet(viewsets.ModelViewSet):
     queryset = Grade.objects.all()
     serializer_class = GradeSerializer
+    # authentication_classes = (TokenAuthentication,)
+    # permission_classes = (IsAuthenticated,)
+
+class TermViewSet(viewsets.ModelViewSet):
+    queryset = Term.objects.all()
+    serializer_class = TermSerializer
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
 
@@ -137,7 +148,75 @@ class TransactionViewSet(viewsets.ModelViewSet):
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
 
-# To be modifed
+
+class PersonalInfoView(APIView):
+    # authentication_classes = (TokenAuthentication,)
+    # permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        # student = get_object_or_404(Student, user=request.user)
+        student = Student.objects.first()
+        personal_info = {
+            "firstname": student.student_first_name,
+            "lastname": student.student_last_name,
+            "UCID": student.student_id,
+            "date of birth": student.date_of_birth.strftime('%Y-%m-%d') if student.date_of_birth else None
+        }
+
+        citizenship = {
+            "country": student.address.address_country if student.address else None,
+            "status": student.citizenship_status
+        }
+
+        address = {
+            "id": student.address.pk if student.address else None,
+            "street address": student.address.address_street_address if student.address else None,
+            "postal code": student.address.address_postal_code if student.address else None,
+            "city": student.address.address_city if student.address else None,
+            "province/state": student.address.address_province if student.address else None
+        }
+
+        phone_numbers = {
+            "home": student.home_phone_number,
+            "mobile": student.mobile_phone_number,
+            "other": student.other_phone_number,
+            "preferred": student.preferred_phone
+        }
+
+        email = {
+            "personal": student.personal_email,
+            "school": student.school_email,
+            "preferred": student.preferred_email
+        }
+
+        emergency_contact = {
+            "id1": student.emergency_contact1.pk if student.emergency_contact1 else None,
+            "name1": student.emergency_contact1.emergency_contact_name if student.emergency_contact1 else None,
+            "phone1": student.emergency_contact1.emergency_contact_phone if student.emergency_contact1 else None,
+            "relation1": student.emergency_contact1.emergency_contact_relationship if student.emergency_contact1 else None,
+            "id2": student.emergency_contact2.pk if student.emergency_contact2 else None,
+            "name2": student.emergency_contact2.emergency_contact_name if student.emergency_contact2 else None,
+            "phone2": student.emergency_contact2.emergency_contact_phone if student.emergency_contact2 else None,
+            "relation2": student.emergency_contact2.emergency_contact_relationship if student.emergency_contact2 else None,
+            "id3": student.emergency_contact3.pk if student.emergency_contact3 else None,
+            "name3": student.emergency_contact3.emergency_contact_name if student.emergency_contact3 else None,
+            "phone3": student.emergency_contact3.emergency_contact_phone if student.emergency_contact3 else None,
+            "relation3": student.emergency_contact3.emergency_contact_relationship if student.emergency_contact3 else None,
+            "preferred": student.preferred_emergency_contact
+        }
+
+        response_data = {
+            "personal_info": personal_info,
+            "citizenship": citizenship,
+            "address": address,
+            "phone_numbers": phone_numbers,
+            "email": email,
+            "emergency_contact": emergency_contact
+        }
+
+        return Response(response_data)
+    
+
 class StudentApplicationsViewSet(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
@@ -380,6 +459,10 @@ class StudentFinancesView(APIView):
 class DashboardView(APIView, GradeMixins):
     authentication_classes = (TokenAuthentication,)  # uncomment this when doing authentication
     permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
+
+    def get_queryset(self):
+        term = self.request.query_params.get('term')
+
     def get(self, request):
         student = get_object_or_404(Student, user=request.user)
         if not student:
@@ -388,7 +471,8 @@ class DashboardView(APIView, GradeMixins):
         # Dashboard data structure
         dashboard_data = {
             "grades": {},
-            "finances": {}
+            "finances": {},
+            "schedule": {}
         }
 
         # Grades
@@ -436,6 +520,24 @@ class DashboardView(APIView, GradeMixins):
             else:
                 dashboard_data["finances"][term_name]["credits"] += current_amount
             dashboard_data["finances"][term_name]["net_balance"] += current_amount
+
+
+        # hardcoded term
+        term = None
+        try:
+            term = Term.objects.get(term_key="Win2024")
+        except Term.DoesNotExist:
+            return Response({"error": "Term not found"}, status=404)
+        # current schedule retrieval
+        enrollments = Enrollment.objects.filter(student=student)
+        for enrollment in enrollments:
+            if enrollment.lecture.term == term:
+                term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
+                
+                dashboard_data["schedule"][enrollment.lecture.course.course_code] = {
+                    "Lecture": enrollment.lecture.lecture_id,
+                    "Tutorial": enrollment.tutorial.tutorial_id if enrollment.tutorial else "None"
+                }
 
         return Response(dashboard_data)
     
@@ -507,7 +609,9 @@ class StudentRequirementsView(APIView):
             requirement_data["requirements"].append({
                 "description": requirement.description,
                 "requiredUnits": requirement.required_units,
+                "remainingUnits": requirement.required_units - units_completed,
                 "status": req_status,
+                "optional": requirement.optional,
                 "courses": course_data
             })
 

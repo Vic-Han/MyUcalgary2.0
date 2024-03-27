@@ -572,7 +572,7 @@ class StudentRequirementsView(APIView):
         requirement_data["programInfo"]["degree"] = maj_prog.program_degree_level
         requirement_data["programInfo"]["major"] = maj_prog.program_name
         requirement_data["programInfo"]["minor"] = application.minor            
-            
+        
         enrollments = Enrollment.objects.filter(student_id=student)
         lecture_list = []
         grade_list = []
@@ -653,19 +653,23 @@ class ScheduleBuilderView(APIView):
             tutorial = None
 
             if tutorialkey != False:
+                #print(tutorialkey)
                 tutorial = Tutorial.objects.get(course=course, tutorial_id=tutorialkey, term=term_name).pk
+                #print(tutorial)
+                # print(Tutorial.objects.get(course=course, tutorial_id='T02', term=term_name).pk)
             new_data['lecture'] = lecture
             new_data['tutorial'] = tutorial
 
 
             enrollment = Enrollment.objects.filter(student=student.pk, lecture=lecture).first()
             if enrollment:
+                #print(enrollment.lecture.pk, lecture, courseCode, enrollment.tutorial.pk)
                 if enrollment.lecture.pk == lecture and  enrollment.lecture.term.pk == term_name and (not enrollment.tutorial or enrollment.tutorial.pk == tutorial):
                     results.append({courseCode: "Already enrolled in this section"})
                     continue
                 
                 #check enrollment in same course exists
-                if enrollment.lecture.course == courseCode and enrollment.lecture.term ==term_name:
+                if enrollment.lecture.course.pk == courseCode and enrollment.lecture.term.pk ==term_name:
                     serializer = EnrollmentSerializer(enrollment, data=new_data)
                     if serializer.is_valid():
                         serializer.save()
@@ -841,11 +845,12 @@ class ScheduleBuilderView(APIView):
     def delete(self, request, term_key, course_key, format=None):
         student = get_object_or_404(Student, user=request.user)
         data = request.data
-        lecture = Lecture.objects.get(course=course_key, term=term_key).pk
       
-        enrollment = Enrollment.objects.filter(student=student, lecture=lecture).first()
-        print(enrollment)
-        if not enrollment:
-            return Response({"error": "Not enrolled in course"}, status=status.HTTP_400_BAD_REQUEST)
-        enrollment.delete()
-        return Response({"message": "Enrollment deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+        enrollments = Enrollment.objects.filter(student=student)
+        if not enrollments:
+            return Response({"error": "No enrollment found"}, status=404)
+        for enrollment in enrollments:
+            if enrollment.lecture.term.term_key == term_key and enrollment.lecture.course.course_code == course_key:
+                enrollment.delete()
+                return Response({"message": "Enrollment deleted successfully"}, status=204)
+        return Response({"error": "Enrollment not found"}, status=404)

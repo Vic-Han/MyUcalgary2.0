@@ -45,13 +45,13 @@
             <div class="bg-white-100 rounded-xl shadow-xl m-4">
                 <div class="flex flex-row relative left-1/2 -translate-x-1/2 w-fit my-5">
                     <div class="text-5xl mx-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <svg @click="prevTerm" xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 rotate-90 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
                         </svg>
                     </div> 
                     <div class="text-5xl pt-4 mx-40 text-grey-200">{{selectedTerm.term_key}}</div>
                     <div class="text-5xl mx-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 -rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <svg @click="nextTerm" xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 -rotate-90 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
                         </svg>
                     </div>
@@ -59,12 +59,12 @@
                 </div>
                 <div class="flex flex-row relative left-1/2 -translate-x-1/2 w-fit mb-5">
                     <div class="text-3xl mx-4 mt-4" @click="resetSelectedToZero">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M240-240v-480h80v480h-80Zm440 0L440-480l240-240 56 56-184 184 184 184-56 56Z"/>
                         </svg>
                     </div>
                     <div class="text-3xl mx-4 mt-4" @click="decrementSchedIndex">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 rotate-90 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
                         </svg>
                     </div>
@@ -73,12 +73,12 @@
                         <div class="text-3xl text-grey-200"> {{ schedules.length > 0 ?  (schedIndex + 1)+ ' of ' + schedules.length : '0 of 0'}} </div>
                     </div>
                     <div class="text-3xl mx-4 mt-4" @click="incrementSchedIndex">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 -rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 -rotate-90 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
                         </svg>
                     </div>
                     <div class="text-3xl mx-4 mt-4" @click="setSelectedToLast">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 rotate-180 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 rotate-180 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M240-240v-480h80v480h-80Zm440 0L440-480l240-240 56 56-184 184 184 184-56 56Z"/>
                         </svg>
                     </div>
@@ -236,6 +236,22 @@ const createLecInfo = (course, index) =>{
             this.getTerms()
         },
         methods:{
+            nextTerm(){
+                const index = this.terms.findIndex((term) => {
+                    return term.term_key == this.selectedTerm.term_key
+                })
+                if(index < this.terms.length - 1){
+                    this.selectedTerm = this.terms[index + 1]
+                }
+            },
+            prevTerm(){
+                const index = this.terms.findIndex((term) => {
+                    return term.term_key == this.selectedTerm.term_key
+                })
+                if(index > 0){
+                    this.selectedTerm = this.terms[index - 1]
+                }
+            },
             async getTerms(){
                 const serverPath = this.$store.state.serverPath
                 const apiPath = '/api/terms/'

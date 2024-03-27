@@ -1,0 +1,260 @@
+[
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "1"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "2"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "3"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "4"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "5"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "6"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "7"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "8"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "9"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "10"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "11"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "12"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "13"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "14"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "15"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "16"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "17"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "18"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "19"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "20"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "21"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "22"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "23"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "24"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "25"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "26"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "27"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "28"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "29"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "30"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "31"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 2,
+        "lecture": "32"
+      }
+    },
+
+    {
+        "model": "api.Enrollment",
+        "fields": {
+        "student": 2,
+        "lecture": "33",
+        "tutorial": "1"
+        }
+    },
+    {
+        "model": "api.Enrollment",
+        "fields": {
+        "student": 2,
+        "lecture": "34",
+        "tutorial": "2"
+        }
+    },
+    {
+        "model": "api.Enrollment",
+        "fields": {
+        "student": 2,
+        "lecture": "35",
+        "tutorial": "3"
+        }
+    },
+    {
+        "model": "api.Enrollment",
+        "fields": {
+        "student": 2,
+        "lecture": "36",
+        "tutorial": "4"
+        }
+    }
+]
+  

@@ -1,0 +1,74 @@
+[
+  {
+    "model": "api.Tutorial",
+    "pk": "01",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 12.5,
+      "tutorial_endtime": 13.75,
+      "tutorial_roomnumber": "U234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "78",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG438",
+      "instructor": "046"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "2",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 12.5,
+      "tutorial_endtime": 13.75,
+      "tutorial_roomnumber": "U234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "78",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG471",
+      "instructor": "047"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "03",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 12.5,
+      "tutorial_endtime": 13.75,
+      "tutorial_roomnumber": "U234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "78",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG511",
+      "instructor": "048"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "04",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 12.5,
+      "tutorial_endtime": 13.75,
+      "tutorial_roomnumber": "U234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "78",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG401",
+      "instructor": "049"
+    }
+  }
+]

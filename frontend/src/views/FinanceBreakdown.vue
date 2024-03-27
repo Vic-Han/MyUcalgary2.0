@@ -99,7 +99,7 @@ export default {
     fetchFinancialData() {
     const serverPath = this.$store.state.serverPath;
     const apiPath = "/api/student-finances/";
-    const previewApiPath = 'api/dashboard/';
+    const previewApiPath = '/api/dashboard/';
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Token ${this.$cookies.get("auth-token")}`
@@ -134,7 +134,13 @@ export default {
       fetch(`${serverPath}${previewApiPath}`, { headers })
       .then(response => response.json())
       .then(data => {
-        
+        console.log(data)
+        for(const [key,value] of Object.entries(data.finances)){
+          this.FinancePreview.term = key
+          this.FinancePreview.amount = value.net_balance
+          this.FinancePreview.status = value.debits > 0 ? "Unpaid" : "Paid"
+          this.FinancePreview.due = value.due
+        }
       }).catch(error => console.error('Error fetching data:', error));
     },
 

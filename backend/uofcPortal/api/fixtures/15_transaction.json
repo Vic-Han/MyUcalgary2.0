@@ -3,12 +3,408 @@
         "model": "api.Transaction",
         "pk": 1,
         "fields": {
-          "transaction_name": "Bookstore Purchase",
-          "transaction_posted_date": "2024-07-20",
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2018-09-01",
           "transaction_type": "fee",
-          "transaction_amount": -150.00,
+          "transaction_amount": -2830.00,
           "student": 2,
-          "term": "Sum2024"
+          "term": "Fal2018"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 9,
+        "fields": {
+          "transaction_name": "Alexander Rutherford",
+          "transaction_posted_date": "2018-09-01",
+          "transaction_type": "Scolarship",
+          "transaction_amount": 2500.00,
+          "student": 2,
+          "term": "Fal2018"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 2,
+        "fields": {
+          "transaction_name": "Remission: MAPS Child T4A",
+          "transaction_posted_date": "2018-09-16",
+          "transaction_type": "payment",
+          "transaction_amount": 615.00,
+          "student": 2,
+          "term": "Fal2018"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 3,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2018-09-30",
+          "transaction_type": "payment",
+          "transaction_amount": 2215.00,
+          "student": 2,
+          "term": "Fal2018"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 4,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2019-01-01",
+          "transaction_type": "fee",
+          "transaction_amount": -2680.00,
+          "student": 2,
+          "term": "Win2019"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 5,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2019-01-29",
+          "transaction_type": "payment",
+          "transaction_amount": 2215.00,
+          "student": 2,
+          "term": "Win2019"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 6,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2019-09-01",
+          "transaction_type": "fee",
+          "transaction_amount": -3120.00,
+          "student": 2,
+          "term": "Fal2019"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 7,
+        "fields": {
+          "transaction_name": "Remission: MAPS Child T4A",
+          "transaction_posted_date": "2019-09-16",
+          "transaction_type": "payment",
+          "transaction_amount": 712.00,
+          "student": 2,
+          "term": "Fal2019"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 8,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2018-09-30",
+          "transaction_type": "payment",
+          "transaction_amount": 2408.00,
+          "student": 2,
+          "term": "Fal2019"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 10,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2020-01-01",
+          "transaction_type": "fee",
+          "transaction_amount": -3120.00,
+          "student": 2,
+          "term": "Win2020"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 11,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2020-01-28",
+          "transaction_type": "fee",
+          "transaction_amount": 3120.00,
+          "student": 2,
+          "term": "Win2020"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 12,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2020-09-01",
+          "transaction_type": "fee",
+          "transaction_amount": -3240.00,
+          "student": 2,
+          "term": "Fal2020"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 13,
+        "fields": {
+          "transaction_name": "Remission: MAPS Child T4A",
+          "transaction_posted_date": "2020-09-16",
+          "transaction_type": "payment",
+          "transaction_amount": 718.00,
+          "student": 2,
+          "term": "Fal2020"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 14,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2020-09-30",
+          "transaction_type": "payment",
+          "transaction_amount": 2522.00,
+          "student": 2,
+          "term": "Fal2020"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 15,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2021-01-01",
+          "transaction_type": "fee",
+          "transaction_amount": -3280.00,
+          "student": 2,
+          "term": "Win2021"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 16,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2021-01-31",
+          "transaction_type": "fee",
+          "transaction_amount": 3280.00,
+          "student": 2,
+          "term": "Win2021"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 17,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2021-09-01",
+          "transaction_type": "fee",
+          "transaction_amount": -3340.00,
+          "student": 2,
+          "term": "Fal2021"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 18,
+        "fields": {
+          "transaction_name": "Remission: MAPS Child T4A",
+          "transaction_posted_date": "2021-09-16",
+          "transaction_type": "payment",
+          "transaction_amount": 812.00,
+          "student": 2,
+          "term": "Fal2021"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 19,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2021-09-30",
+          "transaction_type": "payment",
+          "transaction_amount": 2528.00,
+          "student": 2,
+          "term": "Fal2021"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 20,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2022-01-01",
+          "transaction_type": "fee",
+          "transaction_amount": -312,
+          "student": 2,
+          "term": "Win2022"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 21,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2022-01-31",
+          "transaction_type": "payment",
+          "transaction_amount": 312,
+          "student": 2,
+          "term": "Win2022"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 22,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2022-05-01",
+          "transaction_type": "fee",
+          "transaction_amount": -312,
+          "student": 2,
+          "term": "Spr2022"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 23,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2022-05-15",
+          "transaction_type": "payment",
+          "transaction_amount": 312,
+          "student": 2,
+          "term": "Spr2022"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 24,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2022-07-01",
+          "transaction_type": "fee",
+          "transaction_amount": -312,
+          "student": 2,
+          "term": "Sum2022"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 25,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2022-07-30",
+          "transaction_type": "payment",
+          "transaction_amount": 312,
+          "student": 2,
+          "term": "Sum2022"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 26,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2022-09-01",
+          "transaction_type": "fee",
+          "transaction_amount": -312,
+          "student": 2,
+          "term": "Fal2022"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 27,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2022-09-10",
+          "transaction_type": "payment",
+          "transaction_amount": 312,
+          "student": 2,
+          "term": "Fal2022"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 28,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2023-01-01",
+          "transaction_type": "fee",
+          "transaction_amount": -312,
+          "student": 2,
+          "term": "Win2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 29,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2022-01-13",
+          "transaction_type": "payment",
+          "transaction_amount": 312,
+          "student": 2,
+          "term": "Win2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 30,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2023-09-01",
+          "transaction_type": "fee",
+          "transaction_amount": -3412,
+          "student": 2,
+          "term": "Fal2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 31,
+        "fields": {
+          "transaction_name": "Remission: MAPS Child T4A",
+          "transaction_posted_date": "2023-09-16",
+          "transaction_type": "payment",
+          "transaction_amount": 857.00,
+          "student": 2,
+          "term": "Fal2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 32,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2023-09-23",
+          "transaction_type": "payment",
+          "transaction_amount": 2555.00,
+          "student": 2,
+          "term": "Fal2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 33,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2024-01-01",
+          "transaction_type": "fee",
+          "transaction_amount": -3433,
+          "student": 2,
+          "term": "Win2024"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 34,
+        "fields": {
+          "transaction_name": "RBC Direct Deposit",
+          "transaction_posted_date": "2024-01-27",
+          "transaction_type": "payment",
+          "transaction_amount": 3433,
+          "student": 2,
+          "term": "Win2024"
         }
       }
 ]

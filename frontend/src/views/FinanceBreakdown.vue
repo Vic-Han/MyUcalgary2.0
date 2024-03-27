@@ -99,6 +99,7 @@ export default {
     fetchFinancialData() {
     const serverPath = this.$store.state.serverPath;
     const apiPath = "/api/student-finances/";
+    const previewApiPath = 'api/dashboard/';
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Token ${this.$cookies.get("auth-token")}`
@@ -129,6 +130,12 @@ export default {
         }
       })
       .catch(error => console.error('Error fetching data:', error));
+
+      fetch(`${serverPath}${previewApiPath}`, { headers })
+      .then(response => response.json())
+      .then(data => {
+        
+      }).catch(error => console.error('Error fetching data:', error));
     },
 
     paymentType(type){

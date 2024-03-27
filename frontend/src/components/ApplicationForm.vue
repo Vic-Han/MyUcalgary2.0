@@ -48,23 +48,25 @@
         <select v-if="selectedType === 'Undergrad' && selectedProgram != ''" v-model="selectedMinor" class="h-8 w-40 border-2 border-grey-200 rounded-lg pl-1 outline-blue-500 focus:border-blue-500">
           <option v-for="option in Object.keys(faculties[selectedFaculty]).filter(i => i !== selectedProgram)" :value="option" :key="option">{{option}}</option>
         </select>
-          <div v-if="selectedConcentration !== '' &&  selectedType === 'Undergrad'" @click="submit"> Submit </div>
-          <div v-if="selectedProgram !== '' &&  selectedType === 'Graduate'" @click="submit"> Submit </div>
       </div>
-      <div v-if="selectedType === 'Award'">
-        <select v-model="selectedAward">
-          <option value=""></option>
+      <div v-if="selectedType === 'Award'" class="flex flex-col pt-4 pl-4 items-start">
+        <div class="font-semibold text-xl">Award:</div>
+        <select v-model="selectedAward" class="h-8 w-40 border-2 border-grey-200 rounded-lg pl-1 outline-blue-500 focus:border-blue-500">
           <option v-for="option in awardOptions" :value="option" :key="option">{{option}}</option>
         </select>
-        <div v-if="selectedAward !== ''" @click="submit"> Submit </div>
       </div>
-      <div v-else-if="selectedType === 'Scholarship'">
-        <select v-model="selectedScholarship">
+      <div v-else-if="selectedType === 'Scholarship'" class="flex flex-col pt-4 pl-4 items-start">
+        <div class="font-semibold text-xl">Scholarship:</div>
+        <select v-model="selectedScholarship" class="h-8 w-40 border-2 border-grey-200 rounded-lg pl-1 outline-blue-500 focus:border-blue-500">
           <option v-for="option in scholarShipOptions" :value="option" :key="option">{{option}}</option>
         </select>
-        <div v-if="selectedScholarship !== ''" @click="submit"> Submit </div>
       </div>
     </div>
+    <div v-if="selectedConcentration !== '' &&  selectedType === 'Undergrad'" @click="submit" class="absolute bottom-4 right-6 h-12 pt-1.5 w-32 border-red-100 border-4 font-semibold text-xl text-red-100 rounded-xl hover:bg-red-100 cursor-pointer hover:text-white-100"> Submit </div>
+    <div v-else-if="selectedProgram !== '' &&  selectedType === 'Graduate'" @click="submit" class="absolute bottom-4 right-6 h-12 pt-1.5 w-32 border-red-100 border-4 font-semibold text-xl text-red-100 rounded-xl hover:bg-red-100 cursor-pointer hover:text-white-100"> Submit </div>
+    <div v-else-if="selectedAward !== ''" @click="submit" class="absolute bottom-4 right-6 h-12 pt-1.5 w-32 border-red-100 border-4 font-semibold text-xl text-red-100 rounded-xl hover:bg-red-100 cursor-pointer hover:text-white-100"> Submit </div>
+    <div v-else-if="selectedScholarship !==''" @click="submit" class="absolute bottom-4 right-6 h-12 pt-1.5 w-32 border-red-100 border-4 font-semibold text-xl text-red-100 rounded-xl hover:bg-red-100 cursor-pointer hover:text-white-100"> Submit </div>
+    <div v-else class="absolute bottom-4 right-6 h-12 pt-1.5 w-32 border-grey-200 border-4 font-semibold text-xl text-grey-200 rounded-xl">Submit</div>
   </div>
 </template>
 
@@ -94,6 +96,7 @@ export default {
       ],
       selectedProgram: '',
       selectedFaculty: '',
+      selectedConcentration: '',
       faculties: {
           "Engineering" :{
             'Software Engineering' : [

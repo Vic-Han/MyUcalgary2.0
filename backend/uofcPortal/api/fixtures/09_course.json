@@ -201,7 +201,7 @@
         "fields": {
           "course_title": "Software Architecture",
           "course_description": "An in-depth study of high-level software structures. Covers architectural styles, design patterns, and evaluation techniques.",
-          "course_prerequisites": "SENG300, CPSC233",
+          "course_prerequisites": "SENG300",
           "course_units": 3,
           "department": "Computer Science"
         }

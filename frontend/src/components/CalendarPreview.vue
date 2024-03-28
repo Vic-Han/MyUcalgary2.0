@@ -23,13 +23,6 @@ name: 'CalendarPreview',
 data() {
     return {
     importantDates: [
-        { id: 1, month: 'JAN', day: '02', event: 'Start of Semester' },
-        { id: 2, month: 'JAN', day: '08', event: 'Start of Classes' },
-        { id: 3, month: 'JAN', day: '18', event: 'Last day to drop classes without financial penalty' },
-        { id: 4, month: 'JAN', day: '25', event: 'Last day to add classes' },
-        { id: 5, month: 'FEB', day: '01', event: 'Last day to drop classes without academic penalty' },
-        { id: 6, month: 'FEB', day: '15', event: 'Reading Week' },
-        { id: 7, month: 'MAR', day: '01', event: 'Last day to withdraw from classes' },
         { id: 8, month: 'APR', day: '10', event: 'Last day of classes' },
         { id: 9, month: 'APR', day: '15', event: 'Start of Final Exams' },
         { id: 10, month: 'APR', day: '30', event: 'End of Final Exams' }

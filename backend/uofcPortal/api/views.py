@@ -222,7 +222,6 @@ class StudentApplicationsViewSet(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        student = Student.objects.first()
         student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)
@@ -584,7 +583,6 @@ class StudentRequirementsView(APIView):
 
     def get(self, request):
         student = get_object_or_404(Student, user=request.user)
-        student=Student.objects.first()
         if not student:
             return Response({"error": "No student found"}, status=404)
         

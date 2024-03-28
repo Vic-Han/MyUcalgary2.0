@@ -1419,5 +1419,293 @@
         "course": "SOCI303",
         "instructor": "064"
       }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "79",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "U345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON341",
+        "instructor": "041"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "80",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "V456",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "81",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON341",
+        "instructor": "042"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "81",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "W567",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "69",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON373",
+        "instructor": "043"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "82",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "X678",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "60",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON373",
+        "instructor": "044"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "83",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "Y789",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "73",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SOCI303",
+        "instructor": "061"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "84",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "Z890",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "89",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SOCI303",
+        "instructor": "062"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "85",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "A234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PSYC203",
+        "instructor": "016"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "86",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "B345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "67",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PSYC203",
+        "instructor": "017"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "87",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "C456",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "72",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON341",
+        "instructor": "041"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "88",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "D567",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "56",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON341",
+        "instructor": "042"
+      }
+    },{
+      "model": "api.Lecture",
+      "pk": "89",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "E678",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "64",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON373",
+        "instructor": "043"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "90",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "F789",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "70",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SOCI303",
+        "instructor": "061"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "91",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "G890",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "55",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PSYC203",
+        "instructor": "016"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "92",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "H123",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "81",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PSYC203",
+        "instructor": "017"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "93",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "I234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "68",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON341",
+        "instructor": "041"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "94",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "J345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "74",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON341",
+        "instructor": "042"
+      }
     }
   ]

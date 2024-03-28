@@ -799,7 +799,7 @@
     "model": "api.Tutorial",
     "pk": "73",
     "fields": {
-      "tutorial_id": "L01",
+      "tutorial_id": "T01",
       "term": "Win2024",
       "tutorial_days": "TR",
       "tutorial_starttime": 8.0,
@@ -817,7 +817,7 @@
     "model": "api.Tutorial",
     "pk": "74",
     "fields": {
-      "tutorial_id": "L01",
+      "tutorial_id": "T01",
       "term": "Win2024",
       "tutorial_days": "TR",
       "tutorial_starttime": 9.0,
@@ -835,7 +835,7 @@
     "model": "api.Tutorial",
     "pk": "75",
     "fields": {
-      "tutorial_id": "L01",
+      "tutorial_id": "T01",
       "term": "Win2024",
       "tutorial_days": "TR",
       "tutorial_starttime": 10.0,
@@ -853,7 +853,7 @@
     "model": "api.Tutorial",
     "pk": "76",
     "fields": {
-      "tutorial_id": "L01",
+      "tutorial_id": "T01",
       "term": "Win2024",
       "tutorial_days": "TR",
       "tutorial_starttime": 11.0,
@@ -871,7 +871,7 @@
     "model": "api.Tutorial",
     "pk": "77",
     "fields": {
-      "tutorial_id": "L01",
+      "tutorial_id": "T01",
       "term": "Win2024",
       "tutorial_days": "TR",
       "tutorial_starttime": 12.0,
@@ -889,7 +889,7 @@
     "model": "api.Tutorial",
     "pk": "78",
     "fields": {
-      "tutorial_id": "L01",
+      "tutorial_id": "T01",
       "term": "Win2024",
       "tutorial_days": "TR",
       "tutorial_starttime": 13.0,
@@ -901,6 +901,294 @@
       "tutorial_filledwaitlist": "0",
       "course": "SOCI303",
       "instructor": "064"
+    }
+  },
+
+  {
+    "model": "api.Tutorial",
+    "pk": "79",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 8.0,
+      "tutorial_endtime": 8.83,
+      "tutorial_roomnumber": "U345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON341",
+      "instructor": "041"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "80",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "V456",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "81",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON341",
+      "instructor": "042"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "81",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "W567",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "69",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON373",
+      "instructor": "043"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "82",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "X678",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "60",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON373",
+      "instructor": "044"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "83",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "Y789",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "73",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SOCI303",
+      "instructor": "061"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "84",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "Z890",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "89",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SOCI303",
+      "instructor": "062"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "85",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "A234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "78",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PSYC203",
+      "instructor": "016"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "86",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "B345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "67",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PSYC203",
+      "instructor": "017"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "87",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 8.0,
+      "tutorial_endtime": 8.83,
+      "tutorial_roomnumber": "C456",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "72",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON341",
+      "instructor": "041"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "88",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "D567",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "56",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON341",
+      "instructor": "042"
+    }
+  },{
+    "model": "api.Tutorial",
+    "pk": "89",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "E678",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "64",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON373",
+      "instructor": "043"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "90",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "F789",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "70",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SOCI303",
+      "instructor": "061"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "91",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "G890",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "55",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PSYC203",
+      "instructor": "016"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "92",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "H123",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "81",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PSYC203",
+      "instructor": "017"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "93",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "I234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "68",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON341",
+      "instructor": "041"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "94",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "J345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "74",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON341",
+      "instructor": "042"
     }
   }
 ]

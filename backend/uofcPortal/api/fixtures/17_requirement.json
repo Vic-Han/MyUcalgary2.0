@@ -9,7 +9,7 @@
       "courses": ["CPSC231", "CPSC233", "CPSC251", "MATH211", "MATH265", "PHIL279"]
     }
   },
-  {
+{
     "model": "api.Requirement",
     "fields": {
       "description": "Second Year Required Courses",
@@ -56,7 +56,7 @@
       "required_units": 9,
       "program": 2,
       "optional": true,
-      "courses": ["CPSC 599", "CPSC 559", "SENG550", "SENG513", "SENG511", "CPSC411", "CPSC433", "CPSC441", "CPSC471", "CPSC481","SENG401", "CPSC329" , "CPSC359"]
+      "courses": ["CPSC329" , "CPSC359", "CPSC411"]
     }
   },
   {
@@ -66,7 +66,7 @@
       "required_units": 12,
       "program": 2,
       "optional": true,
-      "courses": ["CPSC 599", "CPSC 559", "SENG550", "SENG513", "SENG511", "CPSC411", "CPSC433", "CPSC441", "CPSC471", "CPSC481","SENG401"]
+      "courses": ["CPSC433", "CPSC441", "CPSC471", "CPSC481","SENG401"]
     }
   },
   {
@@ -76,7 +76,7 @@
       "required_units": 9,
       "program": 2,
       "optional": true,
-      "courses": ["CPSC 599", "CPSC 559", "SENG550", "SENG513", "SENG511"]
+      "courses": ["CPSC599", "CPSC559", "SENG550", "SENG513", "SENG511"]
     }
   },
   {

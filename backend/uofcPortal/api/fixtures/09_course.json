@@ -454,17 +454,6 @@
       },
       {
         "model": "api.Course",
-        "pk": "MATH375",
-        "fields": {
-          "course_title": "Differential Equations for Engineers and Scientists",
-          "course_description": "Definition, existence and uniqueness of solutions; first order and higher order equations and applications; Homogeneous systems; Laplace transform; partial differential equations of mathematical physics.",
-          "course_prerequisites": "MATH277",
-          "course_units": 3,
-          "department": "Mathematics and Statistics"
-        }
-      },
-      {
-        "model": "api.Course",
         "pk": "ECON201",
         "fields": {
           "course_title": "Principles of Microeconomics",
@@ -665,17 +654,6 @@
           "course_description": "A survey of software design and development topics for Engineering students. Topics include: key features of an object-oriented programming language, especially inheritance and polymorphism; elements of object-oriented design; programming and application of common data structures; strategies and tools for testing and debugging.",
           "course_units": 3,
           "course_prerequisites": "ENSF337",
-          "department": "Software Engineering"
-        }
-      },
-      {
-        "model": "api.Course",
-        "pk": "ENSF480",
-        "fields": {
-          "course_title": "Principles of Software Design",
-          "course_description": "Brief overview of typical software development lifecycles. Systematic methods for designing large-scale, quality software. Concepts such as abstraction, modularity, and software modelling will be covered. Designing for non-functional properties of software will be introduced. Emphasis on individual skills.",
-          "course_units": 3,
-          "course_prerequisites": "ENSF409, ENCM369",
           "department": "Software Engineering"
         }
       },

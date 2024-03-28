@@ -13,7 +13,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from .models import *
 from .serializers import *
-
+from datetime import datetime
 import json
 
 # Create your views here.
@@ -436,10 +436,16 @@ class StudentFinancesView(APIView):
         if not student:
             return Response({"error": "No student found"}, status=404)
 
-        transactions = Transaction.objects.filter(student=student).order_by('term__term_year', 'term__term_name')
-        
+        lastest_term = None
+        transactions = Transaction.objects.filter(student=student).order_by('transaction_posted_date')
         activity = {}
         for transaction in transactions:
+            if lastest_term is None:
+                lastest_term = transaction.term
+            elif transaction.term.start_date > lastest_term.start_date:
+                lastest_term = transaction.term
+
+            
             term_name = f"{transaction.term.term_name} {transaction.term.term_year}"
             if term_name not in activity:
                 activity[term_name] = []
@@ -457,11 +463,12 @@ class StudentFinancesView(APIView):
         total_awards = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_type == "award" or transaction.transaction_type == "scholarship")
         total_due = sum(transaction.transaction_amount for transaction in transactions if transaction.transaction_type == 'fee')
 
+        
         response_data = {
             "paid": total_paid,
             "awards": total_awards,
             "due": total_due * -1,  # Convert negative due amount to positive
-            "selectedTerm": f"{transaction.term.term_name} {transaction.term.term_year}",
+            "selectedTerm": f"{lastest_term.term_name} {lastest_term.term_year}",
             "activity": activity
         }
 
@@ -489,10 +496,21 @@ class DashboardView(APIView, GradeMixins):
         }
 
         # Grades
+        lastest_term = None
         enrollments = Enrollment.objects.filter(student=student)
         for enrollment in enrollments:
             term_name = f"{enrollment.lecture.term.term_name} {enrollment.lecture.term.term_year}"
-            grades = Grade.objects.filter(enrollment=enrollment)
+            grade = Grade.objects.filter(enrollment=enrollment).first()
+            if not grade:
+                continue
+            if lastest_term is None:
+                lastest_term = enrollment.lecture.term
+            elif enrollment.lecture.term.start_date > lastest_term.start_date:
+                del dashboard_data["grades"][f"{lastest_term.term_name} {lastest_term.term_year}"]
+                lastest_term = enrollment.lecture.term
+            elif enrollment.lecture.term.start_date < lastest_term.start_date:
+                continue
+            term_name = f"{lastest_term.term_name} {lastest_term.term_year}"
 
             if term_name not in dashboard_data["grades"]:
                 dashboard_data["grades"][term_name] = {
@@ -501,13 +519,12 @@ class DashboardView(APIView, GradeMixins):
                     "courses": []
                 }
 
-            for grade in grades:
-                course_info = {
-                    "name": enrollment.lecture.course.course_code,
-                    "letter": self.grade_to_letter(grade.grade),
-                    "grade": grade.grade,
-                }
-                dashboard_data["grades"][term_name]["courses"].append(course_info)
+            course_info = {
+                "name": enrollment.lecture.course.course_code,
+                "letter": self.grade_to_letter(grade.grade),
+                "grade": grade.grade,
+            }
+            dashboard_data["grades"][term_name]["courses"].append(course_info)
 
             # Calculate TermGPA and TermLetterGrade
             term_gpa, term_letter_grade = self.calculate_term_gpa_and_letter_grade(dashboard_data["grades"][term_name]["courses"])
@@ -515,32 +532,49 @@ class DashboardView(APIView, GradeMixins):
             dashboard_data["grades"][term_name]["TermLetterGrade"] = term_letter_grade
 
         # Finances
+        lastest_term = None
         transactions = Transaction.objects.filter(student=student).order_by('term__term_year', 'term__term_name')
         for transaction in transactions:
-            term_name = f"{transaction.term.term_name} {transaction.term.term_year}"
-            if term_name not in dashboard_data["finances"]:
-                dashboard_data["finances"][term_name] = {
+            if lastest_term is None:
+                lastest_term = transaction.term
+                dashboard_data["finances"][f"{lastest_term.term_name} {lastest_term.term_year}"] = {
                     "credits": 0,
                     "debits": 0,
                     "net_balance": 0,
                     "due": transaction.term.due_date  # To be adjust as needed
                 }
+            elif transaction.term.start_date > lastest_term.start_date:
+                del dashboard_data["finances"][f"{lastest_term.term_name} {lastest_term.term_year}"]
+                lastest_term = transaction.term
+                dashboard_data["finances"][f"{lastest_term.term_name} {lastest_term.term_year}"] = {
+                    "credits": 0,
+                    "debits": 0,
+                    "net_balance": 0,
+                    "due": transaction.term.due_date  # To be adjust as needed
 
+                }
+            elif transaction.term.start_date < lastest_term.start_date:
+                continue
+    
+            
             # Assuming negative amount is due and positive is paid/credit
             current_amount = transaction.transaction_amount
             if current_amount < 0:
-                dashboard_data["finances"][term_name]["debits"] += current_amount
+                dashboard_data["finances"][f"{lastest_term.term_name} {lastest_term.term_year}"]["debits"] += current_amount
             else:
-                dashboard_data["finances"][term_name]["credits"] += current_amount
-            dashboard_data["finances"][term_name]["net_balance"] += current_amount
+                dashboard_data["finances"][f"{lastest_term.term_name} {lastest_term.term_year}"]["credits"] += current_amount
+            dashboard_data["finances"][f"{lastest_term.term_name} {lastest_term.term_year}"]["net_balance"] += current_amount
 
 
         # hardcoded term
         term = None
-        try:
-            term = Term.objects.get(term_key="Win2024")
-        except Term.DoesNotExist:
-            return Response({"error": "Term not found"}, status=404)
+        terms = Term.objects.all()
+        current_date = datetime.now().date()        
+        for t in terms:
+            if t.start_date <= current_date and t.end_date >= current_date:
+                term = t
+                break
+            
         # current schedule retrieval
         enrollments = Enrollment.objects.filter(student=student)
         for enrollment in enrollments:
@@ -560,7 +594,7 @@ class DashboardView(APIView, GradeMixins):
                     "roomno": lecture.lecture_roomnumber,
 
                 }
-                
+
                 enrollment_data["Lecture"] = lectureInfo
                 enrollment_data["courseCode"] = enrollment.lecture.course.course_code
                 enrollment_data["courseTitle"] = enrollment.lecture.course.course_title
@@ -627,15 +661,18 @@ class StudentRequirementsView(APIView):
             units_completed = 0
             for course in courses:
                 best_grade = None
-                status = "incomplete"
-                for grade in grade_list:
-                    if grade.enrollment.lecture.course == course and grade.grade >= 50:
+                enrollment = Enrollment.objects.filter(lecture__course=course, student=student).first()
+                if not enrollment:
+                    status = "incomplete"
+                else:
+                    grade = Grade.objects.filter(enrollment=enrollment).first()
+                    if grade:
                         status = "complete"
                         units_completed += course.course_units
-                        if best_grade == None:
-                            best_grade = grade.grade
-                        elif grade.grade > best_grade:
-                            best_grade = grade.grade
+                        best_grade = grade.grade
+                    else:
+                        status = "in-progress"
+                        units_completed += course.course_units
                 course_data.append({
                     "name": course.course_code,
                     "units": course.course_units,

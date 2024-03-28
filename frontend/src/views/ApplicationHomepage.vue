@@ -50,7 +50,7 @@
               <div class="flex flex-row p-2 justify-between w-144">
                 <div class="text-3xl text-left"> {{ award.name }}</div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" 
-                class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(award.key)" v-if="status == 'Under-Review || status == 'Rejected'">
+                class="h-10 w-10 fill-grey-200 hover:fill-red-100" @click="deleteApplication(award.key)" v-if="status == 'Under-Review' || status == 'Rejected'">
                   <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
                 </svg>
               </div>

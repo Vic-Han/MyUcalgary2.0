@@ -1,0 +1,93 @@
+[
+    {
+    "model": "api.Department",
+    "pk": "Computer Science",
+    "fields": {
+        "faculty": "Faculty of Science"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "Physics and Astronomy",
+    "fields": {
+        "faculty": "Faculty of Science"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "English",
+    "fields": {
+        "faculty": "Faculty of Arts"
+    }
+    },
+    {
+        "model": "api.Department",
+        "pk": "Philosophy and Rationalization",
+        "fields": {
+            "faculty": "Faculty of Arts"
+        }
+        },
+    {
+    "model": "api.Department",
+    "pk": "Educational Psychology",
+    "fields": {
+        "faculty": "Werklund School of Education"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "Engineering",
+    "fields": {
+        "faculty": "Schulich School of Engineering"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "Mathematics and Statistics",
+    "fields": {
+        "faculty": "Faculty of Science"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "Chemical and Petroleum Engineering",
+    "fields": {
+        "faculty": "Schulich School of Engineering"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "General Science",
+    "fields": {
+        "faculty": "Faculty of Science"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "Economics",
+    "fields": {
+        "faculty": "Haskayne School of Business"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "Software Engineering",
+    "fields": {
+        "faculty": "Schulich School of Engineering"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "Electrical Engineering",
+    "fields": {
+        "faculty": "Schulich School of Engineering"
+    }
+    },
+    {
+    "model": "api.Department",
+    "pk": "Computer Engineering",
+    "fields": {
+        "faculty": "Schulich School of Engineering"
+    }
+    }
+]

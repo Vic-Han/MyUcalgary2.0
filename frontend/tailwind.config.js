@@ -22,6 +22,9 @@ module.exports = {
         'yellow' :{
           100: '#FFCD00',
         },
+        'green' :{
+          100: '#47A67C',
+        },
         'rubine': {
           100: '#ED0A72',
         },
@@ -59,6 +62,19 @@ module.exports = {
           800: '#C9C1FC',
           900: '#98C3F6',
         },
+      },
+      size: {
+        '128': '34rem',
+        '200': '55rem'
+      },
+      spacing: {
+        '112': '28rem',
+        '128': '34rem',
+        '144': '36rem',
+        '200': '55rem'
+      },
+      maxHeight: {
+        '112': '28rem',
       }
     },
   },

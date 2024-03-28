@@ -1,0 +1,75 @@
+[
+    {
+        "courseCode" : "CPSC 441",
+        "courseTitle" : "Computer Networks",
+        "Lecture" : {
+            "days" : "MWF",
+            "start" : 12,
+            "end" : 12.83,
+            "roomno": "ICT 121",
+            "LectureNO" : "LEC 2"
+        },
+        "Tutorial":{
+            "days" : "MW",
+            "start" : 9,
+            "end" : 9.83,
+            "roomno": "ENA 201",
+            "TutorialNO" : "TUT 5"
+        }
+        
+    },
+    {
+        "courseCode" : "SENG 401",
+        "courseTitle" : "Software Architecture",
+        "Lecture" : {
+            "days" : "TR",
+            "start" : 8,
+            "end" : 9.25,
+            "roomno": "SA 104",
+            "LectureNO" : "LEC 1"
+        },
+        "Tutorial":{
+            "days" : "R",
+            "start" : 16,
+            "end" : 17.83,
+            "roomno": "ENA 305",
+            "TutorialNO" : "LAB 3"
+        }
+    },
+    {
+        "courseCode" : "SENG 550",
+        "courseTitle" : "Scalable Data Analytics",
+        "Lecture" : {
+            "days" : "MF",
+            "start" : 14,
+            "end" : 15.25,
+            "roomno": "ST 132",
+            "LectureNO" : "LEC 2"
+        },
+        "Tutorial":{
+            "days" : "T",
+            "start" : 14,
+            "end" : 15.83,
+            "roomno": "ENA 203",
+            "TutorialNO" : "LAB 2"
+        }
+    },
+    {
+        "courseCode" : "CPSC 471",
+        "courseTitle" : "Database Management Systems",
+        "Lecture" : {
+            "days" : "MW",
+            "start" : 15.5,
+            "end" : 16.75,
+            "roomno": "KNB 132",
+            "LectureNO" : "LEC 2"
+        },
+        "Tutorial":{
+            "days" : "TR",
+            "start" : 10,
+            "end" : 10.83,
+            "roomno": "ST 59",
+            "TutorialNO" : "TUT 4"
+        }
+    }
+]

@@ -1,0 +1,877 @@
+[
+      {
+        "model": "api.Course",
+        "pk": "CPSC231",
+        "fields": {
+          "course_title": "Introduction to Computer Science for Computer Science Majors I",
+          "course_description": "Introduction to problem solving, the analysis and design of small-scale computational systems, and implementation using a procedural programming language. For computer science majors.",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENGL201",
+        "fields": {
+          "course_title": "British Literature",
+          "course_description": "Survey of British literature from the Anglo-Saxon period to the 18th century.",
+          "course_prerequisites": "ENGL101, ENGL102",
+          "course_units": 3,
+          "department": "English"
+        }
+      },
+   
+      {
+        "model": "api.Course",
+        "pk": "CPSC251",
+        "fields": {
+          "course_title": "Theoretical Foundations of Computer Science I",
+          "course_description": "Proof techniques. Recursion and iteration. Specification of algorithmic problems, proofs of correctness, and bounds on their computational complexity. Discrete structures such as graphs, trees, strings, functions, and their computer representation. Counting, permutations, discrete probability spaces, random events. Applications in Computer Science.",
+          "course_prerequisites": "CPSC 231",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC329",
+        "fields": {
+          "course_title": "Explorations in Information Security and Privacy",
+          "course_description": "A broad survey of topics in information security and privacy, with the purpose of cultivating an appropriate mindset for approaching security and privacy issues. Topics will be motivated by recreational puzzles. Legal and ethical considerations will be introduced as necessary.",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC331",
+        "fields": {
+          "course_title": "Data Structures, Algorithms, and Their Analysis",
+          "course_description": "Fundamental data structures, including arrays, lists, stacks, queues, trees, hash tables, and graphs. Algorithms for searching and sorting. Introduction to the correctness and analysis of algorithms. For computer science majors and those interested in algorithm design and analysis, information security, and other mathematically-intensive areas.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC351",
+        "fields": {
+          "course_title": "Theoretical Foundations of Computer Science II",
+          "course_description": "Probability spaces, random variables, expectation, independence, concentration bounds, conditional probability, repeated trials, error bounds. Turing machines and finite automata. Deterministic, nondeterministic and probabilistic models of computation. Languages, regular languages and regular expressions. Methods for classifying computational problems as decidable or undecidable.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC355",
+        "fields": {
+          "course_title": "Computing Machinery I",
+          "course_description": "An introduction to computing machinery establishing the connection between programs expressed in a compiled language, an assembly language, and machine code, and how such code is executed. Includes the detailed study of a modern CPU architecture, its assembly language and internal data representation, and the relationship between high-level program constructs and machine operations.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC359",
+        "fields": {
+          "course_title": "Computing Machinery II",
+          "course_description": "An introduction to hardware and microprocessor design, including the connection between gate-level digital logic circuits and sequential machines that can execute an algorithm and perform input and output.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC411",
+        "fields": {
+          "course_title": "Compiler Construction",
+          "course_description": "Introduction to compilers, interpreters, and the tools for parsing and translation. Lexical analysis, context free grammars and software tools for their recognition. Attribute grammars and their applications in translation and compiling.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC413",
+        "fields": {
+          "course_title": "Design and Analysis of Algorithms I",
+          "course_description": "Techniques for the analysis of algorithms, including counting, summation, recurrences, and asymptotic relations; techniques for the design of efficient algorithms, including greedy methods, divide and conquer, and dynamic programming; examples of their application; an introduction to tractable and intractable problems.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC433",
+        "fields": {
+          "course_title": "Artificial Intelligence",
+          "course_description": "An examination of the objectives, key techniques and achievements of work on artificial intelligence in Computer Science.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+    
+      {
+        "model": "api.Course",
+        "pk": "CPSC441",
+        "fields": {
+          "course_title": "Computer Networks",
+          "course_description": "Principles and practice in modern telecommunications, computer communications and networks. Layered communication protocols and current physical, data link, network and Internet protocol layers. Circuit switching, packet switching, and an introduction to broadband multimedia networking.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC449",
+        "fields": {
+          "course_title": "Programming Paradigms",
+          "course_description": "Examination of the basic principles of the major programming language paradigms. Focus on declarative paradigms such as functional and logic programming. Data types, control expressions, loops, types of references, lazy evaluation, different interpretation principles, information hiding",
+          "course_prerequisites":"??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC457",
+        "fields": {
+          "course_title": "Principles of Operating Systems",
+          "course_description": "An introduction to operating systems principles. Performance measurement; concurrent programs; the management of information, memory and processor resources.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC471",
+        "fields": {
+          "course_title": "Data Base Management Systems",
+          "course_description": "Conceptual, internal and external data bases. Relational data base systems and SQL. The normal forms, data base design, and the entity-relationship approach.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC481",
+        "fields": {
+          "course_title": "Human-Computer Interaction I",
+          "course_description": "Fundamental theory and practice of the design, implementation, and evaluation of human-computer interfaces. Topics include: principles of design; methods for evaluating interfaces with or without user involvement; techniques for prototyping and implementing graphical user interfaces.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC559",
+        "fields": {
+          "course_title": "Introduction to Distributed Systems",
+          "course_description": "Designing and implementing distributed systems that overcome challenges due to concurrent computation, failure of components in the system and heterogeneity of processors and communication channels.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC599",
+        "fields": {
+          "course_title": "Introduction to Hacking",
+          "course_description": "Learn how to break into the mainframe so you can say 'I'm in' just like you always wanted.",
+          "course_prerequisites": "??",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PHIL314",
+        "fields": {
+          "course_title": "Information Technology Ethics",
+          "course_description": "A critical and analytical examination of ethical and legal problems arising in and about information technology. May include hacking, online privacy, intellectual property rights, artificial intelligence, globalization and regulation issues, cheating in online games, and others.",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SENG300",
+        "fields": {
+          "course_title": "Introduction to Software Engineering",
+          "course_description": "Introduction to the development and evolution of software. Covers key conceptual foundations as well as key methods and techniques used in the different phases of the software lifecycle. Emphasis on both technical and soft skills needed for high quality software and software-based products developed in teams.",
+          "course_units": 3,
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC233",
+        "fields": {
+          "course_title": "Software Architecture",
+          "course_description": "An in-depth study of high-level software structures. Covers architectural styles, design patterns, and evaluation techniques.",
+          "course_prerequisites": "SENG300",
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },  
+      {
+        "model": "api.Course",
+        "pk": "CPSC319",
+        "fields": {
+          "course_title": "Data Structures, Algorithms, and Their Applications",
+          "course_description": "Fundamental data structures, including arrays, lists, stacks, queues, trees, hash tables, and graphs. Algorithms for searching and sorting. Introduction to analysis of algorithms. Applications of these data structures and algorithms. For students wishing to combine studies in computer science with studies in other disciplines.",
+
+          "course_units": 3,
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "MATH265",
+        "fields": {
+          "course_title": "University Calculus I",
+          "course_description": "An introduction to single variable calculus intended for students with credit in high school calculus. Limits, derivatives, and integrals of algebraic, exponential, logarithmic and trigonometric functions play a central role. Additional topics include applications of differentiation; the fundamental theorem of calculus, improper integrals and applications of integration. Differential calculus in several variables will also be introduced.",
+          "course_units": 3,
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "MATH267",
+        "fields": {
+          "course_title": "University Calculus IB",
+          "course_description": "A slightly harder introduction to single variable calculus intended for students with credit in high school calculus. Limits, derivatives, and integrals of algebraic, exponential, logarithmic and trigonometric functions play a central role. Additional topics include applications of differentiation; the fundamental theorem of calculus, improper integrals and applications of integration. Differential calculus in several variables will also be introduced.",
+          "course_units": 3,
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PHIL279",
+        "fields": {
+          "course_title": "Logic I",
+          "course_description": "Sentential and first-order logic from both deductive and semantic points of view. Some elementary metatheorems.",
+          "course_units": 3,
+          "department": "Philosophy and Rationalization"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PHYS303",
+        "fields": {
+          "course_title": "Quantum Mysteries and Paradoxes",
+          "course_description": "Aims to explain basic quantum phenomena for students outside the physical sciences. Topics covered may include wave-particle duality, quantum interference, as well as the paradoxes of entanglement and quantum nonlocality. Applications such as quantum cryptography and quantum teleportation are discussed, as are the philosophical interpretations of the quantum picture of the world.",
+          "course_units": 3,
+          "department": "Physics and Astronomy"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PHYS207",
+        "fields": {
+          "course_title": "Wormholes and Stuff",
+          "course_description": "What are wormholes? Seriously, I dont know... I was hoping somebody here knew. We will most likely spend our time watch Neil DeGrasse Tyson videos all class, and end up talking about politics instead.",
+          "course_units": 3,
+          "department": "Physics and Astronomy"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENGL305",
+        "fields": {
+          "course_title": "Literature Before 1700",
+          "course_description": "A survey of representative works of literature in English from the Middle Ages through 1700.",
+          "course_units": 3,
+          "department": "English"
+        }
+      },
+
+      
+
+
+
+     
+    
+     
+     
+     
+      
+  
+    
+  
+
+
+
+
+
+
+      {
+        "model": "api.Course",
+        "pk": "ENGG200",
+        "fields": {
+          "course_title": "Introduction to Engineering Design",
+          "course_description": "Introduction to engineering design with a focus on sustainability principles, data and design visualization, communications, systems thinking, entrepreneurship and project management concepts via team-based design projects.",
+          "course_units": 3,
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENGG201",
+        "fields": {
+          "course_title": "Fundamentals of Fluid Behaviour",
+          "course_description": "An introduction to the behaviour of fluids for engineers. Fluid properties; equilibrium, phase transformations, the phase rule, phase diagrams, vapour pressure. Ideal and real gases; simple kinetic theory and equations of state. Fluid mechanics; ideal fluids, viscosity, flow of fluids in macro- and microfluidic systems. Engineering applications of fluids.",
+          "course_units": 3,
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENGG202",
+        "fields": {
+          "course_title": "Engineering Statics",
+          "course_description": "Force vectors; equilibrium of a particle in two and three dimensions; force system resultants; equilibrium of a rigid body in two and three dimensions; internal forces in trusses; frames, machines and beams; bending moment and shear force diagrams; friction; centre of gravity; centroids of areas; composite bodies.",
+          "course_units": 3,
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENGG209",
+        "fields": {
+          "course_title": "Engineering Economics",
+          "course_description": "The basic tools and methodology of engineering economic studies. Topics include investment decisions, theory of replacement, economies of scale, externalities, social decision making and government regulation. Examples are drawn from engineering projects.",
+          "course_units": 3,
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENGG225",
+        "fields": {
+          "course_title": "Fundamentals of Electrical Circuits and Machines",
+          "course_description": "Current, voltage and power; Kirchhoff's current and voltage laws; capacitors; electricity and magnetism fundamentals applied to circuit elements and machines; inductors; topics in electrical circuits and systems; instrumentation; circuit design, DC and AC circuit analysis methods; DC and AC machines; first order circuits and transient analysis.",
+          "course_units": 3,
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENGG233",
+        "fields": {
+          "course_title": "Computing For Engineers",
+          "course_description": "Overview of computer systems. Functions of software components: operating systems, editors, compilers. Programming in a high-level language: selection and loop structures, routines, array and record types, text file operations. Introduction to object-based programming: use of class libraries and construction of simple classes.",
+          "course_units": 3,
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENGG319",
+        "fields": {
+          "course_title": "Probability And Statistics For Engineers",
+          "course_description": "Presentation and description of data, introduction to probability theory, Bayes' theorem, discrete and continuous probability distributions, estimation, sampling distributions, tests of hypotheses on means, variances and proportions, simple linear regression and correlation. Applications are chosen from engineering practice.",
+          "course_prerequisites": "MATH277",
+          "course_units": 3,
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENGG481",
+        "fields": {
+          "course_title": "Technology and Society",
+          "course_description": "An interpretive course on the interrelationship between technology and society. The first part of the course surveys significant historical developments within disciplinary areas such as energy, materials, production processes, structures, transport, communications, and computation. Sequence within each area: discovery, development, application, impact, future. Social and economic consequences are also considered. Historical contributions of Indigenous Peoples in technology and contemporary considerations of impacts of technology on Indigenous rights. The latter part of the course explores contemporary problems of society and technology.",
+          "course_units": 3,
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENGG513",
+        "fields": {
+          "course_title": "The Role and Responsibilities of the Professional Engineer in Society",
+          "course_description": "The professional duties and responsibilities of the engineer as they relate to society. Ethics and the engineering profession. Public and worker safety and health. Design for safety. Sustainable development. The engineer and the environment. Environmental stewardship. Essentials of leadership. Gender issues. Employment equity. Fundamentals of Engineering Law. Professional organizations. The Engineering Professions Act. Indigenous perspectives in engineering.",
+          "course_units": 3,
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "MATH211",
+        "fields": {
+          "course_title": "Linear Methods I",
+          "course_description": "An introduction to systems of linear equations, vectors in Euclidean space and matrix algebra. Additional topics include linear transformations, determinants, complex numbers, eigenvalues, and applications.",
+          "course_units": 3,
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "MATH271",
+        "fields": {
+          "course_title": "Discrete Mathematics",
+          "course_description": "An introduction to proof techniques and abstract mathematical reasoning: sets, relations and functions; mathematical induction; integers, primes, divisibility and modular arithmetic; counting and combinatorics; elements of probability, discrete random variables and Bayes’ theorem.",
+          "course_units": 3,
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "MATH275",
+        "fields": {
+          "course_title": "Calculus for Engineers and Scientists",
+          "course_description": "An extensive treatment of differential and integral calculus in a single variable, with an emphasis on applications. Differentiation: derivative laws, the mean value theorem, optimization, curve sketching and other applications. Integral calculus: the fundamental theorem of calculus, techniques of integration, improper integrals, and areas of planar regions. Infinite series: power series, Taylor’s theorem and Taylor series.",
+          "course_units": 3,
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "MATH277",
+        "fields": {
+          "course_title": "Multivariable Calculus for Engineers and Scientists",
+          "course_description": "An introduction to calculus of several real variables: curves and parametrizations, partial differentiation, the chain rule, implicit functions; integration in two and three variables and applications; optimization and Lagrange multipliers.",
+          "course_prerequisites": "MATH211, MATH275",
+          "course_units": 3,
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "MATH375",
+        "fields": {
+          "course_title": "Differential Equations for Engineers and Scientists",
+          "course_description": "Definition, existence and uniqueness of solutions; first order and higher order equations and applications; Homogeneous systems; Laplace transform; partial differential equations of mathematical physics.",
+          "course_prerequisites": "MATH277",
+          "course_units": 3,
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ECON201",
+        "fields": {
+          "course_title": "Principles of Microeconomics",
+          "course_description": "Principles of choice under scarcity and the role of institutions, especially markets, for the production and distribution of goods and services: what and how much gets produced, how is it produced, and who gets what is produced.",
+          "course_units": 3,
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ECON203",
+        "fields": {
+          "course_title": "Principles of Macroeconomics",
+          "course_description": "Measurement of economic activity, economic growth, money and financial systems, international economy and exchange rates, business cycles, unemployment and inflation, and macroeconomic policies.",
+          "course_prerequisites": "ECON201",
+          "course_units": 3,
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ECON341",
+        "fields": {
+          "course_title": " Money and Banking ",
+          "course_description": "Operation of financial markets and institutions: the principles of money creation, interest rate determination, and central banking.",
+          "course_units": 3,
+          "course_prerequisites": "ECON201 ECON203",
+
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ECON349",
+        "fields": {
+          "course_title": "The Economics of Social Problems",
+          "course_description": "Contribution that economic analysis can make to the understanding of selected current social issues such as poverty, aging, crime, drug abuse and discrimination.",
+          "course_prerequisites": "ECON201",
+          "course_units": 3,
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ECON373",
+        "fields": {
+          "course_title": " Game Theory and Strategic Thinking for the Social Sciences ",
+          "course_description": "Principles of game theory utilizing a non-mathematical and intuitive approach. Strategic reasoning and the use of game theory to explain social interaction. Game theory analysis is illustrated using applications and examples from economics and other social sciences.",
+          "course_prerequisites": "ECON201",
+          "course_units": 3,
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CHEM209",
+        "fields": {
+          "course_title": "General Chemistry For Engineers",
+          "course_description": "Basic chemical concepts. Atomic and molecular structure. Chemical bonding. Chemical kinetics and equilibria. Acid-base and solubility equilibria. Oxidation-reduction phenomena and electrochemistry. The chemistry of water. The chemistry of energy sources. Basic environmental issues.",
+          "course_units": 3,
+          "department": "General Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PHYS259",
+        "fields": {
+          "course_title": "Electricity and Magnetism (for students in Engineering)",
+          "course_description": "Electric and magnetic fields related to charges and current through Maxwell’s equations. Energy stored in fields, potential energy, and voltage. Conductors, insulators, and dielectrics. Resistance, capacitance, and inductance with applications to RC/RL circuits.",
+          "course_prerequisites": "MATH211",
+          "course_units": 3,
+          "department": "General Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PHYS365",
+        "fields": {
+          "course_title": "Acoustics, Optics and Modern Physics (for students in Engineering)",
+          "course_description": "Wave motion as applied to acoustics and physical optics. Wave-particle duality applied to light and matter; electron energy levels of atoms and crystals.",
+          "course_prerequisites": "MATH277, PHYS259",
+          "course_units": 3,
+          "department": "General Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "COMS363",
+        "fields": {
+          "course_title": "Professional and Technical Communication",
+          "course_description": "An introduction to professional and technical communication in diverse media. Examines the rhetorical dimensions of workplace settings as well as the process of planning, composing and delivering professional and technical communication for various audiences.",
+          "course_units": 3,
+          "department": "English"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENEL353",
+        "fields": {
+          "course_title": "Digital Circuits",
+          "course_description": "Number systems and simple codes. Combinational logic: Boolean algebra, truth tables, minterms, maxterms, Karnaugh maps; gates, buffers, multiplexers and decoders; combinational circuit timing. Sequential circuits: latches and D flip flops; timing considerations; analysis and synthesis techniques; Mealy and Moore machine models; counters and registers. Introduction to memory arrays.",
+          "course_units": 3,
+          "course_prerequisites": "MATH277",
+          "department": "Electrical Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENEL327",
+        "fields": {
+          "course_title": "Signals and Transforms",
+          "course_description": "Continuous-time systems. Impulse response and convolution. Fourier series and Fourier transform. Basics of discrete time signals. Sampling theory. Discrete convolution. Difference equations and the Z-transform. Discrete-time Fourier representations.",
+          "course_units": 3,
+          "course_prerequisites": "MATH375",
+          "department": "Electrical Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENEL500",
+        "fields": {
+          "course_title": "Computer, Electrical, and Software Engineering Team Design",
+          "course_description": "Preliminary and detailed engineering design and implementation of an engineering system that applies engineering knowledge to solving a real-life problem. The emphasis is on the design process as it is associated with electrical, computer and software engineering, design methodology, general design principles for engineers, teamwork and project management.",
+          "course_units": 3,
+          "department": "Electrical Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENEL501",
+        "fields": {
+          "course_title": "Computer, Electrical, and Software Engineering Team Design II",
+          "course_description": "Preliminary and detailed engineering design and implementation of an engineering system that applies engineering knowledge to solving a real-life problem. The emphasis is on the design process as it is associated with electrical, computer and software engineering, design methodology, general design principles for engineers, teamwork and project management.",
+          "course_units": 3,
+          "department": "Electrical Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENEL525",
+        "fields": {
+          "course_title": "Machine Learning for Engineers",
+          "course_description": "Neural networks: neuron models and network architectures, perceptrons, Widrow-Hoff learning and backpropagation algorithm, associative memory, Hebbian learning, pseudo-inverse learning. Fuzzy systems: basic operations and properties of fuzzy sets; fuzzy rule generation and defuzzification of fuzzy logic; fuzzy neural networks. Applications such as pattern recognition, character recognition, stock market prediction, and control.",
+          "course_units": 3,
+          "course_prerequisites": "ENEL327",
+          "department": "Electrical Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENCM369",
+        "fields": {
+          "course_title": "Computer Organization",
+          "course_description": "Organization of a simple stored-program computer: CPU, busses and memory. Instruction sets, machine code, and assembly language. Conventions for assembly language generated by compilers. Floating-point number representation. Hardware organization. Address translation and virtual memory. Input/output devices, computer interfacing, interrupt handling and multi-tasking systems.",
+          "course_units": 3,
+          "course_prerequisites": "ENEL353, ENSF337",
+          "department": "Computer Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENCM509",
+        "fields": {
+          "course_title": "Fundamentals of Biometric Systems Design",
+          "course_description": "Biometric systems, sensors and devices, Integration of Biometric-based hardware and software, Biometric applications.",
+          "course_units": 3,
+          "course_prerequisites": "ENEL327",
+          "department": "Computer Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENCM511",
+        "fields": {
+          "course_title": "Embedded System Interfacing",
+          "course_description": "Review of computer architecture; microcontrollers and their instruction sets; interfacing using common input/output devices, debugging and other software engineering practices, strategies for interrupt handling and exception handling; Interfacing using high level and assembly languages; software and hardware optimizations to achieve real time operations; real time operating systems; Embedded real-time applications.",
+          "course_units": 3,
+          "course_prerequisites": "ENCM369",
+          "department": "Computer Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENSF337",
+        "fields": {
+          "course_title": "Programming Fundamentals for Software and Computer",
+          "course_description": "Key features of the C programming language. Pointers, memory models and memory management. Manipulation of text files and binary files. Introduction to recursion. Introduction to a modern object-oriented language. Development of basic program design skills with small projects.",
+          "course_units": 3,
+          "course_prerequisites": "ENGG233",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENSF409",
+        "fields": {
+          "course_title": "Principles of Software Development",
+          "course_description": "A survey of software design and development topics for Engineering students. Topics include: key features of an object-oriented programming language, especially inheritance and polymorphism; elements of object-oriented design; programming and application of common data structures; strategies and tools for testing and debugging.",
+          "course_units": 3,
+          "course_prerequisites": "ENSF337",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENSF480",
+        "fields": {
+          "course_title": "Principles of Software Design",
+          "course_description": "Brief overview of typical software development lifecycles. Systematic methods for designing large-scale, quality software. Concepts such as abstraction, modularity, and software modelling will be covered. Designing for non-functional properties of software will be introduced. Emphasis on individual skills.",
+          "course_units": 3,
+          "course_prerequisites": "ENSF409, ENCM369",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "ENSF545",
+        "fields": {
+          "course_title": "Introduction to Virtual Reality",
+          "course_description": "Software architectures and design for non-functional software properties. Introduction to program comprehension skills including analysis of existing architectures.",
+          "course_units": 3,
+          "course_prerequisites": "ENSF409, ENCM369",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SENG401",
+        "fields": {
+          "course_title": "Software Architecture",
+          "course_description": "Introduce VR technologies. Emphasize on engineering methodologies of creating VR systems. Characterize VR systems, hardware and software, user 3D interaction, and VR applications and future.",
+          "course_units": 3,
+          "course_prerequisites": "CPSC319, ENSF480",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SENG438",
+        "fields": {
+          "course_title": "Software Testing, Reliability, and Quality",
+          "course_description": "Concepts, methods, techniques, processes, and tools for software testing. The principles, processes, and applications of software reliability and software quality assurance.",
+          "course_units": 3,
+          "course_prerequisites": "CPSC319, ENSF480",
+          "department": "Software Engineering"
+        }
+      },
+      
+      {
+        "model": "api.Course",
+        "pk": "SENG471",
+        "fields": {
+          "course_title": "Software Requirements Engineering",
+          "course_description": "Introduction to elicitation, modelling, expression and validation of the requirements. Techniques and methodologies for requirements engineering. Applications of requirements engineering to the management of the software development lifecycle.",
+          "course_units": 3,
+          "course_prerequisites": "CPSC319, ENSF409",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SENG511",
+        "fields": {
+          "course_title": "Software Project Management",
+          "course_description": "Analysis of methods, tools, and techniques for software project management as an effort to achieve quality software products.",
+          "course_units": 3,
+          "course_prerequisites": "ENSF480",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SENG513",
+        "fields": {
+          "course_title": "Web-Based Systems",
+          "course_description": "An overview of software engineering methods and technologies for developing web-based software systems.",
+          "course_units": 3,
+          "course_prerequisites": "ENSF480",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SENG533",
+        "fields": {
+          "course_title": "Software Performance Evaluation",
+          "course_description": "Analyzing quality requirements of large-scale software. Performance analysis, testing, and tuning techniques. Evaluating software scalability. Capacity planning methodologies. Issues related to safety, security, and availability of software.",
+          "course_units": 3,
+          "course_prerequisites": "ENSF480, CPSC457",
+          "department": "Software Engineering"
+        }
+      },
+    
+      {
+        "model": "api.Course",
+        "pk": "SENG550",
+        "fields": {
+          "course_title": "Scalable Data Analytics",
+          "course_description": "Sources and characteristics of large scale data, i.e., \"big data\", large scale data analysis, benefits of large scale data analysis to various industry domains, programming paradigms and middleware technologies for scalable data analysis, algorithms that enable large scale data processing, application of large scale data algorithms in selected application domains, e.g., web user behaviour analysis and text processing, analytics frameworks.",
+          "course_units": 3,
+          "course_prerequisites": "ENSF480, CPSC457",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC453",
+        "fields": {
+          "course_title": "Introduction to Computer Graphics",
+          "course_description": "Introduction to computer graphics. Principles of raster image generation. Example of a graphics API. Graphics primitives. Co-ordinate systems, affine transformations and viewing of graphical objects. Introduction to rendering including shading models and ray tracing. Introduction to modelling including polygon meshes, subdivision, and parametric curves and surfaces.",
+          "course_units": 3,
+          "course_prerequisites": "MATH277, MATH211, CPSC319",
+          "department": "Computer Science"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "CPSC525",
+        "fields": {
+          "course_title": "Principles of Computer Security",
+          "course_description": "Security policies and protection mechanisms for a computing system, including such topics as design principles of protection systems, authentication and authorization, reference monitors, security architecture of popular platforms, formal modelling of protection systems, discretionary access control, safety analysis, information flow control, integrity, role-based access control. Legal and ethical considerations will be introduced.",
+          "course_units": 3,
+          "course_prerequisites": "MATH271, CPSC457",
+          "department": "Computer Science"
+        }
+      },
+
+
+
+
+      {
+        "model": "api.Course",
+        "pk": "SOCI201",
+        "fields": {
+          "course_title": "Introductory Sociology",
+          "course_description": "Sociology as a discipline examines how the society in which we live influences our thinking and behaviour. An introduction to sociology through the study of society, social institutions, group behaviour and social change.",
+          "course_units": 3,
+          "department": "Philosophy and Rationalization"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "SOCI303",
+        "fields": {
+          "course_title": " Sociology of Gender",
+          "course_description": "A sociological exploration of the way genders are constructed and how they play-out at the level of individuals and institutions, and in diverse social contexts.",
+          "course_units": 3,
+          "department": "Philosophy and Rationalization"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "DATA201",
+        "fields": {
+          "course_title": " Thinking with Data",
+          "course_description": "An introduction to tools and techniques for managing, visualizing, and making sense of data. Includes an introduction to data cleaning, basic statistics, exploratory visualization, sensemaking, and data presentation.",
+          "course_units": 3,
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "STAT213",
+        "fields": {
+          "course_title": "Introduction to Statistics I",
+          "course_description": "Introduction to probability, including Bayes' law, expectations and distributions. Discrete and continuous random variables, including properties of the normal curve. Collection and visual display of single and multi-dimensional data. Introduction to statistical modeling and estimation. Parametric and simulation-based confidence interval estimation.",
+          "course_units": 3,
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PSYC201",
+        "fields": {
+          "course_title": "Principles of Psychology II",
+          "course_description": "A survey of topics associated with psychology’s role as a social science, including personality, motivation, health, social, developmental, industrial/organizational and clinical psychology.",
+          "course_units": 3,
+          "department": "Educational Psychology"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "PSYC203",
+        "fields": {
+          "course_title": "Psychology for Everyday Life",
+          "course_description": "Provides students with an understanding of the key theories, research methods, and discoveries in coping and resilience, identity development, interpersonal relationships, and mental health with an emphasis on developing the knowledge and skills necessary to be effective consumers of psychological theory and research. Through a focus on adjustment issues that arise in everyday life, this course will demonstrate some of the ways in which psychology can be used to benefit students’ wellbeing in their personal and professional lives.",
+          "course_units": 3,
+          "department": "Educational Psychology"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "EDUC309",
+        "fields": {
+          "course_title": "Early Childhood Development",
+          "course_description": "An examination of the science of early childhood and early brain development that accounts for the physical, cognitive, emotional, and social development of young children from birth to age eight, and a consideration of the implications with respect to children’s healthy development and effective educational practices in the early school years.",
+          "course_units": 3,
+          "department": "Educational Psychology"
+        }
+      },
+      {
+        "model": "api.Course",
+        "pk": "EDUC307",
+        "fields": {
+          "course_title": " Integrating Arts Education ",
+          "course_description": "A preparation for artists and educators to design effective learning in, about, and through the arts. Discipline-specific knowledge and technique in and about art, dance, drama, and music will be acquired in a studio environment, and applied through an interdisciplinary, collaborative lab. Learner outcomes include interdisciplinary planning skills, aesthetic awareness, critical and analysis thinking, and inter-arts competencies.",
+          "course_units": 3,
+          "department": "Educational Psychology"
+        }
+      }
+  ]

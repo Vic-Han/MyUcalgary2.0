@@ -1,0 +1,1556 @@
+[
+  {
+    "model": "api.Tutorial",
+    "pk": "01",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 8.0,
+      "tutorial_endtime": 9.25,
+      "tutorial_roomnumber": "U234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "78",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG438",
+      "instructor": "046"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "2",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 9.5,
+      "tutorial_endtime": 10.75,
+      "tutorial_roomnumber": "U234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "78",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG471",
+      "instructor": "047"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "03",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 12.25,
+      "tutorial_roomnumber": "U234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "78",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG511",
+      "instructor": "048"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "04",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 12.5,
+      "tutorial_endtime": 13.75,
+      "tutorial_roomnumber": "U234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "78",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG401",
+      "instructor": "049"
+    }
+  },
+
+  {
+    "model": "api.Tutorial",
+    "pk": "05",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 14.0,
+      "tutorial_endtime": 14.83,
+      "tutorial_roomnumber": "R543",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "42",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENEL500",
+      "instructor": "051"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "06",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Fal2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 12.5,
+      "tutorial_endtime": 13.33,
+      "tutorial_roomnumber": "S789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "48",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENEL500",
+      "instructor": "051"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "07",
+    "fields": {
+      "tutorial_id": "T03",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.5,
+      "tutorial_endtime": 12.33,
+      "tutorial_roomnumber": "T456",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "36",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENEL500",
+      "instructor": "051"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "08",
+    "fields": {
+      "tutorial_id": "T04",
+      "term": "Fal2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 16.0,
+      "tutorial_endtime": 16.83,
+      "tutorial_roomnumber": "U789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "45",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENEL500",
+      "instructor": "051"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "09",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.5,
+      "tutorial_endtime": 12.33,
+      "tutorial_roomnumber": "R789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "38",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC453",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "10",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Fal2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 15.0,
+      "tutorial_endtime": 15.83,
+      "tutorial_roomnumber": "S234",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "43",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC453",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "11",
+    "fields": {
+      "tutorial_id": "T03",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 14.0,
+      "tutorial_endtime": 14.83,
+      "tutorial_roomnumber": "T567",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "32",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC453",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "12",
+    "fields": {
+      "tutorial_id": "T04",
+      "term": "Fal2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "U890",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "47",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC453",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "13",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 14.0,
+      "tutorial_endtime": 14.83,
+      "tutorial_roomnumber": "K789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "34",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC525",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "14",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 13.5,
+      "tutorial_endtime": 14.33,
+      "tutorial_roomnumber": "L456",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "38",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC525",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "15",
+    "fields": {
+      "tutorial_id": "T03",
+      "term": "Fal2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 13.0,
+      "tutorial_endtime": 13.83,
+      "tutorial_roomnumber": "M789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "45",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC525",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "16",
+    "fields": {
+      "tutorial_id": "T04",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 16.0,
+      "tutorial_endtime": 16.83,
+      "tutorial_roomnumber": "N890",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "31",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC525",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "17",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "J789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "36",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC481",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "18",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.5,
+      "tutorial_endtime": 12.33,
+      "tutorial_roomnumber": "K890",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "44",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC481",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "19",
+    "fields": {
+      "tutorial_id": "T03",
+      "term": "Fal2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 9.5,
+      "tutorial_endtime": 10.33,
+      "tutorial_roomnumber": "L123",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "38",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC481",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "20",
+    "fields": {
+      "tutorial_id": "T04",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "M456",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "33",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC481",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "21",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 8.5,
+      "tutorial_endtime": 9.33,
+      "tutorial_roomnumber": "A123",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "42",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG513",
+      "instructor": "046"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "22",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.5,
+      "tutorial_endtime": 13.33,
+      "tutorial_roomnumber": "B456",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "37",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG513",
+      "instructor": "047"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "23",
+    "fields": {
+      "tutorial_id": "T03",
+      "term": "Fal2024",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 15.0,
+      "tutorial_endtime": 15.83,
+      "tutorial_roomnumber": "C789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "44",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG513",
+      "instructor": "046"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "24",
+    "fields": {
+      "tutorial_id": "T04",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 14.0,
+      "tutorial_endtime": 14.83,
+      "tutorial_roomnumber": "D890",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "33",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG513",
+      "instructor": "047"
+    }
+  },
+
+  {
+    "model": "api.Tutorial",
+    "pk": "25",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 14.0,
+      "tutorial_endtime": 14.83,
+      "tutorial_roomnumber": "R543",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "42",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENEL501",
+      "instructor": "051"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "26",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Win2025",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 12.5,
+      "tutorial_endtime": 13.33,
+      "tutorial_roomnumber": "S789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "48",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENEL501",
+      "instructor": "051"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "27",
+    "fields": {
+      "tutorial_id": "T03",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.5,
+      "tutorial_endtime": 12.33,
+      "tutorial_roomnumber": "T456",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "36",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENEL501",
+      "instructor": "051"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "28",
+    "fields": {
+      "tutorial_id": "T04",
+      "term": "Win2025",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 16.0,
+      "tutorial_endtime": 16.83,
+      "tutorial_roomnumber": "U789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "45",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENEL501",
+      "instructor": "051"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "29",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.5,
+      "tutorial_endtime": 12.33,
+      "tutorial_roomnumber": "R789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "38",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC559",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "30",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Win2025",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 15.0,
+      "tutorial_endtime": 15.83,
+      "tutorial_roomnumber": "S234",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "43",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC559",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "31",
+    "fields": {
+      "tutorial_id": "T03",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 14.0,
+      "tutorial_endtime": 14.83,
+      "tutorial_roomnumber": "T567",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "32",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC559",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "32",
+    "fields": {
+      "tutorial_id": "T04",
+      "term": "Win2025",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "U890",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "47",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC559",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "33",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2025",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 14.0,
+      "tutorial_endtime": 14.83,
+      "tutorial_roomnumber": "K789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "34",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENEL525",
+      "instructor": "052"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "34",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 13.5,
+      "tutorial_endtime": 14.33,
+      "tutorial_roomnumber": "L456",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "38",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENEL525",
+      "instructor": "052"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "35",
+    "fields": {
+      "tutorial_id": "T03",
+      "term": "Win2025",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 13.0,
+      "tutorial_endtime": 13.83,
+      "tutorial_roomnumber": "M789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "45",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENEL525",
+      "instructor": "052"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "36",
+    "fields": {
+      "tutorial_id": "T04",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 16.0,
+      "tutorial_endtime": 16.83,
+      "tutorial_roomnumber": "N890",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "31",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENEL525",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "37",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2025",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "J789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "36",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENGG513",
+      "instructor": "021"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "38",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.5,
+      "tutorial_endtime": 12.33,
+      "tutorial_roomnumber": "K890",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "44",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENGG513",
+      "instructor": "021"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "39",
+    "fields": {
+      "tutorial_id": "T03",
+      "term": "Win2025",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 9.5,
+      "tutorial_endtime": 10.33,
+      "tutorial_roomnumber": "L123",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "38",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENGG513",
+      "instructor": "021"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "40",
+    "fields": {
+      "tutorial_id": "T04",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "M456",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "33",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENGG513",
+      "instructor": "021"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "41",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2025",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 8.5,
+      "tutorial_endtime": 9.33,
+      "tutorial_roomnumber": "A123",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "42",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENCM509",
+      "instructor": "056"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "42",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.5,
+      "tutorial_endtime": 13.33,
+      "tutorial_roomnumber": "B456",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "37",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENCM509",
+      "instructor": "057"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "43",
+    "fields": {
+      "tutorial_id": "T03",
+      "term": "Win2025",
+      "tutorial_days": "MWF",
+      "tutorial_starttime": 15.0,
+      "tutorial_endtime": 15.83,
+      "tutorial_roomnumber": "C789",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "44",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENCM509",
+      "instructor": "056"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "44",
+    "fields": {
+      "tutorial_id": "T04",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 14.0,
+      "tutorial_endtime": 14.83,
+      "tutorial_roomnumber": "D890",
+      "tutorial_totalseats": "50",
+      "tutorial_filledseats": "33",
+      "tutorial_totalwaitlist": "5",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENCM509",
+      "instructor": "057"
+    }
+  },
+
+    
+  {
+    "model": "api.Tutorial",
+    "pk": "73",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 8.0,
+      "tutorial_endtime": 8.83,
+      "tutorial_roomnumber": "I345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC351",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "74",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "J345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC329",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "75",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "K345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON349",
+      "instructor": "041"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "76",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "L345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "STAT213",
+      "instructor": "026"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "77",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "M345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "EDUC307",
+      "instructor": "016"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "78",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 13.0,
+      "tutorial_endtime": 13.83,
+      "tutorial_roomnumber": "N345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SOCI303",
+      "instructor": "064"
+    }
+  },
+
+  {
+    "model": "api.Tutorial",
+    "pk": "79",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 8.0,
+      "tutorial_endtime": 8.83,
+      "tutorial_roomnumber": "U345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON341",
+      "instructor": "041"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "80",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "V456",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "81",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON341",
+      "instructor": "042"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "81",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "W567",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "69",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON373",
+      "instructor": "043"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "82",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "X678",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "60",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON373",
+      "instructor": "044"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "83",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "Y789",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "73",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SOCI303",
+      "instructor": "061"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "84",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "Z890",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "89",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SOCI303",
+      "instructor": "062"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "85",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "A234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "78",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PSYC203",
+      "instructor": "016"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "86",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Spr2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "B345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "67",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PSYC203",
+      "instructor": "017"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "87",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 8.0,
+      "tutorial_endtime": 8.83,
+      "tutorial_roomnumber": "C456",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "72",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON341",
+      "instructor": "041"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "88",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "D567",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "56",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON341",
+      "instructor": "042"
+    }
+  },{
+    "model": "api.Tutorial",
+    "pk": "89",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "E678",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "64",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON373",
+      "instructor": "043"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "90",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "F789",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "70",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SOCI303",
+      "instructor": "061"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "91",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "G890",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "55",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PSYC203",
+      "instructor": "016"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "92",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "H123",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "81",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PSYC203",
+      "instructor": "017"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "93",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "I234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "68",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON341",
+      "instructor": "041"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "94",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Sum2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "J345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "74",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON341",
+      "instructor": "042"
+    }
+  },
+
+  {
+    "model": "api.Tutorial",
+    "pk": "95",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 8.0,
+      "tutorial_endtime": 8.83,
+      "tutorial_roomnumber": "A123",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "64",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PHIL314",
+      "instructor": "061"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "96",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "B234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "72",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PHIL314",
+      "instructor": "062"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "97",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "C345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "58",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG300",
+      "instructor": "046"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "98",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "D456",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "78",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SENG300",
+      "instructor": "047"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "99",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "E567",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "63",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC413",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "100",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "F678",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "87",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC413",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "101",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "G789",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "53",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC449",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "102",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "H890",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "66",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC449",
+      "instructor": "004"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "103",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "I901",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "89",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "EDUC307",
+      "instructor": "016"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "104",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Fal2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 13.0,
+      "tutorial_endtime": 13.83,
+      "tutorial_roomnumber": "J012",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "71",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "EDUC307",
+      "instructor": "017"
+    }
+  },
+
+  {
+    "model": "api.Tutorial",
+    "pk": "105",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 8.0,
+      "tutorial_endtime": 8.83,
+      "tutorial_roomnumber": "A123",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "78",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PHYS303",
+      "instructor": "006"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "106",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "B234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "64",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PHYS303",
+      "instructor": "007"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "107",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "C345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "73",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PHYS207",
+      "instructor": "008"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "108",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "D456",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "87",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PHYS207",
+      "instructor": "009"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "109",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "E567",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "56",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENGL201",
+      "instructor": "011"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "110",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "F678",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "62",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ENGL201",
+      "instructor": "012"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "111",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "G789",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "81",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC457",
+      "instructor": "003"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "112",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "H890",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "72",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC457",
+      "instructor": "004"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "113",
+    "fields": {
+      "tutorial_id": "T01",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "I123",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "65",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "EDUC309",
+      "instructor": "016"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "114",
+    "fields": {
+      "tutorial_id": "T02",
+      "term": "Win2025",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 13.0,
+      "tutorial_endtime": 13.83,
+      "tutorial_roomnumber": "J234",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "89",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "EDUC309",
+      "instructor": "017"
+    }
+  }
+]

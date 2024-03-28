@@ -1,0 +1,85 @@
+{
+    "programInfo":
+    {
+        "degree": "Bachelor of Science",
+        "major": "Computer Science",
+        "minor": "None",
+        "concentration": "None",
+        "year": "4",
+        "academicLoad": "full-time"
+    },
+    "requirements":
+    [
+        {
+            "description": "requiredCourses",
+            "requiredUnits": 9,
+            "status": "in-progress",
+            "courses":
+            [
+                {
+                    "name": "CPSC231",
+                    "units": 3,
+                    "status": "complete"
+                },
+                {
+                    "name": "CPSC233",
+                    "units": 3,
+                    "status": "in-progress"
+                },
+                {
+                    "name": "CPSC331",
+                    "units": 3,
+                    "status": "incomplete"
+                }
+            ]
+        },
+        {
+            "description": "technicalElectives",
+            "requiredUnits": 6,
+            "status": "complete",
+            "courses":
+            [
+                {
+                    "name": "CPSC231",
+                    "units": 3,
+                    "status": "complete"
+                },
+                {
+                    "name": "CPSC233",
+                    "units": 3,
+                    "status": "complete"
+                },
+                {
+                    "name": "CPSC331",
+                    "units": 3,
+                    "status": "incomplete"
+                }
+            ]
+        },
+        {
+            "description": "400 Level MATH Courses",
+            "requiredUnits": 6,
+            "status": "incomplete",
+            "courses":
+            [
+                {
+                    "name": "MATH401",
+                    "units": 3,
+                    "status": "incomplete"
+                },
+                {
+                    "name": "MATH456",
+                    "units": 3,
+                    "status": "incomplete"
+                },
+                {
+                    "name": "MATH491",
+                    "units": 3,
+                    "status": "incomplete"
+                }
+            ]
+        }
+    ]
+}
+
+sort by complete, in-progress, then incomplete

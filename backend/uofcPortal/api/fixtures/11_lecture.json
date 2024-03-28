@@ -1,0 +1,2073 @@
+[
+    {
+      "model": "api.Lecture",
+      "pk": "01",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2018",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "K123",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "79",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG200",
+        "instructor": "021"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "02",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2018",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "B564",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "65",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG201",
+        "instructor": "022"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "03",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2018",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "G345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "85",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG225",
+        "instructor": "023"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "04",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2018",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "H345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "85",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH211",
+        "instructor": "026"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "05",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2018",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH275",
+        "instructor": "027"
+      }
+    },
+    
+    {
+        "model": "api.Lecture",
+        "pk": "06",
+        "fields": {
+          "lecture_id": "L01",
+          "term": "Win2019",
+          "lecture_days": "TR",
+          "lecture_starttime": 14.5,
+          "lecture_endtime": 15.33,
+          "lecture_roomnumber": "L987",
+          "lecture_totalseats": "100",
+          "lecture_filledseats": "72",
+          "lecture_totalwaitlist": "10",
+          "lecture_filledwaitlist": "0",
+          "course": "ENGG202",
+          "instructor": "024"
+        }
+    },
+    {
+        "model": "api.Lecture",
+        "pk": "07",
+        "fields": {
+          "lecture_id": "L01",
+          "term": "Win2019",
+          "lecture_days": "TR",
+          "lecture_starttime": 9,
+          "lecture_endtime": 10.25,
+          "lecture_roomnumber": "M123",
+          "lecture_totalseats": "100",
+          "lecture_filledseats": "73",
+          "lecture_totalwaitlist": "10",
+          "lecture_filledwaitlist": "0",
+          "course": "ENGG233",
+          "instructor": "025"
+        }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "08",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH277",
+        "instructor": "028"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "09",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "J345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "68",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CHEM209",
+        "instructor": "036"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "10",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "K345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "88",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PHYS259",
+        "instructor": "006"
+      }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "11",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "P789",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "67",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG319",
+        "instructor": "021"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "12",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "Q789",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "87",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENEL353",
+        "instructor": "051"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "13",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "R789",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "99",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PHYS365",
+        "instructor": "007"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "14",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH375",
+        "instructor": "027"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "15",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2019",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "J345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "85",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENSF337",
+        "instructor": "046"
+      }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "16",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2020",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "N456",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "92",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG209",
+        "instructor": "022"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "17",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2020",
+        "lecture_days": "TR",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 9.25,
+        "lecture_roomnumber": "R234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG481",
+        "instructor": "023"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "18",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2020",
+        "lecture_days": "TR",
+        "lecture_starttime": 9.5,
+        "lecture_endtime": 10.75,
+        "lecture_roomnumber": "S234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "68",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH271",
+        "instructor": "028"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "19",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2020",
+        "lecture_days": "TR",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 12.25,
+        "lecture_roomnumber": "T234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENEL327",
+        "instructor": "052"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "20",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2020",
+        "lecture_days": "TR",
+        "lecture_starttime": 12.5,
+        "lecture_endtime": 13.75,
+        "lecture_roomnumber": "U234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENSF409",
+        "instructor": "047"
+      }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "21",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2020",
+        "lecture_days": "TR",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 9.25,
+        "lecture_roomnumber": "R234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENCM511",
+        "instructor": "056"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "22",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2020",
+        "lecture_days": "TR",
+        "lecture_starttime": 9.5,
+        "lecture_endtime": 10.75,
+        "lecture_roomnumber": "S234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "68",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC471",
+        "instructor": "002"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "23",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2020",
+        "lecture_days": "TR",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 12.25,
+        "lecture_roomnumber": "T234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC457",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "24",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2020",
+        "lecture_days": "TR",
+        "lecture_starttime": 12.5,
+        "lecture_endtime": 13.75,
+        "lecture_roomnumber": "U234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENSF480",
+        "instructor": "047"
+      }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "25",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2023",
+        "lecture_days": "TR",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 9.25,
+        "lecture_roomnumber": "R234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON201",
+        "instructor": "041"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "26",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2023",
+        "lecture_days": "TR",
+        "lecture_starttime": 9.5,
+        "lecture_endtime": 10.75,
+        "lecture_roomnumber": "S234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "68",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "COMS363",
+        "instructor": "025"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "27",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2023",
+        "lecture_days": "TR",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 12.25,
+        "lecture_roomnumber": "T234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGL201",
+        "instructor": "011"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "28",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2023",
+        "lecture_days": "TR",
+        "lecture_starttime": 12.5,
+        "lecture_endtime": 13.75,
+        "lecture_roomnumber": "U234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SENG533",
+        "instructor": "046"
+      }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "29",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2023",
+        "lecture_days": "TR",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 9.25,
+        "lecture_roomnumber": "R234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENCM369",
+        "instructor": "058"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "30",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2023",
+        "lecture_days": "TR",
+        "lecture_starttime": 9.5,
+        "lecture_endtime": 10.75,
+        "lecture_roomnumber": "S234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "68",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC319",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "31",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2023",
+        "lecture_days": "TR",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 12.25,
+        "lecture_roomnumber": "T234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC441",
+        "instructor": "002"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "32",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2023",
+        "lecture_days": "TR",
+        "lecture_starttime": 12.5,
+        "lecture_endtime": 13.75,
+        "lecture_roomnumber": "U234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SENG550",
+        "instructor": "046"
+      }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "33",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "TR",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 9.25,
+        "lecture_roomnumber": "U234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SENG438",
+        "instructor": "046"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "34",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "TR",
+        "lecture_starttime": 9.5,
+        "lecture_endtime": 10.75,
+        "lecture_roomnumber": "U234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SENG471",
+        "instructor": "047"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "35",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "TR",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 12.25,
+        "lecture_roomnumber": "U234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SENG511",
+        "instructor": "048"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "36",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "TR",
+        "lecture_starttime": 12.5,
+        "lecture_endtime": 13.75,
+        "lecture_roomnumber": "U234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SENG401",
+        "instructor": "049"
+      }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "37",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "A234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENEL500",
+        "instructor": "051"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "38",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "A234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "62",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENEL500",
+        "instructor": "051"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "39",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "B234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "88",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC453",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "40",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "B234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "55",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC453",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "41",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "C234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "88",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC525",
+        "instructor": "002"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "42",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Fal2024",
+        "lecture_days": "TR",
+        "lecture_starttime": 9.50,
+        "lecture_endtime": 10.75,
+        "lecture_roomnumber": "C234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "55",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC525",
+        "instructor": "002"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "43",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 13.0,
+        "lecture_endtime": 13.83,
+        "lecture_roomnumber": "D234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "51",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC481",
+        "instructor": "003"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "44",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Fal2024",
+        "lecture_days": "TR",
+        "lecture_starttime": 14.50,
+        "lecture_endtime": 15.75,
+        "lecture_roomnumber": "D234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "64",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC481",
+        "instructor": "003"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "45",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "E234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "51",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SENG513",
+        "instructor": "046"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "46",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "F234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "64",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SENG513",
+        "instructor": "047"
+      }
+    }, 
+
+    {
+      "model": "api.Lecture",
+      "pk": "47",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "A234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENEL501",
+        "instructor": "051"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "48",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "A234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "62",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENEL501",
+        "instructor": "051"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "49",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "B234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "88",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC559",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "50",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "B234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "55",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC559",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "51",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "C234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "88",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENEL525",
+        "instructor": "052"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "52",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Win2025",
+        "lecture_days": "TR",
+        "lecture_starttime": 9.50,
+        "lecture_endtime": 10.75,
+        "lecture_roomnumber": "C234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "55",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENEL525",
+        "instructor": "052"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "53",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 13.0,
+        "lecture_endtime": 13.83,
+        "lecture_roomnumber": "D234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "51",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG513",
+        "instructor": "021"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "54",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Win2025",
+        "lecture_days": "TR",
+        "lecture_starttime": 14.50,
+        "lecture_endtime": 15.75,
+        "lecture_roomnumber": "D234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "64",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGG513",
+        "instructor": "021"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "55",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "E234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "51",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENCM509",
+        "instructor": "056"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "56",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "F234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "64",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENCM509",
+        "instructor": "057"
+      }
+    },
+
+
+
+
+
+    {
+      "model": "api.Lecture",
+      "pk": "57",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2022",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "K123",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "79",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC231",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "58",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2022",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "B564",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "65",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON201",
+        "instructor": "042"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "59",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2022",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "G345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "85",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH211",
+        "instructor": "027"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "60",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2022",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "H345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "85",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PSYC203",
+        "instructor": "016"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "61",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2022",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH265",
+        "instructor": "028"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "62",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2023",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "K123",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "79",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC251",
+        "instructor": "002"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "63",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2023",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "B564",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "65",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH267",
+        "instructor": "026"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "64",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2023",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "G345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "85",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PHIL279",
+        "instructor": "061"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "65",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2023",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "H345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "85",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON203",
+        "instructor": "041"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "66",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2023",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC233",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "67",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Spr2023",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC355",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "68",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Sum2023",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PSYC201",
+        "instructor": "016"
+      }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "69",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2023",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC331",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "70",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2023",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC359",
+        "instructor": "002"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "71",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2023",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SOCI201",
+        "instructor": "062"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "72",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2023",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "DATA201",
+        "instructor": "026"
+      }
+    },
+
+    
+    {
+      "model": "api.Lecture",
+      "pk": "73",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC351",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "74",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "J345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC329",
+        "instructor": "002"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "75",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "K345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON349",
+        "instructor": "041"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "76",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "L345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "STAT213",
+        "instructor": "026"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "77",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "M345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "EDUC307",
+        "instructor": "016"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "78",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 13.0,
+        "lecture_endtime": 13.83,
+        "lecture_roomnumber": "N345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SOCI303",
+        "instructor": "064"
+      }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "79",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "U345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON341",
+        "instructor": "041"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "80",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "V456",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "81",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON341",
+        "instructor": "042"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "81",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "W567",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "69",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON373",
+        "instructor": "043"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "82",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "X678",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "60",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON373",
+        "instructor": "044"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "83",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "Y789",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "73",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SOCI303",
+        "instructor": "061"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "84",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "Z890",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "89",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SOCI303",
+        "instructor": "062"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "85",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "A234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PSYC203",
+        "instructor": "016"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "86",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Spr2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "B345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "67",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PSYC203",
+        "instructor": "017"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "87",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "C456",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "72",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON341",
+        "instructor": "041"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "88",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "D567",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "56",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON341",
+        "instructor": "042"
+      }
+    },{
+      "model": "api.Lecture",
+      "pk": "89",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "E678",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "64",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON373",
+        "instructor": "043"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "90",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "F789",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "70",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SOCI303",
+        "instructor": "061"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "91",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "G890",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "55",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PSYC203",
+        "instructor": "016"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "92",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "H123",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "81",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PSYC203",
+        "instructor": "017"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "93",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "I234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "68",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON341",
+        "instructor": "041"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "94",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Sum2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "J345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "74",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON341",
+        "instructor": "042"
+      }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "95",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "A123",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "64",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PHIL314",
+        "instructor": "061"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "96",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "B234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "72",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PHIL314",
+        "instructor": "062"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "97",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "C345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "58",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SENG300",
+        "instructor": "046"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "98",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "D456",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SENG300",
+        "instructor": "047"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "99",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "E567",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "63",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC413",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "100",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "F678",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "87",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC413",
+        "instructor": "002"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "101",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "G789",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "53",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC449",
+        "instructor": "003"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "102",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "H890",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "66",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC449",
+        "instructor": "004"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "103",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I901",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "89",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "EDUC307",
+        "instructor": "016"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "104",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Fal2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 13.0,
+        "lecture_endtime": 13.83,
+        "lecture_roomnumber": "J012",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "71",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "EDUC307",
+        "instructor": "017"
+      }
+    },
+
+    {
+      "model": "api.Lecture",
+      "pk": "105",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "A123",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "78",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PHYS303",
+        "instructor": "006"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "106",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "B234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "64",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PHYS303",
+        "instructor": "007"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "107",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "C345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "73",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PHYS207",
+        "instructor": "008"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "108",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "D456",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "87",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PHYS207",
+        "instructor": "009"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "109",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "E567",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "56",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGL201",
+        "instructor": "011"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "110",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "F678",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "62",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ENGL201",
+        "instructor": "012"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "111",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "G789",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "81",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC457",
+        "instructor": "003"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "112",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "H890",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "72",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC457",
+        "instructor": "004"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "113",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I123",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "65",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "EDUC309",
+        "instructor": "016"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "114",
+      "fields": {
+        "lecture_id": "L02",
+        "term": "Win2025",
+        "lecture_days": "MWF",
+        "lecture_starttime": 13.0,
+        "lecture_endtime": 13.83,
+        "lecture_roomnumber": "J234",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "89",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "EDUC309",
+        "instructor": "017"
+      }
+    }
+  ]

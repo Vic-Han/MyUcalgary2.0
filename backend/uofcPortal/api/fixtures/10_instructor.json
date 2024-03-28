@@ -1,0 +1,642 @@
+[
+    {
+      "model": "api.Instructor",
+      "pk": "001",
+      "fields": {
+        "instructor_id": "001",
+        "instructor_first_name": "Alice",
+        "instructor_last_name": "Johnson",
+        "department": "Computer Science"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "002",
+      "fields": {
+        "instructor_id": "002",
+        "instructor_first_name": "Bob",
+        "instructor_last_name": "Smith",
+        "department": "Computer Science"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "003",
+      "fields": {
+        "instructor_id": "003",
+        "instructor_first_name": "Carol",
+        "instructor_last_name": "Williams",
+        "department": "Computer Science"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "004",
+      "fields": {
+        "instructor_id": "004",
+        "instructor_first_name": "David",
+        "instructor_last_name": "Brown",
+        "department": "Computer Science"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "005",
+      "fields": {
+        "instructor_id": "005",
+        "instructor_first_name": "Emily",
+        "instructor_last_name": "Jones",
+        "department": "Computer Science"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "006",
+      "fields": {
+        "instructor_id": "006",
+        "instructor_first_name": "Frank",
+        "instructor_last_name": "Davis",
+        "department": "Physics and Astronomy"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "007",
+      "fields": {
+        "instructor_id": "007",
+        "instructor_first_name": "Grace",
+        "instructor_last_name": "Martinez",
+        "department": "Physics and Astronomy"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "008",
+      "fields": {
+        "instructor_id": "008",
+        "instructor_first_name": "Henry",
+        "instructor_last_name": "Anderson",
+        "department": "Physics and Astronomy"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "009",
+      "fields": {
+        "instructor_id": "009",
+        "instructor_first_name": "Ivy",
+        "instructor_last_name": "Garcia",
+        "department": "Physics and Astronomy"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "010",
+      "fields": {
+        "instructor_id": "010",
+        "instructor_first_name": "Jack",
+        "instructor_last_name": "Wilson",
+        "department": "Physics and Astronomy"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "011",
+      "fields": {
+        "instructor_id": "011",
+        "instructor_first_name": "Karen",
+        "instructor_last_name": "Taylor",
+        "department": "English"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "012",
+      "fields": {
+        "instructor_id": "012",
+        "instructor_first_name": "Leo",
+        "instructor_last_name": "Rodriguez",
+        "department": "English"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "013",
+      "fields": {
+        "instructor_id": "013",
+        "instructor_first_name": "Mia",
+        "instructor_last_name": "Hernandez",
+        "department": "English"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "014",
+      "fields": {
+        "instructor_id": "014",
+        "instructor_first_name": "Nathan",
+        "instructor_last_name": "Young",
+        "department": "English"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "015",
+      "fields": {
+        "instructor_id": "015",
+        "instructor_first_name": "Olivia",
+        "instructor_last_name": "King",
+        "department": "English"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "016",
+      "fields": {
+        "instructor_id": "016",
+        "instructor_first_name": "Peter",
+        "instructor_last_name": "Green",
+        "department": "Educational Psychology"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "017",
+      "fields": {
+        "instructor_id": "017",
+        "instructor_first_name": "Queenie",
+        "instructor_last_name": "Campbell",
+        "department": "Educational Psychology"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "018",
+      "fields": {
+        "instructor_id": "018",
+        "instructor_first_name": "Ryan",
+        "instructor_last_name": "Adams",
+        "department": "Educational Psychology"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "019",
+      "fields": {
+        "instructor_id": "019",
+        "instructor_first_name": "Samantha",
+        "instructor_last_name": "Hill",
+        "department": "Educational Psychology"
+      }
+    },
+    {
+      "model": "api.Instructor",
+      "pk": "020",
+      "fields": {
+        "instructor_id": "020",
+        "instructor_first_name": "Thomas",
+        "instructor_last_name": "Baker",
+        "department": "Educational Psychology"
+      }
+    },
+    {
+        "model": "api.Instructor",
+        "pk": "021",
+        "fields": {
+          "instructor_id": "021",
+          "instructor_first_name": "Uma",
+          "instructor_last_name": "Mitchell",
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "022",
+        "fields": {
+          "instructor_id": "022",
+          "instructor_first_name": "Victor",
+          "instructor_last_name": "Lewis",
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "023",
+        "fields": {
+          "instructor_id": "023",
+          "instructor_first_name": "Wendy",
+          "instructor_last_name": "Collins",
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "024",
+        "fields": {
+          "instructor_id": "024",
+          "instructor_first_name": "Xavier",
+          "instructor_last_name": "Gonzalez",
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "025",
+        "fields": {
+          "instructor_id": "025",
+          "instructor_first_name": "Yvonne",
+          "instructor_last_name": "Perez",
+          "department": "Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "026",
+        "fields": {
+          "instructor_id": "026",
+          "instructor_first_name": "Zachary",
+          "instructor_last_name": "Reed",
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "027",
+        "fields": {
+          "instructor_id": "027",
+          "instructor_first_name": "Abigail",
+          "instructor_last_name": "Stewart",
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "028",
+        "fields": {
+          "instructor_id": "028",
+          "instructor_first_name": "Benjamin",
+          "instructor_last_name": "Lee",
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "029",
+        "fields": {
+          "instructor_id": "029",
+          "instructor_first_name": "Charlotte",
+          "instructor_last_name": "Cook",
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "030",
+        "fields": {
+          "instructor_id": "030",
+          "instructor_first_name": "Daniel",
+          "instructor_last_name": "Miller",
+          "department": "Mathematics and Statistics"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "031",
+        "fields": {
+          "instructor_id": "031",
+          "instructor_first_name": "Ella",
+          "instructor_last_name": "Morgan",
+          "department": "Chemical and Petroleum Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "032",
+        "fields": {
+          "instructor_id": "032",
+          "instructor_first_name": "Felix",
+          "instructor_last_name": "Bell",
+          "department": "Chemical and Petroleum Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "033",
+        "fields": {
+          "instructor_id": "033",
+          "instructor_first_name": "Gabrielle",
+          "instructor_last_name": "Diaz",
+          "department": "Chemical and Petroleum Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "034",
+        "fields": {
+          "instructor_id": "034",
+          "instructor_first_name": "Hector",
+          "instructor_last_name": "Ward",
+          "department": "Chemical and Petroleum Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "035",
+        "fields": {
+          "instructor_id": "035",
+          "instructor_first_name": "Isabella",
+          "instructor_last_name": "Cruz",
+          "department": "Chemical and Petroleum Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "036",
+        "fields": {
+          "instructor_id": "036",
+          "instructor_first_name": "Jacob",
+          "instructor_last_name": "Parker",
+          "department": "General Science"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "037",
+        "fields": {
+          "instructor_id": "037",
+          "instructor_first_name": "Kylie",
+          "instructor_last_name": "Wood",
+          "department": "General Science"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "038",
+        "fields": {
+          "instructor_id": "038",
+          "instructor_first_name": "Liam",
+          "instructor_last_name": "Ross",
+          "department": "General Science"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "039",
+        "fields": {
+          "instructor_id": "039",
+          "instructor_first_name": "Madison",
+          "instructor_last_name": "Bennett",
+          "department": "General Science"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "040",
+        "fields": {
+          "instructor_id": "040",
+          "instructor_first_name": "Noah",
+          "instructor_last_name": "Howard",
+          "department": "General Science"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "041",
+        "fields": {
+          "instructor_id": "041",
+          "instructor_first_name": "Oliver",
+          "instructor_last_name": "Bryant",
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "042",
+        "fields": {
+          "instructor_id": "042",
+          "instructor_first_name": "Penelope",
+          "instructor_last_name": "Gray",
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "043",
+        "fields": {
+          "instructor_id": "043",
+          "instructor_first_name": "Quentin",
+          "instructor_last_name": "Wright",
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "044",
+        "fields": {
+          "instructor_id": "044",
+          "instructor_first_name": "Rebecca",
+          "instructor_last_name": "Lopez",
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "045",
+        "fields": {
+          "instructor_id": "045",
+          "instructor_first_name": "Samuel",
+          "instructor_last_name": "Jenkins",
+          "department": "Economics"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "046",
+        "fields": {
+          "instructor_id": "046",
+          "instructor_first_name": "Tara",
+          "instructor_last_name": "Evans",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "047",
+        "fields": {
+          "instructor_id": "047",
+          "instructor_first_name": "Uriel",
+          "instructor_last_name": "Rivera",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "048",
+        "fields": {
+          "instructor_id": "048",
+          "instructor_first_name": "Vanessa",
+          "instructor_last_name": "Gomez",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "049",
+        "fields": {
+          "instructor_id": "049",
+          "instructor_first_name": "William",
+          "instructor_last_name": "Flores",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "050",
+        "fields": {
+          "instructor_id": "050",
+          "instructor_first_name": "Xavier",
+          "instructor_last_name": "Scott",
+          "department": "Software Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "051",
+        "fields": {
+          "instructor_id": "051",
+          "instructor_first_name": "Yolanda",
+          "instructor_last_name": "Parker",
+          "department": "Electrical Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "052",
+        "fields": {
+          "instructor_id": "052",
+          "instructor_first_name": "Zachary",
+          "instructor_last_name": "Young",
+          "department": "Electrical Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "053",
+        "fields": {
+          "instructor_id": "053",
+          "instructor_first_name": "Amelia",
+          "instructor_last_name": "Martinez",
+          "department": "Electrical Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "054",
+        "fields": {
+          "instructor_id": "054",
+          "instructor_first_name": "Brandon",
+          "instructor_last_name": "Gonzalez",
+          "department": "Electrical Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "055",
+        "fields": {
+          "instructor_id": "055",
+          "instructor_first_name": "Catherine",
+          "instructor_last_name": "Hernandez",
+          "department": "Electrical Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "056",
+        "fields": {
+          "instructor_id": "056",
+          "instructor_first_name": "Daniel",
+          "instructor_last_name": "Taylor",
+          "department": "Computer Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "057",
+        "fields": {
+          "instructor_id": "057",
+          "instructor_first_name": "Emily",
+          "instructor_last_name": "Cooper",
+          "department": "Computer Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "058",
+        "fields": {
+          "instructor_id": "058",
+          "instructor_first_name": "Fernando",
+          "instructor_last_name": "Rodriguez",
+          "department": "Computer Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "059",
+        "fields": {
+          "instructor_id": "059",
+          "instructor_first_name": "Grace",
+          "instructor_last_name": "Ramirez",
+          "department": "Computer Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "060",
+        "fields": {
+          "instructor_id": "060",
+          "instructor_first_name": "Henry",
+          "instructor_last_name": "Flores",
+          "department": "Computer Engineering"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "061",
+        "fields": {
+          "instructor_id": "061",
+          "instructor_first_name": "Ari",
+          "instructor_last_name": "Stotle",
+          "department": "Philosophy and Rationalization"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "062",
+        "fields": {
+          "instructor_id": "062",
+          "instructor_first_name": "Soc",
+          "instructor_last_name": "Rates",
+          "department": "Philosophy and Rationalization"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "063",
+        "fields": {
+          "instructor_id": "063",
+          "instructor_first_name": "Pla",
+          "instructor_last_name": "To",
+          "department": "Philosophy and Rationalization"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "064",
+        "fields": {
+          "instructor_id": "064",
+          "instructor_first_name": "Dio",
+          "instructor_last_name": "Genes",
+          "department": "Philosophy and Rationalization"
+        }
+      }
+    ]

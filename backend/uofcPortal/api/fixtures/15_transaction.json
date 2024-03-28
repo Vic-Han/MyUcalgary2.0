@@ -419,7 +419,7 @@
           "student": 1,
           "term": "Fal2022"
         }
-      },,
+      },
       {
         "model": "api.Transaction",
         "pk": 9,
@@ -431,7 +431,7 @@
           "student": 1,
           "term": "Fal2022"
         }
-      }
+      },
       {
         "model": "api.Transaction",
         "pk": 36,

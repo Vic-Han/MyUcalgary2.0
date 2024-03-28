@@ -367,6 +367,55 @@
         "student": 1,
         "lecture": "72"
       }
+    },
+
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 1,
+        "lecture": "73",
+        "tutorial": "73"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 1,
+        "lecture": "74",
+        "tutorial": "74"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 1,
+        "lecture": "75",
+        "tutorial": "75"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 1,
+        "lecture": "76",
+        "tutorial": "76"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 1,
+        "lecture": "77",
+        "tutorial": "77"
+      }
+    },
+    {
+      "model": "api.Enrollment",
+      "fields": {
+        "student": 1,
+        "lecture": "78",
+        "tutorial": "78"
+      }
     }
 ]
   

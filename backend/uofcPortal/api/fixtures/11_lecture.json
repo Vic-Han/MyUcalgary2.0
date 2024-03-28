@@ -1309,5 +1309,115 @@
         "course": "DATA201",
         "instructor": "026"
       }
+    },
+
+    
+    {
+      "model": "api.Lecture",
+      "pk": "73",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC351",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "74",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "J345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC329",
+        "instructor": "002"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "75",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "K345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON349",
+        "instructor": "041"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "76",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "L345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "STAT213",
+        "instructor": "026"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "77",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "M345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "EDUC307",
+        "instructor": "016"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "78",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Win2024",
+        "lecture_days": "MWF",
+        "lecture_starttime": 13.0,
+        "lecture_endtime": 13.83,
+        "lecture_roomnumber": "N345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "SOCI303",
+        "instructor": "064"
+      }
     }
   ]

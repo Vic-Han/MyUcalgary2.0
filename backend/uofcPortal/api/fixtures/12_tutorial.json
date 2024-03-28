@@ -792,5 +792,115 @@
       "course": "ENCM509",
       "instructor": "057"
     }
+  },
+
+    
+  {
+    "model": "api.Tutorial",
+    "pk": "73",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 8.0,
+      "tutorial_endtime": 8.83,
+      "tutorial_roomnumber": "I345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC351",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "74",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "J345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC329",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "75",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "K345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON349",
+      "instructor": "041"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "76",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "L345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "STAT213",
+      "instructor": "026"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "77",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "M345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "EDUC307",
+      "instructor": "016"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "78",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2024",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 13.0,
+      "tutorial_endtime": 13.83,
+      "tutorial_roomnumber": "N345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SOCI303",
+      "instructor": "064"
+    }
   }
 ]

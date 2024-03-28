@@ -598,5 +598,45 @@
           "instructor_last_name": "Flores",
           "department": "Computer Engineering"
         }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "061",
+        "fields": {
+          "instructor_id": "061",
+          "instructor_first_name": "Ari",
+          "instructor_last_name": "Stotle",
+          "department": "Philosophy and Rationalization"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "062",
+        "fields": {
+          "instructor_id": "062",
+          "instructor_first_name": "Soc",
+          "instructor_last_name": "Rates",
+          "department": "Philosophy and Rationalization"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "063",
+        "fields": {
+          "instructor_id": "063",
+          "instructor_first_name": "Pla",
+          "instructor_last_name": "To",
+          "department": "Philosophy and Rationalization"
+        }
+      },
+      {
+        "model": "api.Instructor",
+        "pk": "064",
+        "fields": {
+          "instructor_id": "064",
+          "instructor_first_name": "Dio",
+          "instructor_last_name": "Genes",
+          "department": "Philosophy and Rationalization"
+        }
       }
     ]

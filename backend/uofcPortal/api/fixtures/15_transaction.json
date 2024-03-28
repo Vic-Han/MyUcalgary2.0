@@ -17,7 +17,7 @@
         "fields": {
           "transaction_name": "Alexander Rutherford",
           "transaction_posted_date": "2018-09-01",
-          "transaction_type": "Scolarship",
+          "transaction_type": "scholarship",
           "transaction_amount": 2500.00,
           "student": 2,
           "term": "Fal2018"

@@ -792,5 +792,295 @@
       "course": "ENCM509",
       "instructor": "057"
     }
+  },
+
+  {
+    "model": "api.Tutorial",
+    "pk": "57",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Fal2022",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 8.0,
+      "tutorial_endtime": 8.83,
+      "tutorial_roomnumber": "K123",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "79",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC231",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "58",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Fal2022",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "B564",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "65",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON201",
+      "instructor": "042"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "59",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Fal2022",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "G345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "85",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "MATH211",
+      "instructor": "027"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "60",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Fal2022",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "H345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "85",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PSYC203",
+      "instructor": "016"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "61",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Fal2022",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "I345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "MATH265",
+      "instructor": "028"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "62",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2023",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 8.0,
+      "tutorial_endtime": 8.83,
+      "tutorial_roomnumber": "K123",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "79",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC251",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "63",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2023",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 9.0,
+      "tutorial_endtime": 9.83,
+      "tutorial_roomnumber": "B564",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "65",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "MATH267",
+      "instructor": "026"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "64",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2023",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 10.0,
+      "tutorial_endtime": 10.83,
+      "tutorial_roomnumber": "G345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "85",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PHIL279",
+      "instructor": "061"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "65",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2023",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 11.0,
+      "tutorial_endtime": 11.83,
+      "tutorial_roomnumber": "H345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "85",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "ECON203",
+      "instructor": "041"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "66",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Win2023",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "I345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC233",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "67",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Spr2023",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "I345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC355",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "68",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Sum2023",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "I345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "PSYC201",
+      "instructor": "016"
+    }
+  },
+
+  {
+    "model": "api.Tutorial",
+    "pk": "69",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Fal2023",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "I345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC331",
+      "instructor": "001"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "70",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Fal2023",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "I345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "CPSC359",
+      "instructor": "002"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "71",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Fal2023",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "I345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "SOCI201",
+      "instructor": "062"
+    }
+  },
+  {
+    "model": "api.Tutorial",
+    "pk": "72",
+    "fields": {
+      "tutorial_id": "L01",
+      "term": "Fal2023",
+      "tutorial_days": "TR",
+      "tutorial_starttime": 12.0,
+      "tutorial_endtime": 12.83,
+      "tutorial_roomnumber": "I345",
+      "tutorial_totalseats": "100",
+      "tutorial_filledseats": "75",
+      "tutorial_totalwaitlist": "10",
+      "tutorial_filledwaitlist": "0",
+      "course": "DATA201",
+      "instructor": "026"
+    }
   }
 ]

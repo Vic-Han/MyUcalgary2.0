@@ -1015,5 +1015,100 @@
         "course": "ENCM509",
         "instructor": "057"
       }
+    },
+
+
+
+
+
+    {
+      "model": "api.Lecture",
+      "pk": "57",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2022",
+        "lecture_days": "MWF",
+        "lecture_starttime": 8.0,
+        "lecture_endtime": 8.83,
+        "lecture_roomnumber": "K123",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "79",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "CPSC231",
+        "instructor": "001"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "58",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2022",
+        "lecture_days": "MWF",
+        "lecture_starttime": 9.0,
+        "lecture_endtime": 9.83,
+        "lecture_roomnumber": "B564",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "65",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "ECON201",
+        "instructor": "042"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "59",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2022",
+        "lecture_days": "MWF",
+        "lecture_starttime": 10.0,
+        "lecture_endtime": 10.83,
+        "lecture_roomnumber": "G345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "85",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH211",
+        "instructor": "027"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "60",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2022",
+        "lecture_days": "MWF",
+        "lecture_starttime": 11.0,
+        "lecture_endtime": 11.83,
+        "lecture_roomnumber": "H345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "85",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "PSYC203",
+        "instructor": "016"
+      }
+    },
+    {
+      "model": "api.Lecture",
+      "pk": "61",
+      "fields": {
+        "lecture_id": "L01",
+        "term": "Fal2022",
+        "lecture_days": "MWF",
+        "lecture_starttime": 12.0,
+        "lecture_endtime": 12.83,
+        "lecture_roomnumber": "I345",
+        "lecture_totalseats": "100",
+        "lecture_filledseats": "75",
+        "lecture_totalwaitlist": "10",
+        "lecture_filledwaitlist": "0",
+        "course": "MATH265",
+        "instructor": "028"
+      }
     }
   ]

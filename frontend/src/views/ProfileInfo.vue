@@ -522,7 +522,6 @@ const emailValid = (email) =>{
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const data = await response.json();
-
                     this.User = {
                         First: data.personal_info.firstname,
                         Last: data.personal_info.lastname,
@@ -555,29 +554,36 @@ const emailValid = (email) =>{
                         Preferred: data.email.preferred
                     };
 
-                    this.EmergencyContacts = [
-                        {
+                    this.EmergencyContacts = [];
+
+                    if(data.emergency_contact.id1 != null) {
+                        this.EmergencyContacts.push({
                             id: data.emergency_contact.id1,
                             Name: data.emergency_contact.name1,
                             Relationship: data.emergency_contact.relation1,
                             Phone: data.emergency_contact.phone1,
                             Primary: data.emergency_contact.preferred === "1"
-                        },
-                        {
+                        })
+                    }
+                    if(data.emergency_contact.id2 != null) {
+                        this.EmergencyContacts.push({
                             id: data.emergency_contact.id2,
                             Name: data.emergency_contact.name2,
                             Relationship: data.emergency_contact.relation2,
                             Phone: data.emergency_contact.phone2,
                             Primary: data.emergency_contact.preferred === "2"
-                        },
-                        {
+                        })
+                    }
+                    if(data.emergency_contact.id3 != null) {
+                        this.EmergencyContacts.push({
                             id: data.emergency_contact.id3,
                             Name: data.emergency_contact.name3,
                             Relationship: data.emergency_contact.relation3,
                             Phone: data.emergency_contact.phone3,
                             Primary: data.emergency_contact.preferred === "3"
-                        }
-                    ];
+                        })
+                    }
+
                 } catch (error) {
                     console.error('There was a problem with the fetch operation:', error);
                 }

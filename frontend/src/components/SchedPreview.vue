@@ -41,7 +41,7 @@
         <div class = "absolute w-sched" v-for="(section,index) in schedule" :key="index">
             <div v-for="(day,dayNo) in section.Lecture.days" 
             :key="dayNo" :class="classStyles(day,section.Lecture.start,section.Lecture.end,index)">
-            {{ section.courseCode + ' ' + section.Lecture.LectureNO }}
+            {{ section.courseCode + ' ' + section.Lecture.LectureNO  }}
             </div>
             <div class = "absolute w-sched" v-if="section.Tutorial">
                 <div v-for="(day,dayNo) in section.Tutorial.days" :key ="dayNo" 
@@ -121,7 +121,9 @@ const classColor= {
                 style += topPos[starttime] + ' '
                 const time = endtime-starttime;
                 style += height[Number(time.toFixed(2))] + ' ';
-                style += classColor[classno] + ' ';
+                style += classColor[classno%10] + ' ';
+                console.log(classno);
+                console.log(classColor[classno%10]);
                 // // Hi Callum I was so closeee to figuring this out but whatever. Comment out the 3 lines below
                 // style += ' hover:after:bg-white-100 hover:after:text-black-100 hover:after:rounded-lg hover:after:shadow-lg' 
                 // + ' hover:after:p-4 hover:after:absolute hover:after:translate-x-5 hover:after:-translate-y-6 '

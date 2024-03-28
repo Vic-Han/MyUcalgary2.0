@@ -2,6 +2,18 @@
 <template>
     <AdvancedSearch v-if="advancedSearchOpen" @close="advancedSearchOpen = false" @applyadvancedsearch="applyAdvancedFilters"></AdvancedSearch>
     <AcademicSchedulePopup v-if="academicRequirementsPopup" :requirements="degreeRequirements" @close="academicRequirementsPopup = false" @selectcourse="addCourseFromRequirements"></AcademicSchedulePopup>
+    <CourseEnrollmentPopup v-if="enrollPopup " :courses="schedCourses" :term="selectedTerm.term_key" @close="enrollPopup = false" @enroll="getTermInfo"></CourseEnrollmentPopup>
+    <div v-if="dropCoursePopup">
+        <div class="bg-black-100 fixed opacity-50 w-screen h-screen z-40"></div>
+        <div class="fixed w-1/3 h-auto max-h-3/4 overflow-y-auto px-4 pb-4 bg-white-100 rounded-xl left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 shadow-lg z-50">
+            <div class="italic font-semibold text-xl py-10">Are you sure you want to drop {{ selectedDroppedCourse }}?</div>
+            <div class="flex flex-row px-36 pb-5">
+                <div class="border-2 cursor-pointer font-semibold w-20 pt-1.5 h-10 mx-auto border-red-100 text-red-100 rounded-lg hover:bg-red-100 hover:text-white-100" @click="dropCourse">Yes</div>
+                <div class="border-2 cursor-pointer font-semibold w-20 pt-1.5 h-10 mx-auto border-red-100 text-red-100 rounded-lg hover:bg-red-100 hover:text-white-100" @click="dropCoursePopup = false">Cancel</div>
+            </div>
+                
+        </div>
+    </div>
     <div class="flex flex-row">
         <div class=" px-2 flex flex-col h-screen box-content bg-white-100 shadow-xl">
             <a href="https://www.ucalgary.ca/" target="_blank">
@@ -33,13 +45,13 @@
             <div class="bg-white-100 rounded-xl shadow-xl m-4">
                 <div class="flex flex-row relative left-1/2 -translate-x-1/2 w-fit my-5">
                     <div class="text-5xl mx-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <svg @click="prevTerm" xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 rotate-90 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
                         </svg>
                     </div> 
-                    <div class="text-5xl pt-4 mx-40 text-grey-200">Fall 2024</div>
+                    <div class="text-5xl pt-4 mx-40 text-grey-200">{{convertTerm(selectedTerm.term_key)}}</div>
                     <div class="text-5xl mx-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 -rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <svg @click="nextTerm" xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 -rotate-90 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
                         </svg>
                     </div>
@@ -47,12 +59,12 @@
                 </div>
                 <div class="flex flex-row relative left-1/2 -translate-x-1/2 w-fit mb-5">
                     <div class="text-3xl mx-4 mt-4" @click="resetSelectedToZero">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M240-240v-480h80v480h-80Zm440 0L440-480l240-240 56 56-184 184 184 184-56 56Z"/>
                         </svg>
                     </div>
                     <div class="text-3xl mx-4 mt-4" @click="decrementSchedIndex">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 rotate-90 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
                         </svg>
                     </div>
@@ -61,19 +73,19 @@
                         <div class="text-3xl text-grey-200"> {{ schedules.length > 0 ?  (schedIndex + 1)+ ' of ' + schedules.length : '0 of 0'}} </div>
                     </div>
                     <div class="text-3xl mx-4 mt-4" @click="incrementSchedIndex">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 -rotate-90 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 -rotate-90 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
                         </svg>
                     </div>
                     <div class="text-3xl mx-4 mt-4" @click="setSelectedToLast">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 rotate-180 fill-grey-200 hover:fill-red-100" viewBox="0 -960 960 960">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 rotate-180 fill-grey-200 hover:fill-red-100 cursor-pointer" viewBox="0 -960 960 960">
                             <path d="M240-240v-480h80v480h-80Zm440 0L440-480l240-240 56 56-184 184 184 184-56 56Z"/>
                         </svg>
                     </div>
                 </div>
             </div>
             <div class="grid grid-cols-11 h-200">
-                <div class="col-span-4 flex flex-col px-10 h-full bg-white-100 rounded-xl shadow-xl mb-4 mx-4 p-4">
+                <div class="col-span-4 flex flex-col px-10 h-full max-h-full overflow-y-auto bg-white-100 rounded-xl shadow-xl mb-4 mx-4 p-4">
                     <div v-if="schedCourses.length+cartCourses.length == 0" class="text-grey-200 text-2xl font-semibold pt-20"> Add Courses to Your Schedule by Searching for a Course </div>
                     <div v-for="(course,index) in schedCourses" :key="index">
                         <SelectedCourse 
@@ -115,6 +127,7 @@ import CoursePreview from '@/components/CoursePreview.vue'
 import SelectedCourse from '@/components/SelectedCourse.vue'
 import AdvancedSearch from '@/components/AdvancedSearch.vue'
 import AcademicSchedulePopup from '@/components/AcademicSchedulePopup.vue'
+import CourseEnrollmentPopup from '@/components/CourseEnrollmentPopup.vue'
 import data from './SB.json'
 let allCourses = []
 const courseCode = (course, filters) =>{
@@ -170,7 +183,6 @@ const createLecInfo = (course, index) =>{
                             }
                         }
 }
-//const worker = new Worker('./ScheduleWorker.js')
     export default{
         name : 'SchedBuilder',
         emits: ['hide-navbar'],
@@ -179,14 +191,15 @@ const createLecInfo = (course, index) =>{
             CoursePreview,
             SelectedCourse,
             AdvancedSearch,
-            AcademicSchedulePopup
+            AcademicSchedulePopup,
+            CourseEnrollmentPopup
         },
         data : () => {
             return {
                 backHover: false,
                 allInfo: {
                 },
-                selectedTerm: '',
+                selectedTerm: 'Fal2023',
                 courseSearchTerm: '',
                 searchedCourses: [],
                 
@@ -201,21 +214,14 @@ const createLecInfo = (course, index) =>{
                 schedsLoading: false,
                 advancedFilters: {
                 },
-                academicRequirementsPopup: false
+                academicRequirementsPopup: false,
+                selectedDroppedCourse : '',
+                dropCoursePopup: false,
+                enrollPopup: false,
             }
         },
         created(){
             this.$emit('hide-navbar')
-            const serverPath   = this.$store.state.serverPath
-            const apiPath = '/api/schedule-builder/'
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${this.$cookies.get('auth-token')}`
-            }
-
-         
-
-
             const backendPayload = data
             this.allInfo = backendPayload
             //allCourses = this.allInfo.allCourses
@@ -225,53 +231,106 @@ const createLecInfo = (course, index) =>{
                 item.selected = 0;
             })
             this.worker = new Worker('./ScheduleWorker.js')
-
-            this.$http.get(serverPath + apiPath, {headers: headers}).then(res =>{
-                allCourses = res.data.allCourses 
-                this.degreeRequirements = res.data.academicRequirements
-                console.log(res.data.currentSchedule)
-                const currentSchedule = res.data.currentSchedule
-                for(const [key, value] of Object.entries(currentSchedule)){
-                    console.log(key,value)
-                    for(let i = 0; i < allCourses.length; i++){
-                        if(allCourses[i].name == key){
-                            console.log("Hi")
-                            
-                            if(value.Tutorial){
-                                for(let j = 0; j < allCourses[i].combinations.length; j++){
-                                    if(allCourses[i].combinations[j][0] == value.Lecture && allCourses[i].combinations[j][1] == value.Tutorial){
-                                        allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
-                                        allCourses[i].selectedIndices[j] = true
-                                        allCourses[i].selected = j
-                                        allCourses[i].included='sched'
-                                        break
-                                    }
-                                }
-                            }
-                            else{
-                                for(let j = 0; j < allCourses[i].combinations.length; j++){
-                                    if(allCourses[i].combinations[j][0] == value.Lecture){
-                                        allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
-                                        allCourses[i].selectedIndices[j] = true
-                                        allCourses[i].selected = j
-                                        allCourses[i].included = 'sched'
-                                        break
-                                    }
-                                }
-                            }
-                            console.log(allCourses[i])
-                            const newSched = [...this.schedCourses, allCourses[i]]
-                            //newSched[newSched.length - 1].selectedIndices = [true]
-                            this.schedCourses = newSched
-                            break
-                        }
-                    }
-                }
-            }).catch(err => {
-                console.log(err)
-            })
+            //this.selectedTerm = 'Fal2023'
+            //this.getTermInfo()
+            this.getTerms()
         },
         methods:{
+            nextTerm(){
+                const index = this.terms.findIndex((term) => {
+                    return term.term_key == this.selectedTerm.term_key
+                })
+                if(index < this.terms.length - 1){
+                    this.selectedTerm = this.terms[index + 1]
+                }
+            },
+            prevTerm(){
+                const index = this.terms.findIndex((term) => {
+                    return term.term_key == this.selectedTerm.term_key
+                })
+                if(index > 0){
+                    this.selectedTerm = this.terms[index - 1]
+                }
+            },
+            async getTerms(){
+                const serverPath = this.$store.state.serverPath
+                const apiPath = '/api/terms/'
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization' : `Token ${this.$cookies.get("auth-token")}`
+                }
+                try{
+                    const res = await this.$http.get(`${serverPath}${apiPath}`, {headers: headers})
+                    console.log(res.data)
+                    const date = new Date('2023-09-01')
+                    this.terms = res.data.filter((term) => {
+                        return new Date(term.end_date) > date
+                    })
+                    this.selectedTerm = this.terms[0]
+                }
+                catch(err){
+                    console.log(err)
+                }
+            },
+            async getTermInfo(){
+                const serverPath   = this.$store.state.serverPath
+                const apiPath = '/api/schedule-builder/'
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${this.$cookies.get('auth-token')}`
+                }
+                
+                console.log(`${serverPath}${apiPath}${encodeURIComponent(this.selectedTerm.term_key)}`, headers)
+                this.$http.get(`${serverPath}${apiPath}${encodeURIComponent(this.selectedTerm.term_key)}`, {headers: headers}).then(res =>{
+                    allCourses = res.data.allCourses
+                    this.courseSearchTerm = '' 
+                    this.searchedCourses = []
+                    this.schedCourses = []
+                    this.cartCourses = []
+                    this.degreeRequirements = res.data.academicRequirements
+                    console.log(res.data)
+                    const currentSchedule = res.data.currentSchedule
+                    for(const [key, value] of Object.entries(currentSchedule)){
+                        console.log(key,value)
+                        for(let i = 0; i < allCourses.length; i++){
+                            if(allCourses[i].name == key){
+                                console.log("Hi")
+                                
+                                if(value.Tutorial){
+                                    for(let j = 0; j < allCourses[i].combinations.length; j++){
+                                        if(allCourses[i].combinations[j][0] == value.Lecture && allCourses[i].combinations[j][1] == value.Tutorial){
+                                            allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
+                                            allCourses[i].selectedIndices[j] = true
+                                            allCourses[i].selected = j
+                                            allCourses[i].included= 'sched'
+                                            allCourses[i].enrolled = value
+                                            break
+                                        }
+                                    }
+                                }
+                                else{
+                                    for(let j = 0; j < allCourses[i].combinations.length; j++){
+                                        if(allCourses[i].combinations[j][0] == value.Lecture){
+                                            allCourses[i].selectedIndices = Array(allCourses[i].combinations.length).fill(false)
+                                            allCourses[i].selectedIndices[j] = true
+                                            allCourses[i].selected = j
+                                            allCourses[i].included = 'sched'
+                                            allCourses[i].enrolled = value
+                                            break
+                                        }
+                                    }
+                                }
+                                console.log(allCourses[i])
+                                const newSched = [...this.schedCourses, allCourses[i]]
+                                this.schedCourses = newSched
+                                break
+                            }
+                        }
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+            },
             searchResults(){
                 this.searchedCourses = []
                 const term = this.courseSearchTerm.toLowerCase()
@@ -332,6 +391,20 @@ const createLecInfo = (course, index) =>{
                 }
             },
             removeCourseFromSched(courseName){    
+                for(let i = 0; i < this.schedCourses.length && !this.dropCoursePopup; i++){
+                    if(this.schedCourses[i].name == courseName && this.schedCourses[i].enrolled){
+                        this.selectedDroppedCourse = courseName
+                        this.dropCoursePopup = true
+                        return
+                    }
+                }
+                for(let i = 0; i < this.schedCourses.length; i++){
+                    if(this.schedCourses[i].name == courseName){
+                        delete this.schedCourses[i].enrolled
+                        break
+                    }
+                }
+
                 const newSched = this.schedCourses.filter((item) => {
                     return item.name != courseName
                 })
@@ -579,6 +652,25 @@ const createLecInfo = (course, index) =>{
                     }
                 }
             },
+            dropCourse(){
+                const serverPath = this.$store.state.serverPath
+                const apiPath = '/api/schedule-builder/'
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization' : `Token ${this.$cookies.get("auth-token")}`
+                }
+                this.$http.delete(`${serverPath}${apiPath}${encodeURIComponent(this.selectedTerm.term_key)}/${encodeURIComponent(this.selectedDroppedCourse)}`, {headers: headers}).then(res => {
+                    console.log("fucks" , res)
+
+                    this.removeCourseFromSched(this.selectedDroppedCourse)
+                    this.dropCoursePopup = false
+
+                    this.selectedDroppedCourse = ''
+                    console.log(this.dropCoursePopup , this.schedCourses)
+                }).catch(err => {
+                    console.log(err)
+                })
+            },
             applyAdvancedFilters(filters){
                 this.advancedSearchOpen = false
                 
@@ -617,8 +709,33 @@ const createLecInfo = (course, index) =>{
                 })
             },
             getSchedule(){
-                console.log('getting schedule')
+                this.enrollPopup = true
+            },
+            convertTerm(term){
+                if(!term){
+                    return ''
+                }
+                const conv = {
+                    'Fal' : 'Fall ',
+                    'Win' : 'Winter ',
+                    'Spr' : 'Spring ',
+                    'Sum' : 'Summer '
+                }
+                let first = ""
+                first += term[0]
+                first += term[1]
+
+                first += term[2]
+                let second = ''
+                second += term[3]
+                second += term[4]
+                second += term[5]
+                second += term[6]
+                
+                return conv[first] + second
+                //return term
             }
+              
 
         },
         computed:{
@@ -648,6 +765,12 @@ const createLecInfo = (course, index) =>{
                         this.schedCourses[i].selected = this.schedules[this.schedIndex][i]
                     }
                 }
+            },
+            selectedTerm:{
+                handler(){
+                    this.getTermInfo()
+                },
+                deep: true
             }
 
 

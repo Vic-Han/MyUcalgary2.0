@@ -117,13 +117,12 @@ const classColor= {
             classStyles(day,starttime,endtime,classno){
                 let style = 'absolute ';
                 style += leftPos[day] + ' ';
-                style += 'w-36 box-content p-2 rounded-sm opacity-80 z-30 ';
+                style += 'w-36 box-content p-2 rounded-sm opacity-80 z-30 '
                 style += topPos[starttime] + ' '
                 const time = endtime-starttime;
-                style += height[Number(time.toFixed(2))] + ' ';
-                style += classColor[classno%10] + ' ';
-                console.log(classno);
-                console.log(classColor[classno%10]);
+                style += height[Number(time.toFixed(2))] + ' '
+                style += classColor[classno%10] + ' '
+
                 // // Hi Callum I was so closeee to figuring this out but whatever. Comment out the 3 lines below
                 // style += ' hover:after:bg-white-100 hover:after:text-black-100 hover:after:rounded-lg hover:after:shadow-lg' 
                 // + ' hover:after:p-4 hover:after:absolute hover:after:translate-x-5 hover:after:-translate-y-6 '

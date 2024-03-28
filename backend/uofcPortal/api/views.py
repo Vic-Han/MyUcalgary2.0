@@ -549,8 +549,9 @@ class DashboardView(APIView, GradeMixins):
                 enrollment_data = {
                     
                 }
-                lecture = Lecture.objects.get(lecture_id=enrollment.lecture.lecture_id , term=term)
-                tutorial = Tutorial.objects.get(tutorial_id=enrollment.tutorial.tutorial_id,  term=term)
+                lecture = Lecture.objects.get(pk=enrollment.lecture.pk , term=term)
+        
+                tutorial = Tutorial.objects.get(pk=enrollment.tutorial.pk,  term=term)
                 lectureInfo = {
                     "LectureNO": lecture.lecture_id,
                     "days": lecture.lecture_days,
@@ -559,6 +560,7 @@ class DashboardView(APIView, GradeMixins):
                     "roomno": lecture.lecture_roomnumber,
 
                 }
+                
                 enrollment_data["Lecture"] = lectureInfo
                 enrollment_data["courseCode"] = enrollment.lecture.course.course_code
                 enrollment_data["courseTitle"] = enrollment.lecture.course.course_title

@@ -1,7 +1,7 @@
 <!-- This is the Profile Info component that toggles when the route is set to profile -->
 <template>
     <div class="bg-grey-100 shadow-inner h-fit">
-        <div class="grid grid-rows-10 grid-cols-12  w-full gap-4 pt-5 pb-4 px-4">
+        <div class="grid grid-rows-10 grid-cols-12  w-full gap-4 pt-2 pb-2 px-2">
             <div class="row-span-3 col-span-5 bg-white-100 w-full  h-56 rounded-lg shadow-xl">
                 <h2 class="relative w-fit mx-4 pt-4 border-b-4 border-yellow-400 font-bold text-xl">Personal Info</h2>
                 <div class="pt-4 pb-2 px-4 text-lg">
@@ -522,7 +522,6 @@ const emailValid = (email) =>{
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const data = await response.json();
-
                     this.User = {
                         First: data.personal_info.firstname,
                         Last: data.personal_info.lastname,
@@ -555,29 +554,36 @@ const emailValid = (email) =>{
                         Preferred: data.email.preferred
                     };
 
-                    this.EmergencyContacts = [
-                        {
+                    this.EmergencyContacts = [];
+
+                    if(data.emergency_contact.id1 != null) {
+                        this.EmergencyContacts.push({
                             id: data.emergency_contact.id1,
                             Name: data.emergency_contact.name1,
                             Relationship: data.emergency_contact.relation1,
                             Phone: data.emergency_contact.phone1,
                             Primary: data.emergency_contact.preferred === "1"
-                        },
-                        {
+                        })
+                    }
+                    if(data.emergency_contact.id2 != null) {
+                        this.EmergencyContacts.push({
                             id: data.emergency_contact.id2,
                             Name: data.emergency_contact.name2,
                             Relationship: data.emergency_contact.relation2,
                             Phone: data.emergency_contact.phone2,
                             Primary: data.emergency_contact.preferred === "2"
-                        },
-                        {
+                        })
+                    }
+                    if(data.emergency_contact.id3 != null) {
+                        this.EmergencyContacts.push({
                             id: data.emergency_contact.id3,
                             Name: data.emergency_contact.name3,
                             Relationship: data.emergency_contact.relation3,
                             Phone: data.emergency_contact.phone3,
                             Primary: data.emergency_contact.preferred === "3"
-                        }
-                    ];
+                        })
+                    }
+
                 } catch (error) {
                     console.error('There was a problem with the fetch operation:', error);
                 }

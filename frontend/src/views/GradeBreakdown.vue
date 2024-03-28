@@ -6,24 +6,23 @@
           Cumulative GPA
         </div>
         <div class="rounded-full w-80 h-80 flex items-center justify-center my-7 mx-8 flex-col relative border-8" :class="gpaColours(overallLetterGrade)" >
-          <span class="text-8xl font-bold my-4" :class="gpaText(overallLetterGrade)" >{{overallGPA}}</span>
+          <span class="text-8xl font-bold my-4" :class="gpaText(overallLetterGrade)" >{{overallGPA.toFixed(2)}}</span>
           <span class="text-5xl font-bold" :class="gpaText(overallLetterGrade)">{{overallLetterGrade}}</span>
         </div>
        
       </div>
-      <div class="flex flex-col rounded-xl shadow-xl py-12 px-8 text-center bg-white-100 m-5">
+      <div class="flex flex-col h-72 rounded-xl shadow-xl py-12 px-8 text-center bg-white-100 mx-5 mb-5 mt-8">
         <div class="font-bold my-4 text-base leading-relaxed">Level: {{currentStudentInfo.level}}</div>
         <div class="text-base text-grey-200 leading-normal my-3 ">Plan: {{ currentStudentInfo.plan }}</div>
         <div class="text-grey-200 my-3"> Program: {{ currentStudentInfo.program }} </div>
-        <div class="text-grey-200 my-3"> Keep This here until you find a way to make the height identical </div>
       </div>
     </div>
     <div class="bg-white-100 rounded-xl shadow-2xl h-fit mx-1 my-5 px-4 py-1 flex flex-col">
-      <select v-model="selectedOption" class=" relative left-2/3 w-60 mr-40 rounded-lg border-2 border-grey-200 focus:border-blue-500 py-2 px-4 m-3">
+      <select v-model="selectedOption" class=" relative left-2/3 w-64 mr-40 rounded-lg border-2 border-grey-200 focus:border-blue-500 py-2 px-4 m-3">
         <option class="selected:bg-red-100" v-for="(value, key) in termViews" :key="key">{{ key }}</option>
       </select>
       <div v-for="(value, key) in termViews[selectedOption]" :key="key" class="my-5">
-        <GradePreview :term="key" :average="value.TermGPA" :letter="value.TermLetterGrade"
+        <GradePreview :term="key" :average="value.TermGPA.toFixed(2)" :letter="value.TermLetterGrade"
           :courses="value.courses" :year="value.Level" :unitsEnrolled="value.UnitsEnrolled"
           :plan="value.Plan" :program="value.Program"></GradePreview>
       </div>

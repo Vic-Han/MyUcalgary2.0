@@ -98,7 +98,7 @@ import Data from './SampleSched.json'
                     console.log(data)
                     for(const [key,value] of Object.entries(data.grades)){
                         this.GradePreview.term = key
-                        this.GradePreview.TermGPA = value.TermGPA
+                        this.GradePreview.TermGPA = value.TermGPA.toFixed(2)
                         this.GradePreview.TermLetterGrade = value.TermLetterGrade
                         this.GradePreview.courses = value.courses
                     }

@@ -406,5 +406,77 @@
           "student": 2,
           "term": "Win2024"
         }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 35,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2022-09-01",
+          "transaction_type": "fee",
+          "transaction_amount": -3749,
+          "student": 1,
+          "term": "Fal2022"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 36,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2023-01-01",
+          "transaction_type": "fee",
+          "transaction_amount": -3229,
+          "student": 1,
+          "term": "Win2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 37,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2023-05-01",
+          "transaction_type": "fee",
+          "transaction_amount": -912,
+          "student": 1,
+          "term": "Spr2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 38,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2023-07-01",
+          "transaction_type": "fee",
+          "transaction_amount": -863,
+          "student": 1,
+          "term": "Sum2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 39,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2023-09-01",
+          "transaction_type": "fee",
+          "transaction_amount": -3443,
+          "student": 1,
+          "term": "Fal2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 40,
+        "fields": {
+          "transaction_name": "Course Fees",
+          "transaction_posted_date": "2024-01-01",
+          "transaction_type": "fee",
+          "transaction_amount": -3697,
+          "student": 1,
+          "term": "Win2024"
+        }
       }
 ]

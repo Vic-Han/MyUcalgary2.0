@@ -407,6 +407,7 @@
           "term": "Win2024"
         }
       },
+      
       {
         "model": "api.Transaction",
         "pk": 35,
@@ -415,6 +416,18 @@
           "transaction_posted_date": "2022-09-01",
           "transaction_type": "fee",
           "transaction_amount": -3749,
+          "student": 1,
+          "term": "Fal2022"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 9,
+        "fields": {
+          "transaction_name": "Alexander Rutherford",
+          "transaction_posted_date": "2022-09-04",
+          "transaction_type": "scholarship",
+          "transaction_amount": 2500.00,
           "student": 1,
           "term": "Fal2022"
         }
@@ -475,6 +488,79 @@
           "transaction_posted_date": "2024-01-01",
           "transaction_type": "fee",
           "transaction_amount": -3697,
+          "student": 1,
+          "term": "Win2024"
+        }
+      },
+      
+      {
+        "model": "api.Transaction",
+        "pk": 41,
+        "fields": {
+          "transaction_name": "BMO Direct Deposit",
+          "transaction_posted_date": "2022-09-26",
+          "transaction_type": "payment",
+          "transaction_amount": 1249,
+          "student": 1,
+          "term": "Fal2022"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 42,
+        "fields": {
+          "transaction_name": "BMO Direct Deposit",
+          "transaction_posted_date": "2023-01-17",
+          "transaction_type": "payment",
+          "transaction_amount": 3229,
+          "student": 1,
+          "term": "Win2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 43,
+        "fields": {
+          "transaction_name": "BMO Direct Deposit",
+          "transaction_posted_date": "2023-05-13",
+          "transaction_type": "payment",
+          "transaction_amount": 912,
+          "student": 1,
+          "term": "Spr2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 44,
+        "fields": {
+          "transaction_name": "BMO Direct Deposit",
+          "transaction_posted_date": "2023-07-22",
+          "transaction_type": "payment",
+          "transaction_amount": 863,
+          "student": 1,
+          "term": "Sum2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 45,
+        "fields": {
+          "transaction_name": "BMO Direct Deposits",
+          "transaction_posted_date": "2023-09-18",
+          "transaction_type": "payment",
+          "transaction_amount": 3443,
+          "student": 1,
+          "term": "Fal2023"
+        }
+      },
+      {
+        "model": "api.Transaction",
+        "pk": 46,
+        "fields": {
+          "transaction_name": "BMO Direct Deposit",
+          "transaction_posted_date": "2024-01-24",
+          "transaction_type": "payment",
+          "transaction_amount": 3697,
           "student": 1,
           "term": "Win2024"
         }

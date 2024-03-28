@@ -271,7 +271,7 @@ class StudentApplicationsViewSet(APIView):
                 "minor": application.minor,
                 "concentration": application.concentration if application.concentration else "none",    
             }
-            for application in applications.filter(app_type="undergrad")
+            for application in applications.filter(app_type="Undergrad")
         ]       
 
         graduate_applications = [
@@ -283,7 +283,7 @@ class StudentApplicationsViewSet(APIView):
                 "Advisor": application.advisor, 
                 "status": application.application_status
             }
-            for application in applications.filter(app_type="grad")
+            for application in applications.filter(app_type="Graduate")
         ]
 
         # Mockup for scholarships
@@ -295,7 +295,7 @@ class StudentApplicationsViewSet(APIView):
               
                 "status": application.application_status
             }
-            for application in applications.filter(app_type="scholarship")
+            for application in applications.filter(app_type="Scholarship")
         ]
         awards = [
             {

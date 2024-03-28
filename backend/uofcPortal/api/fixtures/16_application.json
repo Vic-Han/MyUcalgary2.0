@@ -1,0 +1,92 @@
+[
+    {
+        "model": "api.StudentApplications",
+        "fields": {
+          "application_status": "Accepted",
+          "student": 1,
+          "program":"2",
+          "major": "Computer Science",
+          "minor": "Data Science",
+          "concentration": "None",
+          "advisor": null,
+          "app_type": "Undergrad",
+          "scholarship_name": null,
+          "scholarship_amount": null
+        }
+      },
+      {
+        "model": "api.StudentApplications",
+        "fields": {
+          "application_status": "Accepted",
+          "student": 2,
+          "program":"1",
+          "major": "Software Engineering",
+          "minor": "None",
+          "concentration": "None",
+          "advisor": null,
+          "app_type": "Undergrad",
+          "scholarship_name": null,
+          "scholarship_amount": null
+        }
+      },
+      {
+        "model": "api.StudentApplications",
+        "fields": {
+          "application_status": "Accepted",
+          "student": 2,
+          "program": null,
+          "major": null,
+          "minor": null,
+          "concentration": null,
+          "advisor": null,
+          "app_type": "award",
+          "scholarship_name": "Alexander Rutherford",
+          "scholarship_amount": 2500
+        }
+      },
+      {
+        "model": "api.StudentApplications",
+        "fields": {
+          "application_status": "Accepted",
+          "student": 1,
+          "program": null,
+          "major": null,
+          "minor": null,
+          "concentration": null,
+          "advisor": null,
+          "app_type": "award",
+          "scholarship_name": "Alexander Rutherford",
+          "scholarship_amount": 2500
+        }
+      },
+      {
+        "model": "api.StudentApplications",
+        "fields": {
+          "application_status": "Rejected",
+          "student": 1,
+          "program": null,
+          "major": null,
+          "minor": null,
+          "concentration": null,
+          "advisor": null,
+          "app_type": "Scholarship",
+          "scholarship_name": "Ronnie de Souza Santos Scholarship for the Technically Gifted",
+          "scholarship_amount": 9000
+        }
+      },
+      {
+        "model": "api.StudentApplications",
+        "fields": {
+          "application_status": "Under-Review",
+          "student": 2,
+          "program": "1",
+          "major": "Software Engineering",
+          "minor": null,
+          "concentration": "Software Architecture",
+          "advisor": "Ronnie de Souza Santos",
+          "app_type": "Graduate",
+          "scholarship_name": null,
+          "scholarship_amount": null
+        }
+      }
+]

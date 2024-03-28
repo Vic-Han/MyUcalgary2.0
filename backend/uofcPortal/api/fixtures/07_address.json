@@ -1,0 +1,26 @@
+[
+    {
+        "model": "api.Address",
+        "pk": 1,
+        "fields": {
+          "address_street_address": "4019 40st NW ",
+          "address_postal_code": "T2P 4G7",
+          "address_city": "Calgary",
+          "address_province": "Alberta",
+          "address_country": "Canada"
+        }
+      },
+      {
+        "model": "api.Address",
+        "pk": 2,
+        "fields": {
+          "address_street_address": "69 Spooner Street NE",
+          "address_postal_code": "T2P 3T6",
+          "address_city": "Calgary",
+          "address_province": "Alberta",
+          "address_country": "Canada"
+        }
+      }
+
+
+]

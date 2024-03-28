@@ -151,12 +151,11 @@ class TransactionViewSet(viewsets.ModelViewSet):
 
 
 class PersonalInfoView(APIView):
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        # student = get_object_or_404(Student, user=request.user)
-        student = Student.objects.first()
+        student = get_object_or_404(Student, user=request.user)
         personal_info = {
             "firstname": student.student_first_name,
             "lastname": student.student_last_name,
@@ -359,8 +358,6 @@ class StudentGradeView(APIView, GradeMixins):
     permission_classes = (IsAuthenticated,)  # uncomment this when doing authentication
 
     def get(self, request):
-
-        #student = Student.objects.first()  # Replace with authentication late
         student = get_object_or_404(Student, user=request.user)
         enrollments = Enrollment.objects.filter(student=student)
         applications = StudentApplications.objects.filter(student=student).first()
@@ -439,10 +436,8 @@ class StudentFinancesView(APIView):
 
     def get(self, request):
         student = get_object_or_404(Student, user=request.user)
-
-        #student = Student.objects.first()  # Replace with authentication later
-        #if not student:
-        #    return Response({"error": "No student found"}, status=404)
+        if not student:
+            return Response({"error": "No student found"}, status=404)
 
         transactions = Transaction.objects.filter(student=student).order_by('term__term_year', 'term__term_name')
         
@@ -737,7 +732,6 @@ class ScheduleBuilderView(APIView):
         return Response(results)
 
     def get(self, request, term_key, format=None):
-        #student = Student.objects.first()
         student = get_object_or_404(Student, user=request.user)
         if not student:
             return Response({"error": "No student found"}, status=404)

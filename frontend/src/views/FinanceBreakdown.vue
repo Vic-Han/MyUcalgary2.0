@@ -3,7 +3,7 @@
       <div class="flex flex-row gap-x-4">
           <div class="flex flex-col gap-y-4"> 
               <div class="bg-white-100 p-10 rounded-xl shadow-lg"> 
-                 <div class="font-semibold text-3xl mb-4"> {{ selectedTerm }} </div>
+                 <div class="font-semibold text-3xl mb-4"> {{ currentTerm }} </div>
                  <div class="rounded-full w-64 h-64 mx-8 border-grey-200 border-2" :style="pieChartStyle"></div>
                  <div class="flex flex-row mt-8 justify-center">
                         <div class="flex items-center mx-4">
@@ -75,6 +75,7 @@ export default {
   data() {
     return {
       selectedTerm: 'Winter 2024',
+      currentTerm: 'Winter 2024',
       activeTab: 'all',
       terms: {},
       pieChartColors: {
@@ -113,8 +114,7 @@ export default {
         this.paid = data.paid;
         this.awards = data.awards;
         this.due = data.due;
-        this.selectedTerm = data.selectedTerm;
-
+        
         const total = this.paid + this.awards + this.due;
         if(total == 0){
           this.pieChartSegments = {
@@ -136,9 +136,11 @@ export default {
       .then(data => {
         console.log(data)
         for(const [key,value] of Object.entries(data.finances)){
+          this.selectedTerm = key;
+          this.currentTerm = key;
           this.FinancePreview.term = key
-          this.FinancePreview.amount = value.net_balance
-          this.FinancePreview.status = value.debits > 0 ? "Unpaid" : "Paid"
+          this.FinancePreview.amount = value.net_balance >= 0 ? value.credits : value.debits + value.credits
+          this.FinancePreview.status = value.net_balance < 0 ? "Unpaid" : "Paid"
           this.FinancePreview.due = value.due
         }
       }).catch(error => console.error('Error fetching data:', error));

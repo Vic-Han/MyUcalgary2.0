@@ -104,8 +104,8 @@ import Data from './SampleSched.json'
                     }
                     for(const [key,value] of Object.entries(data.finances)){
                         this.FinancePreview.term = key
-                        this.FinancePreview.amount = value.net_balance
-                        this.FinancePreview.status = value.debits > 0 ? "Unpaid" : "Paid"
+                        this.FinancePreview.amount = value.net_balance >= 0 ? value.credits : value.debits + value.credits
+                        this.FinancePreview.status = value.net_balance < 0 ? "Unpaid" : "Paid"
                         this.FinancePreview.due = value.due
                     }
                     this.Schedule = data.schedule
